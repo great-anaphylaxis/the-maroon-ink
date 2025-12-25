@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-export const blog = defineType({
+export const article = defineType({
     name: 'article',
     title: 'Article',
     type: 'document',
@@ -12,7 +12,7 @@ export const blog = defineType({
         }),
         
         defineField({
-            name: 'slug',
+            name: 'linkName',
             type: 'slug',
             options: {source: 'title'},
             validation: (rule) => rule.required(),

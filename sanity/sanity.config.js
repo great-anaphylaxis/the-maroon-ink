@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+import { Logo } from './components/logo.tsx'
 
 export default defineConfig({
   name: 'default',
@@ -9,6 +10,8 @@ export default defineConfig({
 
   projectId: 'w7ogeebt',
   dataset: 'production',
+
+  icon: Logo,
 
   plugins: [structureTool(), visionTool()],
 

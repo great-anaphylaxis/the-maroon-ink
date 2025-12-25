@@ -10,28 +10,21 @@ const client = createClient({
 
 function loadArticles() {
     const articles = client.fetch(`*[_type == "article"]`);
-    // const maxCharacterLength = 200;
 
     articles.then(res => {
+        for (let i = 0; i < res.length; i++) {
+            let article = res[i];
+            
+            let title = article.title
+            let link = `/articles/${article.linkName.current}`
 
-        console.log(res)
-        // for (let i = 0; i < res.length; i++) {
-        //     let blog = res[i];
-        //     let src = blog.image.asset._ref.replace('-png', '.png').replace('image-', ''); // ewwww
-        //     let content = toHTML(blog.body);
-        //     let contentElement = document.createElement('p');
-        //     contentElement.innerHTML = content;
-            
-        //     let type = "blogs"
-        //     let name = "custom"
-        //     let title = blog.title
-        //     let description = contentElement.textContent.substring(0, maxLength) + "..."; // ewwwwwwww
-        //     let link = `/blogs/${blog.slug.current}`
-        //     let target = "_self"
-        //     let customImageSrc = `https://cdn.sanity.io/images/lydpa3ua/production/${src}`;
-            
-        //     loadProject(type, name, title, description, link, target, customImageSrc);
-        // }
+            let e = document.createElement('a');
+            e.target = '_self';
+            e.href = link;
+            e.innerText = title;
+
+            document.body.appendChild(e);
+        }
     });
 }
 

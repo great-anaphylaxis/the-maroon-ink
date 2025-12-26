@@ -97,12 +97,12 @@ function renderContributors(article) {
     if (count === 1) {
         str = `By: ${inkersOnDuty[0]}`;
     } else if (count === 2) {
-        str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}`;
+        str = `By: ${inkersOnDuty[0]} & ${inkersOnDuty[1]}`;
     } else if (count === 3) {
-        str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}, and 1 other`;
+        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, & 1 other`;
     } else if (count > 3) {
         const remaining = count - 2;
-        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, and ${remaining} others`;
+        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, & ${remaining} others`;
     }
 
     inkersElement.innerText = str;

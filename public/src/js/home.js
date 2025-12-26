@@ -17,7 +17,7 @@ function urlFor(source) {
 }
 
 function getArticle() {
-    const article = client.fetch(`*[_type == "article"]{
+    const article = client.fetch(`*[_type == "article"] | order(publishedAt desc) {
         title,
         linkName,
         publishedAt,
@@ -91,7 +91,7 @@ function renderPreview(article, previewElement) {
             ? firstSentence.substring(0, maxCharLength) + "..." 
             : firstSentence;
 
-        previewElement.innerText = finalTarget;
+        previewElement.innerText = finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
     }
 
     return;

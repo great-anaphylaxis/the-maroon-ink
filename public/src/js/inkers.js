@@ -62,7 +62,7 @@ function renderInker(inker) {
 
 function getArticles() {
     const inkerUsername = getInkerUsername();
-    const article = client.fetch(`*[_type == "article" && inkersOnDuty[]->username.current match $inkerUsername]{
+    const article = client.fetch(`*[_type == "article" && inkersOnDuty[]->username.current match $inkerUsername] | order(publishedAt desc) {
         title,
         linkName,
         publishedAt,
@@ -138,7 +138,7 @@ function renderPreview(article, previewElement) {
             ? firstSentence.substring(0, maxCharLength) + "..." 
             : firstSentence;
 
-        previewElement.innerText = finalTarget;
+        previewElement.innerText = finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
     }
 
     return;

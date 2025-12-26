@@ -1,0 +1,26 @@
+
+article {   
+    max-width: 700px;
+    margin: auto;
+}
+
+
+
+#title {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    font-size: 42px;
+}
+
+#article-info {
+    display: flex;
+}
+
+#date {
+    margin: 0 1em;
+}
+
+#main {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+}

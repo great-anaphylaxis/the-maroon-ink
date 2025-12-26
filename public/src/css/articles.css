@@ -2,9 +2,8 @@
 article {   
     max-width: 680px;
     margin: auto;
+    margin-bottom: 4em;
 }
-
-
 
 #title {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -12,6 +11,7 @@ article {
     font-size: 42px;
     font-weight: 700;
     margin: 0.5em 0;
+    margin-top: 0.5em;
 }
 
 #article-info {
@@ -32,7 +32,7 @@ article {
 #main {
     font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
     color: #242424;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #main > p {

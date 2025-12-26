@@ -215,4 +215,20 @@ function renderArticle(article) {
     return;
 }
 
+function onhashchange() {
+    let options = {
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+    };
+
+    let hash = window.location.hash.slice(1);
+
+    history.replaceState("", document.title, window.location.pathname + window.location.search);
+
+    document.querySelector(hash).scrollIntoView(options);
+}
+
 getArticle();
+
+window.onhashchange = onhashchange;

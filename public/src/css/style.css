@@ -1,0 +1,42 @@
+
+main {
+    max-width: 680px;
+    margin: auto;
+    margin-bottom: 4em;
+    text-align: center;
+}
+
+.articles {
+    display: flex;
+    align-items: center;
+}
+
+.articles > div {
+    width: 70%;
+    text-align: left;
+}
+
+.articles > div > h1 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    margin: 0.5em 0;
+}
+
+.articles > div > h2 {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.articles > div > p {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+    font-size: 14px;
+}
+
+.articles > img {
+    width: 30%;
+    height: 100px;
+    object-fit: scale-down;
+}

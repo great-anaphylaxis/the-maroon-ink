@@ -2,7 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
-import { Logo } from './components/logo.tsx'
+import { Logo } from './components/Logo.tsx'
 
 export default defineConfig({
   name: 'default',

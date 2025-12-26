@@ -58,7 +58,7 @@ function getArticleLinkName() {
 
 function getArticle() {
     const linkName = getArticleLinkName();
-    const article = client.fetch(`*[_type == "article" && linkName.current == "${linkName}"]{
+    const article = client.fetch(`*[_type == "article" && linkName.current == $linkName]{
         title,
         linkName,
         publishedAt,
@@ -69,7 +69,7 @@ function getArticle() {
         },
         image,
         body
-    }`);
+    }`, {linkName: linkName});
 
     article.then(e => {
         for (let i = 0; i < e.length; i++) {
@@ -98,7 +98,9 @@ function renderContributors(article) {
         str = `By: ${inkersOnDuty[0]}`;
     } else if (count === 2) {
         str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}`;
-    } else if (count > 2) {
+    } else if (count === 3) {
+        str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}, and 1 other`;
+    } else if (count > 3) {
         const remaining = count - 2;
         str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, and ${remaining} others`;
     }

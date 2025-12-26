@@ -23,3 +23,15 @@ main {
     color: #242424;
     text-decoration: none;
 }
+
+section > h2 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    font-size: 28px;
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+hr {
+    margin: 2em 0;
+}

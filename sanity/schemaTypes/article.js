@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { CleanTitleInput } from "../components/CleanTitleInput.jsx";
 
 export const article = defineType({
     name: 'article',
@@ -8,6 +9,9 @@ export const article = defineType({
         defineField({
             name: 'title',
             type: 'string',
+            components: {
+                input: CleanTitleInput
+            },
             validation: (rule) => rule.required(),
         }),
         

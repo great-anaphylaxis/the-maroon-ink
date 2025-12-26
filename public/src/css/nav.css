@@ -13,3 +13,33 @@ nav {
     margin: 0 1.5em;
     margin-left: 2.5em;
 }
+
+#home-icon:hover {
+    animation: 0.25s ease 0s growNav;
+    animation-fill-mode: forwards;
+}
+
+#home-icon:not(:hover) {
+    animation: 0.25s ease 0s shrinkNav;
+    animation-fill-mode: forwards;
+}
+
+@keyframes growNav {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes shrinkNav {
+    0% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

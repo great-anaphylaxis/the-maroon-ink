@@ -63,14 +63,14 @@ function renderPublishedDate(article, dateElement) {
     const isYesterday = date.toDateString() === yesterday.toDateString();
     const isSameYear = date.getFullYear() === now.getFullYear();
 
-    const monthDay = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
     const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
 
     if (isYesterday) {
-        dateElement.innerText = `Yesterday at ${timePart}`;
+        dateElement.innerText = `Yesterday`;
     } else if (isSameYear) {
-        dateElement.innerText = `${monthDay} at ${timePart}`;
+        dateElement.innerText = `${monthDay}`;
     } else {
         dateElement.innerText = `${monthDay}, ${yearPart}`;
     }
@@ -83,7 +83,7 @@ function renderPreview(article, previewElement) {
         article.body[0].children[0].text
     ) {
         let str = article.body[0].children[0].text;
-        let maxCharLength = 200;
+        let maxCharLength = 100;
 
         let firstSentence = str.split(/(?<=[.!?])\s/)[0];
 

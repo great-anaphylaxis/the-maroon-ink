@@ -7,10 +7,15 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "/articles/**",
-        "destination": "/articles/articles.html"
-      }
+        {
+            "source": "/articles/**",
+            "destination": "/articles/articles.html"
+        },
+
+        {
+            "source": "/inkers/**",
+            "destination": "/inkers/inkers.html"
+        }
     ]
   }
 }

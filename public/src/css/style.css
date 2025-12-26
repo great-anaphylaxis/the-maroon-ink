@@ -6,6 +6,10 @@ main {
     text-align: center;
 }
 
+main > a {
+    text-decoration: none;
+}
+
 .articles {
     display: flex;
     align-items: center;
@@ -37,6 +41,6 @@ main {
 
 .articles > img {
     width: 30%;
-    height: 100px;
+    height: 150px;
     object-fit: scale-down;
 }

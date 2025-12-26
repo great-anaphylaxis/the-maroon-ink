@@ -76,7 +76,31 @@ function renderPublishedDate(article, dateElement) {
     }
 }
 
+function renderPreview(article, previewElement) {
+    if (
+        article.body[0] &&
+        article.body[0].children[0] &&
+        article.body[0].children[0].text
+    ) {
+        let str = article.body[0].children[0].text;
+        let maxCharLength = 200;
+
+        let firstSentence = str.split(/(?<=[.!?])\s/)[0];
+
+        let finalTarget = firstSentence.length > maxCharLength 
+            ? firstSentence.substring(0, maxCharLength) + "..." 
+            : firstSentence;
+
+        previewElement.innerText = finalTarget;
+    }
+
+    return;
+}
+
 function renderArticle(article) {
+    let a = document.createElement('a');
+    a.href = '/articles/' + article.linkName.current;
+
     let art = document.createElement('article');
     art.classList.add('articles');
 
@@ -84,8 +108,8 @@ function renderArticle(article) {
 
     let img = document.createElement('img');
     img.src = urlFor(article.image)
-        .width(300)
-        .height(100)
+        .width(600)
+        .height(400)
         .fit('max')
         .auto('format')
         .url();
@@ -95,8 +119,7 @@ function renderArticle(article) {
     h1.innerText = article.title;
 
     let h2 = document.createElement('h2');
-    // to do
-    h2.innerText = article.title;
+    renderPreview(article, h2);
 
     let p = document.createElement('p');
     renderPublishedDate(article, p);
@@ -108,7 +131,9 @@ function renderArticle(article) {
     art.appendChild(div);
     art.appendChild(img);
 
-    mainElement.appendChild(art);
+    a.appendChild(art);
+
+    mainElement.appendChild(a);
 
     return;
 }

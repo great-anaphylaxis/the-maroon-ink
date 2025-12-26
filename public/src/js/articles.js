@@ -14,7 +14,7 @@ const builder = createImageUrlBuilder(client);
 const components = {
     marks: {
         link: ({children, value}) => {
-            const href = value.href || '';
+            const href = children || '';
 
             if (uriLooksSafe(href)) {
                 return `<a href="${getValidUrl(href)}" target="_blank">${children}</a>`;
@@ -30,10 +30,24 @@ const inkersElement = document.getElementById('inkers');
 const dateElement = document.getElementById('date');
 const imageElement = document.getElementById('image');
 const mainElement = document.getElementById('main');
+const inkersOnDutyElement = document.getElementById('inkers-on-duty');
 
 function urlFor(source) {
     return builder.image(source);
 }
+
+function getValidUrl(url = "") {
+    let newUrl = window.decodeURIComponent(url);
+    newUrl = newUrl.trim().replace(/\s/g, "");
+
+    if(/^(:\/\/)/.test(newUrl)){
+        return `http${newUrl}`;
+    }
+    if(!/^(f|ht)tps?:\/\//i.test(newUrl)){
+        return `http://${newUrl}`;
+    }
+    return newUrl;
+};
 
 function getArticleLinkName() {
     let path =  window.location.pathname;
@@ -66,7 +80,7 @@ function getArticle() {
     });
 }
 
-function renderInkersOnDuty(article) {
+function renderContributors(article) {
     let inkersOnDuty = [];
     let str = "";
 
@@ -86,10 +100,50 @@ function renderInkersOnDuty(article) {
         str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}`;
     } else if (count > 2) {
         const remaining = count - 2;
-        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, and ${remaining} more`;
+        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, and ${remaining} others`;
     }
 
     inkersElement.innerText = str;
+}
+
+function renderInkersOnDuty(article) {
+    for (let i = 0; i < article.inkersOnDuty.length; i++) {
+        let inkers = article.inkersOnDuty[i];
+
+        let name = inkers.name;
+        let username = inkers.username.current;
+        let profilePicture = inkers.profilePicture;
+
+        let a = document.createElement('a');
+        a.href = "/inkers/" + username;
+        a.target = "_self";
+
+        let art = document.createElement('article');
+        art.classList.add('inkers');
+
+        let img = document.createElement('img');
+        img.src = urlFor(profilePicture)
+            .width(100)
+            .height(100)
+            .fit('max')
+            .auto('format')
+            .url();
+        img.alt = name;
+
+        let divParent = document.createElement('div');
+
+        let p = document.createElement('p');
+        p.innerText = name
+
+        divParent.appendChild(p);
+
+        art.appendChild(img);
+        art.appendChild(divParent);
+
+        a.appendChild(art);
+
+        inkersOnDutyElement.appendChild(a);
+    }
 }
 
 function renderPublishedDate(article) {
@@ -153,8 +207,10 @@ function renderArticle(article) {
     mainElement.innerHTML = content;
 
     renderPublishedDate(article)
-    renderInkersOnDuty(article);
+    renderContributors(article);
     renderImage(article);
+
+    renderInkersOnDuty(article);
 
     return;
 }

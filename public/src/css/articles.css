@@ -35,8 +35,49 @@ article {
     font-size: 18px;
 }
 
-#main > p {
+#main p {
     margin: 0;
     margin-top: 1.8em;
     line-height: 1;
+}
+
+#main a {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+    font-size: 18px;
+}
+
+footer > h2 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    font-size: 28px;
+}
+
+
+#inkers-on-duty {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+#inkers-on-duty > a {
+    text-decoration: none;
+}
+
+.inkers {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin: 1em;
+}
+
+.inkers > div {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.inkers > img {
+    max-width: 65px;
+    border-radius: 100%;
 }

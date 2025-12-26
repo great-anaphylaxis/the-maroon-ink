@@ -1,6 +1,6 @@
 
 article {   
-    max-width: 700px;
+    max-width: 680px;
     margin: auto;
 }
 
@@ -10,17 +10,33 @@ article {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #242424;
     font-size: 42px;
+    font-weight: 700;
+    margin: 0.5em 0;
 }
 
 #article-info {
     display: flex;
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
 }
 
-#date {
-    margin: 0 1em;
+#article-info-divider {
+    margin: 0 0.5em;
+}
+
+#image {
+    max-width: 100%;
+    margin: 1em 0;
 }
 
 #main {
     font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
     color: #242424;
+    font-size: 20px;
+}
+
+#main > p {
+    margin: 0;
+    margin-top: 1.8em;
+    line-height: 1;
 }

@@ -1,5 +1,5 @@
 import { createClient } from "https://esm.sh/@sanity/client";
-import imageUrlBuilder from "https://esm.sh/@sanity/image-url";
+import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { toHTML, uriLooksSafe } from "https://esm.sh/@portabletext/to-html";
 
 const client = createClient({
@@ -9,7 +9,7 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 const components = {
     marks: {
@@ -30,6 +30,10 @@ const inkersElement = document.getElementById('inkers');
 const dateElement = document.getElementById('date');
 const imageElement = document.getElementById('image');
 const mainElement = document.getElementById('main');
+
+function urlFor(source) {
+    return builder.image(source);
+}
 
 function getArticleLinkName() {
     let path =  window.location.pathname;
@@ -64,6 +68,7 @@ function getArticle() {
 
 function renderInkersOnDuty(article) {
     let inkersOnDuty = [];
+    let str = "";
 
     for (let i = 0; i < article.inkersOnDuty.length; i++) {
         let inkers = article.inkersOnDuty[i];
@@ -73,7 +78,18 @@ function renderInkersOnDuty(article) {
         inkersOnDuty.push(name)
     }
 
-    inkersElement.innerText = "By: " + inkersOnDuty.join(", ");
+    let count = inkersOnDuty.length;
+
+    if (count === 1) {
+        str = `By: ${inkersOnDuty[0]}`;
+    } else if (count === 2) {
+        str = `By: ${inkersOnDuty[0]} and ${inkersOnDuty[1]}`;
+    } else if (count > 2) {
+        const remaining = count - 2;
+        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, and ${remaining} more`;
+    }
+
+    inkersElement.innerText = str;
 }
 
 function renderPublishedDate(article) {
@@ -118,6 +134,17 @@ function renderPublishedDate(article) {
     }
 }
 
+function renderImage(article) {
+    imageElement.src = urlFor(article.image)
+        .width(700)
+        .height(380)
+        .fit('max')
+        .auto('format')
+        .url();
+
+    imageElement.alt = article.title;
+}
+
 function renderArticle(article) {
     let title = article.title;
     let content = toHTML(article.body, {components: components});
@@ -127,6 +154,7 @@ function renderArticle(article) {
 
     renderPublishedDate(article)
     renderInkersOnDuty(article);
+    renderImage(article);
 
     return;
 }

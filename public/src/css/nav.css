@@ -5,6 +5,12 @@ body {
 
 nav {
     padding: 0.5em;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background: white;
 }
 
 #home-icon {
@@ -41,5 +47,23 @@ nav {
 
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes navbar-show {
+    0% {
+        top: -100px;
+    }
+    100% {
+        top: -0px;
+    }
+}
+
+@keyframes navbar-hide {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: -100px;
     }
 }

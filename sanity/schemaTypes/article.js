@@ -26,6 +26,16 @@ export const article = defineType({
         }),
 
         defineField({
+            name: 'inkersOnDuty',
+            type: 'array',
+            of: [{
+                type: 'reference',
+                to: [{type: 'inker'}]
+            }],
+            validation: Rule => Rule.unique()
+        }),
+
+        defineField({
             name: 'image',
             type: 'image',
             options: {

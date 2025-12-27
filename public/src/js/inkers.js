@@ -42,6 +42,10 @@ function getInker() {
             
             renderInker(inker)
         }
+
+        if (e.length == 0) {
+            window.location.replace("/404.html");
+        }
     });
 }
 
@@ -73,8 +77,6 @@ function getArticles() {
     article.then(e => {
         for (let i = 0; i < e.length; i++) {
             let article = e[i];
-
-            console.log(1)
 
             renderArticle(article)
         }

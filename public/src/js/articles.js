@@ -77,6 +77,10 @@ function getArticle() {
             
             renderArticle(article)
         }
+
+        if (e.length == 0) {
+            window.location.replace("/404.html");
+        }
     });
 }
 

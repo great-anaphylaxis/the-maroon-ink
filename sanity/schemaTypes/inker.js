@@ -21,6 +21,12 @@ export const inker = defineType({
         defineField({
             name: 'profilePicture',
             type: 'image',
+            validation: (rule) => rule.required(),
+        }),
+
+        defineField({
+            name: 'role',
+            type: 'string',
         }),
 
         defineField({

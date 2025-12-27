@@ -15,14 +15,23 @@ main {
     color: #242424;
     font-size: 42px;
     font-weight: 700;
-    margin: 0.5em 0;
+    margin: 0 0;
     margin-top: 0.5em;
+}
+
+#role {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #868686;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0;
 }
 
 #bio {
     font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
     color: #242424;
     text-decoration: none;
+    margin-top: 1.3em;
 }
 
 section > h2 {

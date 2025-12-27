@@ -65,6 +65,7 @@ function getArticle() {
         "inkersOnDuty": inkersOnDuty[]->{
             name,
             username,
+            role,
             profilePicture
         },
         image,
@@ -118,6 +119,7 @@ function renderInkersOnDuty(article) {
 
         let name = inkers.name;
         let username = inkers.username.current;
+        let role = inkers.role;
         let profilePicture = inkers.profilePicture;
 
         let a = document.createElement('a');
@@ -138,9 +140,13 @@ function renderInkersOnDuty(article) {
 
         let divParent = document.createElement('div');
 
-        let p = document.createElement('p');
-        p.innerText = name
+        let h3 = document.createElement('h3');
+        h3.innerText = name;
 
+        let p = document.createElement('p');
+        p.innerText = role;
+
+        divParent.appendChild(h3);
         divParent.appendChild(p);
 
         art.appendChild(img);

@@ -12,6 +12,7 @@ const builder = createImageUrlBuilder(client);
 
 const imgElement = document.getElementById('img');
 const nameElement = document.getElementById('name');
+const roleElement = document.getElementById('role');
 const bioElement = document.getElementById('bio');
 
 const mainElement = document.getElementById('main');
@@ -33,6 +34,7 @@ function getInker() {
         name,
         username,
         profilePicture,
+        role,
         bio
     }`, {username: username});
 
@@ -61,6 +63,7 @@ function renderInker(inker) {
 
 
     nameElement.innerText = inker.name;
+    roleElement.innerText = inker.role;
     bioElement.innerText = inker.bio;
 }
 

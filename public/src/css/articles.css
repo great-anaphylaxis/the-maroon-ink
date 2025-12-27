@@ -2,11 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-a:hover {
-    text-decoration: underline !important;
-    color: #242424;
-}
-
 article {   
     max-width: 680px;
     margin: auto;
@@ -35,6 +30,10 @@ article {
     text-decoration: none;
 }
 
+#article-info a:hover {
+    text-decoration: underline;
+}
+
 #article-info-divider {
     margin: 0 0.5em;
 }
@@ -52,8 +51,8 @@ article {
 
 #main p {
     margin: 0;
-    margin-top: 1.8em;
     line-height: 1.7;
+    margin-bottom: 1.8em;
 }
 
 #main a {
@@ -96,11 +95,21 @@ footer > h2 {
     animation-fill-mode: forwards;
 }
 
-.inkers > div {
+.inkers > div > h3 {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #242424;
     font-size: 18px;
     font-weight: 500;
+    margin: 0;
+}
+
+.inkers > div > p {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 1px;
 }
 
 .inkers > img {
@@ -114,7 +123,7 @@ footer > h2 {
     }
 
     100% {
-        transform: scale(1.03);
+        transform: scale(1.05);
     }
 }
 

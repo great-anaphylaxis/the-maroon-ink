@@ -1,9 +1,17 @@
+
+
+#content {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+}
+
 main {
-    max-width: 680px;
+    width: 680px;
     margin: auto;
     margin-bottom: 4em;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 2em;
 }
 
 #img {

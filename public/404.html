@@ -19,15 +19,32 @@
     <link rel="stylesheet" href="/src/css/404.css">
 </head>
 <body>
-    <nav>
+    <nav id="navtop">
         <a href="/">
             <img id="home-icon" src="/src/icons/favicon.ico">
         </a>
     </nav>
 
-    <main>
-        <h1>Page not found</h1>
-    </main>
+    <section>        
+        <nav id="navside">
+            <a href="/">
+                <img src="/src/icons/home.png">
+                <div>Home</div>
+            </a>
+            <a href="/">
+                <img src="/src/icons/about.png">
+                <div>About</div>
+            </a>
+            <a href="/">
+                <img src="/src/icons/privacy-policy.png">
+                <div>Privacy Policy</div>
+            </a>
+        </nav>
+        
+        <main>
+            <h1>Page not found</h1>
+        </main>
+    </section>
 
     <script type="module" src="/src/js/nav.js"></script>
 </body>

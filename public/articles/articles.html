@@ -18,41 +18,58 @@
     <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
 </head>
 <body>
-    <nav>
+    <nav id="navtop">
         <a href="/">
             <img id="home-icon" src="/src/icons/favicon.ico">
         </a>
     </nav>
 
-    <article>
-        <header>
-            <h1 id="title"></h1>
-            <div id="article-info">
-                <a href="#inkers-on-duty">
-                    <div id="inkers"></div>
-                </a>
-                <div id="article-info-divider">·</div>
-                <div id="date"></div>
-            </div>
-        </header>
+    <section id="content">
+        <nav id="navside">
+            <a href="/">
+                <img src="/src/icons/home.png">
+                <div>Home</div>
+            </a>
+            <a href="/">
+                <img src="/src/icons/about.png">
+                <div>About</div>
+            </a>
+            <a href="/">
+                <img src="/src/icons/privacy-policy.png">
+                <div>Privacy Policy</div>
+            </a>
+        </nav>
 
-        <section>
-            <img id="image">
-        </section>
+        <article>
+            <header>
+                <h1 id="title"></h1>
+                <div id="article-info">
+                    <a href="#inkers-on-duty">
+                        <div id="inkers"></div>
+                    </a>
+                    <div id="article-info-divider">·</div>
+                    <div id="date"></div>
+                </div>
+            </header>
 
-        <main id="main">
-            
-        </main>
+            <section>
+                <img id="image">
+            </section>
 
-        <hr>
+            <main id="main">
+                
+            </main>
 
-        <footer>
-            <h2>Inkers on duty</h2>
-            <div id="inkers-on-duty">
+            <hr>
 
-            </div>
-        </footer>
-    </article>
+            <footer>
+                <h2>Inkers on duty</h2>
+                <div id="inkers-on-duty">
+
+                </div>
+            </footer>
+        </article>
+    </section>
 
     <script type="module" src="/src/js/articles.js"></script>
     <script type="module" src="/src/js/nav.js"></script>

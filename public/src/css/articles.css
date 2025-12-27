@@ -2,11 +2,16 @@ html {
     scroll-behavior: smooth;
 }
 
+#content {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+}
+
 article {   
     max-width: 680px;
     margin: auto;
     margin-bottom: 4em;
-    margin-top: 70px;
 }
 
 #title {

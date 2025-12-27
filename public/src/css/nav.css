@@ -3,7 +3,7 @@ body {
     padding: 0;
 }
 
-nav {
+#navtop {
     padding: 0.5em;
     position: fixed;
     width: 100%;
@@ -21,16 +21,16 @@ nav {
 }
 
 #home-icon:hover {
-    animation: 0.25s ease 0s growNav;
+    animation: 0.25s ease 0s growNavtop;
     animation-fill-mode: forwards;
 }
 
 #home-icon:not(:hover) {
-    animation: 0.25s ease 0s shrinkNav;
+    animation: 0.25s ease 0s shrinkNavtop;
     animation-fill-mode: forwards;
 }
 
-@keyframes growNav {
+@keyframes growNavtop {
     0% {
         transform: scale(1);
     }
@@ -40,7 +40,7 @@ nav {
     }
 }
 
-@keyframes shrinkNav {
+@keyframes shrinkNavtop {
     0% {
         transform: scale(1.04);
     }
@@ -65,5 +65,68 @@ nav {
     }
     100% {
         top: -100px;
+    }
+}
+
+@keyframes growNavside {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.07);
+    }
+}
+
+@keyframes shrinkNavside {
+    0% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#navside {
+    width: 150px;
+    padding: 0.5em;
+    padding-top: 4em;
+    padding-left: 2em;
+}
+
+#navside > a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+#navside > a:hover {
+    animation: 0.25s ease 0s growNavside;
+    animation-fill-mode: forwards;
+}
+
+#navside > a:not(:hover) {
+    animation: 0.25s ease 0s shrinkNavside;
+    animation-fill-mode: forwards;
+}
+
+#navside > a > div {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #242424;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 1em 0;
+    margin-left: 1em;
+}
+
+#navside > a > img {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (max-width: 950px) {
+    #navside {
+        display: none;
     }
 }

@@ -115,21 +115,21 @@ body {
     }
 }
 
-@keyframes navside-show2 {
+@keyframes navside-hide2 {
     0% {
-        flex-basis: -200px;
+        flex-basis: 200px;
     }
     100% {
-        flex-basis: -0px;
+        flex-basis: 0px;
     }
 }
 
-@keyframes navside-hide2 {
+@keyframes navside-show2 {
     0% {
         flex-basis: 0px;
     }
     100% {
-        flex-basis: -200px;
+        flex-basis: 200px;
     }
 }
 

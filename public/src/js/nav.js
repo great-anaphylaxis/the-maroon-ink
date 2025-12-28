@@ -39,12 +39,14 @@ function optionsButtonClick() {
 
     if (hidden) {
         navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-hide";
-        content.style.animation = "0.4s ease 0s 1 normal forwards running navside-hide2";
+        document.styleSheets[0].deleteRule(0)
+        document.styleSheets[0].insertRule('#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-hide2 }', 0);
     }
 
     else {
         navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-show";
-        content.style.animation = "0.4s ease 0s 1 normal forwards running navside-show2";
+        document.styleSheets[0].deleteRule(0)
+        document.styleSheets[0].insertRule('#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-show2 }', 0);
     }
 }
 

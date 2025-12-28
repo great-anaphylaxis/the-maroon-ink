@@ -47,8 +47,8 @@ body {
 }
 
 #options-icon {
-    max-width: 30px;
-    margin-left: 1.45em;
+    max-width: 20px;
+    margin-left: 1.65em;
     cursor: pointer;
 }
 
@@ -60,6 +60,23 @@ body {
 #options-icon:not(:hover) {
     animation: 0.25s ease 0s shrinkNavtop;
     animation-fill-mode: forwards;
+}
+
+#navtop > div:has(#searchbox) {
+    display: flex;
+    justify-content: center;
+}
+
+#searchbox {
+    margin-left: 0.75em;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-color: transparent;
+}
+
+#search-icon {
+    max-width: 25px;
+    margin-left: 1.45em;
+    cursor: pointer;
 }
 
 @keyframes growNavtop {

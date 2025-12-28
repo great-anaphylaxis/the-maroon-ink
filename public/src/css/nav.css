@@ -27,10 +27,13 @@ body {
     align-items: center;
 }
 
+#navtop > a:has(#home-icon) {
+    margin: 0 1.5em;
+}
+
 #home-icon {
     max-width: 48px;
     border-radius: 100%;
-    margin: 0 1.5em;
 }
 
 #home-icon:hover {
@@ -159,6 +162,7 @@ body {
     left: 0;
     top: 45px;
     padding-top: 3em;
+    display: none;
 }
 
 #navside > a {

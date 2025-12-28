@@ -4,6 +4,10 @@ let pastScrollPos = 0
 let scrollPos = 0
 
 function onscroll() {
+    if (window.innerWidth >= 950) {
+        return;
+    }
+
     window.requestAnimationFrame(() => {
         pastScrollPos = scrollPos;
         scrollPos = document.body.getBoundingClientRect().top * -1;

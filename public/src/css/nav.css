@@ -10,14 +10,16 @@ body {
     height: 50px;
     top: 0;
     left: 0;
-    background: white;
+    background-color: white;
+    z-index: 1;
+    display: flex;
+    align-items: center;
 }
 
 #home-icon {
     max-width: 48px;
     border-radius: 100%;
     margin: 0 1.5em;
-    margin-left: 4.5em;
 }
 
 #home-icon:hover {
@@ -26,6 +28,22 @@ body {
 }
 
 #home-icon:not(:hover) {
+    animation: 0.25s ease 0s shrinkNavtop;
+    animation-fill-mode: forwards;
+}
+
+#options-icon {
+    max-width: 30px;
+    margin-left: 1.45em;
+    cursor: pointer;
+}
+
+#options-icon:hover {
+    animation: 0.25s ease 0s growNavtop;
+    animation-fill-mode: forwards;
+}
+
+#options-icon:not(:hover) {
     animation: 0.25s ease 0s shrinkNavtop;
     animation-fill-mode: forwards;
 }
@@ -68,6 +86,24 @@ body {
     }
 }
 
+@keyframes navside-show {
+    0% {
+        left: -200px;
+    }
+    100% {
+        left: -0px;
+    }
+}
+
+@keyframes navside-hide {
+    0% {
+        left: 0px;
+    }
+    100% {
+        left: -200px;
+    }
+}
+
 @keyframes growNavside {
     0% {
         transform: scale(1);
@@ -89,16 +125,18 @@ body {
 }
 
 #navside {
-    width: 150px;
-    padding: 0.5em;
-    padding-top: 4em;
-    padding-left: 2em;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 45px;
+    padding-top: 3em;
 }
 
 #navside > a {
     text-decoration: none;
     display: flex;
     align-items: center;
+    margin-left: 2em;
 }
 
 #navside > a:hover {

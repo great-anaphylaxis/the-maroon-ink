@@ -4,6 +4,11 @@ section {
     margin-top: 45px;
 }
 
+section::before {
+    content: "";
+    flex: 0 0 200px;
+}
+
 main {
     max-width: 680px;
     margin-bottom: 4em;

@@ -65,12 +65,20 @@ body {
 #navtop > div:has(#searchbox) {
     display: flex;
     justify-content: center;
+    margin-left: 3em;
 }
 
 #searchbox {
     margin-left: 0.75em;
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
     border-color: transparent;
+}
+
+#searchbox:focus {
+   outline: none;
+   box-shadow: none;
+   border-color: transparent;
 }
 
 #search-icon {

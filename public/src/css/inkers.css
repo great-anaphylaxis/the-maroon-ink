@@ -1,16 +1,3 @@
-
-
-#content {
-    display: flex;
-    justify-content: center;
-    margin-top: 45px;
-}
-
-#content::before {
-    content: "";
-    flex: 0 0 200px;
-}
-
 main {
     width: 680px;
     margin: auto;

@@ -3,6 +3,17 @@ body {
     padding: 0;
 }
 
+#content {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+}
+
+#content::before {
+    content: "";
+    flex: 0 0 200px;
+}
+
 #navtop {
     padding: 0.5em;
     position: fixed;
@@ -101,6 +112,24 @@ body {
     }
     100% {
         left: -200px;
+    }
+}
+
+@keyframes navside-show2 {
+    0% {
+        flex-basis: -200px;
+    }
+    100% {
+        flex-basis: -0px;
+    }
+}
+
+@keyframes navside-hide2 {
+    0% {
+        flex-basis: 0px;
+    }
+    100% {
+        flex-basis: -200px;
     }
 }
 

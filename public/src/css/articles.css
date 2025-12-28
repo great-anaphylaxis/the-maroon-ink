@@ -2,17 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-#content {
-    display: flex;
-    justify-content: center;
-    margin-top: 45px;
-}
-
-#content::before {
-    content: "";
-    flex: 0 0 200px;
-}
-
 article {   
     max-width: 680px;
     margin: auto;

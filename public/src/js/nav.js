@@ -4,6 +4,7 @@ const navtop = document.getElementById('navtop');
 const navside = document.getElementById('navside');
 const content = document.getElementById('content');
 const optionsButton = document.getElementById('options-icon');
+const searchbox = document.getElementById('searchbox');
 
 let pastScrollPos = 0;
 let scrollPos = 0;
@@ -70,6 +71,17 @@ function initializeNavside() {
     optionsButton.addEventListener('click', optionsButtonClick)
 }
 
+function onSearchboxEnter(e) {
+    let value = searchbox.value;
+
+    if (value.length > 0 && (e.key === "Enter" || e.keyCode === 13)) {
+        window.location.href = "/search?q=" + value;
+    }
+}
+
 
 window.onscroll = onscroll;
+
 initializeNavside();
+
+searchbox.addEventListener('keydown', onSearchboxEnter);

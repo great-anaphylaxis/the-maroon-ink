@@ -187,7 +187,7 @@ function renderPublishedDate(article) {
     const isYesterday = date.toDateString() === yesterday.toDateString();
     const isSameYear = date.getFullYear() === now.getFullYear();
 
-    const monthDay = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
     const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
 

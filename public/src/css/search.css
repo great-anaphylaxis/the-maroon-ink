@@ -27,7 +27,13 @@
     color: #242424;
     font-size: 23px;
     font-weight: 700;
-    margin: 0;
+    margin: 0;    
+    
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .inkers > div > h2 {
@@ -37,6 +43,12 @@
     font-weight: 500;
     margin: 0;
     margin-left: 1px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .inkers > img {

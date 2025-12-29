@@ -3,6 +3,7 @@ main {
     margin-bottom: 4em;
     text-align: center;
     margin: auto;
+    padding: 1em;
 }
 
 main > h2 {
@@ -10,4 +11,8 @@ main > h2 {
     color: #242424;
     font-size: 32px;
     margin-bottom: 0.5em;
+}
+
+main > div {
+    margin-bottom: 2em;
 }

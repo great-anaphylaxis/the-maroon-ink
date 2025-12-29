@@ -35,6 +35,39 @@ function onscroll() {
     });
 }
 
+function onresize() {
+    if (window.innerWidth < 950) {
+        navside.style.left = "-200px";
+        document.styleSheets[0].deleteRule(0)
+        document.styleSheets[0].insertRule(
+            '#content::before { flex-basis: 0px !important; }', 0);
+
+        hidden = false;
+    }
+    
+    if (window.innerWidth >= 950) {
+        if (hidden) {
+            navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-hide";
+
+            if (window.innerWidth >= 950) {
+                document.styleSheets[0].deleteRule(0)
+                document.styleSheets[0].insertRule(
+                    '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-hide2 }', 0);
+            }
+        }
+
+        else {
+            navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-show";
+
+            if (window.innerWidth >= 950) {
+                document.styleSheets[0].deleteRule(0)
+                document.styleSheets[0].insertRule(
+                    '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-show2 }', 0);
+            }
+        }
+    }
+}
+
 function optionsButtonClick() {
     hidden = !hidden;
 
@@ -42,21 +75,31 @@ function optionsButtonClick() {
 
     if (hidden) {
         navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-hide";
-        document.styleSheets[0].deleteRule(0)
-        document.styleSheets[0].insertRule(
-            '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-hide2 }', 0);
+
+        if (window.innerWidth >= 950) {
+            document.styleSheets[0].deleteRule(0)
+            document.styleSheets[0].insertRule(
+                '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-hide2 }', 0);
+        }
     }
 
     else {
         navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-show";
-        document.styleSheets[0].deleteRule(0)
-        document.styleSheets[0].insertRule(
-            '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-show2 }', 0);
+
+        if (window.innerWidth >= 950) {
+            document.styleSheets[0].deleteRule(0)
+            document.styleSheets[0].insertRule(
+                '#content::before { animation: 0.4s ease 0s 1 normal forwards running navside-show2 }', 0);
+        }
     }
 }
 
 function initializeNavside() {
     let localHidden = localStorage.getItem('navside.hidden') ?? 'false';
+
+    if (window.innerWidth < 950) {
+        localHidden = 'true';
+    }
 
     if (localHidden == 'true') {
         navside.style.left = "-200px";
@@ -81,6 +124,7 @@ function onSearchboxEnter(e) {
 
 
 window.onscroll = onscroll;
+window.onresize = onresize;
 
 initializeNavside();
 

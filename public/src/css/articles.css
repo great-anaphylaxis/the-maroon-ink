@@ -6,6 +6,7 @@ article {
     max-width: 680px;
     margin: auto;
     margin-bottom: 4em;
+    padding: 1em;
 }
 
 #title {
@@ -14,17 +15,52 @@ article {
     font-size: 42px;
     font-weight: 700;
     margin: 0.5em 0;
-    margin-top: 0.5em;
+    margin-top: 1em;
+}
+
+#inkers {
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#date {
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #585858;
+}
+
+@media screen and (max-width: 600px) {
+    #title {
+        font-size: 32px;
+    }
+
+    #article-info {
+        flex-direction: column;
+    }
+
+    #article-info-divider {
+        display: none;
+    }
+
+    #date {
+        margin-top: 0.5em;
+    }
 }
 
 #article-info {
     display: flex;
-    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #242424;
 }
 
 #article-info a {
-    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #242424;
     text-decoration: none;
 }
@@ -52,6 +88,7 @@ article {
     margin: 0;
     line-height: 1.7;
     margin-bottom: 1.8em;
+    overflow-wrap: anywhere;
 }
 
 #main a {
@@ -103,7 +140,7 @@ footer > h2 {
 }
 
 .inkers > div > p {
-    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #7a7a7a;
     font-size: 14px;
     font-weight: 500;

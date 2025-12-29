@@ -147,6 +147,19 @@ function renderPreview(article, previewElement) {
     return;
 }
 
+function renderTitle(article, titleElement) {
+    if (article.title) {
+        let title = article.title;
+        let maxCharLength = 60;
+
+        let str = title.length > maxCharLength 
+            ? title.substring(0, maxCharLength) + "..." 
+            : title;
+
+        titleElement.innerText = str;
+    }
+}
+
 function renderArticle(article) {
     let a = document.createElement('a');
     a.href = '/articles/' + article.linkName.current;
@@ -166,7 +179,7 @@ function renderArticle(article) {
     img.alt = article.title;
 
     let h1 = document.createElement('h1');
-    h1.innerText = article.title;
+    renderTitle(article, h1);
 
     let h2 = document.createElement('h2');
     renderPreview(article, h2);

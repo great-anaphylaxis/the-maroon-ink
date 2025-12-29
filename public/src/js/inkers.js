@@ -28,25 +28,40 @@ function getInkerUsername() {
     return str[2];
 }
 
-function getInker() {
+function getInkerAndArticles() {
     const username = getInkerUsername();
-    const inker = client.fetch(`*[_type == "inker" && username.current == $username]{
+    const inkerAndArticles = client.fetch(`{
+    "inker": *[_type == "inker" && username.current == $username]{
         name,
         username,
         profilePicture,
         role,
         bio
-    }`, {username: username});
+    },
+    
+    "articles": *[_type == "article" && inkersOnDuty[]->username.current match $username]
+    | order(publishedAt desc) {
+        title,
+        linkName,
+        publishedAt,
+        image,
+        body
+    }}`, {username: username});
 
-    inker.then(e => {
-        for (let i = 0; i < e.length; i++) {
-            let inker = e[i];
-            
-            renderInker(inker)
+    inkerAndArticles.then(e => {
+        let inker = e.inker[0];
+        let articles = e.articles;
+
+        if (e.inker.length == 0) {
+            window.location.replace("/404.html");
         }
 
-        if (e.length == 0) {
-            window.location.replace("/404.html");
+        renderInker(inker)
+
+        for (let i = 0; i < articles.length; i++) {
+            let article = articles[i];
+
+            renderArticle(article)
         }
     });
 }
@@ -65,25 +80,6 @@ function renderInker(inker) {
     nameElement.innerText = inker.name;
     roleElement.innerText = inker.role;
     bioElement.innerText = inker.bio;
-}
-
-function getArticles() {
-    const inkerUsername = getInkerUsername();
-    const article = client.fetch(`*[_type == "article" && inkersOnDuty[]->username.current match $inkerUsername] | order(publishedAt desc) {
-        title,
-        linkName,
-        publishedAt,
-        image,
-        body
-    }`, {inkerUsername: inkerUsername});
-
-    article.then(e => {
-        for (let i = 0; i < e.length; i++) {
-            let article = e[i];
-
-            renderArticle(article)
-        }
-    });
 }
 
 function renderPublishedDate(article, dateElement) {
@@ -149,6 +145,19 @@ function renderPreview(article, previewElement) {
     return;
 }
 
+function renderTitle(article, titleElement) {
+    if (article.title) {
+        let title = article.title;
+        let maxCharLength = 60;
+
+        let str = title.length > maxCharLength 
+            ? title.substring(0, maxCharLength) + "..." 
+            : title;
+
+        titleElement.innerText = str;
+    }
+}
+
 function renderArticle(article) {
     let a = document.createElement('a');
     a.href = '/articles/' + article.linkName.current;
@@ -168,7 +177,7 @@ function renderArticle(article) {
     img.alt = article.title;
 
     let h1 = document.createElement('h1');
-    h1.innerText = article.title;
+    renderTitle(article, h1);
 
     let h2 = document.createElement('h2');
     renderPreview(article, h2);
@@ -190,5 +199,4 @@ function renderArticle(article) {
     return;
 }
 
-getInker();
-getArticles();
+getInkerAndArticles();

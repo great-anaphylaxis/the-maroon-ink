@@ -57,6 +57,7 @@ function getInkerAndArticles() {
         }
 
         renderInker(inker)
+        setProperSEO(inker)
 
         for (let i = 0; i < articles.length; i++) {
             let article = articles[i];
@@ -197,6 +198,26 @@ function renderArticle(article) {
     mainElement.appendChild(a);
 
     return;
+}
+
+function setProperSEO(inker) {
+    const metaDescription = document.querySelector("meta[name='description']");
+    const ogUrl = document.querySelector("meta[property='og:url']");
+    const ogTitle = document.querySelector("meta[property='og:title']");
+    const ogDescription = document.querySelector("meta[property='og:description']");
+    const ogImage = document.querySelector("meta[property='og:image']");
+
+    const url = window.location.href;
+    const title = `${inker.name} | The Maroon Ink Inkers`;
+    const description = `${inker.name} - ${inker.role}. ${inker.bio}`;
+    const image = imgElement.src;
+
+    ogUrl.setAttribute('content', url)
+    document.title = title;
+    ogTitle.setAttribute('content', title);
+    metaDescription.setAttribute('content', description);
+    ogDescription.setAttribute('content', description);
+    ogImage.setAttribute('content', ogImage);
 }
 
 getInkerAndArticles();

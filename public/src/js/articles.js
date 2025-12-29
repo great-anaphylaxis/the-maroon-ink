@@ -77,6 +77,7 @@ function getArticle() {
             let article = e[i];
             
             renderArticle(article)
+            setProperSEO(article)
         }
 
         if (e.length == 0) {
@@ -225,6 +226,47 @@ function renderArticle(article) {
     renderInkersOnDuty(article);
 
     return;
+}
+
+function getArticlePreview(article) {
+    if (
+        article.body[0] &&
+        article.body[0].children[0] &&
+        article.body[0].children[0].text
+    ) {
+        let str = article.body[0].children[0].text;
+        let maxCharLength = 100;
+
+        let firstSentence = str.split(/(?<=[.!?])\s/)[0];
+
+        let finalTarget = firstSentence.length > maxCharLength 
+            ? firstSentence.substring(0, maxCharLength) + "..." 
+            : firstSentence;
+
+        return finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
+    }
+
+    return;
+}
+
+function setProperSEO(article) {
+    const metaDescription = document.querySelector("meta[name='description']");
+    const ogUrl = document.querySelector("meta[property='og:url']");
+    const ogTitle = document.querySelector("meta[property='og:title']");
+    const ogDescription = document.querySelector("meta[property='og:description']");
+    const ogImage = document.querySelector("meta[property='og:image']");
+
+    const url = window.location.href;
+    const title = `${article.title} | The Maroon Ink Articles`;
+    const description = getArticlePreview(article)
+    const image = imageElement.src;
+
+    ogUrl.setAttribute('content', url)
+    document.title = title;
+    ogTitle.setAttribute('content', title);
+    metaDescription.setAttribute('content', description);
+    ogDescription.setAttribute('content', description);
+    ogImage.setAttribute('content', ogImage);
 }
 
 function onhashchange() {

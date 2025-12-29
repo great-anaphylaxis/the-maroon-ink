@@ -266,7 +266,7 @@ function setProperSEO(article) {
     ogTitle.setAttribute('content', title);
     metaDescription.setAttribute('content', description);
     ogDescription.setAttribute('content', description);
-    ogImage.setAttribute('content', ogImage);
+    ogImage.setAttribute('content', image);
 }
 
 function onhashchange() {

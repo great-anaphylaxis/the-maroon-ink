@@ -9,12 +9,16 @@ article {
     padding: 1em;
 }
 
+hr {
+    border-color: maroon;
+}
+
 #title {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
+    color: maroon;
     font-size: 42px;
     font-weight: 700;
-    margin: 0.5em 0;
+    margin: 0.25em 0;
     margin-top: 1em;
 }
 
@@ -133,7 +137,7 @@ footer > h2 {
 
 .inkers > div > h3 {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
+    color: #353535;
     font-size: 18px;
     font-weight: 500;
     margin: 0;
@@ -171,4 +175,8 @@ footer > h2 {
     100% {
         transform: scale(1);
     }
+}
+
+#footer-title {
+    color: maroon;
 }

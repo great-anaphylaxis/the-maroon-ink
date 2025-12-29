@@ -1,0 +1,49 @@
+html {
+    scroll-behavior: smooth;
+}
+
+article {   
+    max-width: 680px;
+    margin: auto;
+    margin-bottom: 4em;
+    padding: 1em;
+}
+
+#main {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+    font-size: 18px;
+}
+
+#main p, #main li {
+    margin: 0;
+    line-height: 1.7;
+    margin-bottom: 1.8em;
+    overflow-wrap: anywhere;
+}
+
+#subtitle {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #616161;
+    margin-bottom: 0.2em !important;
+}
+
+#main a {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #242424;
+    font-size: 18px;
+}
+
+#image {
+    max-width: 100%;
+    margin: 1em 0;
+}
+
+h1 {
+    margin-bottom: 0.25em;
+}
+
+h1, h2 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: maroon;
+}

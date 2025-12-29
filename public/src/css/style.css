@@ -8,9 +8,13 @@ main {
 
 main > h2 {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
+    color: maroon;
     font-size: 32px;
     margin-bottom: 0.5em;
+}
+
+hr {
+    border-color: maroon;
 }
 
 main > div {

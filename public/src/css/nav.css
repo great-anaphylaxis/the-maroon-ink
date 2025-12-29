@@ -90,7 +90,13 @@ body {
     }
 }
 
+h1 {
+    color: maroon;
+}
 
+hr {
+    border-color: maroon;
+}
 
 
 #searchbox {

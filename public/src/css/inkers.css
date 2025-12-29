@@ -7,13 +7,17 @@ main {
     padding: 1em;
 }
 
+hr {
+    border-color: maroon;
+}
+
 #img {
     border-radius: 100%;
 }
 
 #name {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
+    color: maroon;
     font-size: 42px;
     font-weight: 700;
     margin: 0 0;
@@ -38,7 +42,7 @@ main {
 
 section > h2 {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
+    color: maroon;
     font-size: 28px;
     margin-bottom: 1em;
     text-align: left;

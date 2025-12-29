@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const inker = defineType({
     name: 'inker',
-    title: 'Inker',
+    title: 'Inkers',
     type: 'document',
     fields: [
         defineField({

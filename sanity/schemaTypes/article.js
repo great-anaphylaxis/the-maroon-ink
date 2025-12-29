@@ -3,7 +3,7 @@ import { CleanTitleInput } from "../components/CleanTitleInput.jsx";
 
 export const article = defineType({
     name: 'article',
-    title: 'Article',
+    title: 'Articles',
     type: 'document',
     fields: [
         defineField({

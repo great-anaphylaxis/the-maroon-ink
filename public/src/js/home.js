@@ -10,26 +10,47 @@ const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
-const mainElement = document.getElementById('main');
+const featuredArticlesElement = document.getElementById('featuredArticles');
+const recentArticlesElement = document.getElementById('recentArticles');
 
 function urlFor(source) {
     return builder.image(source);
 }
 
 function getArticle() {
-    const article = client.fetch(`*[_type == "article"] | order(publishedAt desc) {
-        title,
-        linkName,
-        publishedAt,
-        image,
-        body
+    const article = client.fetch(`{
+        "websiteSettings": *[_type == "websiteSettings"][0] {
+            "featuredArticles": featuredArticles[]->{
+                _id,
+                title,
+                linkName,
+                publishedAt,
+                image,
+                body
+            },
+        },
+        
+        "response": *[_type == "article"
+        && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
+        | order(publishedAt desc) {
+            title,
+            linkName,
+            publishedAt,
+            image,
+            body
+        }
     }`);
 
     article.then(e => {
-        for (let i = 0; i < e.length; i++) {
-            let article = e[i];
+        let res = e.response;
+        let websiteSettings = e.websiteSettings;
+
+        applyWebsiteSettings(websiteSettings);
+
+        for (let i = 0; i < res.length; i++) {
+            let article = res[i];
             
-            renderArticle(article)
+            renderArticle(article, recentArticlesElement)
         }
     });
 }
@@ -97,7 +118,7 @@ function renderPreview(article, previewElement) {
     return;
 }
 
-function renderArticle(article) {
+function renderArticle(article, parent) {
     let a = document.createElement('a');
     a.href = '/articles/' + article.linkName.current;
 
@@ -133,9 +154,19 @@ function renderArticle(article) {
 
     a.appendChild(art);
 
-    mainElement.appendChild(a);
+    parent.appendChild(a);
 
     return;
+}
+
+function applyWebsiteSettings(websiteSettings) {
+    let featuredArticles = websiteSettings.featuredArticles;
+
+    for (let i = 0; i < featuredArticles.length; i++) {
+        let article = featuredArticles[i];
+        
+        renderArticle(article, featuredArticlesElement)
+    }
 }
 
 getArticle();

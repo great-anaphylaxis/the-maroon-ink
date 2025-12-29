@@ -5,17 +5,38 @@ import {schemaTypes} from './schemaTypes'
 import { Logo } from './components/Logo.tsx'
 
 export default defineConfig({
-  name: 'default',
-  title: 'The Maroon Ink',
+    name: 'default',
+    title: 'The Maroon Ink',
 
-  projectId: 'w7ogeebt',
-  dataset: 'production',
+    projectId: 'w7ogeebt',
+    dataset: 'production',
 
-  icon: Logo,
+    icon: Logo,
 
-  plugins: [structureTool(), visionTool()],
+    plugins: [structureTool({
+        name: 'theMaroonInk',
+        title: 'The Maroon Ink Website',
+        icon: Logo,
+        structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Website Settings')
+              .id('websiteSettings')
+              .child(
+                S.document()
+                  .schemaType('websiteSettings')
+                  .documentId('websiteSettings')
+              ),
 
-  schema: {
-    types: schemaTypes
-  }
+            ...S.documentTypeListItems().filter(
+              (listItem) => !['websiteSettings'].includes(listItem.getId())
+            ),
+          ]),
+    })],
+
+    schema: {
+        types: schemaTypes
+    }
 })

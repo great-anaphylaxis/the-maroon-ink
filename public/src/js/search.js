@@ -11,6 +11,7 @@ const client = createClient({
 const builder = createImageUrlBuilder(client);
 
 const mainElement = document.getElementById('main');
+const titleElement = document.getElementById('title');
 
 let searchQuery = "";
 
@@ -26,7 +27,7 @@ function getSearchQuery() {
 }
 
 function setTitle() {
-    document.getElementById('title').innerText = "Results for " + searchQuery;
+    titleElement.innerText = "Results for " + searchQuery;
 }
 
 function getSearchResults() {
@@ -34,10 +35,11 @@ function getSearchResults() {
         *[
             (_type == "article" || _type == "inker") && 
             (title match $searchQuery + "*" || name match $searchQuery + "*" || 
-            body[].children[].text match $searchQuery + "*")
+            body[].children[].text match $searchQuery + "*" || role match $searchQuery + "*")
         ] | score(
             title match $searchQuery + "*", 
-            name match $searchQuery + "*"
+            name match $searchQuery + "*",
+            role match $searchQuery + "*"
         ) | order(_score desc, name asc, publishedAt desc) {
         _type == "article" => {
             "_type": "article",
@@ -60,9 +62,12 @@ function getSearchResults() {
         for (let i = 0; i < e.length; i++) {
             let searchResult = e[i];
             
-            console.log(searchResult)
+            renderSearchResult(searchResult);
+        }
 
-            renderSearchResult(searchResult)
+        if (e.length == 0) {
+            titleElement.innerText = `Your search - ${searchQuery} - did not match any results`;
+            mainElement.removeChild(mainElement.lastElementChild);
         }
     });
 }

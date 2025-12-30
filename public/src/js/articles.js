@@ -26,6 +26,7 @@ const components = {
 }
 
 const titleElement = document.getElementById('title');
+const subtitleElement = document.getElementById('subtitle');
 const inkersElement = document.getElementById('inkers');
 const dateElement = document.getElementById('date');
 const imageElement = document.getElementById('image');
@@ -60,6 +61,7 @@ function getArticle() {
     const linkName = getArticleLinkName();
     const article = client.fetch(`*[_type == "article" && linkName.current == $linkName]{
         title,
+        subtitle,
         linkName,
         publishedAt,
         "inkersOnDuty": inkersOnDuty[]->{
@@ -214,9 +216,11 @@ function renderImage(article) {
 
 function renderArticle(article) {
     let title = article.title;
+    let subtitle = article.subtitle;
     let content = toHTML(article.body, {components: components});
 
     titleElement.innerText = title;
+    subtitleElement.innerText = subtitle;
     mainElement.innerHTML = content;
 
     renderPublishedDate(article)
@@ -229,7 +233,11 @@ function renderArticle(article) {
 }
 
 function getArticlePreview(article) {
-    if (
+    if (article.subtitle) {
+        return article.subtitle;
+    }
+
+    else if (
         article.body[0] &&
         article.body[0].children[0] &&
         article.body[0].children[0].text

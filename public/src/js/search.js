@@ -44,6 +44,7 @@ function getSearchResults() {
         _type == "article" => {
             "_type": "article",
             title,
+            subtitle,
             linkName,
             publishedAt,
             image,
@@ -127,7 +128,11 @@ function renderPublishedDate(article, dateElement) {
 }
 
 function renderPreview(article, previewElement) {
-    if (
+    if (article.subtitle) {
+        previewElement.innerText = article.subtitle;
+    }
+
+    else if (
         article.body[0] &&
         article.body[0].children[0] &&
         article.body[0].children[0].text

@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 PAGE_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN') 
-PAGE_ID = os.getenv('PAGE_ID')
+PAGE_ID = os.getenv('PAGE_ID') # Recommended to keep ID in .env too
 
-def scrape_to_json(max_posts=100):
+def scrape_to_ndjson(max_posts=100, output_file='fb_posts.ndjson'):
     url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/posts"
     
     params = {
@@ -18,57 +18,56 @@ def scrape_to_json(max_posts=100):
         'limit': 50
     }
     
-    all_posts = []
-    
-    print(f"Starting scrape. Target: {max_posts} posts.")
+    count = 0
+    print(f"Starting scrape. Target: {max_posts} posts. Saving to {output_file}")
 
-    while url:
-        response = requests.get(url, params=params)
-        data = response.json()
-        
-        if 'error' in data:
-            print(f"API Error: {data['error']['message']}")
-            break
+    # Open file in 'append' mode to ensure safety
+    with open(output_file, 'a', encoding='utf-8') as f:
+        while url and count < max_posts:
+            response = requests.get(url, params=params)
+            data = response.json()
             
-        posts = data.get('data', [])
-        for post in posts:
-            if len(all_posts) >= max_posts:
+            if 'error' in data:
+                print(f"API Error: {data['error']['message']}")
+                break
+                
+            posts = data.get('data', [])
+            if not posts:
                 break
 
-            # Process Attachments
-            attachment_info = []
-            attachments = post.get('attachments', {}).get('data', [])
-            for attach in attachments:
-                media_url = attach.get('media', {}).get('image', {}).get('src', '')
-                attachment_info.append({
-                    'type': attach.get('type'),
-                    'media_url': media_url,
-                    'link': attach.get('url')
-                })
+            for post in posts:
+                if count >= max_posts:
+                    break
 
-            all_posts.append({
-                'date': post.get('created_time'),
-                'content': post.get('message', ''),
-                'attachments': attachment_info
-            })
-        
-        print(f"Collected {len(all_posts)} posts...")
-        
-        # Hard stop check for the while loop
-        if len(all_posts) >= max_posts:
-            break
+                # Process Attachments
+                attachment_info = []
+                attachments = post.get('attachments', {}).get('data', [])
+                for attach in attachments:
+                    media_url = attach.get('media', {}).get('image', {}).get('src', '')
+                    attachment_info.append({
+                        'type': attach.get('type'),
+                        'media_url': media_url, # Remember: these links are temporary
+                        'link': attach.get('url')
+                    })
 
-        url = data.get('paging', {}).get('next')
-        params = {} 
+                # Create the record
+                record = {
+                    'date': post.get('created_time'),
+                    'content': post.get('message', ''),
+                    'attachments': attachment_info
+                }
 
-    # Save to JSON file
-    with open('fb_posts.json', 'w', encoding='utf-8') as f:
-        # indent=4 makes the JSON readable (pretty-print)
-        # ensure_ascii=False handles non-English characters correctly
-        json.dump(all_posts, f, indent=4, ensure_ascii=False)
-    
-    return all_posts
+                # Write as a single line in NDJSON format
+                f.write(json.dumps(record, ensure_ascii=False) + '\n')
+                count += 1
+            
+            print(f"Progress: {count} posts written...")
+            
+            # Pagination
+            url = data.get('paging', {}).get('next')
+            params = {} 
+
+    print(f"Done! {count} posts saved.")
 
 # Execution
-posts_data = scrape_to_json(max_posts=50)
-print(f"Done! Successfully saved {len(posts_data)} posts to fb_posts.json")
+scrape_to_ndjson(max_posts=100)

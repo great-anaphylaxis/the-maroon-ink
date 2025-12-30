@@ -18,8 +18,16 @@ hr {
     color: maroon;
     font-size: 42px;
     font-weight: 700;
-    margin: 0.25em 0;
-    margin-top: 1em;
+    margin: 0.15em 0;
+    margin-top: 1.25em;
+}
+
+#subtitle {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #7a7a7a;
+    font-size: 22px;
+    margin: 0 0;
+    margin-bottom: 0.85em;
 }
 
 #inkers {
@@ -42,6 +50,10 @@ hr {
 @media screen and (max-width: 600px) {
     #title {
         font-size: 32px;
+    }
+
+    #subtitle {
+        font-size: 20px;
     }
 
     #article-info {

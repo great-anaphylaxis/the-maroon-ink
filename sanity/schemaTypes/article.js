@@ -14,10 +14,20 @@ export const article = defineType({
             },
             validation: (rule) => rule.required(),
         }),
+
+        defineField({
+            name: 'subtitle',
+            type: 'string',
+            placeholder: 'Text below the title. It is optional though',
+            components: {
+                input: CleanTitleInput
+            }
+        }),
         
         defineField({
             name: 'linkName',
             type: 'slug',
+            placeholder: 'Just click the generate button (works if there is a title)',
             options: {source: 'title'},
             validation: (rule) => rule.required(),
         }),

@@ -34,6 +34,9 @@ export default defineConfig({
               (listItem) => !['websiteSettings'].includes(listItem.getId())
             ),
           ]),
+    }), visionTool({
+        name: 'visionTool',
+        title: 'For Developers Only'
     })],
 
     schema: {

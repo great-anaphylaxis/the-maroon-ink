@@ -34,13 +34,12 @@ function getSearchResults() {
     const searchResults = client.fetch(`
         *[
             (_type == "article" || _type == "inker") && 
-            (title match $searchQuery + "*" || name match $searchQuery + "*" || 
-            body[].children[].text match $searchQuery + "*" || role match $searchQuery + "*")
-        ] | score(
-            title match $searchQuery + "*", 
-            name match $searchQuery + "*",
-            role match $searchQuery + "*"
-        ) | order(_score desc, name asc, publishedAt desc) {
+            (title match "*" + $searchQuery + "*" || 
+            subtitle match "*" + $searchQuery + "*" ||
+            name match "*" + $searchQuery + "*" || 
+            "*" + body[].children[].text match $searchQuery + "*" || 
+            "*" + role match $searchQuery + "*")
+        ] | order(name asc, publishedAt desc) {
         _type == "article" => {
             "_type": "article",
             title,
@@ -48,7 +47,19 @@ function getSearchResults() {
             linkName,
             publishedAt,
             image,
-            body
+            body,
+
+            "relevance": select(
+                title match $searchQuery => 100,
+                subtitle match $searchQuery => 90,
+                string::startsWith(lower(title), lower($searchQuery)) => 86,
+                string::startsWith(lower(subtitle), lower($searchQuery)) => 83,
+                title match $searchQuery + "*" => 80,
+                subtitle match $searchQuery + "*" => 70,
+                title match "*" + $searchQuery + "*" => 60,
+                subtitle match "*" + $searchQuery + "*" => 50,
+                0
+            )
         },
         _type == "inker" => {
             "_type": "inker",
@@ -56,8 +67,20 @@ function getSearchResults() {
             username,
             profilePicture,
             role,
+
+            "relevance": select(
+                name match $searchQuery => 100,
+                string::startsWith(lower(name), lower($searchQuery)) => 86,
+                string::startsWith(lower(role), lower($searchQuery)) => 83,
+                name match $searchQuery + "*" => 81,
+                role match $searchQuery => 80,
+                name match "*" + $searchQuery + "*" => 70,
+                role match $searchQuery + "*" => 60,
+                role match "*" + $searchQuery + "*" => 50,
+                0
+            )
         }
-    }`, {searchQuery: searchQuery});
+    } | order(relevance desc)`, {searchQuery: searchQuery});
 
     searchResults.then(e => {
         for (let i = 0; i < e.length; i++) {

@@ -23,6 +23,24 @@ export const article = defineType({
                 input: CleanTitleInput
             }
         }),
+
+        defineField({
+            name: 'type',
+            type: 'string',
+            initialValue: 'announcements',
+            options: {
+                list: [
+                    {title: 'News & Announcements', value: 'newsandannouncements'},
+                    {title: 'Feature', value: 'feature'},
+                    {title: 'Opinion', value: 'opinion'},
+                    {title: 'Literary', value: 'literary'},
+                    {title: 'Sports', value: 'sports'},
+                    {title: 'Filipino', value: 'filipino'},
+                    {title: 'Others', value: 'others'},
+                ],
+                layout: 'radio',
+            },
+        }),
         
         defineField({
             name: 'linkName',

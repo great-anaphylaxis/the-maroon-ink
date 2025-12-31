@@ -70,4 +70,4 @@ def scrape_to_ndjson(max_posts=100, output_file='fb_posts.ndjson'):
     print(f"Done! {count} posts saved.")
 
 # Execution
-scrape_to_ndjson(max_posts=100)
+scrape_to_ndjson(max_posts=400)

@@ -12,40 +12,72 @@ const client = createClient({
 const builder = createImageUrlBuilder(client);
 
 const featuredArticlesElement = document.getElementById('featuredArticles');
-const recentArticlesElement = document.getElementById('recentArticles');
+const featuredArticlesTitle = document.getElementById('featuredArticlesTitle');
+const articleListElement = document.getElementById('articleList');
+const articleListTitle = document.getElementById('articleListTitle');
 
 function urlFor(source) {
     return builder.image(source);
 }
 
-function getArticle() {
-    const article = client.fetch(`{
-        "websiteSettings": *[_type == "websiteSettings"][0] {
-            "featuredArticles": featuredArticles[]->{
-                _id,
+function getArticle(name) {
+    let query;
+
+    if (name == 'foryou') {
+        query = `{
+            "websiteSettings": *[_type == "websiteSettings"][0] {
+                "featuredArticles": featuredArticles[]->{
+                    _id,
+                    title,
+                    subtitle,
+                    linkName,
+                    publishedAt,
+                    image,
+                    body
+                },
+            },
+            
+            "response": *[_type == "article"
+            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
+            | order(publishedAt desc) {
                 title,
                 subtitle,
                 linkName,
                 publishedAt,
                 image,
                 body
-            },
-        },
-        
-        "response": *[_type == "article"
-        && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
-        | order(publishedAt desc) {
+            }
+        }`;
+    }
+
+    else if (name == 'newsandannouncements') {
+        query = `*[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc) {
             title,
             subtitle,
             linkName,
             publishedAt,
             image,
             body
-        }
-    }`);
+        }`;
+    }
+
+    else if (name == 'explore') {
+        query = `*[_type == "article" && type != "newsandannouncements"
+            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
+            | order(publishedAt desc) {
+            title,
+            subtitle,
+            linkName,
+            publishedAt,
+            image,
+            body
+        }`;
+    }
+
+    const article = client.fetch(query);
 
     article.then(e => {
-        let res = e.response;
+        let res = e.response ?? e;
         let websiteSettings = e.websiteSettings;
 
         applyWebsiteSettings(websiteSettings);
@@ -53,7 +85,7 @@ function getArticle() {
         for (let i = 0; i < res.length; i++) {
             let article = res[i];
             
-            renderArticle(article, recentArticlesElement)
+            renderArticle(article, articleListElement)
         }
     });
 }
@@ -180,6 +212,10 @@ function renderArticle(article, parent) {
 }
 
 function applyWebsiteSettings(websiteSettings) {
+    if (!websiteSettings) {
+        return;
+    }
+    
     let featuredArticles = websiteSettings.featuredArticles;
 
     for (let i = 0; i < featuredArticles.length; i++) {
@@ -190,9 +226,27 @@ function applyWebsiteSettings(websiteSettings) {
 }
 
 function changeArticleFeed(name) {
-    alert(name)
+    featuredArticlesElement.textContent = '';
+    articleListElement.textContent = '';
+
+    if (name == 'foryou') {
+        featuredArticlesTitle.style.display = "block";
+        articleListTitle.innerText = 'Recent Articles';
+    }
+
+    else {
+        if (name == 'newsandannouncements') {
+            articleListTitle.innerText = 'News & Announcements';
+        }
+
+        if (name == 'explore') {
+            articleListTitle.innerText = 'Explore Other Articles';
+        }
+
+        featuredArticlesTitle.style.display = 'none';
+    }
+
+    getArticle(name);
 }
 
 initializeSubnav(changeArticleFeed);
-
-getArticle();

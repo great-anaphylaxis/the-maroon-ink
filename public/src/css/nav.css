@@ -9,6 +9,7 @@ body {
     margin-top: 45px;
 }
 
+
 #content::before {
     content: "";
     flex: 0 0 200px;
@@ -295,7 +296,6 @@ hr {
 #subnav {
     display: flex;
     flex-direction: row;
-    align-items: center;
     position: sticky;
     padding: 0.25em;
     top: 65px;

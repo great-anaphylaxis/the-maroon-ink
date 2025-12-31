@@ -1,11 +1,26 @@
 
 #main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    width: 680px;
+    margin: auto;
+    padding: 1em;
 }
 
-#main > a {
+#main > h2 {
+    color: maroon;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    margin-bottom: 0.25em;
+    text-align: center;
+}
+
+.stafflist > a {
     text-decoration: none;
+}
+
+.stafflist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    place-items: center;
 }
 
 .inkers {
@@ -13,6 +28,7 @@
     gap: 14px;
     align-items: center;
     margin: 1em;
+    width: 260px;
 }
 
 .inkers:hover {
@@ -65,11 +81,4 @@
     100% {
         transform: scale(1);
     }
-}
-
-#main > h2 {
-    color: maroon;
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 28px;
-    margin-bottom: 0.25em;
 }

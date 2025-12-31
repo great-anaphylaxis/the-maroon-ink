@@ -84,6 +84,9 @@ function getStaff() {
 }
 
 function renderStaff(staff) {
+    const stafflist = document.createElement('div');
+    stafflist.classList.add('stafflist');
+
     for (let i = 0; i < staff.length; i++) {
         let inker = staff[i];
 
@@ -132,8 +135,10 @@ function renderStaff(staff) {
 
         a.appendChild(art);
 
-        mainElement.appendChild(a);
+        stafflist.appendChild(a);
     }
+
+    mainElement.appendChild(stafflist)
 }
 
 function addRoleTitle(name) {

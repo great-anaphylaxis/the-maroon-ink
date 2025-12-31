@@ -1,0 +1,75 @@
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+#main > a {
+    text-decoration: none;
+}
+
+.inkers {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin: 1em;
+}
+
+.inkers:hover {
+    animation: 0.25s ease 0s grow;
+    animation-fill-mode: forwards;
+}
+
+.inkers:not(:hover) {
+    animation: 0.25s ease 0s shrink;
+    animation-fill-mode: forwards;
+}
+
+.inkers > div > h3 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #353535;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.inkers > div > p {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 1px;
+}
+
+.inkers > img {
+    max-width: 55px;
+    border-radius: 100%;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#main > h2 {
+    color: maroon;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    margin-bottom: 0.25em;
+}

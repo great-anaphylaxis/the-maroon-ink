@@ -220,13 +220,20 @@ function renderInker(inker) {
     art.classList.add('inkers');
 
     let img = document.createElement('img');
-    img.src = urlFor(profilePicture)
-        .width(100)
-        .height(100)
-        .fit('max')
-        .auto('format')
-        .url();
     img.alt = name;
+
+    if (profilePicture) {
+        img.src = urlFor(profilePicture)
+            .width(100)
+            .height(100)
+            .fit('max')
+            .auto('format')
+            .url();
+    }
+
+    else {
+        img.src = "/src/images/placeholder-profile.png";
+    } 
 
     let divParent = document.createElement('div');
 

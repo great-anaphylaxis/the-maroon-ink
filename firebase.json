@@ -23,6 +23,10 @@
             "destination": "/about.html"
         },
         {
+            "source": "/staff",
+            "destination": "/staff.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },

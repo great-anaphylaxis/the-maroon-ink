@@ -113,14 +113,6 @@ hr {
     font-size: 18px;
 }
 
-footer > h2 {
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #242424;
-    font-size: 28px;
-    margin-bottom: 0.25em;
-}
-
-
 #inkers-on-duty {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -191,4 +183,7 @@ footer > h2 {
 
 #footer-title {
     color: maroon;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    margin-bottom: 0.25em;
 }

@@ -15,6 +15,7 @@ const STATIC_PAGES = [
     { url: '/', changefreq: 'daily', priority: 1.0 },
     { url: '/about', changefreq: 'monthly', priority: 0.8 },
     { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3 },
+    { url: '/staff', changefreq: 'monthly', priority: 0.3 },
 ];
 
 async function generateSitemap() {

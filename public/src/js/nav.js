@@ -1,10 +1,11 @@
-
-
 const navtop = document.getElementById('navtop');
 const navside = document.getElementById('navside');
-const content = document.getElementById('content');
+const subnav = document.getElementById('subnav');
 const optionsButton = document.getElementById('options-icon');
 const searchbox = document.getElementById('searchbox');
+
+let currentSubnavButton;
+let subNavOnclickHandler;
 
 let pastScrollPos = 0;
 let scrollPos = 0;
@@ -27,10 +28,12 @@ function onscroll() {
     
         if (scrollPos > pastScrollPos) {
             navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
+            subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-hide";
         }
     
         else {
             navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-show";
+            subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-show";
         }
     });
 }
@@ -121,6 +124,39 @@ function onSearchboxEnter(e) {
         window.location.href = "/search?q=" + value;
     }
 }
+
+function subnavOnclick(e) {
+    let name = e.dataset.value;
+
+    if (currentSubnavButton) {
+        currentSubnavButton.classList.remove("current")
+    }
+    
+    currentSubnavButton = e;
+
+    e.classList.add("current");
+
+    subNavOnclickHandler(name);
+}
+
+export function initializeSubnav(func) {
+    let buttons = subnav.querySelectorAll('a');
+
+    subNavOnclickHandler = func
+
+    for (let i = 0; i < buttons.length; i++) {
+        let button = buttons[i];
+
+        button.addEventListener('click', e => {
+            subnavOnclick(button);
+        });
+
+        if (i == 0) {
+            subnavOnclick(button);
+        }
+    }
+}
+
 
 
 window.onscroll = onscroll;

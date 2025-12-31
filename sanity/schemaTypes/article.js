@@ -27,7 +27,7 @@ export const article = defineType({
         defineField({
             name: 'type',
             type: 'string',
-            initialValue: 'announcements',
+            initialValue: 'newsandannouncements',
             options: {
                 list: [
                     {title: 'News & Announcements', value: 'newsandannouncements'},

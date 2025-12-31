@@ -1,5 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
+import { initializeSubnav } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -187,5 +188,11 @@ function applyWebsiteSettings(websiteSettings) {
         renderArticle(article, featuredArticlesElement)
     }
 }
+
+function changeArticleFeed(name) {
+    alert(name)
+}
+
+initializeSubnav(changeArticleFeed);
 
 getArticle();

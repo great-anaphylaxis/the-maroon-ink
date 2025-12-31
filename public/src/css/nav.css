@@ -22,7 +22,7 @@ body {
     top: 0;
     left: 0;
     background-color: white;
-    z-index: 2;
+    z-index: 10;
     display: flex;
     align-items: center;
 }
@@ -72,6 +72,14 @@ body {
     #navtop > div:has(#searchbox) {
         margin-left: 0;
     }
+
+    #subnav {
+        gap: 20px !important;
+    }
+
+    #subnav > a {
+        font-size: 15px !important;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -87,6 +95,10 @@ body {
 
     #searchbox {
         width: 125px;
+    }
+
+    #subnav {
+        gap: 10px !important;
     }
 }
 
@@ -140,7 +152,7 @@ hr {
 
 @keyframes navbar-show {
     0% {
-        top: -100px;
+        top: -66px;
     }
     100% {
         top: -0px;
@@ -152,7 +164,25 @@ hr {
         top: 0px;
     }
     100% {
-        top: -100px;
+        top: -66px;
+    }
+}
+
+@keyframes subnav-show {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: 65px;
+    }
+}
+
+@keyframes subnav-hide {
+    0% {
+        top: 65px;
+    }
+    100% {
+        top: 0px;
     }
 }
 
@@ -220,7 +250,7 @@ hr {
     padding-top: 3em;
     display: none;
     background-color: white;
-    z-index: 1;
+    z-index: 5;
     height: 100%;
     margin-top: -45px;
 }
@@ -260,4 +290,61 @@ hr {
     #navside {
         display: none;
     }
+}
+
+#subnav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: sticky;
+    padding: 0.25em;
+    top: 65px;
+    left: 0;
+    gap: 40px;
+    background-color: white;
+    z-index: 1;
+}
+
+#subnav > a {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    margin: 0.25em;
+    margin-top: 20px;
+    padding-bottom: 1em;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+#subnav > a.current {
+    border-bottom: 1px solid #242424;
+}
+
+@keyframes growSubnavButton {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes shrinkSubnavButton {
+    0% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#subnav > a:hover {
+    animation: 0.25s ease 0s growSubnavButton;
+    animation-fill-mode: forwards;
+}
+
+#subnav > a:not(:hover) {
+    animation: 0.25s ease 0s shrinkSubnavButton;
+    animation-fill-mode: forwards;
 }

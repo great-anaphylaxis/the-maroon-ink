@@ -28,12 +28,18 @@ function onscroll() {
     
         if (scrollPos > pastScrollPos) {
             navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
-            subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-hide";
+
+            if (subnav) {
+                subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-hide";
+            }
         }
     
         else {
             navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-show";
-            subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-show";
+
+            if (subnav) {
+                subnav.style.animation = "0.4s ease 0s 1 normal forwards running subnav-show";
+            }
         }
     });
 }

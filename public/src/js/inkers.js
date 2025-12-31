@@ -69,13 +69,21 @@ function getInkerAndArticles() {
 }
 
 function renderInker(inker) {
-    imgElement.src = urlFor(inker.profilePicture)
-        .width(150)
-        .height(150)
-        .fit('max')
-        .auto('format')
-        .url();
+    let profilePicture = inker.profilePicture;
 
+    if (profilePicture) {
+        imgElement.src = urlFor(profilePicture)
+            .width(100)
+            .height(100)
+            .fit('max')
+            .auto('format')
+            .url();
+    }
+
+    else {
+        imgElement.src = "/src/images/placeholder-profile.png";
+    }
+    
     imgElement.alt = inker.name;
 
 

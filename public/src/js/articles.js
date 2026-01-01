@@ -97,6 +97,10 @@ function renderContributors(article) {
     let inkersOnDuty = [];
     let str = "";
 
+    if (!article.inkersOnDuty) {
+        return;
+    }
+
     for (let i = 0; i < article.inkersOnDuty.length; i++) {
         let inkers = article.inkersOnDuty[i];
 
@@ -122,6 +126,10 @@ function renderContributors(article) {
 }
 
 function renderInkersOnDuty(article) {
+    if (!article.inkersOnDuty) {
+        return;
+    }
+
     for (let i = 0; i < article.inkersOnDuty.length; i++) {
         let inkers = article.inkersOnDuty[i];
 
@@ -217,14 +225,21 @@ function renderPublishedDate(article) {
 }
 
 function renderImage(article) {
-    imageElement.src = urlFor(article.image)
-        .width(700)
-        .height(380)
-        .fit('max')
-        .auto('format')
-        .url();
+    if (article.image) {
+        try {        
+            imageElement.src = urlFor(article.image)
+                .width(600)
+                .height(400)
+                .fit('max')
+                .auto('format')
+                .url();
+        }
+        catch {
+            console.error("ERROR")
+        }
 
-    imageElement.alt = article.title;
+        imageElement.alt = article.title;
+    }
 }
 
 function renderArticle(article) {

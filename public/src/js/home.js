@@ -208,13 +208,21 @@ function renderArticle(article, parent) {
     let div = document.createElement('div');
 
     let img = document.createElement('img');
-    img.src = urlFor(article.image)
-        .width(600)
-        .height(400)
-        .fit('max')
-        .auto('format')
-        .url();
-    img.alt = article.title;
+    if (article.image) {
+        try {        
+            img.src = urlFor(article.image)
+                .width(600)
+                .height(400)
+                .fit('max')
+                .auto('format')
+                .url();
+        }
+        catch {
+            console.error("ERROR")
+        }
+
+        img.alt = article.title;
+    }
 
     let h1 = document.createElement('h1');
     renderTitle(article, h1);

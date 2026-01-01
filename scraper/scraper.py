@@ -190,4 +190,4 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=50, infinite=False):
     print(f"✨ Done! Check the '/{IMAGE_FOLDER}' folder and '{output_file}'.")
 
 if __name__ == "__main__":
-    scrape_to_json(max_posts=1, infinite=False)
+    scrape_to_json(max_posts=500, infinite=True)

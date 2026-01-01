@@ -1,6 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
-import { showLoadingScreen } from "./nav.js";
+import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -203,13 +203,21 @@ function renderArticle(article) {
     let div = document.createElement('div');
 
     let img = document.createElement('img');
-    img.src = urlFor(article.image)
-        .width(600)
-        .height(400)
-        .fit('max')
-        .auto('format')
-        .url();
-    img.alt = article.title;
+    if (article.image) {
+        try {        
+            img.src = urlFor(article.image)
+                .width(600)
+                .height(400)
+                .fit('max')
+                .auto('format')
+                .url();
+        }
+        catch {
+            console.error("ERROR")
+        }
+
+        img.alt = article.title;
+    }
 
     let h1 = document.createElement('h1');
     renderTitle(article, h1);

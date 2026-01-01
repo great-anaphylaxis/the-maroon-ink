@@ -16,15 +16,16 @@ const featuredArticlesTitle = document.getElementById('featuredArticlesTitle');
 const articleListElement = document.getElementById('articleList');
 const articleListTitle = document.getElementById('articleListTitle');
 
+let savedQueryData;
+
 function urlFor(source) {
     return builder.image(source);
 }
 
 function getArticle(name) {
-    let query;
-
-    if (name == 'foryou') {
-        query = `{
+    let query = `
+    {
+        "foryou": {
             "websiteSettings": *[_type == "websiteSettings"][0] {
                 "featuredArticles": featuredArticles[]->{
                     _id,
@@ -47,22 +48,20 @@ function getArticle(name) {
                 image,
                 body
             }
-        }`;
-    }
+        },
 
-    else if (name == 'newsandannouncements') {
-        query = `*[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc) {
+        "newsandannouncements": 
+        *[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc) {
             title,
             subtitle,
             linkName,
             publishedAt,
             image,
             body
-        }`;
-    }
+        },
 
-    else if (name == 'explore') {
-        query = `*[_type == "article" && type != "newsandannouncements"
+        "explore": 
+        *[_type == "article" && type != "newsandannouncements"
             && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
             | order(publishedAt desc) {
             title,
@@ -71,13 +70,38 @@ function getArticle(name) {
             publishedAt,
             image,
             body
-        }`;
+        }
+    }`;
+
+    if (!savedQueryData) {
+        showLoadingScreen();
+
+        const article = client.fetch(query);
+
+        article.then(s => {
+            let e = s[name];
+
+            let res = e.response ?? e;
+            let websiteSettings = e.websiteSettings;
+
+            applyWebsiteSettings(websiteSettings);
+
+            for (let i = 0; i < res.length; i++) {
+                let article = res[i];
+                
+                renderArticle(article, articleListElement)
+            }
+
+            hideLoadingScreen();
+
+            savedQueryData = s;
+        });
+
     }
 
-    showLoadingScreen();
-    const article = client.fetch(query);
+    else if (savedQueryData) {
+        let e = savedQueryData[name];
 
-    article.then(e => {
         let res = e.response ?? e;
         let websiteSettings = e.websiteSettings;
 
@@ -90,7 +114,8 @@ function getArticle(name) {
         }
 
         hideLoadingScreen();
-    });
+    }
+    
 }
 
 function renderPublishedDate(article, dateElement) {

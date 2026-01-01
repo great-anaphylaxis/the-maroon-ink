@@ -3,6 +3,7 @@ const navside = document.getElementById('navside');
 const subnav = document.getElementById('subnav');
 const optionsButton = document.getElementById('options-icon');
 const searchbox = document.getElementById('searchbox');
+const loadingscreen = document.getElementById('loadingscreen');
 
 let currentSubnavButton;
 let subNavOnclickHandler;
@@ -163,6 +164,13 @@ export function initializeSubnav(func) {
     }
 }
 
+export function hideLoadingScreen() {
+    loadingscreen.style.display = 'none';
+}
+
+export function showLoadingScreen() {
+    loadingscreen.style.display = 'block';
+}
 
 
 window.onscroll = onscroll;

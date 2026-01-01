@@ -1,6 +1,7 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { toHTML, uriLooksSafe } from "https://esm.sh/@portabletext/to-html";
+import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -58,6 +59,8 @@ function getArticleLinkName() {
 }
 
 function getArticle() {
+    showLoadingScreen(); 
+
     const linkName = getArticleLinkName();
     const article = client.fetch(`*[_type == "article" && linkName.current == $linkName]{
         title,
@@ -85,6 +88,8 @@ function getArticle() {
         if (e.length == 0) {
             window.location.replace("/404.html");
         }
+
+        hideLoadingScreen();
     });
 }
 

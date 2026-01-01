@@ -348,3 +348,59 @@ hr {
     animation: 0.25s ease 0s shrinkSubnavButton;
     animation-fill-mode: forwards;
 }
+
+#loadingscreen {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 7;
+    top: 0px;
+}
+
+#loadingtext {
+    font-size: 36px;
+    color: #242424;
+    display: inline-block;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loadingtext:before{
+    content: '';
+    animation: 1.67s print linear alternate infinite;
+}
+
+#loadingtext:after{
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translatey(-45%);
+    width: 2px;
+    height: 1.3em;
+    background: currentColor;
+    opacity: 0.8;
+    animation: 1s blink steps(2) infinite;
+}
+
+@keyframes blink {
+    0%  { visibility: hidden;}
+    100%  { visibility: visible;}
+}
+@keyframes print {
+    0% { content: 'L'}
+    10% { content: 'Lo'}
+    20% { content: 'Loa'}
+    30% { content: 'Load'}
+    40% { content: 'Loadi'}
+    50% { content: 'Loadin'}
+    60% { content: 'Loading'}
+    70% { content: 'Loading.'}
+    80% { content: 'Loading..'}
+    90% , 100% { content: 'Loading...'}
+}

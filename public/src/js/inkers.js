@@ -1,5 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
+import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -30,6 +31,8 @@ function getInkerUsername() {
 
 function getInkerAndArticles() {
     const username = getInkerUsername();
+
+    showLoadingScreen();
     const inkerAndArticles = client.fetch(`{
     "inker": *[_type == "inker" && username.current == $username]{
         name,
@@ -65,6 +68,8 @@ function getInkerAndArticles() {
 
             renderArticle(article)
         }
+
+        hideLoadingScreen();
     });
 }
 

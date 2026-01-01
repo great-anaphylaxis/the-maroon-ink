@@ -1,5 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
+import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -17,6 +18,8 @@ function urlFor(source) {
 }
 
 function getStaff() {
+    showLoadingScreen();
+
     const staff = client.fetch(`{
     "Editor in Chief": *[_type == "inker" && role match "editor in chief"]{
         name,
@@ -72,14 +75,8 @@ function getStaff() {
             addRoleTitle(key);
             renderStaff(staff);
         });
-
-        return;
-        for (let i = 0; i < e.length; i++) {
-            let article = e[i];
-            
-            renderStaff(article)
-            setProperSEO(article)
-        }
+        
+        hideLoadingScreen();
     });
 }
 

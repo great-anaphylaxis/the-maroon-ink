@@ -1,5 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
+import { showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -31,6 +32,8 @@ function setTitle() {
 }
 
 function getSearchResults() {
+    showLoadingScreen();
+    
     const searchResults = client.fetch(`
         *[
             (_type == "article" || _type == "inker") && 
@@ -93,6 +96,8 @@ function getSearchResults() {
             titleElement.innerText = `Your search - ${searchQuery} - did not match any results`;
             mainElement.removeChild(mainElement.lastElementChild);
         }
+        
+        hideLoadingScreen();
     });
 }
 

@@ -1,6 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
-import { initializeSubnav } from "./nav.js";
+import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -74,6 +74,7 @@ function getArticle(name) {
         }`;
     }
 
+    showLoadingScreen();
     const article = client.fetch(query);
 
     article.then(e => {
@@ -87,6 +88,8 @@ function getArticle(name) {
             
             renderArticle(article, articleListElement)
         }
+
+        hideLoadingScreen();
     });
 }
 

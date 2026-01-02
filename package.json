@@ -3,6 +3,7 @@
     "@sanity/client": "^7.13.2",
     "dotenv": "^17.2.3",
     "ndjson": "^2.0.0",
+    "p-limit": "^7.2.0",
     "progress": "^2.0.3",
     "sitemap": "^9.0.0"
   }

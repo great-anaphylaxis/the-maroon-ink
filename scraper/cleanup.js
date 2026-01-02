@@ -1,5 +1,5 @@
-const { createClient } = require('@sanity/client');
-require('dotenv').config();
+import { createClient } from '@sanity/client';
+import 'dotenv/config';
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
@@ -9,20 +9,21 @@ const client = createClient({
   useCdn: false,
 });
 
-async function deleteImportedPosts() {
+async function deleteImportedData() {
   try {
-    // This query finds only documents created by your script
-    const query = '*[_type == "article" && _id match "fb-post-*"]';
+    // This query finds articles starting with 'fb-post-' AND inkers starting with 'inker-'
+    const query = '*[(_type == "article" && _id match "fb-post-*") || (_type == "inker" && _id match "inker-*")]';
     
-    console.log("🔍 Finding documents to delete...");
+    console.log("🔍 Finding articles and inker documents to delete...");
     
-    await client.delete({ query: query })
-      .then((res) => {
-        console.log('🗑️ Successfully deleted imported documents');
-      });
+    const response = await client.delete({ query: query });
+    
+    console.log('🗑️ Cleanup successful!');
+    console.log('Documents removed based on ID patterns: fb-post-* and inker-*');
+    
   } catch (err) {
     console.error('❌ Delete failed:', err.message);
   }
 }
 
-deleteImportedPosts();
+deleteImportedData();

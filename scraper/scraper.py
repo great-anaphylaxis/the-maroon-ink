@@ -12,16 +12,101 @@ load_dotenv()
 PAGE_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN') 
 PAGE_ID = os.getenv('PAGE_ID') 
 
-# Ensure the images directory exists
 IMAGE_FOLDER = 'images'
 if not os.path.exists(IMAGE_FOLDER):
     os.makedirs(IMAGE_FOLDER)
 
+def clean_name_string(text):
+    """
+    Applies the specific formatting rules to an individual name line.
+    """
+    # 1. Convert styled characters to normal characters (Normalization)
+    text = unicodedata.normalize('NFKD', text)
+    
+    # 2. Remove "UMIHS" (case-insensitive)
+    text = re.sub(r'UMIHS', '', text, flags=re.IGNORECASE)
+    
+    # 3. Handle colons (Remove everything before and including the colon)
+    if ':' in text:
+        text = text.split(':')[-1]
+        
+    # 4. Handle standalone "by" (Remove everything before and including the word "by")
+    # Using word boundaries \b to ensure we don't catch words like "Ruby"
+    text = re.sub(r'.*?\bby\b', '', text, flags=re.IGNORECASE)
+    
+    # Clean up whitespace after prefix removal
+    text = text.strip()
+    
+    # 5. Handle Comma Swapping (Doe, John Matthew -> John Matthew Doe)
+    if ',' in text:
+        parts = [p.strip() for p in text.split(',')]
+        if len(parts) == 2:
+            # Swap: parts[1] is first name, parts[0] is last name
+            text = f"{parts[1]} {parts[0]}"
+
+    return text.strip()
+
+def process_body_and_inkers(text):
+    """
+    Splits the body from the signature, processes name formatting rules,
+    and returns (cleaned_body_string, list_of_formatted_names).
+    """
+    if not text:
+        return "", []
+
+    # Normalize for searching through potentially styled text
+    normalized_text = unicodedata.normalize('NFKD', text)
+    
+    keywords = [
+        "journalists on duty", 
+        "jounalist on duty", 
+        "inker on duty", 
+        "inkers on duty",
+        "production team"
+    ]
+    # Build a case-insensitive regex pattern
+    pattern = re.compile(r'|'.join(map(re.escape, keywords)), re.IGNORECASE)
+
+    # Search for the signature start from the bottom
+    matches = list(pattern.finditer(normalized_text))
+    
+    if matches:
+        last_match = matches[-1]
+        split_point = last_match.start()
+        
+        body_part = text[:split_point].strip()
+        signature_part = text[split_point:].strip()
+        
+        # Split signature into lines
+        raw_lines = signature_part.split('\n')
+        final_names = []
+        
+        for line in raw_lines:
+            line_strip = line.strip()
+            if not line_strip or '#' in line_strip:
+                continue
+            
+            # Skip the "On Duty" header keywords themselves
+            if pattern.search(unicodedata.normalize('NFKD', line_strip)):
+                continue
+            
+            # 6. Handle ampersands (&) - Split line into multiple names
+            # Each sub-part will be cleaned individually
+            if '&' in line_strip:
+                sub_parts = line_strip.split('&')
+            else:
+                sub_parts = [line_strip]
+
+            for part in sub_parts:
+                cleaned = clean_name_string(part)
+                if cleaned:
+                    final_names.append(cleaned)
+            
+        return body_part, final_names
+    
+    return text, []
+
 def download_image(url, slug):
-    """
-    Downloads an image from a URL and saves it to the /images folder.
-    Returns the local path if successful, otherwise None.
-    """
     try:
         file_path = os.path.join(IMAGE_FOLDER, f"{slug}.jpg")
         response = requests.get(url, stream=True, timeout=10)
@@ -31,7 +116,7 @@ def download_image(url, slug):
                     f.write(chunk)
             return file_path
     except Exception as e:
-        print(f"      ❌ Failed to download image for {slug}: {e}")
+        print(f"      ❌ Image Error for {slug}: {e}")
     return None
 
 def generate_slug(text, registry):
@@ -39,7 +124,6 @@ def generate_slug(text, registry):
     base_slug = re.sub(r'[^a-z0-9]+', '-', base_slug)
     base_slug = base_slug.strip('-')
     if not base_slug: base_slug = "post"
-
     if base_slug not in registry:
         registry[base_slug] = 0
         return base_slug
@@ -48,16 +132,18 @@ def generate_slug(text, registry):
         return f"{base_slug}-{registry[base_slug]}"
 
 def clean_title(text):
-    if not text: return "Untitled Post"
+    if not text: return "Untitled Post", False
     text = unicodedata.normalize('NFKC', text)
-    text = re.sub(r'[^a-zA-Z0-9\s.,!|?:\']', '', text)
+    text = re.sub(r'[^a-zA-Z0-9\s.!?\']', '', text)
     text = ' '.join(text.split())
+    is_truncated = False
     if len(text) > 70:
+        is_truncated = True
         if len(text) > 80:
-            sentences = re.split(r'[.?!|]', text)
-            if sentences and sentences[0]: text = sentences[0].strip()
+            parts = re.split(r'(?<=[.!?])', text)
+            if parts and parts[0]: text = parts[0].strip()
         if len(text) > 70: text = text[:67].strip() + "..."
-    return text or "Untitled Post"
+    return (text or "Untitled Post"), is_truncated
 
 def to_portable_text(text):
     if not text: return []
@@ -78,28 +164,13 @@ def get_with_retry(url, params=None, max_retries=5):
         response = requests.get(url, params=params)
         data = response.json()
         if 'error' in data:
-            error_code = data['error'].get('code')
-            if error_code in [4, 17, 32, 613]:
+            if data['error'].get('code') in [4, 17, 32, 613]:
                 time.sleep((2 ** i) + 5)
                 continue
         return data
     return {"error": {"message": "Max retries exceeded"}}
 
-def get_images_from_any_id(target_id):
-    images = []
-    url = f"https://graph.facebook.com/v21.0/{target_id}/attachments"
-    params = {'fields': 'subattachments.limit(100){media}', 'access_token': PAGE_TOKEN}
-    data = get_with_retry(url, params)
-    if 'data' in data:
-        for entry in data['data']:
-            subs = entry.get('subattachments', {}).get('data', [])
-            items = subs if subs else [entry]
-            for item in items:
-                img = item.get('media', {}).get('image', {}).get('src')
-                if img: images.append(img)
-    return images
-
-def scrape_to_json(output_file='fb_posts.json', max_posts=50, infinite=False):
+def scrape_to_json(output_file='fb_posts.json', max_posts=500):
     url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/posts"
     params = {
         'fields': 'created_time,message,id,attachments{target,type,media,subattachments{media}}',
@@ -109,85 +180,65 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=50, infinite=False):
     
     all_records = []
     slug_registry = {} 
-    print(f"🚀 Scraping Page: {PAGE_ID}...")
+    print(f"🚀 Starting Scrape for {PAGE_ID}...")
 
     try:
-        while url:
-            if not infinite and len(all_records) >= max_posts: break
+        while url and len(all_records) < max_posts:
             data = get_with_retry(url, params)
-            if 'error' in data: break
-                
             posts = data.get('data', [])
             if not posts: break
 
             for post in posts:
-                if not infinite and len(all_records) >= max_posts: break
+                if len(all_records) >= max_posts: break
                 
-                post_id = post.get('id')
                 raw_message = post.get('message', '')
-                
-                final_images = []
-                attachments = post.get('attachments', {}).get('data', [])
-                if attachments:
-                    main_attach = attachments[0]
-                    subs = main_attach.get('subattachments', {}).get('data', [])
-                    if subs:
-                        for s in subs:
-                            img = s.get('media', {}).get('image', {}).get('src')
-                            if img: final_images.append(img)
-                    if not final_images:
-                        img = main_attach.get('media', {}).get('image', {}).get('src')
-                        if img: final_images.append(img)
-                    if not final_images or main_attach.get('type') == 'shared_story':
-                        target_id = main_attach.get('target', {}).get('id')
-                        if target_id and target_id != post_id:
-                            final_images.extend(get_images_from_any_id(target_id))
+                lines = raw_message.split('\n', 1)
+                first_line = lines[0] if len(lines) > 0 else ""
+                remaining_body = lines[1] if len(lines) > 1 else ""
 
-                final_images = list(dict.fromkeys(final_images))
-                
-                first_line = raw_message.split('\n')[0] if raw_message else ""
-                title_cleaned = clean_title(first_line)
+                title_cleaned, was_truncated = clean_title(first_line)
                 unique_slug = generate_slug(title_cleaned, slug_registry)
+                
+                initial_body = remaining_body if not was_truncated else raw_message
+                
+                # Split body and extract/format inkers array
+                final_body_content, inkers_list = process_body_and_inkers(initial_body)
 
                 record = {
                     "publishedAt": post.get('created_time'),
                     "title": title_cleaned,
                     "linkName": {"_type": "slug", "current": unique_slug},
-                    "body": to_portable_text(raw_message),
+                    "body": to_portable_text(final_body_content),
+                    "inkersOnDuty": inkers_list,
                     "type": "newsandannouncements",
                     "_type": "article"
                 }
 
-                # --- RENAMED TO 'image' WITH SANITY STRUCTURE ---
-                if final_images:
-                    local_path = download_image(final_images[0], unique_slug)
-                    if local_path:
-                        record["image"] = {
-                            "_type": "image",
-                            "asset": {
-                                "_type": "reference",
-                                "_ref": "" # Blank as requested
-                            },
-                            "localPath": local_path # Optional: keeping local track
-                        }
-                        print(f"✅ [{len(all_records)}] 🖼️ {unique_slug} (Downloaded)")
-                    else:
-                        print(f"✅ [{len(all_records)}] 🖼️ {unique_slug} (Download Failed)")
-                else:
-                    print(f"✅ [{len(all_records)}] 📝 {unique_slug}")
+                # Image Logic
+                attachments = post.get('attachments', {}).get('data', [])
+                if attachments:
+                    img_url = attachments[0].get('media', {}).get('image', {}).get('src')
+                    if img_url:
+                        path = download_image(img_url, unique_slug)
+                        if path:
+                            record["image"] = {
+                                "_type": "image",
+                                "asset": { "_type": "reference", "_ref": "" },
+                                "localPath": path
+                            }
 
                 all_records.append(record)
+                print(f"✅ [{len(all_records)}] {unique_slug} | Names found: {len(inkers_list)}")
 
             url = data.get('paging', {}).get('next', None)
             params = {} 
 
     except KeyboardInterrupt:
-        print("\n🛑 Saving progress...")
+        print("\n🛑 Stopping...")
 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(all_records, f, indent=4, ensure_ascii=False)
-
-    print(f"✨ Done! Check the '/{IMAGE_FOLDER}' folder and '{output_file}'.")
+    print(f"✨ File saved as {output_file}")
 
 if __name__ == "__main__":
-    scrape_to_json(max_posts=500, infinite=True)
+    scrape_to_json()

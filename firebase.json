@@ -27,6 +27,10 @@
             "destination": "/staff.html"
         },
         {
+            "source": "/archives",
+            "destination": "/archives.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },

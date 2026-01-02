@@ -84,4 +84,18 @@ export const article = defineType({
             ],
         }),
     ],
+    preview: {
+        select: {
+        title: 'title',
+        media: 'image', // Ensure this matches your image field name
+        subtitle: 'publishedAt',
+        },
+        prepare({ title, media, subtitle }) {
+            return {
+                title,
+                media,
+                subtitle: subtitle ? new Date(subtitle).getFullYear() : 'No Date',
+            }
+        },
+    },
 })

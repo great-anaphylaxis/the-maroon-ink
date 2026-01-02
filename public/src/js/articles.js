@@ -33,6 +33,9 @@ const dateElement = document.getElementById('date');
 const imageElement = document.getElementById('image');
 const mainElement = document.getElementById('main');
 const inkersOnDutyElement = document.getElementById('inkers-on-duty');
+const footerElement = document.getElementById('footer');
+const footerHr = document.getElementById('footerHr');
+const articleInfoDivider = document.getElementById('article-info-divider');
 
 function urlFor(source) {
     return builder.image(source);
@@ -97,7 +100,12 @@ function renderContributors(article) {
     let inkersOnDuty = [];
     let str = "";
 
-    if (!article.inkersOnDuty) {
+    if (!article.inkersOnDuty || article.inkersOnDuty.length == 0) {
+        footerElement.style.display = 'none';
+        footerHr.style.display = 'none';
+        articleInfoDivider.style.display = 'none';
+
+
         return;
     }
 

@@ -11,6 +11,8 @@ const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
+const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
+
 const imgElement = document.getElementById('img');
 const nameElement = document.getElementById('name');
 const roleElement = document.getElementById('role');
@@ -68,6 +70,8 @@ function getInkerAndArticles() {
 
             renderArticle(article)
         }
+
+        contributedArticlesTitle.innerText = `Contribued Articles (${articles.length})`;
 
         hideLoadingScreen();
     });

@@ -203,6 +203,8 @@ function renderArticle(article) {
     let div = document.createElement('div');
 
     let img = document.createElement('img');
+        
+    img.alt = article.title;
     if (article.image) {
         try {        
             img.src = urlFor(article.image)
@@ -215,8 +217,10 @@ function renderArticle(article) {
         catch {
             console.error("ERROR")
         }
+    }
 
-        img.alt = article.title;
+    else {
+        img.src = '/src/images/banner.jpg';
     }
 
     let h1 = document.createElement('h1');

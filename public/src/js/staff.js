@@ -44,7 +44,7 @@ function getStaff() {
     },
     
     "Members": *[_type == "inker" && 
-    !(role match "lead" || role match "editor" || role match "manager") || role match "adviser"] | order(lower(role) asc) {
+    !(role match "lead" || role match "editor" || role match "manager" || role match "adviser")] | order(lower(role) asc) {
         name,
         username,
         profilePicture,

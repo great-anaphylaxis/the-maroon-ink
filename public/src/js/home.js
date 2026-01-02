@@ -39,8 +39,8 @@ function getArticle(name) {
             },
             
             "response": *[_type == "article"
-            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
-            | order(publishedAt desc) {
+            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)]
+            | order(publishedAt desc)[0...7] {
                 title,
                 subtitle,
                 linkName,
@@ -51,7 +51,7 @@ function getArticle(name) {
         },
 
         "newsandannouncements": 
-        *[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc) {
+        *[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc)[0...10] {
             title,
             subtitle,
             linkName,
@@ -63,7 +63,7 @@ function getArticle(name) {
         "explore": 
         *[_type == "article" && type != "newsandannouncements"
             && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
-            | order(publishedAt desc) {
+            | order(publishedAt desc)[0...10] {
             title,
             subtitle,
             linkName,
@@ -208,6 +208,8 @@ function renderArticle(article, parent) {
     let div = document.createElement('div');
 
     let img = document.createElement('img');
+    img.alt = article.title;
+
     if (article.image) {
         try {        
             img.src = urlFor(article.image)
@@ -220,8 +222,10 @@ function renderArticle(article, parent) {
         catch {
             console.error("ERROR")
         }
+    }
 
-        img.alt = article.title;
+    else {
+        img.src = '/src/images/banner.jpg';
     }
 
     let h1 = document.createElement('h1');

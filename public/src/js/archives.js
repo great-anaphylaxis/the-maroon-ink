@@ -1,6 +1,6 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
-import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
+import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "./nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -11,7 +11,13 @@ const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
-const mainElement = document.getElementById('main');
+const mainElement = document.getElementById('list');
+const subnavElement = document.getElementById('subnav');
+
+let savedQueryData;
+const blocks = {};
+const blockOrder = [];
+const years = {};
 
 function urlFor(source) {
     return builder.image(source);
@@ -31,14 +37,26 @@ function getArticles() {
         }`);
 
     articles.then(e => {
-        const blocks = {};
-        const blockOrder = [];
+        let yearOrder = 0;
+
+        savedQueryData = e;
 
         for (let i = 0; i < e.length; i++) {
             const article = e[i];
             const date = new Date(article.publishedAt)
             const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(date);
             const block = blocks[formattedDate];
+            const year = date.getFullYear();
+
+            if (!years[year]) {
+                years[year] = {
+                    year: year,
+                    count: 0,
+                    order: yearOrder
+                };
+
+                yearOrder++;
+            }
 
             if (!block) {
                 const currentBlockOrder = blockOrder[blockOrder.length - 1];
@@ -56,11 +74,14 @@ function getArticles() {
                 obj.title = addBlockTitle(formattedDate);
             }
 
-            renderArticle(article)
-
+            years[year].count++;
             blocks[formattedDate].length++;
         }
 
+        initializeSubnavButtons();
+
+        initializeSubnav(changeArticleFeed);
+        
         hideLoadingScreen();
     });
 }
@@ -206,6 +227,56 @@ function addBlockTitle(name) {
     mainElement.appendChild(h2);
 
     return h2;
+}
+
+function changeArticleFeed(yearInput) {
+    mainElement.textContent = '';
+
+    let buffer;
+
+    for (let i = 0; i < savedQueryData.length; i++) {
+        const article = savedQueryData[i];
+        const date = new Date(article.publishedAt)
+        const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(date);
+        const year = date.getFullYear();
+
+        if (year != yearInput && yearInput != 'all') {
+            continue;
+        }
+
+        if (buffer != formattedDate) {
+            addBlockTitle(`${formattedDate} (${blocks[formattedDate].length})`);
+            buffer = formattedDate;
+        }
+
+        renderArticle(article)
+    }
+}
+
+function initializeSubnavButtons() {
+    const yearOrder = Object.values(years).sort((a, b) => a.order - b.order);
+    let total = 0;
+
+    for (let i = 0; i < yearOrder.length; i++) {
+        const year = yearOrder[i].year;
+        const count = yearOrder[i].count;
+
+        const a = document.createElement('a');
+
+        a.dataset.value = year;
+        a.innerText = `${year} (${count})`;
+
+        subnavElement.appendChild(a);
+
+        total += count;
+    }
+
+    const a1 = document.createElement('a');
+
+    a1.dataset.value = 'all';
+    a1.innerText = `All (${total})`;
+
+    subnavElement.prepend(a1);
 }
 
 getArticles();

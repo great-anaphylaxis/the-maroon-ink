@@ -20,3 +20,44 @@ hr {
 main > div {
     margin-bottom: 2em;
 }
+
+main > a {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;    
+    color: maroon;
+    font-size: 20px;
+    margin-bottom: 1em;
+    text-decoration: underline !important;
+    display: block;
+}
+
+
+main > a:hover {
+    animation: 0.25s ease 0s grow;
+    animation-fill-mode: forwards;
+}
+
+main > a:not(:hover) {
+    animation: 0.25s ease 0s shrink;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

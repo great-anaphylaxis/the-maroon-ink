@@ -16,6 +16,31 @@ IMAGE_FOLDER = 'images'
 if not os.path.exists(IMAGE_FOLDER):
     os.makedirs(IMAGE_FOLDER)
 
+def classify_post_type(title):
+    """
+    Classifies the article type based on keywords in the title.
+    """
+    title_lower = title.lower()
+    
+    # 1. 'sports' or 'sport' always takes precedence, even if 'news' is present
+    if "sports" in title_lower or "sport" in title_lower:
+        return "sports"
+    
+    # 2. If 'news' is present, we ignore other category checks
+    if "news" in title_lower:
+        return "newsandannouncements"
+    
+    # 3. Specific category checks
+    if "opinion" in title_lower:
+        return "opinion"
+    if "literature" in title_lower:
+        return "literature"
+    if "feature" in title_lower:
+        return "feature"
+        
+    # Default fallback
+    return "newsandannouncements"
+
 def clean_name_string(text):
     """
     Applies the specific formatting rules to an individual name line.
@@ -31,7 +56,6 @@ def clean_name_string(text):
         text = text.split(':')[-1]
         
     # 4. Handle standalone "by" (Remove everything before and including the word "by")
-    # Using word boundaries \b to ensure we don't catch words like "Ruby"
     text = re.sub(r'.*?\bby\b', '', text, flags=re.IGNORECASE)
     
     # Clean up whitespace after prefix removal
@@ -54,7 +78,6 @@ def process_body_and_inkers(text):
     if not text:
         return "", []
 
-    # Normalize for searching through potentially styled text
     normalized_text = unicodedata.normalize('NFKD', text)
     
     keywords = [
@@ -64,10 +87,8 @@ def process_body_and_inkers(text):
         "inkers on duty",
         "production team"
     ]
-    # Build a case-insensitive regex pattern
     pattern = re.compile(r'|'.join(map(re.escape, keywords)), re.IGNORECASE)
 
-    # Search for the signature start from the bottom
     matches = list(pattern.finditer(normalized_text))
     
     if matches:
@@ -77,7 +98,6 @@ def process_body_and_inkers(text):
         body_part = text[:split_point].strip()
         signature_part = text[split_point:].strip()
         
-        # Split signature into lines
         raw_lines = signature_part.split('\n')
         final_names = []
         
@@ -86,12 +106,10 @@ def process_body_and_inkers(text):
             if not line_strip or '#' in line_strip:
                 continue
             
-            # Skip the "On Duty" header keywords themselves
             if pattern.search(unicodedata.normalize('NFKD', line_strip)):
                 continue
             
-            # 6. Handle ampersands (&) - Split line into multiple names
-            # Each sub-part will be cleaned individually
+            # Handle ampersands (&) - Split line into multiple names
             if '&' in line_strip:
                 sub_parts = line_strip.split('&')
             else:
@@ -199,9 +217,10 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=500):
                 title_cleaned, was_truncated = clean_title(first_line)
                 unique_slug = generate_slug(title_cleaned, slug_registry)
                 
-                initial_body = remaining_body if not was_truncated else raw_message
+                # Dynamic classification based on title keywords
+                post_type = classify_post_type(title_cleaned)
                 
-                # Split body and extract/format inkers array
+                initial_body = remaining_body if not was_truncated else raw_message
                 final_body_content, inkers_list = process_body_and_inkers(initial_body)
 
                 record = {
@@ -210,7 +229,7 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=500):
                     "linkName": {"_type": "slug", "current": unique_slug},
                     "body": to_portable_text(final_body_content),
                     "inkersOnDuty": inkers_list,
-                    "type": "newsandannouncements",
+                    "type": post_type,
                     "_type": "article"
                 }
 
@@ -228,7 +247,7 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=500):
                             }
 
                 all_records.append(record)
-                print(f"✅ [{len(all_records)}] {unique_slug} | Names found: {len(inkers_list)}")
+                print(f"✅ [{len(all_records)}] {unique_slug} | Type: {post_type} | Inkers: {len(inkers_list)}")
 
             url = data.get('paging', {}).get('next', None)
             params = {} 

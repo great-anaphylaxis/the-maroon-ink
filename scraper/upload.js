@@ -41,6 +41,17 @@ function loadLookupTable(filePath) {
   return lookup;
 }
 
+/**
+ * Normalizes a date string to Year-Month-Day-Hour format for hourly comparison
+ * Example: 2026-01-02T13:45:00Z -> 2026-0-2-13
+ */
+function getHourlyKey(dateString) {
+  if (!dateString) return null;
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return null;
+  return `${date.getUTCFullYear()}-${date.getUTCMonth()}-${date.getUTCDate()}-${date.getUTCHours()}`;
+}
+
 async function runImport() {
   const { default: pLimit } = await import('p-limit');
   const limit = pLimit(10); 
@@ -53,37 +64,40 @@ async function runImport() {
   const posts = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const lookupTable = loadLookupTable(lookupFilePath);
   
-  // --- PHASE 0: PRE-FETCH EXISTING INKERS BY EXACT NAME ---
-  console.log("🔍 Fetching existing Inkers from Sanity for exact name matching...");
-  const uniqueInkersMap = new Map(); // Exact Name -> Sanity ID
+  // --- PHASE 0: PRE-FETCH EXISTING DATA ---
+  console.log("🔍 Fetching existing data from Sanity...");
+  
+  const uniqueInkersMap = new Map(); // Name -> Sanity ID
+  const existingArticlesSet = new Set(); // Stores "Title|HourlyKey"
 
   try {
-    // We query all documents of type 'inker' regardless of ID prefix 
-    // to ensure we catch manually created ones too.
+    // Fetch Inkers for exact name matching
     const existingInkers = await client.fetch('*[_type == "inker"]{_id, name}');
-    
     existingInkers.forEach(inker => {
-      if (inker.name) {
-        // Map the exact name to the ID found in Sanity
-        uniqueInkersMap.set(inker.name.trim(), inker._id);
+      if (inker.name) uniqueInkersMap.set(inker.name.trim(), inker._id);
+    });
+
+    // Fetch Articles for deduplication
+    const existingDocs = await client.fetch('*[_type == "article"]{title, publishedAt}');
+    existingDocs.forEach(doc => {
+      const hourlyKey = getHourlyKey(doc.publishedAt);
+      if (doc.title && hourlyKey) {
+        existingArticlesSet.add(`${doc.title.trim()}|${hourlyKey}`);
       }
     });
-    console.log(`ℹ️ Found ${uniqueInkersMap.size} existing inker profiles in Sanity.`);
+
+    console.log(`ℹ️ Cached ${uniqueInkersMap.size} Inkers and ${existingArticlesSet.size} Articles.`);
   } catch (err) {
-    console.error("⚠️ Failed to fetch existing inkers:", err.message);
+    console.error("⚠️ Pre-fetch failed:", err.message);
   }
 
   // --- PHASE 1: IDENTIFY AND CREATE MISSING INKERS ---
   const inkersToCreate = new Set();
-  
   posts.forEach(post => {
     if (Array.isArray(post.inkersOnDuty)) {
       post.inkersOnDuty.forEach(name => {
         const trimmed = name.trim();
-        // 1. Apply lookup rules
         const finalName = lookupTable.has(trimmed) ? lookupTable.get(trimmed) : trimmed;
-        
-        // 2. Filter blocklist and check if exact name exists in our fetched map
         if (finalName !== '0' && finalName && !uniqueInkersMap.has(finalName)) {
           inkersToCreate.add(finalName);
         }
@@ -93,39 +107,45 @@ async function runImport() {
 
   if (inkersToCreate.size > 0) {
     const inkerNames = Array.from(inkersToCreate);
-    const inkerBar = new ProgressBar('👤 Creating New Inkers [:bar] :percent', { total: inkerNames.length, width: 20 });
+    const inkerBar = new ProgressBar('👤 Syncing Inkers [:bar] :percent', { total: inkerNames.length, width: 20 });
 
     await Promise.all(inkerNames.map(name => limit(async () => {
       const inkerId = `inker-${slugify(name)}`;
       const inkerDoc = {
         _type: 'inker',
-        name: name, // The complete exact name
+        name: name,
         username: { _type: 'slug', current: slugify(name) }
       };
 
-      // createOrReplace uses the inkerId to prevent duplicates if the script is interrupted
       const createdInker = await client.createOrReplace({ _id: inkerId, ...inkerDoc });
       uniqueInkersMap.set(name, createdInker._id);
       inkerBar.tick();
     })));
-  } else {
-    console.log("✅ No new inkers to create. All names matched existing records.");
   }
 
-  // --- PHASE 2: UPLOAD ARTICLES WITH RELATIONAL REFERENCES ---
+  // --- PHASE 2: UPLOAD ARTICLES WITH DEDUPLICATION ---
   console.log(`🚀 Migrating ${posts.length} articles...`);
   const articleBar = new ProgressBar('📦 Articles [:bar] :percent :etas', { total: posts.length, width: 40 });
 
   const processArticle = async (post, index) => {
     const slug = post.linkName?.current || `post-${index}`;
     
+    // --- DEDUPLICATION CHECK ---
+    const currentHourlyKey = getHourlyKey(post.publishedAt);
+    const duplicateKey = `${post.title?.trim()}|${currentHourlyKey}`;
+
+    if (existingArticlesSet.has(duplicateKey)) {
+      articleBar.tick();
+      return; // Skip this article
+    }
+
+    // --- CONVERT NAMES TO REFERENCES ---
     const references = [];
     if (Array.isArray(post.inkersOnDuty)) {
       post.inkersOnDuty.forEach(name => {
         const trimmed = name.trim();
         const finalName = lookupTable.has(trimmed) ? lookupTable.get(trimmed) : trimmed;
         
-        // Match against the map (which now contains both pre-fetched and newly created IDs)
         if (finalName !== '0' && uniqueInkersMap.has(finalName)) {
           references.push({
             _key: `ref-${Math.random().toString(36).substr(2, 9)}`,
@@ -151,7 +171,7 @@ async function runImport() {
         type: post.type,
         linkName: post.linkName,
         body: post.body,
-        inkersOnDuty: references, // Relational references to Inker documents
+        inkersOnDuty: references,
       };
 
       if (imageAssetId) {
@@ -159,6 +179,10 @@ async function runImport() {
       }
 
       await client.createOrReplace({ _id: `fb-post-${slug}`, ...doc });
+      
+      // Update our local duplicate set to handle duplicates within the JSON file itself
+      existingArticlesSet.add(duplicateKey);
+      
       articleBar.tick();
     } catch (err) {
       console.error(`\n❌ Error [${slug}]: ${err.message}`);
@@ -166,7 +190,7 @@ async function runImport() {
   };
 
   await Promise.all(posts.map((post, index) => limit(() => processArticle(post, index))));
-  console.log(`\n✨ Migration Complete! References are successfully linked.`);
+  console.log(`\n✨ Migration Complete! Cleaned duplicates and linked references.`);
 }
 
 runImport();

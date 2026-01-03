@@ -1,0 +1,117 @@
+html {
+    overflow: hidden;
+}
+
+#flipbook-wrapper {
+    max-width: 120vw;
+    height: 100vh;
+    position: fixed;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes flipbook-transition-to-one-start {
+    0% {
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        top: 51%;
+        left: 0%;
+        transform: translate(0%, -50%)
+    }
+}
+
+@keyframes flipbook-transition-to-one-end {
+    0% {
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        top: 51%;
+        left: 100%;
+        transform: translate(-100%, -50%)
+    }
+}
+
+@keyframes flipbook-transition-to-two-start {
+    0% {
+        top: 51%;
+        left: 0%;
+        transform: translate(0%, -50%);
+    }
+
+    100% {
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes flipbook-transition-to-two-end {
+    0% {
+        top: 51%;
+        left: 100%;
+        transform: translate(-100%, -50%);
+    }
+
+    100% {
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+#flipbook-container {
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.page {
+    background-color: white;
+    overflow: hidden;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.page-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    /* Older vendor-prefixed versions for compatibility */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor; /* IE/Edge legacy */
+}
+
+
+.controls {
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.controls button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 22vw;
+}

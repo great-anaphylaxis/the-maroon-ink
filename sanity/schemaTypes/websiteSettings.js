@@ -20,6 +20,6 @@ export const websiteSettings = defineType({
                 to: [{type: 'article'}]
             }],
             validation: Rule => Rule.unique()
-        }),
+        })
     ],
 })

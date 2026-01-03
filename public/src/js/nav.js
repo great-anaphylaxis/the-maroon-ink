@@ -1,4 +1,4 @@
-const navtop = document.getElementById('navtop');
+export const navtop = document.getElementById('navtop');
 const navside = document.getElementById('navside');
 const subnav = document.getElementById('subnav');
 const optionsButton = document.getElementById('options-icon');
@@ -11,8 +11,14 @@ let subNavOnclickHandler;
 let pastScrollPos = 0;
 let scrollPos = 0;
 let hidden = false;
+let rememberHidden = false;
 
 function onscroll() {
+    if (hidden || rememberHidden) {
+        rememberHidden = true;
+        return
+    }
+
     if (window.innerWidth >= 950) {
         return;
     }
@@ -46,6 +52,10 @@ function onscroll() {
 }
 
 function onresize() {
+    if (hidden) {
+        return;
+    }
+
     if (window.innerWidth < 950) {
         navside.style.left = "-200px";
         document.styleSheets[0].deleteRule(0)
@@ -78,8 +88,8 @@ function onresize() {
     }
 }
 
-function optionsButtonClick() {
-    hidden = !hidden;
+export function optionsButtonClick(value) {
+    hidden = value ?? !hidden;
 
     localStorage.setItem('navside.hidden', "" + hidden);
 
@@ -121,7 +131,7 @@ function initializeNavside() {
 
     navside.style.display = 'block';
 
-    optionsButton.addEventListener('click', optionsButtonClick)
+    optionsButton.addEventListener('click', e=>optionsButtonClick())
 }
 
 function onSearchboxEnter(e) {

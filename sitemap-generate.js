@@ -27,7 +27,8 @@ async function generateSitemap() {
                 _updatedAt,
                 "slug": select(
                     _type == "inker" => username.current,
-                    _type == "article" => linkName.current
+                    _type == "article" => linkName.current,
+                    _type == "publishedPaper" => linkName.current
                 )
             }[defined(slug)]`
         );

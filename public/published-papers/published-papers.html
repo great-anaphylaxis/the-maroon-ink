@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read more about the published papers of The Maroon Ink">
+
+    <meta property="og:url" content="https://the-maroon-ink.web.app/published-papers/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Maroon Ink | Published Papers" />
+    <meta property="og:description" content="Read more about the published papers of The Maroon Ink" />
+    <meta property="og:image" content="https://the-maroon-ink.web.app/src/images/banner.jpg" />
+    <meta property="og:site_name" content="The Maroon Ink" />
+
+    <title>The Maroon Ink Published Papers</title>
+
+    <link rel="stylesheet" href="/src/css/published-papers.css">
+    <link rel="stylesheet" href="/src/css/nav.css">
+    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+</head>
+<body>
+    <nav id="navtop">
+        <img id="options-icon" src="/src/icons/options.png">
+        <a href="/">
+            <img id="home-icon" src="/src/icons/favicon.ico">
+        </a>
+        <div>
+            <img id="search-icon" src="/src/icons/search.png">
+            <input id="searchbox" placeholder="Search">
+        </div>
+    </nav>
+
+    <section id="content">
+        <div id="loadingscreen">
+            <span id="loadingtext"></span>
+        </div>
+
+        <nav id="navside">
+            <a href="/">
+                <img src="/src/icons/home.png">
+                <div>Home</div>
+            </a>
+            <a href="/about">
+                <img src="/src/icons/about.png">
+                <div>About</div>
+            </a>
+            <a href="/staff">
+                <img src="/src/icons/staff.png">
+                <div>Staff</div>
+            </a>
+            <a href="/archives">
+                <img src="/src/icons/archives.jpg">
+                <div>Archives</div>
+            </a>
+            <a href="/privacy-policy">
+                <img src="/src/icons/privacy-policy.png">
+                <div>Privacy Policy</div>
+            </a>
+        </nav>
+
+        <article>
+            <header>
+                <h1 id="title"></h1>
+                <h2 id="subtitle"></h2>
+                <div id="article-info">
+                    <a href="#inkers-on-duty">
+                        <div id="inkers"></div>
+                    </a>
+                    <div id="article-info-divider">·</div>
+                    <div id="date"></div>
+                </div>
+            </header>
+
+            <div id="flipbook-wrapper">
+                <div id="flipbook-container"></div>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn">Previous Page</button>
+                <button id="homeBtn">Home</button>
+                <button id="fullscreenBtn">Fullscreen</button>
+                <button id="nextBtn">Next Page</button>
+            </div>
+        </article>
+    </section>
+
+                
+    <script src="/src/js/page-flip.js"></script>
+    <script type="module" src="/src/js/published-papers.js"></script>
+    <script type="module" src="/src/js/nav.js"></script>
+</body>
+</html>

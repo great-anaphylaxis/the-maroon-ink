@@ -41,6 +41,10 @@
         {
             "source": "/inkers/**",
             "destination": "/inkers/inkers.html"
+        },
+        {
+            "source": "/published-papers/**",
+            "destination": "/published-papers/published-papers.html"
         }
     ]
   }

@@ -254,6 +254,7 @@ hr {
     z-index: 5;
     height: 100%;
     margin-top: -45px;
+    user-select: none;
 }
 
 #navside > a {

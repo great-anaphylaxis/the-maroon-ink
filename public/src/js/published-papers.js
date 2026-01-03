@@ -1,5 +1,8 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
+import { getImageDimensions  } from "https://esm.sh/@sanity/asset-utils";
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
+import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import { hideLoadingScreen, optionsButtonClick, showLoadingScreen, navtop } from "./nav.js";
 
 const client = createClient({
@@ -237,9 +240,6 @@ function getPublishedPaperPages(publishedPaper) {
 }
 
 function renderPublishedPaper(publishedPaper) {
-    let title = publishedPaper.title;
-    let subtitle = publishedPaper.subtitle;
-
     const imageUrls = getPublishedPaperPages(publishedPaper);
 
     const container = document.getElementById('flipbook-container');
@@ -247,11 +247,13 @@ function renderPublishedPaper(publishedPaper) {
 
     imageUrls.forEach((url) => {
         const page = document.createElement('div');
+        const dim = getImageDimensions(url);
+
         page.className = 'page';
         page.innerHTML = `
-            <div class="page-content">
+            <a class="page-content" href="${url}" data-pswp-width="${dim.width}" data-pswp-height="${dim.height}">
                 <img class="page-img" src="${url}" alt="Page">
-            </div>
+            </a>
         `;
         container.appendChild(page);
     });
@@ -300,64 +302,16 @@ function renderPublishedPaper(publishedPaper) {
 
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-        controlsHandler(pageFlip)
+        controlsHandler(pageFlip);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '.page a',
+            pswpModule: PhotoSwipe
+        });
+
+        lightbox.init();
     }
 
-
-}
-
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        // Enter fullscreen mode
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
-            document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
-            document.documentElement.msRequestFullscreen();
-        }
-    } else {
-        // Exit fullscreen mode
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-        }
-    }
-}
-
-function adjustFlipbookOnResize() {
-    let img1 = document.getElementsByClassName('page-img')[0];
-    const width = img1.naturalWidth;
-    const height = img1.naturalHeight;
-    const imgAspectRatio = width / height;
-
-    let pageWidth;
-    let pageHeight;
-    let usePortrait;
-
-    if (window.innerWidth >= 1200) {
-        pageWidth = (window.innerHeight - 70) * imgAspectRatio;
-        pageHeight = (window.innerHeight - 70);
-
-        usePortrait = false;
-    }
-
-    else if (window.innerWidth >= 640) {
-        pageWidth = (window.innerHeight - 70) * imgAspectRatio;
-        pageHeight = (window.innerHeight - 70);
-
-        usePortrait = true;
-    }
-
-    else {
-        pageWidth = (window.innerWidth + 100) * imgAspectRatio;
-        pageHeight = (window.innerWidth + 100)
-
-        usePortrait = true;
-    }
 }
 
 function getArticlePreview(article) {
@@ -389,12 +343,16 @@ function controlsHandler(pageFlip) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const homeBtn = document.getElementById('homeBtn');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const wrapper = document.getElementById('flipbook-wrapper').style;
+    const flipbook = document.getElementById('flipbook-wrapper');
+    const wrapper = flipbook.style;
+
+    let canScroll = true;
 
     if (window.innerWidth >= 1200) {
         wrapper.animation = "";
         wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-start";
+
+        console.log(getComputedStyle(flipbook).getPropertyValue('transform-origin'))
     }
     
     pageFlip.on('flip', (e) => {
@@ -466,7 +424,28 @@ function controlsHandler(pageFlip) {
     };
 
     homeBtn.onclick = () => window.location.href = "/";
-    fullscreenBtn.onclick = () => toggleFullscreen();
+
+    window.addEventListener('wheel', e => {
+        let delta = e.deltaY;
+
+        if (!canScroll) {
+            return;
+        }
+
+        if (Math.sign(delta) == -1) {
+            prevBtn.onclick();
+        }
+
+        else if (Math.sign(delta) == 1) {
+            nextBtn.onclick();
+        }
+
+        canScroll = false;
+
+        setTimeout(e => {
+            canScroll = true
+        }, 350);
+    })
 }
 
 function setProperSEO(publishedPaper) {
@@ -490,4 +469,3 @@ function setProperSEO(publishedPaper) {
 }
 
 getPublishedPaper();
-window.addEventListener('resize', adjustFlipbookOnResize)

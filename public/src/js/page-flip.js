@@ -1189,14 +1189,14 @@
             ,
             this.onMouseDown = t => {
                 if (this.checkTarget(t.target)) {
-                    const e = this.getMousePos(t.clientX, t.clientY);
+                    const e = this.getMousePos(t.clientX, t.clientY);return
                     this.app.startUserTouch(e),
                     t.preventDefault()
                 }
             }
             ,
             this.onTouchStart = t => {
-                if (this.checkTarget(t.target) && t.changedTouches.length > 0) {
+                if (this.checkTarget(t.target) && t.changedTouches.length > 0) {return;
                     const e = t.changedTouches[0]
                       , i = this.getMousePos(e.clientX, e.clientY);
                     this.touchPoint = {
@@ -1740,7 +1740,7 @@
             this.isUserMove = !1
         }
         userMove(t, e) {
-            this.isUserTouch || e || !this.setting.showPageCorners ? this.isUserTouch && h.GetDistanceBetweenTwoPoint(this.mousePosition, t) > 5 && (this.isUserMove = !0,
+            this.isUserTouch || e || this.setting.showPageCorners ? this.isUserTouch && h.GetDistanceBetweenTwoPoint(this.mousePosition, t) > 5 && (this.isUserMove = !0,
             this.flipController.fold(t)) : this.flipController.showCorner(t)
         }
         userStop(t, e=!1) {

@@ -9,6 +9,8 @@ html {
     top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: top left;
+    -webkit-user-drag: none;
 }
 
 @keyframes flipbook-transition-to-one-start {
@@ -67,10 +69,6 @@ html {
     }
 }
 
-#flipbook-container {
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
 .page {
     background-color: white;
     overflow: hidden;
@@ -113,5 +111,5 @@ html {
     background: #fff;
     font-weight: bold;
     border-radius: 5px;
-    width: 22vw;
+    width: 18vw;
 }

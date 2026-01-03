@@ -35,7 +35,7 @@
             <span id="loadingtext"></span>
         </div>
 
-        <nav id="navside">
+        <nav id="navside" draggable="false">
             <a href="/">
                 <img src="/src/icons/home.png">
                 <div>Home</div>
@@ -59,32 +59,20 @@
         </nav>
 
         <article>
-            <header>
-                <h1 id="title"></h1>
-                <h2 id="subtitle"></h2>
-                <div id="article-info">
-                    <a href="#inkers-on-duty">
-                        <div id="inkers"></div>
-                    </a>
-                    <div id="article-info-divider">·</div>
-                    <div id="date"></div>
-                </div>
-            </header>
-
-            <div id="flipbook-wrapper">
+            <div id="flipbook-wrapper" draggable="false">
                 <div id="flipbook-container"></div>
             </div>
 
             <div class="controls">
                 <button id="prevBtn">Previous Page</button>
                 <button id="homeBtn">Home</button>
-                <button id="fullscreenBtn">Fullscreen</button>
                 <button id="nextBtn">Next Page</button>
             </div>
         </article>
     </section>
 
-                
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.css">
+
     <script src="/src/js/page-flip.js"></script>
     <script type="module" src="/src/js/published-papers.js"></script>
     <script type="module" src="/src/js/nav.js"></script>

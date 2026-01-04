@@ -2,6 +2,9 @@ import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { toHTML, uriLooksSafe } from "https://esm.sh/@portabletext/to-html";
 import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
+import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
+import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -236,8 +239,6 @@ function renderImage(article) {
     if (article.image) {
         try {        
             imageElement.src = urlFor(article.image)
-                .width(600)
-                .height(400)
                 .fit('max')
                 .auto('format')
                 .url();
@@ -247,6 +248,20 @@ function renderImage(article) {
         }
 
         imageElement.alt = article.title;
+
+        const dim = getImageDimensions(imageElement.src);
+        const photoSwipeImage = document.getElementById('image-photoswipe');
+
+        photoSwipeImage.href = imageElement.src;
+        photoSwipeImage.setAttribute('data-pswp-width', "" + dim.width);
+        photoSwipeImage.setAttribute('data-pswp-height', "" + dim.height);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#section a',
+            pswpModule: PhotoSwipe
+        });
+
+        lightbox.init();
     }
 }
 

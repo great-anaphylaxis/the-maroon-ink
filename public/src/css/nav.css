@@ -12,11 +12,12 @@ body {
 
 #content::before {
     content: "";
-    flex: 0 0 200px;
+    flex: 0 0 225px;
 }
 
 #navtop {
-    padding: 0.5em;
+    padding: 2em 0.5em;
+    box-sizing: border-box;
     position: fixed;
     width: 100%;
     height: 50px;
@@ -26,6 +27,7 @@ body {
     z-index: 10;
     display: flex;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
 #navtop > a:has(#home-icon) {
@@ -35,7 +37,9 @@ body {
 #home-icon {
     max-width: 48px;
     border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 4px 7px 20px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #home-icon:hover {
@@ -50,9 +54,11 @@ body {
 
 #options-icon {
     max-width: 20px;
-    margin-left: 1.65em;
+    margin-left: 0.65em;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    user-select: none;
+    padding: 1em;
+    filter: drop-shadow(1px 12px 6px rgb(20, 20, 20))
 }
 
 #options-icon:hover {
@@ -67,8 +73,8 @@ body {
 
 #navtop > div:has(#searchbox) {
     display: flex;
-    justify-content: center;
     margin-left: 3em;
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -113,12 +119,13 @@ hr {
     border-color: maroon;
 }
 
-
 #searchbox {
     margin-left: 0.75em;
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     border-color: transparent;
+    user-select: none;
+    width: 80%;
 }
 
 #searchbox:focus {
@@ -131,6 +138,7 @@ hr {
     max-width: 25px;
     margin-left: 1.45em;
     cursor: pointer;
+    user-select: none;
 }
 
 @keyframes growNavtop {
@@ -191,7 +199,7 @@ hr {
 
 @keyframes navside-show {
     0% {
-        left: -200px;
+        left: -225px;
     }
     100% {
         left: -0px;
@@ -203,13 +211,13 @@ hr {
         left: 0px;
     }
     100% {
-        left: -200px;
+        left: -225px;
     }
 }
 
 @keyframes navside-hide2 {
     0% {
-        flex-basis: 200px;
+        flex-basis: 225px;
     }
     100% {
         flex-basis: 0px;
@@ -221,7 +229,7 @@ hr {
         flex-basis: 0px;
     }
     100% {
-        flex-basis: 200px;
+        flex-basis: 225px;
     }
 }
 
@@ -246,7 +254,7 @@ hr {
 }
 
 #navside {
-    width: 200px;
+    width: 225px;
     position: fixed;
     left: 0;
     top: 90px;
@@ -257,13 +265,25 @@ hr {
     height: 100%;
     margin-top: -45px;
     user-select: none;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 #navside > a {
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin-left: 2em;
+    padding-left: 1.7em;
+    margin-left: 0.3em
+}
+
+#navside > a.current::after {
+    content: '';
+    position: absolute;
+    background: black;
+    top: 25%;
+    left: 0;
+    height: 50%;
+    width: 1px;
 }
 
 #navside > a:hover {
@@ -315,6 +335,7 @@ hr {
     margin-top: 20px;
     padding-bottom: 1em;
     cursor: pointer;
+    user-select: none;
     margin-bottom: 0;
 }
 

@@ -57,7 +57,7 @@ function onresize() {
     }
 
     if (window.innerWidth < 950) {
-        navside.style.left = "-200px";
+        navside.style.left = "-225px";
         document.styleSheets[0].deleteRule(0)
         document.styleSheets[0].insertRule(
             '#content::before { flex-basis: 0px !important; }', 0);
@@ -117,13 +117,17 @@ export function optionsButtonClick(value, save=true) {
 }
 
 function initializeNavside() {
+    const anchors = navside.querySelectorAll('a');
+
     let localHidden = localStorage.getItem('navside.hidden') ?? 'false';
+
+
     if (window.innerWidth < 950) {
         localHidden = 'true';
     }
 
     if (localHidden == 'true') {
-        navside.style.left = "-200px";
+        navside.style.left = "-225px";
         document.styleSheets[0].insertRule(
             '#content::before { flex-basis: 0px !important; }', 0);
 
@@ -131,6 +135,16 @@ function initializeNavside() {
     }
 
     navside.style.display = 'block';
+
+    for (let i = 0; i < anchors.length; i++) {
+        const anchor = anchors[i];
+        const link = anchor.getAttribute('href');
+        const path = window.location.pathname;
+        
+        if (link == path) {
+            anchor.classList.add('current');
+        }
+    }
 
     optionsButton.addEventListener('click', e=>optionsButtonClick())
 }

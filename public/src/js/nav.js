@@ -118,7 +118,6 @@ export function optionsButtonClick(value, save=true) {
 
 function initializeNavside() {
     let localHidden = localStorage.getItem('navside.hidden') ?? 'false';
-    console.log(localHidden)
     if (window.innerWidth < 950) {
         localHidden = 'true';
     }

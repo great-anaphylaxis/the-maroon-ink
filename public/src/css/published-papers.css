@@ -3,14 +3,17 @@ html {
 }
 
 #flipbook-wrapper {
-    max-width: 120vw;
-    height: 100vh;
+    max-width: 100vw;
     position: fixed;
     top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: top left;
     -webkit-user-drag: none;
+}
+
+#flipbook-container {
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
 @keyframes flipbook-transition-to-one-start {
@@ -97,19 +100,31 @@ html {
 .controls {
     position: fixed;
     bottom: 20px;
-    display: flex;
-    gap: 10px;
-    position: fixed;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.controls button {
-    padding: 10px 20px;
+.controls img {    
+    filter: drop-shadow(2px 4px 6px black);
+    border-radius: 2px;
     cursor: pointer;
-    border: none;
-    background: #fff;
-    font-weight: bold;
-    border-radius: 5px;
-    width: 18vw;
+    background: white;
+    width: 2em;
+    height: 2em;
+    padding: 0.25em 5vw;
+    z-index: 5;
+}
+
+#backBtn {
+    filter: drop-shadow(2px 4px 6px black);
+    border-radius: 2px;
+    width: 2.5em;
+    height: 2.5em;
+    cursor: pointer;
+    background: white;
+    padding: 0.25em;
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    z-index: 5;
 }

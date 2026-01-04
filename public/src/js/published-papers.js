@@ -269,23 +269,25 @@ function renderPublishedPaper(publishedPaper) {
         let pageHeight;
         let usePortrait;
 
-        if (window.innerWidth >= 1200) {
+        if (window.innerWidth > window.innerHeight) {
             pageWidth = (window.innerHeight - 70) * imgAspectRatio;
             pageHeight = (window.innerHeight - 70);
+        }
 
+        else if (window.innerWidth <= window.innerHeight) {
+            pageWidth = (window.innerWidth) - 20;
+            pageHeight = (window.innerWidth - 20) / imgAspectRatio;
+        }
+
+        if (window.innerWidth >= 1200) {
             usePortrait = false;
         }
 
         else if (window.innerWidth >= 640) {
-            pageWidth = (window.innerHeight - 70) * imgAspectRatio;
-            pageHeight = (window.innerHeight - 70);
-
             usePortrait = true;
         }
 
         else {
-            pageWidth = (window.innerWidth + 100) * imgAspectRatio;
-            pageHeight = (window.innerWidth + 100)
 
             usePortrait = true;
         }
@@ -342,7 +344,7 @@ function getArticlePreview(article) {
 function controlsHandler(pageFlip) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const homeBtn = document.getElementById('homeBtn');
+    const backBtn = document.getElementById('backBtn');
     const flipbook = document.getElementById('flipbook-wrapper');
     const wrapper = flipbook.style;
 
@@ -351,8 +353,6 @@ function controlsHandler(pageFlip) {
     if (window.innerWidth >= 1200) {
         wrapper.animation = "";
         wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-start";
-
-        console.log(getComputedStyle(flipbook).getPropertyValue('transform-origin'))
     }
     
     pageFlip.on('flip', (e) => {
@@ -423,7 +423,7 @@ function controlsHandler(pageFlip) {
         }
     };
 
-    homeBtn.onclick = () => window.location.href = "/";
+    backBtn.onclick = () => window.history.back();
 
     window.addEventListener('wheel', e => {
         let delta = e.deltaY;

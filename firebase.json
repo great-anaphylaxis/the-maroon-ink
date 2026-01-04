@@ -23,6 +23,10 @@
             "destination": "/about.html"
         },
         {
+            "source": "/published-papers",
+            "destination": "/published-papers.html"
+        },
+        {
             "source": "/staff",
             "destination": "/staff.html"
         },

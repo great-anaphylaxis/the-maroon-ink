@@ -17,6 +17,7 @@ const STATIC_PAGES = [
     { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3 },
     { url: '/staff', changefreq: 'monthly', priority: 0.3 },
     { url: '/archives', changefreq: 'monthly', priority: 0.8 },
+    { url: '/published-papers', changefreq: 'monthly', priority: 0.8 },
 ];
 
 async function generateSitemap() {

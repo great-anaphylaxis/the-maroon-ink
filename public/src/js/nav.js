@@ -88,10 +88,12 @@ function onresize() {
     }
 }
 
-export function optionsButtonClick(value) {
+export function optionsButtonClick(value, save=true) {
     hidden = value ?? !hidden;
 
-    localStorage.setItem('navside.hidden', "" + hidden);
+    if (save) {
+        localStorage.setItem('navside.hidden', "" + hidden);
+    }
 
     if (hidden) {
         navside.style.animation = "0.4s ease 0s 1 normal forwards running navside-hide";
@@ -116,7 +118,7 @@ export function optionsButtonClick(value) {
 
 function initializeNavside() {
     let localHidden = localStorage.getItem('navside.hidden') ?? 'false';
-
+    console.log(localHidden)
     if (window.innerWidth < 950) {
         localHidden = 'true';
     }

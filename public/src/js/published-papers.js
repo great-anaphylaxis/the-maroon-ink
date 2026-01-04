@@ -12,17 +12,6 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const titleElement = document.getElementById('title');
-const subtitleElement = document.getElementById('subtitle');
-const inkersElement = document.getElementById('inkers');
-const dateElement = document.getElementById('date');
-const imageElement = document.getElementById('image');
-const mainElement = document.getElementById('main');
-const inkersOnDutyElement = document.getElementById('inkers-on-duty');
-const footerElement = document.getElementById('footer');
-const footerHr = document.getElementById('footerHr');
-const articleInfoDivider = document.getElementById('article-info-divider');
-
 const builder = createImageUrlBuilder(client)
 
 let pageFlip;
@@ -41,7 +30,7 @@ function getPublishedPaperLinkName() {
 function getPublishedPaper() {
     showLoadingScreen();
 
-    optionsButtonClick(true);
+    optionsButtonClick(true, false);
     navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
 
     const linkName = getPublishedPaperLinkName();
@@ -66,166 +55,16 @@ function getPublishedPaper() {
             window.location.replace("/404.html");
         }
 
-        // setProperSEO(publishedPaper)
-        
         renderPublishedPaper(publishedPaper)
-
-        hideLoadingScreen();
     });
 }
 
-function renderContributors(article) {
-    let inkersOnDuty = [];
-    let str = "";
-
-    if (!article.inkersOnDuty || article.inkersOnDuty.length == 0) {
-        footerElement.style.display = 'none';
-        footerHr.style.display = 'none';
-        articleInfoDivider.style.display = 'none';
-
-
-        return;
+function getPublishedPaperPreview(publishedPaper) {
+    if (publishedPaper.subtitle) {
+        return publishedPaper.subtitle;
     }
 
-    for (let i = 0; i < article.inkersOnDuty.length; i++) {
-        let inkers = article.inkersOnDuty[i];
-
-        let name = inkers.name;
-
-        inkersOnDuty.push(name)
-    }
-
-    let count = inkersOnDuty.length;
-
-    if (count === 1) {
-        str = `By: ${inkersOnDuty[0]}`;
-    } else if (count === 2) {
-        str = `By: ${inkersOnDuty[0]} & ${inkersOnDuty[1]}`;
-    } else if (count === 3) {
-        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, & 1 other`;
-    } else if (count > 3) {
-        const remaining = count - 2;
-        str = `By: ${inkersOnDuty[0]}, ${inkersOnDuty[1]}, & ${remaining} others`;
-    }
-
-    inkersElement.innerText = str;
-}
-
-function renderInkersOnDuty(article) {
-    if (!article.inkersOnDuty) {
-        return;
-    }
-
-    for (let i = 0; i < article.inkersOnDuty.length; i++) {
-        let inkers = article.inkersOnDuty[i];
-
-        let name = inkers.name;
-        let username = inkers.username.current;
-        let role = inkers.role;
-        let profilePicture = inkers.profilePicture;
-
-        let a = document.createElement('a');
-        a.href = "/inkers/" + username;
-        a.target = "_self";
-
-        let art = document.createElement('article');
-        art.classList.add('inkers');
-
-        let img = document.createElement('img');
-        
-        img.alt = name;
-
-        if (profilePicture) {
-            img.src = urlFor(profilePicture)
-                .width(100)
-                .height(100)
-                .fit('max')
-                .auto('format')
-                .url();
-        }
-
-        else {
-            img.src = "/src/images/placeholder-profile.png";
-        } 
-
-        let divParent = document.createElement('div');
-
-        let h3 = document.createElement('h3');
-        h3.innerText = name;
-
-        let p = document.createElement('p');
-        p.innerText = role;
-
-        divParent.appendChild(h3);
-        divParent.appendChild(p);
-
-        art.appendChild(img);
-        art.appendChild(divParent);
-
-        a.appendChild(art);
-
-        inkersOnDutyElement.appendChild(a);
-    }
-}
-
-function renderPublishedDate(article) {
-    const date = new Date(article.publishedAt);
-    const now = new Date();
-    
-    const diffInMs = now - date;
-    const diffInMins = Math.floor(diffInMs / (1000 * 60));
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-
-    const isSameDay = date.toDateString() === now.toDateString();
-    
-    if (isSameDay) {
-        if (diffInMins < 1) {
-            dateElement.innerText = "Just now";
-            return;
-        }
-        if (diffInHours < 1) {
-            dateElement.innerText = `${diffInMins} minute${diffInMins === 1 ? '' : 's'} ago`;
-            return;
-        }
-
-        dateElement.innerText = `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
-        return;
-    }
-
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-    const isSameYear = date.getFullYear() === now.getFullYear();
-
-    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
-
-    if (isYesterday) {
-        dateElement.innerText = `Yesterday at ${timePart}`;
-    } else if (isSameYear) {
-        dateElement.innerText = `${monthDay} at ${timePart}`;
-    } else {
-        dateElement.innerText = `${monthDay}, ${yearPart}`;
-    }
-}
-
-function renderImage(article) {
-    if (article.image) {
-        try {        
-            imageElement.src = urlFor(article.image)
-                .width(600)
-                .height(400)
-                .fit('max')
-                .auto('format')
-                .url();
-        }
-        catch {
-            console.error("ERROR")
-        }
-
-        imageElement.alt = article.title;
-    }
+    return;
 }
 
 function getPublishedPaperPages(publishedPaper) {
@@ -312,33 +151,11 @@ function renderPublishedPaper(publishedPaper) {
         });
 
         lightbox.init();
+
+        setProperSEO(publishedPaper)
+        hideLoadingScreen();
     }
 
-}
-
-function getArticlePreview(article) {
-    if (article.subtitle) {
-        return article.subtitle;
-    }
-
-    else if (
-        article.body[0] &&
-        article.body[0].children[0] &&
-        article.body[0].children[0].text
-    ) {
-        let str = article.body[0].children[0].text;
-        let maxCharLength = 100;
-
-        let firstSentence = str.split(/(?<=[.!?])\s/)[0];
-
-        let finalTarget = firstSentence.length > maxCharLength 
-            ? firstSentence.substring(0, maxCharLength) + "..." 
-            : firstSentence;
-
-        return finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
-    }
-
-    return;
 }
 
 function controlsHandler(pageFlip) {
@@ -356,11 +173,11 @@ function controlsHandler(pageFlip) {
     }
     
     pageFlip.on('flip', (e) => {
-        prevBtn.disabled = false;
-        nextBtn.disabled = false;
+        changeControlButtonState(prevBtn, true);
+        changeControlButtonState(nextBtn, true);
 
         if (pageFlip.getCurrentPageIndex() == 0) {
-            prevBtn.disabled = true;
+            changeControlButtonState(prevBtn, false);
                 
             if (window.innerWidth >= 1200) {
                 wrapper.animation = "";
@@ -370,7 +187,7 @@ function controlsHandler(pageFlip) {
 
 
         else if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 1) {
-            nextBtn.disabled = true;
+            changeControlButtonState(nextBtn, false);
 
             if (window.innerWidth >= 1200) {
                 wrapper.animation = "";
@@ -398,28 +215,30 @@ function controlsHandler(pageFlip) {
     });
 
     if (pageFlip.getCurrentPageIndex() == 0) {
-        prevBtn.disabled = true;
+        changeControlButtonState(prevBtn, false);
     }
     
     prevBtn.onclick = () => {
         if (pageFlip.getCurrentPageIndex() == 0) {
-            prevBtn.disabled = true;
+            changeControlButtonState(prevBtn, false);
         }
 
-        prevBtn.disabled = false;
-        nextBtn.disabled = false;
+        changeControlButtonState(prevBtn, true);
+        changeControlButtonState(nextBtn, true);
 
         pageFlip.flipPrev();
+        pageFlipSoundEffect();
     };
 
     nextBtn.onclick = () => {
-        prevBtn.disabled = false;
-        nextBtn.disabled = false;
+        changeControlButtonState(prevBtn, true);
+        changeControlButtonState(nextBtn, true);
 
-        pageFlip.flipNext()
+        pageFlip.flipNext();
+        pageFlipSoundEffect();
 
         if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 2) {
-            nextBtn.disabled = true;
+            changeControlButtonState(nextBtn, false);
         }
     };
 
@@ -445,7 +264,7 @@ function controlsHandler(pageFlip) {
         setTimeout(e => {
             canScroll = true
         }, 350);
-    })
+    });
 }
 
 function setProperSEO(publishedPaper) {
@@ -457,8 +276,8 @@ function setProperSEO(publishedPaper) {
 
     const url = window.location.href;
     const title = `${publishedPaper.title} | The Maroon Ink Published Papers`;
-    const description = getArticlePreview(article)
-    const image = imageElement.src;
+    const description = getPublishedPaperPreview(publishedPaper) || ogDescription.getAttribute('content');
+    const image = document.getElementsByClassName('page-img')[0].src;
 
     ogUrl.setAttribute('content', url)
     document.title = title;
@@ -466,6 +285,29 @@ function setProperSEO(publishedPaper) {
     metaDescription.setAttribute('content', description);
     ogDescription.setAttribute('content', description);
     ogImage.setAttribute('content', image);
+}
+
+function pageFlipSoundEffect() {
+    const files = ['flip-page-1.mp3', 'flip-page-2.mp3'];
+    const path = '/src/audio/';
+
+    const chosenAudio = files[Math.floor(Math.random() * files.length)]
+    const finalPath = path + chosenAudio;
+
+    const audio = new Audio(finalPath);
+    audio.play();
+}
+
+function changeControlButtonState(e, state) {
+    if (!state) {
+        e.style.opacity = '0.3';
+        e.style.pointerEvents = 'none';
+    }
+
+    else if (state) {
+        e.style.opacity = '1';
+        e.style.pointerEvents = 'auto';
+    }
 }
 
 getPublishedPaper();

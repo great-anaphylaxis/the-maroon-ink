@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sitemap | The Maroon Ink</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; color: #333; }
-        h1 { border-bottom: 2px solid #800000; color: #800000; padding-bottom: 10px; }
-        h2 { margin-top: 30px; color: #555; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; padding: 40px; max-width: 1000px; margin: auto; color: #333; }
+        h1 { border-bottom: 3px solid #800000; color: #800000; padding-bottom: 10px; }
+        h2 { margin-top: 30px; color: #800000; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 8px; }
-        a { color: #004a99; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        a { color: #004a99; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #800000; text-decoration: underline; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 20px; }
+        footer { margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; font-size: 0.8rem; color: #777; }
     </style>
 </head>
 <body>
-    <h1>Sitemap</h1>
+    <h1>The Maroon Ink Sitemap</h1>
 
     <section>
-        <h2>Main Pages</h2>
-        <ul>
+        <h2>Navigation</h2>
+        <ul style="display: flex; gap: 20px; flex-wrap: wrap;">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About Us</a></li>
             <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -35,8 +35,7 @@
     <div class="grid">
         <section>
             <h2>Articles</h2>
-            <ul>
-                <li><a href="/articles//hello-world">Hello World</a></li>
+            <ul><li><a href="/articles//hello-world">Hello World</a></li>
             <li><a href="/articles//1-day-left">1 Day Left...</a></li>
             <li><a href="/articles//2-days-left-til-christmas">2 Days Left 'Til Christmas!</a></li>
             <li><a href="/articles//2025-nsed-at-401pm-of-september-11-2025-the-bell-of-um-ilang-high-s">2025 NSED At 401PM of September 11 2025 the bell of UM Ilang High S...</a></li>
@@ -524,14 +523,17 @@
             <li><a href="/articles//world-daughters-day-the-hands-that-care-the-heart-that-endures">World Daughters Day The Hands That Care the Heart That Endures</a></li>
             <li><a href="/articles//wounds-of-the-past-will-eventually-heal-and-all-will-be-alright-in">Wounds of the past will eventually heal and all will be alright in...</a></li>
             <li><a href="/articles//yay">Yay!</a></li>
-            <li><a href="/articles//yulo-nagwagi-ng-ginto-sa-paris-olympics-2024">Yulo Nagwagi ng Ginto sa Paris Olympics 2024</a></li>
-            </ul>
+            <li><a href="/articles//yulo-nagwagi-ng-ginto-sa-paris-olympics-2024">Yulo Nagwagi ng Ginto sa Paris Olympics 2024</a></li></ul>
+        </section>
+
+        <section>
+            <h2>Published Papers</h2>
+            <ul><li><a href="/published-papers//2nd-sem-release-2026">2nd Sem Release 2026</a></li></ul>
         </section>
 
         <section>
             <h2>Our Inkers</h2>
-            <ul>
-                <li><a href="/inkers//gwynyth-kylhyn-malcampo">Gwynyth Kylhyn Malcampo</a></li>
+            <ul><li><a href="/inkers//gwynyth-kylhyn-malcampo">Gwynyth Kylhyn Malcampo</a></li>
             <li><a href="/inkers//spencer-nepomuceno">Spencer Nepomuceno</a></li>
             <li><a href="/inkers//eliezer-suarez">Eliezer Suarez</a></li>
             <li><a href="/inkers//rania-sahisan">Rania Sahisan</a></li>
@@ -629,13 +631,12 @@
             <li><a href="/inkers//vhon-raven-dingal">Vhon Raven Dingal</a></li>
             <li><a href="/inkers//victoria-theresa-cangrejo">Victoria Theresa Cangrejo</a></li>
             <li><a href="/inkers//vincent-galendez">Vincent Galendez</a></li>
-            <li><a href="/inkers//xyza-andrea-amoto">Xyza Andrea Amoto</a></li>
-            </ul>
+            <li><a href="/inkers//xyza-andrea-amoto">Xyza Andrea Amoto</a></li></ul>
         </section>
     </div>
 
     <footer>
-        <p><small>Last updated: 1/4/2026</small></p>
+        <p>Generated on 1/4/2026 | &copy; The Maroon Ink</p>
     </footer>
 </body>
 </html>

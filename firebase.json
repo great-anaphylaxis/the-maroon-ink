@@ -15,10 +15,6 @@
     ],
     "rewrites": [
         {
-            "source": "/sitemap.xml",
-            "destination": "/sitemap.xml"
-        },       
-        {
             "source": "/search",
             "destination": "/search.html"
         },        

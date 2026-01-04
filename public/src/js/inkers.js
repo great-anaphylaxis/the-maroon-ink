@@ -1,6 +1,9 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
+import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
+import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -77,13 +80,11 @@ function getInkerAndArticles() {
     });
 }
 
-function renderInker(inker) {
+function renderProfilePicture(inker) {
     let profilePicture = inker.profilePicture;
 
     if (profilePicture) {
         imgElement.src = urlFor(profilePicture)
-            .width(100)
-            .height(100)
             .fit('max')
             .auto('format')
             .url();
@@ -95,6 +96,24 @@ function renderInker(inker) {
     
     imgElement.alt = inker.name;
 
+    const dim = getImageDimensions(imgElement.src);
+    const photoSwipeImage = document.getElementById('image-photoswipe');
+
+    photoSwipeImage.href = imgElement.src;
+    photoSwipeImage.setAttribute('data-pswp-width', "" + dim.width);
+    photoSwipeImage.setAttribute('data-pswp-height', "" + dim.height);
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: 'header a',
+        pswpModule: PhotoSwipe,
+        secondaryZoomLevel: 3,
+    });
+
+    lightbox.init();
+}
+
+function renderInker(inker) {
+    renderProfilePicture(inker);
 
     nameElement.innerText = inker.name;
     roleElement.innerText = inker.role;

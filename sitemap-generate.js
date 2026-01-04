@@ -1,7 +1,5 @@
 const fs = require('fs');
 const { createClient } = require('@sanity/client');
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { Readable } = require('stream');
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -12,55 +10,94 @@ const client = createClient({
 
 const BASE_URL = 'https://the-maroon-ink.web.app';
 const STATIC_PAGES = [
-    { url: '/', changefreq: 'daily', priority: 1.0 },
-    { url: '/about', changefreq: 'monthly', priority: 0.8 },
-    { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3 },
-    { url: '/staff', changefreq: 'monthly', priority: 0.3 },
-    { url: '/archives', changefreq: 'monthly', priority: 0.8 },
-    { url: '/published-papers', changefreq: 'monthly', priority: 0.8 },
+    { name: 'Home', url: '/' },
+    { name: 'About Us', url: '/about' },
+    { name: 'Privacy Policy', url: '/privacy-policy' },
+    { name: 'Staff', url: '/staff' },
+    { name: 'Archives', url: '/archives' },
+    { name: 'Published Papers', url: '/published-papers' },
 ];
 
-async function generateSitemap() {
+async function generateHtmlSitemap() {
     try {
         const data = await client.fetch(`
             *[_type in ["inker", "article"]] {
                 _type,
-                _updatedAt,
+                "title": select(
+                    _type == "inker" => name,
+                    _type == "article" => title
+                ),
                 "slug": select(
                     _type == "inker" => username.current,
-                    _type == "article" => linkName.current,
-                    _type == "publishedPaper" => linkName.current
+                    _type == "article" => linkName.current
                 )
             }[defined(slug)]`
         );
 
-        const links = data.map((doc) => {
-            const prefix = doc._type === 'article' ? '/articles' : '/inkers';
-            
-            return {
-                url: `${prefix}/${doc.slug}`,
-                lastmod: doc._updatedAt,
-                changefreq: doc._type === 'article' ? 'weekly' : 'monthly',
-                priority: doc._type === 'article' ? 0.8 : 0.6,
-            };
-        });
+        // Separate data for clean HTML sections
+        const articles = data.filter(doc => doc._type === 'article');
+        const inkers = data.filter(doc => doc._type === 'inker');
 
-        for (let i = 0; i < STATIC_PAGES.length; i++) {
-            let page = STATIC_PAGES[i];
+        // Helper function to turn data into <li> items
+        const listItems = (items, prefix = '') => 
+            items.map(item => `<li><a href="${prefix}${item.url || '/' + item.slug}">${item.name || item.title}</a></li>`).join('\n            ');
 
-            links.unshift(page);
-        }
+        const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap | The Maroon Ink</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; color: #333; }
+        h1 { border-bottom: 2px solid #800000; color: #800000; padding-bottom: 10px; }
+        h2 { margin-top: 30px; color: #555; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 8px; }
+        a { color: #004a99; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Sitemap</h1>
 
-        const stream = new SitemapStream({ hostname: BASE_URL });
-        const xmlString = await streamToPromise(Readable.from(links).pipe(stream)).then((data) =>
-        data.toString()
-        );
+    <section>
+        <h2>Main Pages</h2>
+        <ul>
+            ${listItems(STATIC_PAGES)}
+        </ul>
+    </section>
 
-        fs.writeFileSync('./public/sitemap.xml', xmlString);
-        console.log('✅ sitemap.xml generated successfully in /public');
+    <div class="grid">
+        <section>
+            <h2>Articles</h2>
+            <ul>
+                ${listItems(articles, '/articles/')}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Our Inkers</h2>
+            <ul>
+                ${listItems(inkers, '/inkers/')}
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p><small>Last updated: ${new Date().toLocaleDateString()}</small></p>
+    </footer>
+</body>
+</html>`;
+
+        fs.writeFileSync('./public/sitemap.html', htmlContent);
+        console.log('✅ sitemap.html generated successfully in /public');
     } catch (error) {
-        console.error('❌ Error generating sitemap:', error);
+        console.error('❌ Error generating HTML sitemap:', error);
     }
 }
 
-generateSitemap();
+generateHtmlSitemap();

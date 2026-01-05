@@ -82,21 +82,27 @@ function getInkerAndArticles() {
 
 function renderProfilePicture(inker) {
     let profilePicture = inker.profilePicture;
+    let dim;
 
     if (profilePicture) {
         imgElement.src = urlFor(profilePicture)
             .fit('max')
             .auto('format')
             .url();
+
+        dim = getImageDimensions(imgElement.src);
     }
 
     else {
         imgElement.src = "/src/images/placeholder-profile.png";
+        dim = {
+            width: 600,
+            height: 600
+        }
     }
     
     imgElement.alt = inker.name;
 
-    const dim = getImageDimensions(imgElement.src);
     const photoSwipeImage = document.getElementById('image-photoswipe');
 
     photoSwipeImage.href = imgElement.src;

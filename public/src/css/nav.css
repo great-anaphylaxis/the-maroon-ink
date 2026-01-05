@@ -37,7 +37,7 @@ body {
 #home-icon {
     max-width: 48px;
     border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.25) 4px 7px 20px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     cursor: pointer;
     user-select: none;
 }
@@ -58,7 +58,7 @@ body {
     cursor: pointer;
     user-select: none;
     padding: 1em;
-    filter: drop-shadow(1px 12px 6px rgb(20, 20, 20))
+    filter: drop-shadow(rgb(20, 20, 20) 1px 12px 10px);
 }
 
 #options-icon:hover {

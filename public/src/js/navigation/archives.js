@@ -1,7 +1,8 @@
 import { createClient } from "https://esm.sh/@sanity/client";
-import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 
 import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "../utils/nav.js";
+import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
+import { urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -10,8 +11,6 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const builder = createImageUrlBuilder(client);
-
 const mainElement = document.getElementById('list');
 const subnavElement = document.getElementById('subnav');
 
@@ -19,10 +18,6 @@ let savedQueryData;
 const blocks = {};
 const blockOrder = [];
 const years = {};
-
-function urlFor(source) {
-    return builder.image(source);
-}
 
 function getArticles() {
     showLoadingScreen();
@@ -85,86 +80,6 @@ function getArticles() {
         
         hideLoadingScreen();
     });
-}
-
-function renderPublishedDate(article, dateElement) {
-    const date = new Date(article.publishedAt);
-    const now = new Date();
-    
-    const diffInMs = now - date;
-    const diffInMins = Math.floor(diffInMs / (1000 * 60));
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-
-    const isSameDay = date.toDateString() === now.toDateString();
-    
-    if (isSameDay) {
-        if (diffInMins < 1) {
-            dateElement.innerText = "Just now";
-            return;
-        }
-        if (diffInHours < 1) {
-            dateElement.innerText = `${diffInMins} minute${diffInMins === 1 ? '' : 's'} ago`;
-            return;
-        }
-
-        dateElement.innerText = `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
-        return;
-    }
-
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-    const isSameYear = date.getFullYear() === now.getFullYear();
-
-    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
-
-    if (isYesterday) {
-        dateElement.innerText = `Yesterday`;
-    } else if (isSameYear) {
-        dateElement.innerText = `${monthDay}`;
-    } else {
-        dateElement.innerText = `${monthDay}, ${yearPart}`;
-    }
-}
-
-function renderPreview(article, previewElement) {
-    if (article.subtitle) {
-        previewElement.innerText = article.subtitle;
-    }
-
-    else if (
-        article.body[0] &&
-        article.body[0].children[0] &&
-        article.body[0].children[0].text
-    ) {
-        let str = article.body[0].children[0].text;
-        let maxCharLength = 100;
-
-        let firstSentence = str.split(/(?<=[.!?])\s/)[0];
-
-        let finalTarget = firstSentence.length > maxCharLength 
-            ? firstSentence.substring(0, maxCharLength) + "..." 
-            : firstSentence;
-
-        previewElement.innerText = finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
-    }
-
-    return;
-}
-
-function renderTitle(article, titleElement) {
-    if (article.title) {
-        let title = article.title;
-        let maxCharLength = 60;
-
-        let str = title.length > maxCharLength 
-            ? title.substring(0, maxCharLength) + "..." 
-            : title;
-
-        titleElement.innerText = str;
-    }
 }
 
 function renderArticle(article) {

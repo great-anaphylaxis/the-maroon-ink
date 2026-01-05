@@ -1,11 +1,12 @@
 import { createClient } from "https://esm.sh/@sanity/client";
-import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { toHTML, uriLooksSafe } from "https://esm.sh/@portabletext/to-html";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
+import { renderPublishedDate, getArticlePreview } from "../utils/list-of-articles.js";
+import { urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -13,8 +14,6 @@ const client = createClient({
     useCdn: true,
     apiVersion: '2025-12-25'
 });
-
-const builder = createImageUrlBuilder(client);
 
 const components = {
     marks: {
@@ -40,10 +39,6 @@ const inkersOnDutyElement = document.getElementById('inkers-on-duty');
 const footerElement = document.getElementById('footer');
 const footerHr = document.getElementById('footerHr');
 const articleInfoDivider = document.getElementById('article-info-divider');
-
-function urlFor(source) {
-    return builder.image(source);
-}
 
 function getValidUrl(url = "") {
     let newUrl = window.decodeURIComponent(url);
@@ -194,48 +189,6 @@ function renderInkersOnDuty(article) {
     }
 }
 
-function renderPublishedDate(article) {
-    const date = new Date(article.publishedAt);
-    const now = new Date();
-    
-    const diffInMs = now - date;
-    const diffInMins = Math.floor(diffInMs / (1000 * 60));
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-
-    const isSameDay = date.toDateString() === now.toDateString();
-    
-    if (isSameDay) {
-        if (diffInMins < 1) {
-            dateElement.innerText = "Just now";
-            return;
-        }
-        if (diffInHours < 1) {
-            dateElement.innerText = `${diffInMins} minute${diffInMins === 1 ? '' : 's'} ago`;
-            return;
-        }
-
-        dateElement.innerText = `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
-        return;
-    }
-
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-    const isSameYear = date.getFullYear() === now.getFullYear();
-
-    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
-
-    if (isYesterday) {
-        dateElement.innerText = `Yesterday at ${timePart}`;
-    } else if (isSameYear) {
-        dateElement.innerText = `${monthDay} at ${timePart}`;
-    } else {
-        dateElement.innerText = `${monthDay}, ${yearPart}`;
-    }
-}
-
 function renderImage(article) {
     if (article.image) {
         try {        
@@ -279,36 +232,11 @@ function renderArticle(article) {
     subtitleElement.innerText = subtitle;
     mainElement.innerHTML = content;
 
-    renderPublishedDate(article)
+    renderPublishedDate(article, dateElement)
     renderContributors(article);
     renderImage(article);
 
     renderInkersOnDuty(article);
-
-    return;
-}
-
-function getArticlePreview(article) {
-    if (article.subtitle) {
-        return article.subtitle;
-    }
-
-    else if (
-        article.body[0] &&
-        article.body[0].children[0] &&
-        article.body[0].children[0].text
-    ) {
-        let str = article.body[0].children[0].text;
-        let maxCharLength = 100;
-
-        let firstSentence = str.split(/(?<=[.!?])\s/)[0];
-
-        let finalTarget = firstSentence.length > maxCharLength 
-            ? firstSentence.substring(0, maxCharLength) + "..." 
-            : firstSentence;
-
-        return finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
-    }
 
     return;
 }
@@ -344,7 +272,11 @@ function onhashchange() {
 
     history.replaceState("", document.title, window.location.pathname + window.location.search);
 
-    document.querySelector(hash).scrollIntoView(options);
+    const e = document.querySelector(hash)
+    
+    if (e) {
+        e.scrollIntoView(options);
+    }
 }
 
 getArticle();

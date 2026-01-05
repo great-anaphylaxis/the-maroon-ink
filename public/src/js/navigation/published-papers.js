@@ -1,7 +1,8 @@
 import { createClient } from "https://esm.sh/@sanity/client";
-import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
+import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
+import { urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -10,13 +11,7 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const builder = createImageUrlBuilder(client);
-
 const mainElement = document.getElementById('list');
-
-function urlFor(source) {
-    return builder.image(source);
-}
 
 function getPublishedPapers() {
     showLoadingScreen();
@@ -97,73 +92,6 @@ function renderPublishedPaper(publishedPaper) {
     mainElement.appendChild(a);
 
     return;
-}
-
-function renderPublishedDate(publishedPaper, dateElement) {
-    const date = new Date(publishedPaper.publishedAt);
-    const now = new Date();
-    
-    const diffInMs = now - date;
-    const diffInMins = Math.floor(diffInMs / (1000 * 60));
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-
-    const isSameDay = date.toDateString() === now.toDateString();
-    
-    if (isSameDay) {
-        if (diffInMins < 1) {
-            dateElement.innerText = "Just now";
-            return;
-        }
-        if (diffInHours < 1) {
-            dateElement.innerText = `${diffInMins} minute${diffInMins === 1 ? '' : 's'} ago`;
-            return;
-        }
-
-        dateElement.innerText = `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
-        return;
-    }
-
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-    const isSameYear = date.getFullYear() === now.getFullYear();
-
-    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
-
-    if (isYesterday) {
-        dateElement.innerText = `Yesterday`;
-    } else if (isSameYear) {
-        dateElement.innerText = `${monthDay}`;
-    } else {
-        dateElement.innerText = `${monthDay}, ${yearPart}`;
-    }
-}
-
-function renderPreview(publishedPaper, previewElement) {
-    if (publishedPaper.subtitle) {
-        previewElement.innerText = publishedPaper.subtitle;
-    }
-
-    else {
-        return;
-    }
-
-    return;
-}
-
-function renderTitle(publishedPaper, titleElement) {
-    if (publishedPaper.title) {
-        let title = publishedPaper.title;
-        let maxCharLength = 60;
-
-        let str = title.length > maxCharLength 
-            ? title.substring(0, maxCharLength) + "..." 
-            : title;
-
-        titleElement.innerText = str;
-    }
 }
 
 getPublishedPapers();

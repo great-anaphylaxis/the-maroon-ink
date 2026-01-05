@@ -1,7 +1,7 @@
 import { createClient } from "https://esm.sh/@sanity/client";
-import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
+import { urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -10,13 +10,7 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const builder = createImageUrlBuilder(client);
-
 const mainElement = document.getElementById('main');
-
-function urlFor(source) {
-    return builder.image(source);
-}
 
 function getStaff() {
     showLoadingScreen();

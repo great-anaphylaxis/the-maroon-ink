@@ -263,6 +263,10 @@ function renderImage(article) {
 
         lightbox.init();
     }
+
+    else {
+        imageElement.style.display = 'none';
+    }
 }
 
 function renderArticle(article) {

@@ -184,13 +184,13 @@ hr {
         top: 0px;
     }
     100% {
-        top: 65px;
+        top: 60px;
     }
 }
 
 @keyframes subnav-hide {
     0% {
-        top: 65px;
+        top: 60px;
     }
     100% {
         top: 0px;
@@ -321,7 +321,7 @@ hr {
     flex-direction: row;
     position: sticky;
     padding: 0.25em;
-    top: 65px;
+    top: 60px;
     left: 0;
     gap: 40px;
     background-color: white;

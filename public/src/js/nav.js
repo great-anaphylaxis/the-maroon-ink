@@ -4,6 +4,7 @@ const subnav = document.getElementById('subnav');
 const optionsButton = document.getElementById('options-icon');
 const searchbox = document.getElementById('searchbox');
 const loadingscreen = document.getElementById('loadingscreen');
+const navsideFooterCopyright = document.getElementById('navside-footer-copyright');
 
 let currentSubnavButton;
 let subNavOnclickHandler;
@@ -145,6 +146,8 @@ function initializeNavside() {
             anchor.classList.add('current');
         }
     }
+
+    navsideFooterCopyright.innerText = `© ${new Date().getFullYear()} The Maroon Ink.`;
 
     optionsButton.addEventListener('click', e=>optionsButtonClick())
 }

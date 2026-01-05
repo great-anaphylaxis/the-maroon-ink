@@ -28,7 +28,7 @@ main > div {
     margin-bottom: 2em;
 }
 
-main > a {
+main > a:not(:has(article)) {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;    
     color: maroon;
     font-size: 20px;

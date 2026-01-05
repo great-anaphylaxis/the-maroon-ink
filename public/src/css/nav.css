@@ -428,3 +428,22 @@ hr {
     80% { content: 'Loading..'}
     90% , 100% { content: 'Loading...'}
 }
+
+#navside > footer {
+    text-align: center;
+    position: absolute;
+    bottom: 6.5em;
+    left: 0;
+    width: 100%;
+}
+
+#navside > footer > a {
+    font-size: 12px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#242424;
+    text-decoration: none;
+}
+
+#navside > footer > a:hover {
+    text-decoration: underline;
+}

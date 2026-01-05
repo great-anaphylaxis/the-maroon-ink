@@ -16,27 +16,27 @@
     "rewrites": [
         {
             "source": "/search",
-            "destination": "/search.html"
+            "destination": "/navigation/search.html"
         },        
         {
             "source": "/about",
-            "destination": "/about.html"
+            "destination": "/navigation/about.html"
         },
         {
             "source": "/published-papers",
-            "destination": "/published-papers.html"
+            "destination": "/navigation/published-papers.html"
         },
         {
             "source": "/staff",
-            "destination": "/staff.html"
+            "destination": "/navigation/staff.html"
         },
         {
             "source": "/archives",
-            "destination": "/archives.html"
+            "destination": "/navigation/archives.html"
         },
         {
             "source": "/privacy-policy",
-            "destination": "/privacy-policy.html"
+            "destination": "/navigation/privacy-policy.html"
         },
         {
             "source": "/articles/**",

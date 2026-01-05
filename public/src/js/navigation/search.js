@@ -1,6 +1,7 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
-import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
+
+import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',

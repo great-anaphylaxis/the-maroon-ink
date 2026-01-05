@@ -3,7 +3,8 @@ import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
 import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
-import { hideLoadingScreen, optionsButtonClick, showLoadingScreen, navtop } from "./nav.js";
+
+import { hideLoadingScreen, optionsButtonClick, showLoadingScreen, navtop } from "../utils/nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',

@@ -1,9 +1,7 @@
 import { createClient } from "https://esm.sh/@sanity/client";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url";
-import { hideLoadingScreen, showLoadingScreen } from "./nav.js";
-import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
-import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
-import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
+
+import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "../utils/nav.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -14,116 +12,79 @@ const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
-const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
+const mainElement = document.getElementById('list');
+const subnavElement = document.getElementById('subnav');
 
-const imgElement = document.getElementById('img');
-const nameElement = document.getElementById('name');
-const roleElement = document.getElementById('role');
-const bioElement = document.getElementById('bio');
-
-const mainElement = document.getElementById('main');
+let savedQueryData;
+const blocks = {};
+const blockOrder = [];
+const years = {};
 
 function urlFor(source) {
     return builder.image(source);
 }
 
-function getInkerUsername() {
-    let path =  window.location.pathname;
-    let str = path.split('/');
-
-    return str[2];
-}
-
-function getInkerAndArticles() {
-    const username = getInkerUsername();
-
+function getArticles() {
     showLoadingScreen();
-    const inkerAndArticles = client.fetch(`{
-    "inker": *[_type == "inker" && username.current == $username]{
-        name,
-        username,
-        profilePicture,
-        role,
-        bio
-    },
-    
-    "articles": *[_type == "article" && inkersOnDuty[]->username.current match $username]
-    | order(publishedAt desc) {
-        title,
-        subtitle,
-        linkName,
-        publishedAt,
-        image,
-        body
-    }}`, {username: username});
 
-    inkerAndArticles.then(e => {
-        let inker = e.inker[0];
-        let articles = e.articles;
+    const articles = client.fetch(`
+        *[_type == "article"] | order(publishedAt desc) {
+            title,
+            subtitle,
+            linkName,
+            publishedAt,
+            image,
+            body
+        }`);
 
-        if (e.inker.length == 0) {
-            window.location.replace("/404.html");
+    articles.then(e => {
+        let yearOrder = 0;
+
+        savedQueryData = e;
+
+        for (let i = 0; i < e.length; i++) {
+            const article = e[i];
+            const date = new Date(article.publishedAt)
+            const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(date);
+            const block = blocks[formattedDate];
+            const year = date.getFullYear();
+
+            if (!years[year]) {
+                years[year] = {
+                    year: year,
+                    count: 0,
+                    order: yearOrder
+                };
+
+                yearOrder++;
+            }
+
+            if (!block) {
+                const currentBlockOrder = blockOrder[blockOrder.length - 1];
+
+                if (currentBlockOrder) {
+                    currentBlockOrder.title.innerText += ` (${currentBlockOrder.length})`;
+                }
+
+                blocks[formattedDate] = {};
+
+                let obj = blocks[formattedDate];
+                blockOrder.push(obj)
+
+                obj.length = 0;
+                obj.title = addBlockTitle(formattedDate);
+            }
+
+            years[year].count++;
+            blocks[formattedDate].length++;
         }
 
-        renderInker(inker)
-        setProperSEO(inker)
+        initializeSubnavButtons();
 
-        for (let i = 0; i < articles.length; i++) {
-            let article = articles[i];
-
-            renderArticle(article)
-        }
-
-        contributedArticlesTitle.innerText = `Contribued Articles (${articles.length})`;
-
+        initializeSubnav(changeArticleFeed);
+        
         hideLoadingScreen();
     });
-}
-
-function renderProfilePicture(inker) {
-    let profilePicture = inker.profilePicture;
-    let dim;
-
-    if (profilePicture) {
-        imgElement.src = urlFor(profilePicture)
-            .fit('max')
-            .auto('format')
-            .url();
-
-        dim = getImageDimensions(imgElement.src);
-    }
-
-    else {
-        imgElement.src = "/src/images/placeholder-profile.png";
-        dim = {
-            width: 600,
-            height: 600
-        }
-    }
-    
-    imgElement.alt = inker.name;
-
-    const photoSwipeImage = document.getElementById('image-photoswipe');
-
-    photoSwipeImage.href = imgElement.src;
-    photoSwipeImage.setAttribute('data-pswp-width', "" + dim.width);
-    photoSwipeImage.setAttribute('data-pswp-height', "" + dim.height);
-
-    const lightbox = new PhotoSwipeLightbox({
-        gallery: 'header a',
-        pswpModule: PhotoSwipe,
-        secondaryZoomLevel: 3,
-    });
-
-    lightbox.init();
-}
-
-function renderInker(inker) {
-    renderProfilePicture(inker);
-
-    nameElement.innerText = inker.name;
-    roleElement.innerText = inker.role;
-    bioElement.innerText = inker.bio;
 }
 
 function renderPublishedDate(article, dateElement) {
@@ -215,8 +176,9 @@ function renderArticle(article) {
 
     let div = document.createElement('div');
 
-    
     let img = document.createElement('img');
+        
+    img.alt = article.title;
     if (article.image) {
         try {        
             img.src = urlFor(article.image)
@@ -229,8 +191,10 @@ function renderArticle(article) {
         catch {
             console.error("ERROR")
         }
+    }
 
-        img.alt = article.title;
+    else {
+        img.src = '/src/images/banner.jpg';
     }
 
     let h1 = document.createElement('h1');
@@ -256,24 +220,64 @@ function renderArticle(article) {
     return;
 }
 
-function setProperSEO(inker) {
-    const metaDescription = document.querySelector("meta[name='description']");
-    const ogUrl = document.querySelector("meta[property='og:url']");
-    const ogTitle = document.querySelector("meta[property='og:title']");
-    const ogDescription = document.querySelector("meta[property='og:description']");
-    const ogImage = document.querySelector("meta[property='og:image']");
+function addBlockTitle(name) {
+    const h2 = document.createElement('h2');
 
-    const url = window.location.href;
-    const title = `${inker.name} | The Maroon Ink Inkers`;
-    const description = `${inker.name} - ${inker.role}. ${inker.bio}`;
-    const image = imgElement.src;
+    h2.innerText = name;
 
-    ogUrl.setAttribute('content', url)
-    document.title = title;
-    ogTitle.setAttribute('content', title);
-    metaDescription.setAttribute('content', description);
-    ogDescription.setAttribute('content', description);
-    ogImage.setAttribute('content', image);
+    mainElement.appendChild(h2);
+
+    return h2;
 }
 
-getInkerAndArticles();
+function changeArticleFeed(yearInput) {
+    mainElement.textContent = '';
+
+    let buffer;
+
+    for (let i = 0; i < savedQueryData.length; i++) {
+        const article = savedQueryData[i];
+        const date = new Date(article.publishedAt)
+        const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(date);
+        const year = date.getFullYear();
+
+        if (year != yearInput && yearInput != 'all') {
+            continue;
+        }
+
+        if (buffer != formattedDate) {
+            addBlockTitle(`${formattedDate} (${blocks[formattedDate].length})`);
+            buffer = formattedDate;
+        }
+
+        renderArticle(article)
+    }
+}
+
+function initializeSubnavButtons() {
+    const yearOrder = Object.values(years).sort((a, b) => a.order - b.order);
+    let total = 0;
+
+    for (let i = 0; i < yearOrder.length; i++) {
+        const year = yearOrder[i].year;
+        const count = yearOrder[i].count;
+
+        const a = document.createElement('a');
+
+        a.dataset.value = year;
+        a.innerText = `${year} (${count})`;
+
+        subnavElement.appendChild(a);
+
+        total += count;
+    }
+
+    const a1 = document.createElement('a');
+
+    a1.dataset.value = 'all';
+    a1.innerText = `All (${total})`;
+
+    subnavElement.prepend(a1);
+}
+
+getArticles();

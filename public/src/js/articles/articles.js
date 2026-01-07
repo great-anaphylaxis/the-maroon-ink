@@ -223,6 +223,14 @@ function renderImage(article) {
     }
 }
 
+function renderMedia(article) {
+    const media = article.media;
+
+    if (!media || !Array.isArray(media)) {
+        return;
+    }
+}
+
 function renderArticle(article) {
     let title = article.title;
     let subtitle = article.subtitle;

@@ -19,7 +19,8 @@ PAGE_ID = os.getenv('PAGE_ID')
 # SCRAPE MODES: "MAX_POSTS" or "SINCE_LAST"
 SCRAPE_MODE = "MAX_POSTS" 
 
-MAX_MEDIA_PER_POST = 3 
+# Capture up to 1000 items per post (for massive galleries)
+MAX_MEDIA_PER_POST = 1000 
 MAX_WORKERS = 15 
 
 MEDIA_FOLDER = Path('media')
@@ -29,21 +30,15 @@ DEBUG_FILE = "extraction_debug.txt"
 
 # --- REGEX PATTERNS & CONSTANTS ---
 SPECIFIC_ROLES = ["illustrat", "cartoon", "graphic", "photo", "photos", "writ", "layout", "art", "contribut", "report"]
-
 CREDIT_RE = re.compile(
     r'^(?:by|By)\s*:?|' + 
     r'|'.join([rf'^{role}\w*\s+by\s*:?' for role in SPECIFIC_ROLES]) + 
     r'|'.join([rf'\b{role}\w*\s+by\s*:' for role in SPECIFIC_ROLES]), 
     re.IGNORECASE
 )
-
 INKER_KEYWORDS = ["journalists on duty", "jounalist on duty", "inker on duty", "inkers on duty", "production team"]
 INKER_RE = re.compile(r'|'.join([rf'\b{re.escape(kw)}\s*:?' for kw in INKER_KEYWORDS]), re.IGNORECASE)
-
-INKER_BLACKLIST = {
-    "the", "school", "page", "news", "event", "uimhs", "campus", 
-    "editorial", "official", "student", "publication", "team", "inkers"
-}
+INKER_BLACKLIST = {"the", "school", "page", "news", "event", "uimhs", "campus", "editorial", "official", "student", "publication", "team", "inkers"}
 
 # --- UTILITY FUNCTIONS ---
 
@@ -111,7 +106,6 @@ def process_body_and_inkers(text):
     lines = text.split('\n')
     final_names, body_lines = [], []
     in_production_block = False
-
     for line in lines:
         raw_line = line.strip()
         if not raw_line:
@@ -133,7 +127,6 @@ def process_body_and_inkers(text):
                 final_names.append(cleaned)
                 continue
         body_lines.append(line)
-
     unique_names = list(dict.fromkeys(final_names))
     for name in unique_names:
         if name not in EXISTING_LOOKUP: NEW_INKERS_FOUND.add(name)
@@ -150,18 +143,17 @@ def download_single_file(url, slug, index, media_type, thumb_url=None):
     result = {
         "type": "video" if is_video else "photo",
         "url": url,
-        "localPath": str(path)
+        "localPath": str(path),
+        "thumbnail": None
     }
 
     try:
-        # Download main media
         r = requests.get(url, stream=True, timeout=20)
         if r.status_code == 200:
             with path.open('wb') as f:
                 for chunk in r.iter_content(32768):
                     f.write(chunk)
             
-        # Download thumbnail ONLY for videos
         if is_video and thumb_url:
             thumb_filename = f"{slug}_{index}_thumb.jpg"
             thumb_path = MEDIA_FOLDER / thumb_filename
@@ -170,14 +162,40 @@ def download_single_file(url, slug, index, media_type, thumb_url=None):
                 with thumb_path.open('wb') as f:
                     for chunk in tr.iter_content(32768):
                         f.write(chunk)
-                # Ensure keys are added to the object being returned to the JSON
                 result["thumbnail"] = str(thumb_path)
                 result["thumbnailUrl"] = thumb_url
-
         return result
     except Exception as e:
         log_debug(f"Failed Download: {url} - {e}")
     return None
+
+# --- MEDIA EXTRACTION LOGIC ---
+
+def get_thumbnail_from_item(item):
+    """Aggressively finds a video thumbnail URL."""
+    # Priority 1: High-res thumbnails array
+    thumbs = item.get('thumbnails', {}).get('data', [])
+    if thumbs:
+        return thumbs[0].get('uri') or thumbs[0].get('src')
+    
+    # Priority 2: Full picture field (standard preview)
+    if item.get('full_picture'):
+        return item.get('full_picture')
+    
+    # Priority 3: Media object image
+    media_img = item.get('media', {}).get('image', {})
+    if media_img.get('src'):
+        return media_img.get('src')
+    
+    return None
+
+def get_url_from_item(item):
+    media = item.get('media', {})
+    source = media.get('source') # Video
+    if source:
+        return source
+    img = media.get('image', {}) # Photo
+    return img.get('src')
 
 def clean_title(text):
     if not text: return "Untitled Post", False
@@ -199,24 +217,29 @@ def to_portable_text(text):
 
 def get_with_retry(url, params=None):
     for i in range(5):
-        r = requests.get(url, params=params); d = r.json()
-        if 'error' in d and d['error'].get('code') in [4, 17, 32, 613]:
-            time.sleep((2 ** i) + 5); continue
-        return d
+        try:
+            r = requests.get(url, params=params)
+            d = r.json()
+            if 'error' in d and d['error'].get('code') in [4, 17, 32, 613]:
+                time.sleep((2 ** i) + 5)
+                continue
+            return d
+        except:
+            time.sleep(2)
     return {}
 
-# --- MAIN LOOP ---
+# --- MAIN ENGINE ---
 
-def scrape_to_json(output_file='fb_posts.json', max_posts=100):
-    print(f"🚀 Initializing High-Speed Scraper (Mode: {SCRAPE_MODE})...")
-    
+def scrape_to_json(output_file='fb_posts.json', max_posts=1000):
+    print(f"🚀 Initializing Scraper (Mode: {SCRAPE_MODE})...")
     last_time = get_last_scrape_time() if SCRAPE_MODE == "SINCE_LAST" else None
-    
     url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/posts"
+    
+    # Fields optimized for gallery depth and video metadata
     params = {
-        'fields': 'created_time,message,id,attachments{media,type,thumbnails,subattachments{media,type,thumbnails}}',
+        'fields': 'created_time,message,id,attachments{media,type,full_picture,thumbnails,subattachments.limit(100){media,type,full_picture,thumbnails}}',
         'access_token': PAGE_TOKEN,
-        'limit': 50
+        'limit': 20
     }
     
     all_records, slug_registry = [], {}
@@ -240,7 +263,6 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=100):
                 
                 title, is_trunc = clean_title(raw_msg.split('\n', 1)[0])
                 slug = generate_slug(title, slug_registry)
-                
                 body_raw = raw_msg if is_trunc else (raw_msg.split('\n', 1)[1] if '\n' in raw_msg else "")
                 body_clean, inkers = process_body_and_inkers(body_raw)
 
@@ -252,36 +274,44 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=100):
 
                 media_queue = []
                 attachments = post.get('attachments', {}).get('data', [])
+                
                 for att in attachments:
-                    items = att.get('subattachments', {}).get('data', [att])
-                    for item in items:
-                        m_data = item.get('media', {})
-                        m_url = m_data.get('source') or m_data.get('image', {}).get('src')
-                        
-                        # Handle Video Thumbnails
-                        t_url = None
-                        if item.get('type') in ['video', 'video_inline', 'video_autoplay']:
-                            thumbs = item.get('thumbnails', {}).get('data', [])
-                            if thumbs: 
-                                t_url = thumbs[0].get('src')
-                            elif m_data.get('image'):
-                                t_url = m_data.get('image', {}).get('src')
+                    # 1. Gallery Processing
+                    if 'subattachments' in att:
+                        current_sub_node = att['subattachments']
+                        while True:
+                            sub_data = current_sub_node.get('data', [])
+                            for sub_item in sub_data:
+                                if len(media_queue) >= MAX_MEDIA_PER_POST: break
+                                m_url = get_url_from_item(sub_item)
+                                if m_url:
+                                    m_type = sub_item.get('type', 'photo')
+                                    t_url = get_thumbnail_from_item(sub_item) if "video" in m_type else None
+                                    media_queue.append((m_url, m_type, t_url))
+                            
+                            next_sub_page = current_sub_node.get('paging', {}).get('next')
+                            if next_sub_page and len(media_queue) < MAX_MEDIA_PER_POST:
+                                current_sub_node = get_with_retry(next_sub_page)
+                            else: break
+                    # 2. Single Item Processing
+                    else:
+                        m_url = get_url_from_item(att)
+                        if m_url:
+                            m_type = att.get('type', 'photo')
+                            t_url = get_thumbnail_from_item(att) if "video" in m_type else None
+                            media_queue.append((m_url, m_type, t_url))
 
-                        if m_url: 
-                            media_queue.append((m_url, item.get('type', 'photo'), t_url))
-
-                if MAX_MEDIA_PER_POST: media_queue = media_queue[:MAX_MEDIA_PER_POST]
-
-                # Run downloads in parallel
+                # Multi-threaded download
                 futures = [executor.submit(download_single_file, m[0], slug, i, m[1], m[2]) for i, m in enumerate(media_queue)]
                 for fut in as_completed(futures):
                     res = fut.result()
                     if res: record["media"].append(res)
 
                 all_records.append(record)
-                print(f"📦 [{len(all_records)}] {slug} | Media: {len(record['media'])}")
+                print(f"📦 [{len(all_records)}] {slug} | Media: {len(media_queue)}")
             
             url = data.get('paging', {}).get('next', None) if url else None
+            params = None # Parameters are included in the 'next' URL
             
     except KeyboardInterrupt:
         print("\nStopping...")
@@ -297,7 +327,7 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=100):
         with open('extracted_inkers.txt', 'w', encoding='utf-8') as f:
             for n in sorted(NEW_INKERS_FOUND): f.write(f"{n}={n}\n")
             
-    print(f"✨ Success. {len(all_records)} posts saved.")
+    print(f"✨ Scrape complete. {len(all_records)} posts processed.")
 
 if __name__ == "__main__":
     scrape_to_json()

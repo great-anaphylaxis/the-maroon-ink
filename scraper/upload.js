@@ -13,9 +13,10 @@ const client = createClient({
   token: process.env.SANITY_AUTH_TOKEN, 
   apiVersion: '2024-01-01',
   useCdn: false,
+  timeout: 60000,
 });
 
-// --- UTILS ---
+// --- UTILS (All Original Features Preserved) ---
 function fingerprintTitle(text) {
   if (!text) return "";
   return text.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
@@ -48,10 +49,24 @@ function getHourlyKey(dateString) {
   } catch (e) { return null; }
 }
 
+// --- RESILIENCE: RETRY LOGIC ---
+async function uploadWithRetry(type, stream, filename, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await client.assets.upload(type, stream, { filename });
+    } catch (err) {
+      if (i === maxRetries - 1) throw err;
+      const delay = Math.pow(2, i) * 1000;
+      await new Promise(res => setTimeout(res, delay));
+    }
+  }
+}
+
 // --- MAIN IMPORT ---
 async function runImport() {
   const { default: pLimit } = await import('p-limit');
-  const limit = pLimit(3); // Lowered slightly to prevent API timeouts during dual-uploads
+  // High-speed concurrency: 8 simultaneous uploads
+  const limit = pLimit(8); 
 
   const filePath = './fb_posts.json';
   const lookupFilePath = './extracted_inkers_lookup.txt';
@@ -65,6 +80,7 @@ async function runImport() {
   const uniqueInkersMap = new Map(); 
   const existingArticlesSet = new Set(); 
 
+  // Initial Data Fetch
   try {
     const existingInkers = await client.fetch('*[_type == "inker"]{_id, name}');
     existingInkers.forEach(i => i.name && uniqueInkersMap.set(i.name.trim(), i._id));
@@ -104,25 +120,75 @@ async function runImport() {
     })));
   }
 
-  // --- PHASE 2: UPLOAD ARTICLES ---
-  console.log(`🚀 Processing ${posts.length} articles with thumbnails...`);
-  let skipCount = 0;
-  let uploadCount = 0;
-  const articleBar = new ProgressBar('📦 Progress [:bar] :percent :current/:total', { total: posts.length, width: 40 });
+  // --- FILTER ONLY NEW POSTS ---
+  const postsToProcess = posts.filter(post => {
+    const duplicateKey = `${fingerprintTitle(post.title)}|${getHourlyKey(post.publishedAt)}`;
+    return !existingArticlesSet.has(duplicateKey);
+  });
 
-  const processArticle = async (post, index) => {
-    const fTitle = fingerprintTitle(post.title);
-    const hKey = getHourlyKey(post.publishedAt);
-    const duplicateKey = `${fTitle}|${hKey}`;
+  if (postsToProcess.length === 0) {
+    console.log("✅ All articles are already up to date.");
+    return;
+  }
 
-    if (existingArticlesSet.has(duplicateKey)) {
-      skipCount++; articleBar.tick(); return; 
-    }
+  // --- PHASE 2: MASS MEDIA UPLOAD (THE SPEED ZONE) ---
+  const totalMediaItems = postsToProcess.reduce((sum, p) => sum + (p.media?.length || 0), 0);
+  console.log(`🚀 Pre-uploading ${totalMediaItems} media assets across ${postsToProcess.length} posts...`);
+  
+  const mediaBar = new ProgressBar('🖼️  Media Upload [:bar] :percent :current/:total', { total: totalMediaItems, width: 40 });
+  const articleMediaMap = new Map(); // Stores ready-to-use gallery objects for each post
 
-    const slug = post.linkName?.current || `post-${index}`;
+  await Promise.all(postsToProcess.map(async (post, pIdx) => {
+    if (!Array.isArray(post.media)) return;
+
+    const postUploads = post.media.map((item) => limit(async () => {
+      if (!item.localPath || !fs.existsSync(item.localPath)) return null;
+
+      try {
+        const assetType = item.type === 'video' ? 'file' : 'image';
+        const mainAsset = await uploadWithRetry(assetType, fs.createReadStream(item.localPath), path.basename(item.localPath));
+
+        const galleryItem = {
+          _key: uuidv4().substring(0, 8),
+          _type: item.type === 'video' ? 'file' : 'image',
+          asset: { _type: 'reference', _ref: mainAsset._id }
+        };
+
+        // Handle Thumbnails
+        if (item.type === 'video' && item.thumbnail && fs.existsSync(item.thumbnail)) {
+          const thumbAsset = await uploadWithRetry('image', fs.createReadStream(item.thumbnail), path.basename(item.thumbnail));
+          galleryItem.thumbnail = {
+            _type: 'image',
+            asset: { _type: 'reference', _ref: thumbAsset._id }
+          };
+          fs.unlinkSync(item.thumbnail);
+        }
+
+        fs.unlinkSync(item.localPath);
+        mediaBar.tick();
+        return galleryItem;
+      } catch (e) {
+        console.error(`\n❌ Failed asset: ${path.basename(item.localPath)} - ${e.message}`);
+        mediaBar.tick();
+        return null;
+      }
+    }));
+
+    const results = await Promise.all(postUploads);
+    articleMediaMap.set(pIdx, results.filter(Boolean));
+  }));
+
+  // --- PHASE 3: FINAL DOCUMENT SYNC ---
+  console.log(`\n📦 Creating ${postsToProcess.length} article documents...`);
+  const docBar = new ProgressBar('📝 Documents [:bar] :current/:total', { total: postsToProcess.length });
+
+  await Promise.all(postsToProcess.map((post, pIdx) => limit(async () => {
+    const slug = post.linkName?.current || `post-${pIdx}`;
     
+    // Original Inker Reference Mapping
     const references = (post.inkersOnDuty || []).map(name => {
-      const finalName = lookupTable.has(name.trim()) ? lookupTable.get(name.trim()) : name.trim();
+      const trimmed = name.trim();
+      const finalName = lookupTable.has(trimmed) ? lookupTable.get(trimmed) : trimmed;
       if (finalName !== '0' && uniqueInkersMap.has(finalName)) {
         return { 
           _key: uuidv4().substring(0, 8), 
@@ -133,81 +199,27 @@ async function runImport() {
       return null;
     }).filter(Boolean);
 
+    const doc = {
+      _type: 'article',
+      title: post.title,
+      publishedAt: post.publishedAt,
+      type: post.type,
+      linkName: post.linkName,
+      fbLink: post.fbLink,
+      body: post.body,
+      inkersOnDuty: references,
+      media: articleMediaMap.get(pIdx) || [],
+    };
+
     try {
-      const sanityMediaGallery = [];
-
-      if (Array.isArray(post.media)) {
-        for (const item of post.media) {
-          // Check if local file exists
-          if (item.localPath && fs.existsSync(item.localPath)) {
-            
-            // 1. Upload Main Asset (Video or Image)
-            const assetType = item.type === 'video' ? 'file' : 'image';
-            const mainAsset = await client.assets.upload(assetType, fs.createReadStream(item.localPath), {
-              filename: path.basename(item.localPath)
-            });
-
-            // 2. Prepare Gallery Item Structure
-            const galleryItem = {
-              _key: uuidv4().substring(0, 8),
-              _type: item.type === 'video' ? 'file' : 'image',
-              asset: { _type: 'reference', _ref: mainAsset._id }
-            };
-
-            // 3. Handle Video Thumbnail (specifically checking for the new property from Python)
-            if (item.type === 'video' && item.thumbnail && fs.existsSync(item.thumbnail)) {
-              try {
-                const thumbAsset = await client.assets.upload('image', fs.createReadStream(item.thumbnail), {
-                  filename: path.basename(item.thumbnail)
-                });
-
-                // Link the image asset to the 'thumbnail' field inside the video file object
-                galleryItem.thumbnail = {
-                  _type: 'image',
-                  asset: { _type: 'reference', _ref: thumbAsset._id }
-                };
-
-                // Cleanup thumbnail file locally
-                fs.unlinkSync(item.thumbnail);
-              } catch (e) {
-                console.error(`\n⚠️ Thumb upload failed for ${slug}: ${e.message}`);
-              }
-            }
-
-            sanityMediaGallery.push(galleryItem);
-            
-            // Cleanup main media file locally
-            fs.unlinkSync(item.localPath);
-          }
-        }
-      }
-
-      const doc = {
-        _type: 'article',
-        title: post.title,
-        publishedAt: post.publishedAt,
-        type: post.type,
-        linkName: post.linkName,
-        fbLink: post.fbLink,
-        body: post.body,
-        inkersOnDuty: references,
-        media: sanityMediaGallery,
-      };
-
       await client.createOrReplace({ _id: `fb-post-${slug}`, ...doc });
-      
-      existingArticlesSet.add(duplicateKey);
-      uploadCount++; 
-      articleBar.tick();
+      docBar.tick();
     } catch (err) {
-      console.error(`\n❌ Error [${slug}]: ${err.message}`);
+      console.error(`\n❌ Doc Error [${slug}]: ${err.message}`);
     }
-  };
+  })));
 
-  await Promise.all(posts.map((post, index) => limit(() => processArticle(post, index))));
-  
-  console.log(`\n--- Summary ---`);
-  console.log(`✅ Uploaded: ${uploadCount} | ⏭️ Skipped: ${skipCount}`);
+  console.log(`\n✨ Speed Import Complete!`);
 }
 
 runImport();

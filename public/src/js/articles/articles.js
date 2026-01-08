@@ -75,7 +75,7 @@ function getArticle() {
             role,
             profilePicture
         },
-        media[] {
+        media[0...20] {
             _type,
             _key,
             _type == 'image' => {
@@ -202,7 +202,7 @@ function renderInkersOnDuty(article) {
 function renderImage(article) {
     if (article.media && article.media[0]) {
         try {        
-            img.src = urlFor(article.media[0].url)
+            imageElement.src = urlFor(article.media[0].url)
                 .width(600)
                 .height(400)
                 .fit('max')
@@ -210,7 +210,7 @@ function renderImage(article) {
                 .url();
         }
         catch {
-            img.src = '/src/images/banner.jpg'
+            imageElement.src = '/src/images/banner.jpg'
 
             // to do: videos
             console.error( article.media)

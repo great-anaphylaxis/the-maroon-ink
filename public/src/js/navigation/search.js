@@ -45,7 +45,7 @@ function getSearchResults() {
             subtitle,
             linkName,
             publishedAt,
-            media[] {
+            media[0...20] {
                 _type,
                 _key,
                 _type == 'image' => {

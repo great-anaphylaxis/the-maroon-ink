@@ -17,7 +17,7 @@ PAGE_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN')
 PAGE_ID = os.getenv('PAGE_ID') 
 
 # SCRAPE MODES: "MAX_POSTS" or "SINCE_LAST"
-SCRAPE_MODE = "MAX_POSTS" 
+SCRAPE_MODE = "SINCE_LAST" 
 
 # Capture up to 1000 items per post (for massive galleries)
 MAX_MEDIA_PER_POST = 1000 
@@ -230,7 +230,7 @@ def get_with_retry(url, params=None):
 
 # --- MAIN ENGINE ---
 
-def scrape_to_json(output_file='fb_posts.json', max_posts=1000):
+def scrape_to_json(output_file='fb_posts.json', max_posts=490):
     print(f"🚀 Initializing Scraper (Mode: {SCRAPE_MODE})...")
     last_time = get_last_scrape_time() if SCRAPE_MODE == "SINCE_LAST" else None
     url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/posts"

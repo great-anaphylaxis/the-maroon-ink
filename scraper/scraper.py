@@ -1,263 +1,270 @@
 import os
+from pathlib import Path
 import requests
 import json
 import time
 import uuid
 import re
 import unicodedata
+from datetime import datetime
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 load_dotenv()
 
+# --- CONFIGURATION ---
 PAGE_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN') 
 PAGE_ID = os.getenv('PAGE_ID') 
 
-IMAGE_FOLDER = 'images'
-if not os.path.exists(IMAGE_FOLDER):
-    os.makedirs(IMAGE_FOLDER)
+# Testing limit for media per post
+MAX_MEDIA_PER_POST = 3 
+# Speed setting: Number of simultaneous downloads
+MAX_WORKERS = 15 
 
-def classify_post_type(title):
-    """
-    Classifies the article type based on keywords in the title.
-    """
-    title_lower = title.lower()
-    
-    # 1. 'sports' or 'sport' always takes precedence, even if 'news' is present
-    if "sports" in title_lower or "sport" in title_lower:
-        return "sports"
-    
-    # 2. If 'news' is present, we ignore other category checks
-    if "news" in title_lower:
-        return "newsandannouncements"
-    
-    # 3. Specific category checks
-    if "opinion" in title_lower:
-        return "opinion"
-    if "literature" in title_lower:
-        return "literature"
-    if "feature" in title_lower:
-        return "feature"
-        
-    # Default fallback
-    return "newsandannouncements"
+MEDIA_FOLDER = Path('media')
+MEDIA_FOLDER.mkdir(exist_ok=True)
+LAST_SCRAPE_FILE = "last_scrape.txt"
+DEBUG_FILE = "extraction_debug.txt"
 
-def clean_name_string(text):
-    """
-    Applies the specific formatting rules to an individual name line.
-    """
-    # 1. Convert styled characters to normal characters (Normalization)
-    text = unicodedata.normalize('NFKD', text)
-    
-    # 2. Remove "UMIHS" (case-insensitive)
-    text = re.sub(r'UMIHS', '', text, flags=re.IGNORECASE)
-    
-    # 3. Handle colons (Remove everything before and including the colon)
-    if ':' in text:
-        text = text.split(':')[-1]
-        
-    # 4. Handle standalone "by" (Remove everything before and including the word "by")
-    text = re.sub(r'.*?\bby\b', '', text, flags=re.IGNORECASE)
-    
-    # Clean up whitespace after prefix removal
-    text = text.strip()
-    
-    # 5. Handle Comma Swapping (Doe, John Matthew -> John Matthew Doe)
-    if ',' in text:
-        parts = [p.strip() for p in text.split(',')]
-        if len(parts) == 2:
-            # Swap: parts[1] is first name, parts[0] is last name
-            text = f"{parts[1]} {parts[0]}"
+# --- REGEX PATTERNS ---
+SPECIFIC_ROLES = ["illustrat", "cartoon", "graphic", "photo", "photos", "writ", "layout", "art", "contribut", "report"]
 
-    return text.strip()
+CREDIT_RE = re.compile(
+    r'^(?:by|By)\s*:?|' + 
+    r'|'.join([rf'^{role}\w*\s+by\s*:?' for role in SPECIFIC_ROLES]) + 
+    r'|'.join([rf'\b{role}\w*\s+by\s*:' for role in SPECIFIC_ROLES]), 
+    re.IGNORECASE
+)
 
-def process_body_and_inkers(text):
-    """
-    Splits the body from the signature, processes name formatting rules,
-    and returns (cleaned_body_string, list_of_formatted_names).
-    """
-    if not text:
-        return "", []
+INKER_KEYWORDS = ["journalists on duty", "jounalist on duty", "inker on duty", "inkers on duty", "production team"]
+INKER_RE = re.compile(r'|'.join([rf'\b{re.escape(kw)}\s*:?' for kw in INKER_KEYWORDS]), re.IGNORECASE)
 
-    normalized_text = unicodedata.normalize('NFKD', text)
-    
-    keywords = [
-        "journalists on duty", 
-        "jounalist on duty", 
-        "inker on duty", 
-        "inkers on duty",
-        "production team"
-    ]
-    pattern = re.compile(r'|'.join(map(re.escape, keywords)), re.IGNORECASE)
+INKER_BLACKLIST = {
+    "the", "school", "page", "news", "event", "uimhs", "campus", 
+    "editorial", "official", "student", "publication", "team", "inkers"
+}
 
-    matches = list(pattern.finditer(normalized_text))
-    
-    if matches:
-        last_match = matches[-1]
-        split_point = last_match.start()
-        
-        body_part = text[:split_point].strip()
-        signature_part = text[split_point:].strip()
-        
-        raw_lines = signature_part.split('\n')
-        final_names = []
-        
-        for line in raw_lines:
-            line_strip = line.strip()
-            if not line_strip or '#' in line_strip:
-                continue
-            
-            if pattern.search(unicodedata.normalize('NFKD', line_strip)):
-                continue
-            
-            # Handle ampersands (&) - Split line into multiple names
-            if '&' in line_strip:
-                sub_parts = line_strip.split('&')
-            else:
-                sub_parts = [line_strip]
+# --- UTILITY FUNCTIONS ---
 
-            for part in sub_parts:
-                cleaned = clean_name_string(part)
-                if cleaned:
-                    final_names.append(cleaned)
-            
-        return body_part, final_names
-    
-    return text, []
+def log_debug(message):
+    with open(DEBUG_FILE, "a", encoding="utf-8") as f:
+        f.write(f"[{datetime.now().strftime('%H:%M:%S')}] {message}\n")
 
-def download_image(url, slug):
-    try:
-        file_path = os.path.join(IMAGE_FOLDER, f"{slug}.jpg")
-        response = requests.get(url, stream=True, timeout=10)
-        if response.status_code == 200:
-            with open(file_path, 'wb') as f:
-                for chunk in response.iter_content(1024):
-                    f.write(chunk)
-            return file_path
-    except Exception as e:
-        print(f"      ❌ Image Error for {slug}: {e}")
+def get_last_scrape_time():
+    if os.path.exists(LAST_SCRAPE_FILE):
+        with open(LAST_SCRAPE_FILE, 'r') as f:
+            return f.read().strip()
     return None
 
+def save_last_scrape_time(timestamp):
+    with open(LAST_SCRAPE_FILE, 'w') as f:
+        f.write(timestamp)
+
+def normalize_and_strip(text):
+    if not text: return ""
+    text = unicodedata.normalize('NFKC', text)
+    text = text.encode('ascii', 'ignore').decode('ascii')
+    return ' '.join(text.split()).strip()
+
+def load_existing_lookup():
+    lookup_file = 'extracted_inkers_lookup.txt'
+    names = set()
+    if os.path.exists(lookup_file):
+        with open(lookup_file, 'r', encoding='utf-8') as f:
+            for line in f:
+                if '=' in line:
+                    names.add(line.split('=')[0].strip())
+    return names
+
+EXISTING_LOOKUP = load_existing_lookup()
+NEW_INKERS_FOUND = set()
+
 def generate_slug(text, registry):
-    base_slug = text.lower()
-    base_slug = re.sub(r'[^a-z0-9]+', '-', base_slug)
-    base_slug = base_slug.strip('-')
-    if not base_slug: base_slug = "post"
-    if base_slug not in registry:
-        registry[base_slug] = 0
-        return base_slug
-    else:
-        registry[base_slug] += 1
-        return f"{base_slug}-{registry[base_slug]}"
+    """Restored slug generation function"""
+    base = re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-') or "post"
+    if base not in registry:
+        registry[base] = 0
+        return base
+    registry[base] += 1
+    return f"{base}-{registry[base]}"
+
+def clean_name_string(text):
+    if ':' in text: text = text.split(':')[-1]
+    text = re.sub(r'(?i).*?\bby\b', '', text)
+    role_pattern = r'\b(' + '|'.join([f"{r}\w*" for r in SPECIFIC_ROLES]) + r')\b'
+    text = re.sub(role_pattern, '', text, flags=re.IGNORECASE)
+    text = INKER_RE.sub('', text)
+    text = re.sub(r'UMIHS', '', text, flags=re.IGNORECASE).strip('-').strip()
+    if ',' in text:
+        parts = [p.strip() for p in text.split(',')]
+        if len(parts) == 2: text = f"{parts[1]} {parts[0]}"
+    return normalize_and_strip(text)
+
+def is_valid_inker(name, original_line):
+    if not name or len(name) < 3: return False
+    words = name.split()
+    if any(word.lower() in INKER_BLACKLIST for word in words): return False
+    return len(words) <= 6 and bool(re.search(r'[a-zA-Z]', name))
+
+def process_body_and_inkers(text):
+    if not text: return "", []
+    lines = text.split('\n')
+    final_names, body_lines = [], []
+    in_production_block = False
+
+    for line in lines:
+        raw_line = line.strip()
+        if not raw_line:
+            if not in_production_block: body_lines.append(line)
+            continue
+        norm = normalize_and_strip(raw_line)
+        if INKER_RE.search(norm):
+            in_production_block = True
+            continue
+        if in_production_block:
+            if '#' not in norm and len(norm) < 60:
+                for part in re.split(r'[&/]', norm):
+                    cleaned = clean_name_string(part)
+                    if is_valid_inker(cleaned, norm): final_names.append(cleaned)
+            continue
+        if CREDIT_RE.search(norm) and len(norm) < 75:
+            cleaned = clean_name_string(norm)
+            if is_valid_inker(cleaned, norm):
+                final_names.append(cleaned)
+                continue
+        body_lines.append(line)
+
+    unique_names = list(dict.fromkeys(final_names))
+    for name in unique_names:
+        if name not in EXISTING_LOOKUP: NEW_INKERS_FOUND.add(name)
+    return '\n'.join(body_lines).strip(), unique_names
+
+# --- DOWNLOADER ENGINE ---
+
+def download_single_file(url, slug, index, media_type):
+    ext = "mp4" if "video" in media_type.lower() else "jpg"
+    filename = f"{slug}_{index}.{ext}"
+    path = MEDIA_FOLDER / filename
+    try:
+        r = requests.get(url, stream=True, timeout=20)
+        if r.status_code == 200:
+            with path.open('wb') as f:
+                for chunk in r.iter_content(32768): 
+                    f.write(chunk)
+            return {
+                "type": "video" if "video" in media_type.lower() else "photo",
+                "url": url,
+                "localPath": str(path)
+            }
+    except Exception as e:
+        log_debug(f"Failed Download: {url} - {e}")
+    return None
 
 def clean_title(text):
     if not text: return "Untitled Post", False
     text = unicodedata.normalize('NFKC', text)
-    text = re.sub(r'[^a-zA-Z0-9\s.!?\']', '', text)
+    text = re.sub(r'[^a-zA-Z0-9\s.!?\':(),\-|]', '', text)
     text = ' '.join(text.split())
-    is_truncated = False
+    trunc = False
     if len(text) > 70:
-        is_truncated = True
-        if len(text) > 80:
-            parts = re.split(r'(?<=[.!?])', text)
-            if parts and parts[0]: text = parts[0].strip()
-        if len(text) > 70: text = text[:67].strip() + "..."
-    return (text or "Untitled Post"), is_truncated
+        parts = re.split(r'(?<=[.!?])\s+(?=[A-Z])', text)
+        if len(parts) > 1 and len(parts[0]) <= 90:
+            text = parts[0].strip()
+        else:
+            text = text[:72].strip() + "..."
+        trunc = True
+    return text, trunc
 
 def to_portable_text(text):
-    if not text: return []
-    blocks = []
-    paragraphs = [p.strip() for p in text.split('\n') if p.strip()]
-    for para in paragraphs:
-        blocks.append({
-            "_type": "block",
-            "_key": str(uuid.uuid4())[:12],
-            "style": "normal",
-            "markDefs": [],
-            "children": [{"_type": "span", "_key": str(uuid.uuid4())[:12], "text": para, "marks": []}]
-        })
-    return blocks
+    return [{"_type": "block", "_key": str(uuid.uuid4())[:12], "style": "normal", "markDefs": [], "children": [{"_type": "span", "_key": str(uuid.uuid4())[:12], "text": p.strip(), "marks": []}]} for p in text.split('\n') if p.strip()]
 
-def get_with_retry(url, params=None, max_retries=5):
-    for i in range(max_retries):
-        response = requests.get(url, params=params)
-        data = response.json()
-        if 'error' in data:
-            if data['error'].get('code') in [4, 17, 32, 613]:
-                time.sleep((2 ** i) + 5)
-                continue
-        return data
-    return {"error": {"message": "Max retries exceeded"}}
+def get_with_retry(url, params=None):
+    for i in range(5):
+        r = requests.get(url, params=params); d = r.json()
+        if 'error' in d and d['error'].get('code') in [4, 17, 32, 613]:
+            time.sleep((2 ** i) + 5); continue
+        return d
+    return {}
 
-def scrape_to_json(output_file='fb_posts.json', max_posts=500):
+# --- MAIN LOOP ---
+
+def scrape_to_json(output_file='fb_posts.json', max_posts=5000):
+    print("🚀 Initializing High-Speed Scraper...")
+    print("1: Everything | 2: Since Last Run")
+    choice = input("Choice: ")
+
+    last_time = get_last_scrape_time() if choice == "2" else None
     url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/posts"
-    params = {
-        'fields': 'created_time,message,id,attachments{target,type,media,subattachments{media}}',
-        'access_token': PAGE_TOKEN,
-        'limit': 25 
-    }
+    params = {'fields': 'created_time,message,id,attachments{media,type,subattachments{media,type}}','access_token': PAGE_TOKEN,'limit': 50}
     
-    all_records = []
-    slug_registry = {} 
-    print(f"🚀 Starting Scrape for {PAGE_ID}...")
+    all_records, slug_registry = [], {}
+    newest_ts = None
+    executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
 
     try:
         while url and len(all_records) < max_posts:
             data = get_with_retry(url, params)
             posts = data.get('data', [])
             if not posts: break
-
+            
             for post in posts:
-                if len(all_records) >= max_posts: break
-                
-                raw_message = post.get('message', '')
-                lines = raw_message.split('\n', 1)
-                first_line = lines[0] if len(lines) > 0 else ""
-                remaining_body = lines[1] if len(lines) > 1 else ""
+                pt = post.get('created_time')
+                if not newest_ts: newest_ts = pt
+                if last_time and pt <= last_time:
+                    url = None; break
 
-                title_cleaned, was_truncated = clean_title(first_line)
-                unique_slug = generate_slug(title_cleaned, slug_registry)
+                raw_msg = post.get('message', '')
+                if not raw_msg: continue
                 
-                # Dynamic classification based on title keywords
-                post_type = classify_post_type(title_cleaned)
+                title, is_trunc = clean_title(raw_msg.split('\n', 1)[0])
+                slug = generate_slug(title, slug_registry)
                 
-                initial_body = remaining_body if not was_truncated else raw_message
-                final_body_content, inkers_list = process_body_and_inkers(initial_body)
+                body_raw = raw_msg if is_trunc else (raw_msg.split('\n', 1)[1] if '\n' in raw_msg else "")
+                body_clean, inkers = process_body_and_inkers(body_raw)
 
                 record = {
-                    "publishedAt": post.get('created_time'),
-                    "title": title_cleaned,
-                    "linkName": {"_type": "slug", "current": unique_slug},
-                    "body": to_portable_text(final_body_content),
-                    "inkersOnDuty": inkers_list,
-                    "type": post_type,
-                    "_type": "article"
+                    "publishedAt": pt, "title": title, "fbLink": f"https://facebook.com/{post.get('id')}",
+                    "linkName": {"_type": "slug", "current": slug}, "body": to_portable_text(body_clean),
+                    "inkersOnDuty": inkers, "media": [], "type": "newsandannouncements", "_type": "article"
                 }
 
-                # Image Logic
+                media_queue = []
                 attachments = post.get('attachments', {}).get('data', [])
-                if attachments:
-                    img_url = attachments[0].get('media', {}).get('image', {}).get('src')
-                    if img_url:
-                        path = download_image(img_url, unique_slug)
-                        if path:
-                            record["image"] = {
-                                "_type": "image",
-                                "asset": { "_type": "reference", "_ref": "" },
-                                "localPath": path
-                            }
+                for att in attachments:
+                    items = att.get('subattachments', {}).get('data', [att])
+                    for item in items:
+                        m_data = item.get('media', {})
+                        m_url = m_data.get('source') or m_data.get('image', {}).get('src')
+                        if m_url: media_queue.append((m_url, item.get('type', 'photo')))
+
+                if MAX_MEDIA_PER_POST: media_queue = media_queue[:MAX_MEDIA_PER_POST]
+
+                futures = [executor.submit(download_single_file, m[0], slug, i, m[1]) for i, m in enumerate(media_queue)]
+                for fut in as_completed(futures):
+                    res = fut.result()
+                    if res: record["media"].append(res)
 
                 all_records.append(record)
-                print(f"✅ [{len(all_records)}] {unique_slug} | Type: {post_type} | Inkers: {len(inkers_list)}")
-
-            url = data.get('paging', {}).get('next', None)
-            params = {} 
-
+                print(f"📦 [{len(all_records)}] {slug} | Media: {len(record['media'])}")
+            
+            url = data.get('paging', {}).get('next', None) if url else None
+            
     except KeyboardInterrupt:
-        print("\n🛑 Stopping...")
+        print("\nStopping... Saving progress...")
+    finally:
+        print("⏳ Finalizing background tasks...")
+        executor.shutdown(wait=True)
 
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(all_records, f, indent=4, ensure_ascii=False)
-    print(f"✨ File saved as {output_file}")
+    if all_records:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(all_records, f, indent=4, ensure_ascii=False)
+        if newest_ts: save_last_scrape_time(newest_ts)
+        
+    if NEW_INKERS_FOUND:
+        with open('extracted_inkers.txt', 'w', encoding='utf-8') as f:
+            for n in sorted(NEW_INKERS_FOUND): f.write(f"{n}={n}\n")
+            
+    print(f"✨ Success. {len(all_records)} posts saved.")
 
 if __name__ == "__main__":
     scrape_to_json()

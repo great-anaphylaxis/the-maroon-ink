@@ -63,21 +63,23 @@ export function getArticlePreview(article) {
     }
 
     else if (
-        article.body &&
-        article.body[0] &&
-        article.body[0].children[0] &&
-        article.body[0].children[0].text
+        article.body?.[0]?.children?.[0]?.text
     ) {
         let str = article.body[0].children[0].text;
         let maxCharLength = 100;
 
+        // Split by sentence but keep the first one
         let firstSentence = str.split(/(?<=[.!?])\s/)[0];
 
         let finalTarget = firstSentence.length > maxCharLength 
             ? firstSentence.substring(0, maxCharLength) + "..." 
             : firstSentence;
 
-        return finalTarget.normalize("NFKD").replace(/[^\x00-\x7F]/g, "");
+        return finalTarget
+            .normalize("NFKD")
+            // This updated regex removes non-printable control characters 
+            // but keeps standard text, numbers, and common punctuation (including dashes)
+            .replace(/[^\x20-\x7E\u2013\u2014]/g, "");
     }
 
     return "";

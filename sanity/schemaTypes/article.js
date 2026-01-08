@@ -68,11 +68,20 @@ export const article = defineType({
         }),
 
         defineField({
-            name: 'image',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
+            name: 'media',
+            type: 'array',
+            of: [
+                { 
+                    type: 'image',
+                    options: { hotspot: true } 
+                },
+                { 
+                    type: 'file', 
+                    title: 'Video',
+                    name: 'video',
+                    options: { accept: 'video/*' } 
+                }
+            ]
         }),
 
         defineField({
@@ -82,6 +91,12 @@ export const article = defineType({
                 {type: 'block'},
                 {type: 'image'}
             ],
+        }),
+
+        defineField({
+            name: 'fbLink',
+            type: 'string',
+            placeholder: 'Optional'
         }),
     ],
     preview: {

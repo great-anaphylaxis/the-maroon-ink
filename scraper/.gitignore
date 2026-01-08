@@ -3,4 +3,5 @@ __pycache__/
 *.json
 *.ndjson
 /images
+/media
 *.txt

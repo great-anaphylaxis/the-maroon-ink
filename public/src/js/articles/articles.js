@@ -75,7 +75,16 @@ function getArticle() {
             role,
             profilePicture
         },
-        image,
+        media[] {
+            _type,
+            _key,
+            _type == 'image' => {
+                "url": asset->url,
+            },
+            _type == 'file' => {
+                "url": asset->url
+            }
+        },
         body
     }`, {linkName: linkName});
 
@@ -190,15 +199,20 @@ function renderInkersOnDuty(article) {
 }
 
 function renderImage(article) {
-    if (article.image) {
+    if (article.media && article.media[0]) {
         try {        
-            imageElement.src = urlFor(article.image)
+            img.src = urlFor(article.media[0].url)
+                .width(600)
+                .height(400)
                 .fit('max')
                 .auto('format')
                 .url();
         }
         catch {
-            console.error("ERROR")
+            img.src = '/src/images/banner.jpg'
+
+            // to do: videos
+            console.error( article.media)
         }
 
         imageElement.alt = article.title;
@@ -223,6 +237,7 @@ function renderImage(article) {
     }
 }
 
+// todo
 function renderMedia(article) {
     const media = article.media;
 

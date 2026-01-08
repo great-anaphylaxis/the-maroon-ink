@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 import dotenv from 'dotenv';
+import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config();
 
@@ -14,24 +15,16 @@ const client = createClient({
   useCdn: false,
 });
 
-/**
- * Normalizes text for comparison to prevent duplicates
- */
+// --- UTILS ---
 function fingerprintTitle(text) {
   if (!text) return "";
   return text.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
 }
 
-/**
- * Creates Sanity-friendly slugs
- */
 function slugify(text) {
   return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
 }
 
-/**
- * Loads the name correction/mapping table
- */
 function loadLookupTable(filePath) {
   const lookup = new Map();
   if (fs.existsSync(filePath)) {
@@ -46,9 +39,6 @@ function loadLookupTable(filePath) {
   return lookup;
 }
 
-/**
- * Groups posts by hour for strict deduplication
- */
 function getHourlyKey(dateString) {
   try {
     if (!dateString) return null;
@@ -58,10 +48,10 @@ function getHourlyKey(dateString) {
   } catch (e) { return null; }
 }
 
+// --- MAIN IMPORT ---
 async function runImport() {
-  // Dynamic import for p-limit to handle rate limiting
   const { default: pLimit } = await import('p-limit');
-  const limit = pLimit(10); 
+  const limit = pLimit(3); // Lowered slightly to prevent API timeouts during dual-uploads
 
   const filePath = './fb_posts.json';
   const lookupFilePath = './extracted_inkers_lookup.txt';
@@ -85,7 +75,6 @@ async function runImport() {
       const fTitle = fingerprintTitle(doc.title);
       if (fTitle && hKey) existingArticlesSet.add(`${fTitle}|${hKey}`);
     });
-    console.log(`✅ Cache Loaded: ${uniqueInkersMap.size} Inkers, ${existingArticlesSet.size} Articles.`);
   } catch (err) {
     console.error("⚠️ Failed to reach Sanity:", err.message);
   }
@@ -116,7 +105,7 @@ async function runImport() {
   }
 
   // --- PHASE 2: UPLOAD ARTICLES ---
-  console.log(`🚀 Processing ${posts.length} local articles...`);
+  console.log(`🚀 Processing ${posts.length} articles with thumbnails...`);
   let skipCount = 0;
   let uploadCount = 0;
   const articleBar = new ProgressBar('📦 Progress [:bar] :percent :current/:total', { total: posts.length, width: 40 });
@@ -132,12 +121,11 @@ async function runImport() {
 
     const slug = post.linkName?.current || `post-${index}`;
     
-    // Convert names to Sanity references
     const references = (post.inkersOnDuty || []).map(name => {
       const finalName = lookupTable.has(name.trim()) ? lookupTable.get(name.trim()) : name.trim();
       if (finalName !== '0' && uniqueInkersMap.has(finalName)) {
         return { 
-          _key: Math.random().toString(36).substring(2, 11), 
+          _key: uuidv4().substring(0, 8), 
           _type: 'reference', 
           _ref: uniqueInkersMap.get(finalName) 
         };
@@ -148,24 +136,47 @@ async function runImport() {
     try {
       const sanityMediaGallery = [];
 
-      // --- MULTI-MEDIA UPLOAD LOGIC ---
       if (Array.isArray(post.media)) {
         for (const item of post.media) {
+          // Check if local file exists
           if (item.localPath && fs.existsSync(item.localPath)) {
-            // assetType must be 'image' or 'file' (for videos)
-            const assetType = item.type === 'video' ? 'file' : 'image';
             
-            const asset = await client.assets.upload(assetType, fs.createReadStream(item.localPath), {
+            // 1. Upload Main Asset (Video or Image)
+            const assetType = item.type === 'video' ? 'file' : 'image';
+            const mainAsset = await client.assets.upload(assetType, fs.createReadStream(item.localPath), {
               filename: path.basename(item.localPath)
             });
 
-            sanityMediaGallery.push({
-              _key: Math.random().toString(36).substring(2, 11),
+            // 2. Prepare Gallery Item Structure
+            const galleryItem = {
+              _key: uuidv4().substring(0, 8),
               _type: item.type === 'video' ? 'file' : 'image',
-              asset: { _type: 'reference', _ref: asset._id }
-            });
+              asset: { _type: 'reference', _ref: mainAsset._id }
+            };
 
-            // Optional: Remove local file after successful upload to save space
+            // 3. Handle Video Thumbnail (specifically checking for the new property from Python)
+            if (item.type === 'video' && item.thumbnail && fs.existsSync(item.thumbnail)) {
+              try {
+                const thumbAsset = await client.assets.upload('image', fs.createReadStream(item.thumbnail), {
+                  filename: path.basename(item.thumbnail)
+                });
+
+                // Link the image asset to the 'thumbnail' field inside the video file object
+                galleryItem.thumbnail = {
+                  _type: 'image',
+                  asset: { _type: 'reference', _ref: thumbAsset._id }
+                };
+
+                // Cleanup thumbnail file locally
+                fs.unlinkSync(item.thumbnail);
+              } catch (e) {
+                console.error(`\n⚠️ Thumb upload failed for ${slug}: ${e.message}`);
+              }
+            }
+
+            sanityMediaGallery.push(galleryItem);
+            
+            // Cleanup main media file locally
             fs.unlinkSync(item.localPath);
           }
         }
@@ -196,9 +207,7 @@ async function runImport() {
   await Promise.all(posts.map((post, index) => limit(() => processArticle(post, index))));
   
   console.log(`\n--- Summary ---`);
-  console.log(`✅ Uploaded: ${uploadCount}`);
-  console.log(`⏭️ Skipped (Duplicates): ${skipCount}`);
-  console.log(`✨ Migration Finished.`);
+  console.log(`✅ Uploaded: ${uploadCount} | ⏭️ Skipped: ${skipCount}`);
 }
 
 runImport();

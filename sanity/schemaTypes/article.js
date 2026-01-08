@@ -69,17 +69,27 @@ export const article = defineType({
 
         defineField({
             name: 'media',
+            title: 'Media',
             type: 'array',
             of: [
                 { 
-                    type: 'image',
+                    type: 'image', 
                     options: { hotspot: true } 
                 },
                 { 
                     type: 'file', 
+                    name: 'video', 
                     title: 'Video',
-                    name: 'video',
-                    options: { accept: 'video/*' } 
+                    options: { accept: 'video/*' },
+                    fields: [
+                        {
+                            name: 'thumbnail',
+                            type: 'image',
+                            title: 'Video Thumbnail',
+                            description: 'Upload an image to show as a preview for this video.',
+                            options: { hotspot: true }
+                        }
+                    ]
                 }
             ]
         }),

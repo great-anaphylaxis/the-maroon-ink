@@ -56,7 +56,8 @@ function getInkerAndArticles() {
                 "url": asset->url,
             },
             _type == 'file' => {
-                "url": asset->url
+                "url": asset->url,
+                "thumbnailUrl": thumbnail.asset->url
             }
         },
         body

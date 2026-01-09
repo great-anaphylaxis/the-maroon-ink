@@ -143,9 +143,12 @@ function renderArticle(article) {
 
     
     let img = document.createElement('img');
+    
     if (article.media && article.media[0]) {
+        const media = article.media[0].thumbnailUrl ?? article.media[0].url;
+        
         try {        
-            img.src = urlFor(article.media[0].url)
+            img.src = urlFor(media)
                 .width(600)
                 .height(400)
                 .fit('max')

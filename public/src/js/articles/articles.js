@@ -201,8 +201,10 @@ function renderInkersOnDuty(article) {
 
 function renderImage(article) {
     if (article.media && article.media[0]) {
+        const media = article.media[0].thumbnailUrl ?? article.media[0].url;
+        
         try {        
-            imageElement.src = urlFor(article.media[0].url)
+            imageElement.src = urlFor(media)
                 .width(600)
                 .height(400)
                 .fit('max')

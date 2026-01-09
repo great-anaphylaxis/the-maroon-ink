@@ -205,8 +205,6 @@ function renderImage(article) {
         
         try {        
             imageElement.src = urlFor(media)
-                .width(600)
-                .height(400)
                 .fit('max')
                 .auto('format')
                 .url();

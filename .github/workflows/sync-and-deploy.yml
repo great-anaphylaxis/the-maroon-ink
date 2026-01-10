@@ -1,0 +1,78 @@
+name: Facebook Sync and Deploy
+
+on:
+  repository_dispatch:
+    types: [fb_webhook_trigger]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install requests python-dotenv
+
+      - name: Run Scraper
+        working-directory: ./scraper
+        env:
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          PAGE_ID: ${{ secrets.PAGE_ID }}
+        run: python scraper.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Upload to Sanity
+        working-directory: ./scraper
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+          SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+        run: node upload.js
+
+      - name: Generate Sitemap
+        # Runs from root to generate sitemaps into the /public folder
+        run: node sitemap-generate.js
+
+      - name: Commit Persistence and Cleanup
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 1. Stage the only file we want to persist
+          git add scraper/last_scrape.txt
+          
+          # 2. Stage sitemaps in public folder for Firebase hosting
+          git add public/sitemap.xml public/sitemap.html || echo "Sitemaps not found"
+          
+          # 3. Physically remove the temporary files so they aren't in the workspace
+          rm -rf scraper/media/
+          rm -f scraper/fb_posts.json
+          rm -f scraper/extracted_inkers.txt
+          
+          # 4. Commit and Push
+          git commit -m "Auto-update: Sync complete. Persisting last_scrape timestamp." || echo "No changes to commit"
+          git push
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_MAROON_INK }}'
+          channelId: live
+          projectId: the-maroon-ink

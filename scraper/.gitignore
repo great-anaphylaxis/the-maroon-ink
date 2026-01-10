@@ -5,3 +5,4 @@ __pycache__/
 /images
 /media
 *.txt
+!last_scrape.txt

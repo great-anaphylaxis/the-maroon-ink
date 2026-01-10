@@ -34,20 +34,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Node Dependencies
-        # This ensures uuid and @sanity/client are installed INSIDE the scraper folder
+      - name: Install and Run Upload
         run: |
           cd scraper
           npm install
-          npm install uuid # Force install uuid just in case it's missing from package.json
-
-      - name: Upload to Sanity
-        working-directory: ./scraper
+          npm install uuid --no-save  # Ensuring uuid is present specifically here
+          node upload.js
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
           SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-        run: node upload.js
 
       - name: Generate Sitemap
         # Runs from root to generate sitemaps into the /public folder

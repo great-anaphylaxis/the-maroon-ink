@@ -35,8 +35,11 @@ jobs:
           node-version: '20'
 
       - name: Install Node Dependencies
-        working-directory: ./scraper
-        run: npm install
+        # This ensures uuid and @sanity/client are installed INSIDE the scraper folder
+        run: |
+          cd scraper
+          npm install
+          npm install uuid # Force install uuid just in case it's missing from package.json
 
       - name: Upload to Sanity
         working-directory: ./scraper

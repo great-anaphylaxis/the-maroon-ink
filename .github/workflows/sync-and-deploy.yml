@@ -29,6 +29,15 @@ jobs:
           PAGE_ID: ${{ secrets.PAGE_ID }}
         run: python scraper.py
 
+      - name: Debug File Locations
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in root:"
+          ls -F
+          echo "Files in scraper folder:"
+          ls -F scraper/
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:

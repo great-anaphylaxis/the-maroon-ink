@@ -323,7 +323,10 @@ def scrape_to_json(output_file='fb_posts.json', max_posts=490):
         executor.shutdown(wait=True)
 
     if all_records:
-        with open(output_file, 'w', encoding='utf-8') as f:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_dir, output_file)
+        
+        with open(file_path, 'w', encoding='utf-8') as f:
             # ensure_ascii=False keeps the decomposed "n" + "tilde" 
             # as a readable character instead of \u00f1
             json.dump(all_records, f, indent=4, ensure_ascii=False)

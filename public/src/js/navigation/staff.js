@@ -97,6 +97,7 @@ function renderStaff(staff) {
         let img = document.createElement('img');
         
         img.alt = name;
+        img.loading = "lazy";
 
         if (profilePicture) {
             img.src = urlFor(profilePicture)

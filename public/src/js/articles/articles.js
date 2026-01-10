@@ -232,6 +232,8 @@ function renderMedia(article) {
 
         a.appendChild(img);
         mediaElement.appendChild(a);
+
+        img.loading = "lazy";
         img.alt = article.title;
 
         const dim = getImageDimensions(media);
@@ -292,6 +294,8 @@ function renderArticle(article) {
 }
 
 function setProperSEO(article) {
+    const firstImage = mediaElement.querySelectorAll('a > img')?.[0]?.src;
+
     const metaDescription = document.querySelector("meta[name='description']");
     const ogUrl = document.querySelector("meta[property='og:url']");
     const ogTitle = document.querySelector("meta[property='og:title']");
@@ -301,7 +305,7 @@ function setProperSEO(article) {
     const url = window.location.href;
     const title = `${article.title} | The Maroon Ink Articles`;
     const description = getArticlePreview(article)
-    const image = mediaElement.src ?? '/src/images/banner.jpg';
+    const image = firstImage ?? '/src/images/banner.jpg';
 
     ogUrl.setAttribute('content', url)
     document.title = title;

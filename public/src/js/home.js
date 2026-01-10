@@ -165,6 +165,7 @@ function renderArticle(article, parent) {
 
     let img = document.createElement('img');
     img.alt = article.title;
+    img.loading = "lazy";
 
     if (article.media && article.media[0]) {
         const media = article.media[0].thumbnailUrl ?? article.media[0].url;

@@ -49,7 +49,7 @@ function getInkerAndArticles() {
         subtitle,
         linkName,
         publishedAt,
-        media[0...20] {
+        media[0...1] {
             _type,
             _key,
             _type == 'image' => {
@@ -198,7 +198,7 @@ function setProperSEO(inker) {
     const url = window.location.href;
     const title = `${inker.name} | The Maroon Ink Inkers`;
     const description = `${inker.name} - ${inker.role}. ${inker.bio}`;
-    const image = imgElement.src;
+    const image = imgElement.src ?? '/src/images/placeholder-profile.png';
 
     ogUrl.setAttribute('content', url)
     document.title = title;

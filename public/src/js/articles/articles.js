@@ -2,6 +2,7 @@ import { createClient } from "https://esm.sh/@sanity/client";
 import { toHTML, uriLooksSafe } from "https://esm.sh/@portabletext/to-html";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
+import PhotoSwipeVideoPlugin from 'https://cdn.jsdelivr.net/npm/photoswipe-video-plugin@1.0.2/+esm'
 import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
@@ -33,7 +34,7 @@ const titleElement = document.getElementById('title');
 const subtitleElement = document.getElementById('subtitle');
 const inkersElement = document.getElementById('inkers');
 const dateElement = document.getElementById('date');
-const imageElement = document.getElementById('image');
+const mediaElement = document.getElementById('media');
 const mainElement = document.getElementById('main');
 const inkersOnDutyElement = document.getElementById('inkers-on-duty');
 const footerElement = document.getElementById('footer');
@@ -75,7 +76,7 @@ function getArticle() {
             role,
             profilePicture
         },
-        media[0...20] {
+        media[] {
             _type,
             _key,
             _type == 'image' => {
@@ -199,52 +200,77 @@ function renderInkersOnDuty(article) {
     }
 }
 
-function renderImage(article) {
-    if (article.media && article.media[0]) {
-        const media = article.media[0].thumbnailUrl ?? article.media[0].url;
-        
+function renderMedia(article) {
+    if (!article.media || !article.media[0]) {
+        mediaElement.style.display = 'none';
+
+        return;
+    }
+
+    for (let i = 0; i < article.media.length; i++) {
+        const MAX_VISIBLE_IMAGES = 5;
+
+        const media = article.media[i].thumbnailUrl ?? article.media[i].url;
+        const type = article.media[i]._type;
+        const img = document.createElement('img');
+
+        img.classList.add('image')
+
         try {        
-            imageElement.src = urlFor(media)
+            img.src = urlFor(media)
                 .fit('max')
                 .auto('format')
                 .url();
         }
         catch {
-            imageElement.src = '/src/images/banner.jpg'
+            img.src = '/src/images/banner.jpg'
 
-            // to do: videos
-            console.error( article.media)
+            console.error(article.media)
+        }
+        
+        const a = document.createElement('a');
+
+        a.appendChild(img);
+        mediaElement.appendChild(a);
+        img.alt = article.title;
+
+        const dim = getImageDimensions(media);
+
+        a.href = img.src;
+        a.setAttribute('data-pswp-width', "" + dim.width);
+        a.setAttribute('data-pswp-height', "" + dim.height);
+
+        if (type == 'file') {
+            const vid = article.media[i].url;
+
+            a.href = vid;
+            a.setAttribute('data-pswp-video-src', "" + vid);
+            a.setAttribute('data-pswp-type', "video");
         }
 
-        imageElement.alt = article.title;
+        if (i >= MAX_VISIBLE_IMAGES) {
+            const children = mediaElement.querySelectorAll('a');
+            const subtrahend = MAX_VISIBLE_IMAGES - 1;
 
-        const dim = getImageDimensions(imageElement.src);
-        const photoSwipeImage = document.getElementById('image-photoswipe');
+            const extraCount = children.length - subtrahend;
+            const fifthChild = children[subtrahend];
 
-        photoSwipeImage.href = imageElement.src;
-        photoSwipeImage.setAttribute('data-pswp-width', "" + dim.width);
-        photoSwipeImage.setAttribute('data-pswp-height', "" + dim.height);
-
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '#section a',
-            pswpModule: PhotoSwipe
-        });
-
-        lightbox.init();
+            fifthChild.setAttribute('data-count', extraCount);
+        }
     }
 
-    else {
-        imageElement.style.display = 'none';
-    }
-}
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#media',
+        children: 'a',
+        pswpModule: PhotoSwipe
+    });
 
-// todo
-function renderMedia(article) {
-    const media = article.media;
+    const videoPlugin = new PhotoSwipeVideoPlugin(lightbox, {
+        // options
+    });
 
-    if (!media || !Array.isArray(media)) {
-        return;
-    }
+    
+    lightbox.init();
 }
 
 function renderArticle(article) {
@@ -258,7 +284,7 @@ function renderArticle(article) {
 
     renderPublishedDate(article, dateElement)
     renderContributors(article);
-    renderImage(article);
+    renderMedia(article);
 
     renderInkersOnDuty(article);
 
@@ -275,7 +301,7 @@ function setProperSEO(article) {
     const url = window.location.href;
     const title = `${article.title} | The Maroon Ink Articles`;
     const description = getArticlePreview(article)
-    const image = imageElement.src;
+    const image = mediaElement.src ?? '/src/images/banner.jpg';
 
     ogUrl.setAttribute('content', url)
     document.title = title;

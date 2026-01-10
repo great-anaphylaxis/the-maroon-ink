@@ -60,7 +60,7 @@ function getInkerAndArticles() {
                 "thumbnailUrl": thumbnail.asset->url
             }
         },
-        body
+        body[0...1]
     }}`, {username: username});
 
     inkerAndArticles.then(e => {
@@ -150,8 +150,8 @@ function renderArticle(article) {
         
         try {        
             img.src = urlFor(media)
-                .width(600)
-                .height(400)
+                .width(300)
+                .height(200)
                 .fit('max')
                 .auto('format')
                 .url();

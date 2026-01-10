@@ -172,6 +172,12 @@ function subnavOnclick(e) {
     e.classList.add("current");
 
     subNavOnclickHandler(name);
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+    });
 }
 
 export function initializeSubnav(func) {

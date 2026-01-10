@@ -35,7 +35,7 @@ jobs:
           node-version: '20'
 
       - name: Install Node Dependencies
-        run: npm install
+        run: cd scraper && npm install
 
       - name: Upload to Sanity
         working-directory: ./scraper

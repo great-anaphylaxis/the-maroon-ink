@@ -45,6 +45,7 @@ jobs:
 
       - name: Install and Run Upload
         run: |
+          npm install
           cd scraper
           npm install
           npm install uuid --no-save  # Ensuring uuid is present specifically here

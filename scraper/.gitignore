@@ -1,8 +1,8 @@
 .env
 __pycache__/
-*.json
 *.ndjson
 /images
 /media
 *.txt
 !last_scrape.txt
+fb_posts.json

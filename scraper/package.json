@@ -1,0 +1,12 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sanity/client": "^6.12.1",
+    "dotenv": "^16.4.1",
+    "p-limit": "^5.0.0",
+    "progress": "^2.0.3",
+    "uuid": "^13.0.0"
+  }
+}

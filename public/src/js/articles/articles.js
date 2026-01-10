@@ -229,6 +229,7 @@ function renderMedia(article) {
         }
         
         const a = document.createElement('a');
+        a.title = "Click image to expand";
 
         a.appendChild(img);
         mediaElement.appendChild(a);

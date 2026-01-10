@@ -218,7 +218,7 @@ function applyWebsiteSettings(websiteSettings) {
         return;
     }
     
-    let featuredArticles = websiteSettings.featuredArticles;
+    let featuredArticles = websiteSettings.featuredArticles ?? [];
 
     for (let i = 0; i < featuredArticles.length; i++) {
         let article = featuredArticles[i];

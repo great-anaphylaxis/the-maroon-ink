@@ -326,6 +326,7 @@ hr {
     gap: 40px;
     background-color: white;
     z-index: 1;
+    overflow-x: auto;
 }
 
 #subnav > a {

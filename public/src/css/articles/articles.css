@@ -318,3 +318,31 @@ hr {
     font-size: 28px;
     margin-bottom: 0.25em;
 }
+
+#footer-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0;
+}
+
+#fb-footer-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    color: #1877F2;
+    border: 1px solid #1877F2; /* Professional outline style */
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#fb-footer-button:hover {
+    background-color: #1877F2;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.2);
+}

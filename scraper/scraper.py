@@ -29,16 +29,16 @@ LAST_SCRAPE_FILE = "last_scrape.txt"
 DEBUG_FILE = "extraction_debug.txt"
 
 # --- REGEX PATTERNS & CONSTANTS ---
-SPECIFIC_ROLES = ["illustrat", "cartoon", "graphic", "photo", "photos", "writ", "layout", "art", "contribut", "report"]
+SPECIFIC_ROLES = ["illustrat", "cartoon", "graphic", "photo", "photos", "writ", "layout", "art", "contribut", "report", "news report", "video edit", "scriptwrit", "oversight"]
 CREDIT_RE = re.compile(
     r'^(?:by|By)\s*:?|' + 
     r'|'.join([rf'^{role}\w*\s+by\s*:?' for role in SPECIFIC_ROLES]) + 
     r'|'.join([rf'\b{role}\w*\s+by\s*:' for role in SPECIFIC_ROLES]), 
     re.IGNORECASE
 )
-INKER_KEYWORDS = ["journalists on duty", "jounalist on duty", "inker on duty", "inkers on duty", "production team"]
+INKER_KEYWORDS = ["journalists on duty", "jounalist on duty", "inker on duty", "inkers on duty", "production team", "ink contributors"]
 INKER_RE = re.compile(r'|'.join([rf'\b{re.escape(kw)}\s*:?' for kw in INKER_KEYWORDS]), re.IGNORECASE)
-INKER_BLACKLIST = {"the", "school", "page", "news", "event", "uimhs", "campus", "editorial", "official", "student", "publication", "team", "inkers"}
+INKER_BLACKLIST = {"the", "school", "page", "news", "event", "umihs", "campus", "editorial", "official", "student", "publication", "team", "inkers"}
 
 # --- CLASSIFICATION LOGIC ---
 

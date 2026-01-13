@@ -87,7 +87,8 @@ function getArticle() {
                 "thumbnailUrl": thumbnail.asset->url
             }
         },
-        body
+        body,
+        fbLink
     }`, {linkName: linkName});
 
     article.then(e => {
@@ -276,6 +277,20 @@ function renderMedia(article) {
     lightbox.init();
 }
 
+function setFacebookArticleLink(article) {
+    const btn = document.getElementById('fb-footer-button');
+    const url = article.fbLink;
+
+    if (!url) {
+        btn.style.display = 'none';
+    }
+
+    else if (url) {
+        btn.href = url
+    }
+    
+}
+
 function renderArticle(article) {
     let title = article.title;
     let subtitle = article.subtitle;
@@ -290,6 +305,7 @@ function renderArticle(article) {
     renderMedia(article);
 
     renderInkersOnDuty(article);
+    setFacebookArticleLink(article);
 
     return;
 }

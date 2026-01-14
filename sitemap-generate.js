@@ -68,7 +68,7 @@ async function generateSitemaps() {
         const papers = data.filter(doc => doc._type === 'publishedPaper');
 
         const listItems = (items, prefix = '') => 
-            items.map(item => `<li><a href="${prefix}${item.url + item.slug}">${item.name || item.title || item.url}</a></li>`).join('\n            ');
+            items.map(item => `<li><a href="${prefix}${item.url || '' + item.slug}">${item.name || item.title || item.url}</a></li>`).join('\n            ');
 
         const htmlContent = `
 <!DOCTYPE html>

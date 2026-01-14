@@ -35,7 +35,8 @@ body {
 }
 
 #home-icon {
-    max-width: 48px;
+    width: 48px;
+    height: 48px;
     border-radius: 100%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     cursor: pointer;
@@ -53,7 +54,8 @@ body {
 }
 
 #options-icon {
-    max-width: 20px;
+    width: 20px;
+    height: 16px;
     margin-left: 0.65em;
     cursor: pointer;
     user-select: none;
@@ -86,7 +88,7 @@ body {
         gap: 20px !important;
     }
 
-    #subnav > a {
+    #subnav > span {
         font-size: 15px !important;
     }
 }
@@ -135,7 +137,8 @@ hr {
 }
 
 #search-icon {
-    max-width: 25px;
+    width: 25px;
+    height: 22px;
     margin-left: 1.45em;
     cursor: pointer;
     user-select: none;
@@ -329,7 +332,7 @@ hr {
     overflow-x: auto;
 }
 
-#subnav > a {
+#subnav > span {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     margin: 0.25em;
@@ -340,7 +343,7 @@ hr {
     margin-bottom: 0;
 }
 
-#subnav > a.current {
+#subnav > span.current {
     border-bottom: 1px solid #242424;
 }
 
@@ -364,12 +367,12 @@ hr {
     }
 }
 
-#subnav > a:hover {
+#subnav > span:hover {
     animation: 0.25s ease 0s growSubnavButton;
     animation-fill-mode: forwards;
 }
 
-#subnav > a:not(:hover) {
+#subnav > span:not(:hover) {
     animation: 0.25s ease 0s shrinkSubnavButton;
     animation-fill-mode: forwards;
 }

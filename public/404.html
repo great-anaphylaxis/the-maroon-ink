@@ -15,46 +15,51 @@
     <title>Page not found</title>
 
     <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+
+    <link rel="preload" href="/src/css/utils/nav.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/src/css/404.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
-    <link rel="stylesheet" href="/src/css/utils/nav.css">
-    <link rel="stylesheet" href="/src/css/404.css">
+    <noscript>
+        <link rel="stylesheet" href="/src/css/utils/nav.css">
+        <link rel="stylesheet" href="/src/css/404.css">
+    </noscript>
 </head>
 <body>
     <nav id="navtop">
-        <img id="options-icon" src="/src/icons/options.png">
+        <img id="options-icon" src="/src/icons/options.png" alt="Options">
         <a href="/">
-            <img id="home-icon" src="/src/icons/favicon.ico">
+            <img id="home-icon" src="/src/icons/logo.png" alt="Home">
         </a>
         <div>
-            <img id="search-icon" src="/src/icons/search.png">
-            <input id="searchbox" placeholder="Search">
+            <img id="search-icon" src="/src/icons/search.png" alt="Search">
+            <input id="searchbox" placeholder="Search"autocomplete="off">
         </div>
     </nav>
 
     <section id="content">
-        <nav id="navside">
+        <nav id="navside" draggable="false">
             <a href="/">
-                <img src="/src/icons/home.png">
+                <img src="/src/icons/home.png" alt="Home">
                 <div>Home</div>
             </a>
             <a href="/about">
-                <img src="/src/icons/about.png">
+                <img src="/src/icons/about.png" alt="About">
                 <div>About</div>
             </a>
             <a href="/published-papers">
-                <img src="/src/icons/published-papers.png">
+                <img src="/src/icons/published-papers.png" alt="Published Papers">
                 <div>Published Papers</div>
             </a>
             <a href="/staff">
-                <img src="/src/icons/staff.png">
+                <img src="/src/icons/staff.png" alt="Staff">
                 <div>Staff</div>
             </a>
             <a href="/archives">
-                <img src="/src/icons/archives.jpg">
+                <img src="/src/icons/archives.jpg" alt="Archives">
                 <div>Archives</div>
             </a>
             <a href="/privacy-policy">
-                <img src="/src/icons/privacy-policy.png">
+                <img src="/src/icons/privacy-policy.png" alt="Privacy Policy">
                 <div>Privacy Policy</div>
             </a>
 

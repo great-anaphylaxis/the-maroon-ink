@@ -17,10 +17,11 @@ let rememberHidden = false;
 function onscroll() {
     if (hidden || rememberHidden) {
         rememberHidden = true;
-        return
     }
 
-    if (window.innerWidth >= 950) {
+    if (window.innerWidth >= 950 && (navtop.style.animation == "0.4s ease 0s 1 normal forwards running navbar-show"
+        || navtop.style.animation == "")
+    ) {
         return;
     }
 
@@ -181,7 +182,7 @@ function subnavOnclick(e) {
 }
 
 export function initializeSubnav(func) {
-    let buttons = subnav.querySelectorAll('a');
+    let buttons = subnav.querySelectorAll('span');
 
     subNavOnclickHandler = func
 

@@ -1,11 +1,12 @@
-import { createClient } from "https://esm.sh/@sanity/client";
+import { createClient } from "https://esm.sh/@sanity/client?bundle";
+import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
-import { urlFor } from "../utils/image-url-builder.js";
+import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -13,6 +14,8 @@ const client = createClient({
     useCdn: true,
     apiVersion: '2025-12-25'
 });
+
+SanityImageInit(createImageUrlBuilder, client)
 
 const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
 
@@ -150,8 +153,8 @@ function renderArticle(article) {
         
         try {        
             img.src = urlFor(media)
-                .width(300)
-                .height(200)
+                .width(186)
+                .height(100)
                 .fit('max')
                 .auto('format')
                 .url();
@@ -159,8 +162,7 @@ function renderArticle(article) {
         catch {
             img.src = '/src/images/banner.jpg'
 
-            // to do: videos
-            console.error( article.media)
+            console.error(article.media)
         }
     }
 

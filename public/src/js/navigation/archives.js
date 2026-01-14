@@ -1,8 +1,9 @@
-import { createClient } from "https://esm.sh/@sanity/client";
+import { createClient } from "https://esm.sh/@sanity/client?bundle";
+import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 
 import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
-import { urlFor } from "../utils/image-url-builder.js";
+import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -10,6 +11,8 @@ const client = createClient({
     useCdn: true,
     apiVersion: '2025-12-25'
 });
+
+SanityImageInit(createImageUrlBuilder, client)
 
 const mainElement = document.getElementById('list');
 const subnavElement = document.getElementById('subnav');
@@ -111,8 +114,8 @@ function renderArticle(article) {
         
         try {        
             img.src = urlFor(media)
-                .width(300)
-                .height(200)
+                .width(186)
+                .height(100)
                 .fit('max')
                 .auto('format')
                 .url();
@@ -194,7 +197,7 @@ function initializeSubnavButtons() {
         const year = yearOrder[i].year;
         const count = yearOrder[i].count;
 
-        const a = document.createElement('a');
+        const a = document.createElement('span');
 
         a.dataset.value = year;
         a.innerText = `${year} (${count})`;
@@ -204,7 +207,7 @@ function initializeSubnavButtons() {
         total += count;
     }
 
-    const a1 = document.createElement('a');
+    const a1 = document.createElement('span');
 
     a1.dataset.value = 'all';
     a1.innerText = `All (${total})`;

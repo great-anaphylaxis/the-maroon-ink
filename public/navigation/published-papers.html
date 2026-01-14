@@ -14,53 +14,65 @@
 
     <link rel="canonical" href="https://the-maroon-ink.web.app/published-papers" />
 
+    <link rel="preconnect" href="https://w7ogeebt.apicdn.sanity.io" crossorigin/>
+    <link rel="preconnect" href="https://esm.sh" />
+    <link rel="modulepreload" href="https://esm.sh/@sanity/client?bundle">
+    <link rel="modulepreload" href="https://esm.sh/@sanity/image-url?bundle">
+
     <title>The Maroon Ink Published Papers</title>
 
-    <link rel="stylesheet" href="/src/css/navigation/published-papers.css">
-    <link rel="stylesheet" href="/src/css/utils/list-of-articles.css">
-    <link rel="stylesheet" href="/src/css/utils/nav.css">
+    <link rel="preload" href="/src/css/navigation/published-papers.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/src/css/utils/list-of-articles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/src/css/utils/nav.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <noscript>
+        <link rel="stylesheet" href="/src/css/utils/nav.css">
+        <link rel="stylesheet" href="/src/css/navigation/published-papers.css">
+        <link rel="stylesheet" href="/src/css/utils/list-of-articles.css">
+    </noscript>
+
     <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
 </head>
 <body>
     <nav id="navtop">
-        <img id="options-icon" src="/src/icons/options.png">
+        <img id="options-icon" src="/src/icons/options.png" alt="Options">
         <a href="/">
-            <img id="home-icon" src="/src/icons/favicon.ico">
+            <img id="home-icon" src="/src/icons/logo.png" alt="Home">
         </a>
         <div>
-            <img id="search-icon" src="/src/icons/search.png">
-            <input id="searchbox" placeholder="Search">
+            <img id="search-icon" src="/src/icons/search.png" alt="Search">
+            <input id="searchbox" placeholder="Search"autocomplete="off">
         </div>
     </nav>
 
     <section id="content">
         <div id="loadingscreen">
             <span id="loadingtext"></span>
-        </div>
+        </div>        
         
-        <nav id="navside">
+        <nav id="navside" draggable="false">
             <a href="/">
-                <img src="/src/icons/home.png">
+                <img src="/src/icons/home.png" alt="Home">
                 <div>Home</div>
             </a>
             <a href="/about">
-                <img src="/src/icons/about.png">
+                <img src="/src/icons/about.png" alt="About">
                 <div>About</div>
             </a>
             <a href="/published-papers">
-                <img src="/src/icons/published-papers.png">
+                <img src="/src/icons/published-papers.png" alt="Published Papers">
                 <div>Published Papers</div>
             </a>
             <a href="/staff">
-                <img src="/src/icons/staff.png">
+                <img src="/src/icons/staff.png" alt="Staff">
                 <div>Staff</div>
             </a>
             <a href="/archives">
-                <img src="/src/icons/archives.jpg">
+                <img src="/src/icons/archives.jpg" alt="Archives">
                 <div>Archives</div>
             </a>
             <a href="/privacy-policy">
-                <img src="/src/icons/privacy-policy.png">
+                <img src="/src/icons/privacy-policy.png" alt="Privacy Policy">
                 <div>Privacy Policy</div>
             </a>
 

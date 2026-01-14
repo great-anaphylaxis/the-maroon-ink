@@ -59,7 +59,7 @@ async function generateSitemaps() {
 
         const stream = new SitemapStream({ hostname: BASE_URL });
         const xmlString = await streamToPromise(Readable.from(xmlLinks).pipe(stream)).then(data => data.toString());
-        fs.writeFileSync('./public/sitemap.xml', xmlString);
+        fs.writeFileSync('./public/sitemap_index.xml', xmlString);
         console.log('✅ sitemap.xml generated');
 
         // --- PART B: HTML GENERATION ---
@@ -68,7 +68,7 @@ async function generateSitemaps() {
         const papers = data.filter(doc => doc._type === 'publishedPaper');
 
         const listItems = (items, prefix = '') => 
-            items.map(item => `<li><a href="${prefix}${item.url || '/' + item.slug}">${item.name || item.title || item.url}</a></li>`).join('\n            ');
+            items.map(item => `<li><a href="${prefix}${item.url + item.slug}">${item.name || item.title || item.url}</a></li>`).join('\n            ');
 
         const htmlContent = `
 <!DOCTYPE html>

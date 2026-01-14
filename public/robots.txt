@@ -1,2 +1,4 @@
 User-agent: *
+Allow: /
+
 Sitemap: https://the-maroon-ink.web.app/sitemap-index.xml

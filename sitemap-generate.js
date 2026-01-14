@@ -59,7 +59,7 @@ async function generateSitemaps() {
 
         const stream = new SitemapStream({ hostname: BASE_URL });
         const xmlString = await streamToPromise(Readable.from(xmlLinks).pipe(stream)).then(data => data.toString());
-        fs.writeFileSync('./public/sitemap_index.xml', xmlString);
+        fs.writeFileSync('./public/sitemap.xml', xmlString);
         console.log('✅ sitemap.xml generated');
 
         // --- PART B: HTML GENERATION ---

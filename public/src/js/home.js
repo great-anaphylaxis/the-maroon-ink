@@ -2,7 +2,7 @@ import { createClient } from "https://esm.sh/@sanity/client?bundle";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 
 import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "./utils/nav.js";
-import { renderPreview, renderPublishedDate, renderTitle } from "./utils/list-of-articles.js";
+import { renderPreview, renderPublishedDate, renderTitle, renderType } from "./utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "./utils/image-url-builder.js";
 
 const client = createClient({
@@ -28,6 +28,7 @@ function getArticle(name) {
             "websiteSettings": *[_type == "websiteSettings"][0] {
                 "featuredArticles": featuredArticles[]->{
                     _id,
+                    type,
                     title,
                     subtitle,
                     linkName,
@@ -50,6 +51,7 @@ function getArticle(name) {
             "response": *[_type == "article"
             && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)]
             | order(publishedAt desc)[0...7] {
+                type,
                 title,
                 subtitle,
                 linkName,
@@ -71,6 +73,7 @@ function getArticle(name) {
 
         "newsandannouncements": 
         *[_type == "article" && type == "newsandannouncements"] | order(publishedAt desc)[0...10] {
+            type,
             title,
             subtitle,
             linkName,
@@ -93,6 +96,7 @@ function getArticle(name) {
         *[_type == "article" && type != "newsandannouncements"
             && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
             | order(publishedAt desc)[0...10] {
+            type,
             title,
             subtitle,
             linkName,
@@ -199,12 +203,20 @@ function renderArticle(article, parent) {
     let h2 = document.createElement('h2');
     renderPreview(article, h2);
 
+    let div2 = document.createElement('div');
+
+    let span = document.createElement('span');
+    renderType(article, span)
+
     let p = document.createElement('p');
     renderPublishedDate(article, p);
+    
+    div2.appendChild(span)
+    div2.appendChild(p)
 
     div.appendChild(h1);
     div.appendChild(h2);
-    div.appendChild(p);
+    div.appendChild(div2);
 
     art.appendChild(div);
     art.appendChild(img);

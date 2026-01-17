@@ -5,7 +5,7 @@ import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.j
 import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
-import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
+import { renderPreview, renderPublishedDate, renderTitle, renderType } from "../utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
 
 const client = createClient({
@@ -174,12 +174,20 @@ function renderArticle(article) {
     let h2 = document.createElement('h2');
     renderPreview(article, h2);
 
+    let div2 = document.createElement('div');
+
+    let span = document.createElement('span');
+    renderType(article, span)
+
     let p = document.createElement('p');
     renderPublishedDate(article, p);
+    
+    div2.appendChild(span)
+    div2.appendChild(p)
 
     div.appendChild(h1);
     div.appendChild(h2);
-    div.appendChild(p);
+    div.appendChild(div2);
 
     art.appendChild(div);
     art.appendChild(img);

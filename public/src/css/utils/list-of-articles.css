@@ -47,6 +47,31 @@
     -webkit-box-orient: vertical;
 }
 
+.articles > div > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 14px;
+    margin-top: 1.3em;
+    margin-bottom: 0.6em;
+}
+
+.articles > div > div > span {
+    background-color: maroon;
+    color: white;
+    padding: 5px 8px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.articles > div > div > p {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+    font-size: 14px;
+}
+
 .articles > div > p {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #585858;

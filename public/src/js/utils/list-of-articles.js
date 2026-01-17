@@ -1,6 +1,6 @@
-export function renderTitle(publishedPaper, titleElement) {
-    if (publishedPaper.title) {
-        let title = publishedPaper.title;
+export function renderTitle(article, titleElement) {
+    if (article.title) {
+        let title = article.title;
         let maxCharLength = 60;
 
         let str = title.length > maxCharLength 
@@ -50,6 +50,20 @@ export function renderPublishedDate(article, dateElement) {
         dateElement.innerText = `${monthDay}`;
     } else {
         dateElement.innerText = `${monthDay}, ${yearPart}`;
+    }
+}
+
+export function renderType(article, typeElement) {
+    if (article.type) {
+        let type = article.type;
+
+        if (type == "newsandannouncements") {
+            typeElement.style.display = 'none';
+
+            return;
+        }
+
+        typeElement.innerText = type.charAt(0).toUpperCase() + type.slice(1);
     }
 }
 

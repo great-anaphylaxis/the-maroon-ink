@@ -43,7 +43,7 @@ function getArticle(name) {
                             "thumbnailUrl": thumbnail.asset->url
                         }
                     },
-                    body
+                    body[0...1]
                 },
             },
             
@@ -65,7 +65,7 @@ function getArticle(name) {
                         "thumbnailUrl": thumbnail.asset->url
                     }
                 },
-                body
+                body[0...1]
             }
         },
 
@@ -86,7 +86,7 @@ function getArticle(name) {
                     "thumbnailUrl": thumbnail.asset->url
                 }
             },
-            body
+            body[0...1]
         },
 
         "explore": 

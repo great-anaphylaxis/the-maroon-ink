@@ -1,3 +1,19 @@
+main {
+    max-width: 680px;
+    margin-bottom: 4em;
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+}
+
+main > h2  {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: maroon;
+    font-size: 32px;
+    margin-bottom: 0.5em;
+    user-select: none;
+}
+
 .inkers {
     display: flex;
     align-items: center;

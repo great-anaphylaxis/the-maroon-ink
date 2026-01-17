@@ -57,8 +57,8 @@
 }
 
 .articles > div > div > span {
-    background-color: maroon;
-    color: white;
+    border: 1px solid maroon;
+    color: maroon;
     padding: 5px 8px;
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;

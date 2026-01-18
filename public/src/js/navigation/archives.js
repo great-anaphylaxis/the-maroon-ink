@@ -23,8 +23,6 @@ const blockOrder = [];
 const years = {};
 
 function getArticles() {
-    showLoadingScreen();
-
     const articles = client.fetch(`
         *[_type == "article"] | order(publishedAt desc) {
             type,

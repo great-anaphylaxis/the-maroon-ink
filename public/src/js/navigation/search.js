@@ -31,8 +31,6 @@ function setTitle() {
 }
 
 function getSearchResults() {
-    showLoadingScreen();
-    
     const searchResults = client.fetch(`
         *[
             (_type == "article" || _type == "inker") && 

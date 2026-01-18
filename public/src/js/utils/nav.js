@@ -1,3 +1,5 @@
+import { setTextAnimation } from "../lib/svg-text-animation.js";
+
 export const navtop = document.getElementById('navtop');
 const navside = document.getElementById('navside');
 const subnav = document.getElementById('subnav');
@@ -13,6 +15,9 @@ let pastScrollPos = 0;
 let scrollPos = 0;
 let hidden = false;
 let rememberHidden = false;
+
+let canHideScreen = false;
+let canHideScreenEarly = false;
 
 function onscroll() {
     if (hidden || rememberHidden) {
@@ -157,7 +162,13 @@ function onSearchboxEnter(e) {
     let value = searchbox.value;
 
     if (value.length > 0 && (e.key === "Enter" || e.keyCode === 13)) {
-        window.location.href = "/search?q=" + value;
+        showLoadingScreen();
+
+        setTimeout(e => {
+            window.location.href = "/search?q=" + value;
+            hideLoadingScreen();
+        }, 600);
+        
     }
 }
 
@@ -200,13 +211,41 @@ export function initializeSubnav(func) {
 }
 
 export function hideLoadingScreen() {
-    loadingscreen.style.display = 'none';
+    canHideScreenEarly = true;
+
+    if (canHideScreen) {
+        setTextAnimation(0, 0, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false);
+            
+        loadingscreen.style.animation = '0.4s ease 0s 1 normal forwards running hide-loading-screen';
+    }
 }
 
-export function showLoadingScreen() {
-    loadingscreen.style.display = 'block';
-}
+export function showLoadingScreen(instant = false) {
+    if (instant) {
+        loadingscreen.style.display = 'block';
+    }
 
+    else {
+        loadingscreen.style.animation = '0.6s ease 0s 1 normal forwards running show-loading-screen';
+        return;
+    }
+
+    setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true);
+
+    let t;
+
+    t = setInterval(() => {
+        canHideScreen = true;
+
+        if (canHideScreenEarly) {
+            setTextAnimation(0, 0, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false);
+            
+            loadingscreen.style.animation = '0.4s ease 0s 1 normal forwards running hide-loading-screen';
+
+            clearInterval(t);
+        }
+    }, 1600);
+}
 
 window.onscroll = onscroll;
 window.onresize = onresize;
@@ -214,3 +253,27 @@ window.onresize = onresize;
 initializeNavside();
 
 searchbox.addEventListener('keydown', onSearchboxEnter);
+
+showLoadingScreen(true);
+
+document.addEventListener(`click`, e => {
+    const origin = e.target.closest(`a`);
+    
+    if (origin) {
+        const hashCheck = origin.getAttribute('href');
+
+        if (hashCheck.startsWith("#")) {
+            window.location.href = origin.href;
+
+            return;
+        }
+
+        showLoadingScreen();
+        e.preventDefault();
+
+        setTimeout(e => {
+            window.location.href = origin.href;
+            hideLoadingScreen();
+        }, 600);
+    }
+});

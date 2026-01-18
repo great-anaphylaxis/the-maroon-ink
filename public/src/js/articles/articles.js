@@ -65,8 +65,6 @@ function getArticleLinkName() {
 }
 
 function getArticle() {
-    showLoadingScreen(); 
-
     const linkName = getArticleLinkName();
     const article = client.fetch(`*[_type == "article" && linkName.current == $linkName]{
         title,

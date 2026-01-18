@@ -377,7 +377,13 @@ hr {
     animation-fill-mode: forwards;
 }
 
+
+
+
+
+
 #loadingscreen {
+    view-transition-name: loader;
     background-color: white;
     position: fixed;
     width: 100%;
@@ -398,6 +404,74 @@ hr {
     transform: translate(-50%, -50%);
 }
 
+#loadingscreen > svg {
+    position: absolute;
+    right: 50%;
+    top: 45%;
+    transform: translate(50%, 50%);
+    height: 35px;
+}
+
+@media screen and (max-width: 768px) {
+    #loadingscreen > svg {
+        height: 25px;
+    }
+}
+
+/* Google chrome */
+@-webkit-keyframes svg-text-anim {
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    60% {
+        stroke-dashoffset: 0;
+        fill: #800000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill: #800000;
+    }
+}
+
+/* Most browsers */
+@keyframes svg-text-anim {
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    60% {
+        stroke-dashoffset: 0;
+        fill: #800000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill: #800000;
+    }
+}
+
+@keyframes show-loading-screen {
+    0% {
+        opacity: 0;
+        display: block;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-loading-screen {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 #loadingtext:before{
     content: '';
     animation: 1.67s print linear alternate infinite;
@@ -408,13 +482,16 @@ hr {
     position: absolute;
     right: -4px;
     top: 50%;
-    transform: translatey(-45%);
+    transform: translateY(-45%);
     width: 2px;
     height: 1.3em;
     background: currentColor;
     opacity: 0.8;
     animation: 1s blink steps(2) infinite;
 }
+
+
+
 
 @keyframes blink {
     0%  { visibility: hidden;}
@@ -451,3 +528,5 @@ hr {
 #navside > footer > a:hover {
     text-decoration: underline;
 }
+
+

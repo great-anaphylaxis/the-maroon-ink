@@ -117,8 +117,6 @@ function getArticle(name) {
     }`;
 
     if (!savedQueryData) {
-        showLoadingScreen();
-
         const article = client.fetch(query);
 
         article.then(s => {

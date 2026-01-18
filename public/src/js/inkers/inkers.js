@@ -35,8 +35,7 @@ function getInkerUsername() {
 
 function getInkerAndArticles() {
     const username = getInkerUsername();
-
-    showLoadingScreen();
+    
     const inkerAndArticles = client.fetch(`{
     "inker": *[_type == "inker" && username.current == $username]{
         name,
@@ -48,6 +47,7 @@ function getInkerAndArticles() {
     
     "articles": *[_type == "article" && inkersOnDuty[]->username.current match $username]
     | order(publishedAt desc) {
+        type,
         title,
         subtitle,
         linkName,

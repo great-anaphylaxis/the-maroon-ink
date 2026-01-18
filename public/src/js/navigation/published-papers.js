@@ -17,8 +17,6 @@ SanityImageInit(createImageUrlBuilder, client)
 const mainElement = document.getElementById('list');
 
 function getPublishedPapers() {
-    showLoadingScreen();
-
     const publishedPapers = client.fetch(`
         *[_type == "publishedPaper"] | order(publishedAt desc) {
             title,

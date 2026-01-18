@@ -26,8 +26,6 @@ function getPublishedPaperLinkName() {
 }
 
 function getPublishedPaper() {
-    showLoadingScreen();
-
     optionsButtonClick(true, false);
     navtop.style.animation = "0.4s ease 0s 1 normal forwards running navbar-hide";
 
@@ -240,7 +238,16 @@ function controlsHandler(pageFlip) {
         }
     };
 
-    backBtn.onclick = () => window.history.back();
+    backBtn.onclick = () => {
+        showLoadingScreen();
+
+        setTimeout(e => {
+            window.location.href = "/published-papers";
+
+            hideLoadingScreen();
+        }, 600);
+        
+    };
 
     window.addEventListener('wheel', e => {
         let delta = e.deltaY;

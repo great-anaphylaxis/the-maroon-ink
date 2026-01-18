@@ -16,8 +16,6 @@ SanityImageInit(createImageUrlBuilder, client)
 const mainElement = document.getElementById('main');
 
 function getStaff() {
-    showLoadingScreen();
-
     const staff = client.fetch(`{
     "Editor in Chief": *[_type == "inker" && role match "editor in chief"]{
         name,

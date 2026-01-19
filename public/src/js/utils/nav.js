@@ -274,6 +274,6 @@ document.addEventListener(`click`, e => {
         setTimeout(e => {
             window.location.href = origin.href;
             hideLoadingScreen();
-        }, 600);
+        }, 1600);
     }
 });

@@ -276,7 +276,7 @@ document.addEventListener(`click`, e => {
 
             setTimeout(e => {
                 hideLoadingScreen();
-            }, 1000);
+            }, 1400);
         }, 600);
     }
 });

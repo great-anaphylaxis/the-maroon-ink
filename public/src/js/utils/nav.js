@@ -238,7 +238,7 @@ export function showLoadingScreen(instant = false, fadeout = false) {
     }
 
     else if (fadeout) {
-        reverseTextAnimation(0.03, 1.4, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false)
+        reverseTextAnimation(0.02, 0.9, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false)
     }
     
     let t;
@@ -290,6 +290,6 @@ document.addEventListener(`click`, e => {
             setTimeout(e => {
                 hideLoadingScreen();
             }, 1400);
-        }, 1600);
+        }, 900);
     }
 });

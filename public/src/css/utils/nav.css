@@ -392,18 +392,6 @@ hr {
     top: 0px;
 }
 
-#loadingtext {
-    font-size: 36px;
-    color: #242424;
-    display: inline-block;
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 #loadingscreen > svg {
     position: absolute;
     right: 50%;
@@ -450,21 +438,6 @@ hr {
     }
 }
 
-@keyframes svg-text-anim-reverse {
-    0% {
-        stroke-dashoffset: 0;
-        fill: #800000;
-    }
-    40% {
-        stroke-dashoffset: 0;
-        fill: transparent;
-    }
-    100% {
-        stroke-dashoffset: 100%;
-        fill: transparent;
-    }
-}
-
 @keyframes show-loading-screen {
     0% {
         opacity: 0;
@@ -486,27 +459,6 @@ hr {
         display: none;
     }
 }
-
-#loadingtext:before{
-    content: '';
-    animation: 1.67s print linear alternate infinite;
-}
-
-#loadingtext:after{
-    content: '';
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    transform: translateY(-45%);
-    width: 2px;
-    height: 1.3em;
-    background: currentColor;
-    opacity: 0.8;
-    animation: 1s blink steps(2) infinite;
-}
-
-
-
 
 @keyframes blink {
     0%  { visibility: hidden;}

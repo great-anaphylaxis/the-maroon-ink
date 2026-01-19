@@ -1,4 +1,4 @@
-import { setTextAnimation } from "../lib/svg-text-animation.js";
+import { setTextAnimation, setReverseTextAnimation } from "../lib/svg-text-animation.js";
 
 export const navtop = document.getElementById('navtop');
 const navside = document.getElementById('navside');
@@ -238,7 +238,7 @@ export function showLoadingScreen(instant = false, fadeout = false) {
     }
 
     else if (fadeout) {
-        setTextAnimation(0.03, 1.4, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false, "reverse")
+        setReverseTextAnimation(0.03, 1.4, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false)
     }
     
     let t;

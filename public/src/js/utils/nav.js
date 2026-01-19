@@ -283,6 +283,6 @@ document.addEventListener(`click`, e => {
             setTimeout(e => {
                 hideLoadingScreen();
             }, 1400);
-        }, 2600);
+        }, 1600);
     }
 });

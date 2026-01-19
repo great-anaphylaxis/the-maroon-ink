@@ -450,6 +450,21 @@ hr {
     }
 }
 
+@keyframes svg-text-anim-reverse {
+    0% {
+        stroke-dashoffset: 0;
+        fill: #800000;
+    }
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    100% {
+        stroke-dashoffset: 100%;
+        fill: transparent;
+    }
+}
+
 @keyframes show-loading-screen {
     0% {
         opacity: 0;

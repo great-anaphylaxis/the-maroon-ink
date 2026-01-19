@@ -27,7 +27,7 @@ export function reverseTextAnimation(delay, duration, strokeWidth, timingFunctio
         const length = path.getTotalLength();
 
         path.style["stroke-dasharray"] = `${length}px`;
-        path.style["stroke-dashoffset"] = "0px"; 
+        path.style["stroke-dashoffset"] = `${length}px`; 
         path.style["stroke-width"] = `${strokeWidth}px`;
         path.style["stroke"] = `${strokeColor}`;
         path.style["animation"] = `${duration}s svg-text-anim-reverse ${mode} ${timingFunction}`;

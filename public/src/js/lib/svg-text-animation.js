@@ -1,4 +1,4 @@
-export function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor, repeat) {
+export function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor, repeat, direction = "normal") {
     let svg = document.getElementById('loadingscreen')
     let paths = svg.querySelectorAll("path");
 
@@ -12,5 +12,6 @@ export function setTextAnimation(delay, duration, strokeWidth, timingFunction, s
         path.style["stroke"] = `${strokeColor}`;
         path.style["animation"] = `${duration}s svg-text-anim ${mode} ${timingFunction}`;
         path.style["animation-delay"] = `${i * delay}s`;
+        path.style["animation-direction"] = direction;
     }
 }

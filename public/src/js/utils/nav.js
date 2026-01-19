@@ -273,7 +273,10 @@ document.addEventListener(`click`, e => {
 
         setTimeout(e => {
             window.location.href = origin.href;
-            hideLoadingScreen();
+
+            setTimeout(e => {
+                hideLoadingScreen();
+            }, 1000);
         }, 600);
     }
 });

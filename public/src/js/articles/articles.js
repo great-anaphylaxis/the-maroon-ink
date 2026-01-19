@@ -241,7 +241,7 @@ function renderMedia(article) {
 
         const dim = getImageDimensions(media);
 
-        a.href = img.src;
+        a.setAttribute('data-pswp-src', "" + img.src);
         a.setAttribute('data-pswp-width', "" + dim.width);
         a.setAttribute('data-pswp-height', "" + dim.height);
 

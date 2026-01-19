@@ -101,8 +101,8 @@ hr {
     margin: 0 0 1em 0;
     display: grid;
     gap: 4px;
-    /* We now flow row-first */
     grid-auto-flow: row; 
+    cursor: pointer;
 }
 
 #media a {

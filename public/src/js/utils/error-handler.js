@@ -4,6 +4,4 @@ window.onerror = e => {
 Error found
 
 ${e}`);
-
-    window.location.reload();
 }

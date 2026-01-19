@@ -273,7 +273,11 @@ document.addEventListener(`click`, e => {
     const origin = e.target.closest(`a`);
     
     if (origin) {
-        const hashCheck = origin.getAttribute('href');
+        const hashCheck = origin.getAttribute('href') ?? "";
+
+        if (hashCheck === "") {
+            return;
+        }
 
         if (hashCheck.startsWith("#")) {
             window.location.href = origin.href;

@@ -86,7 +86,7 @@ function renderPublishedPaper(publishedPaper) {
 
         page.className = 'page';
         page.innerHTML = `
-            <a class="page-content" href="${url}" data-pswp-width="${dim.width}" data-pswp-height="${dim.height}">
+            <a class="page-content" data-pswp-src="${url}" data-pswp-width="${dim.width}" data-pswp-height="${dim.height}">
                 <img class="page-img" src="${url}" alt="Page">
             </a>
         `;

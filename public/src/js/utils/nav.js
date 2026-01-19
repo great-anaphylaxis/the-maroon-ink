@@ -220,7 +220,7 @@ export function hideLoadingScreen() {
     }
 }
 
-export function showLoadingScreen(instant = false) {
+export function showLoadingScreen(instant = false, fadeout = false) {
     if (instant) {
         loadingscreen.style.display = 'block';
     }
@@ -230,8 +230,14 @@ export function showLoadingScreen(instant = false) {
         return;
     }
 
-    setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true);
+    if (!fadeout) {
+        setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true);
+    }
 
+    else if (fadeout) {
+        setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true)
+    }
+    
     let t;
 
     t = setInterval(() => {
@@ -268,7 +274,7 @@ document.addEventListener(`click`, e => {
             return;
         }
 
-        showLoadingScreen();
+        showLoadingScreen(false, true);
         e.preventDefault();
 
         setTimeout(e => {

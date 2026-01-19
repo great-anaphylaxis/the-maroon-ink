@@ -235,7 +235,7 @@ export function showLoadingScreen(instant = false, fadeout = false) {
     }
 
     else if (fadeout) {
-        setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true)
+        setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true, "reverse")
     }
     
     let t;

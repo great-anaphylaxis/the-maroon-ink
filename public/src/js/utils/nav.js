@@ -227,7 +227,10 @@ export function showLoadingScreen(instant = false, fadeout = false) {
 
     else {
         loadingscreen.style.animation = '0.6s ease 0s 1 normal forwards running show-loading-screen';
-        return;
+        
+        if (!fadeout) {
+            return;
+        }
     }
 
     if (!fadeout) {

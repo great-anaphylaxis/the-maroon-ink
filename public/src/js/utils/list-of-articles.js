@@ -1,3 +1,5 @@
+import { hideLoadingScreen, initializeSubnav, showLoadingScreen } from "./nav.js";
+
 export function renderTitle(article, titleElement) {
     if (article.title) {
         let title = article.title;
@@ -55,15 +57,28 @@ export function renderPublishedDate(article, dateElement) {
 
 export function renderType(article, typeElement) {
     if (article.type) {
-        let type = article.type;
+        let rawType = article.type;
 
-        if (type == "newsandannouncements") {
+        if (rawType == "newsandannouncements") {
             typeElement.style.display = 'none';
 
             return;
         }
 
-        typeElement.innerText = type.charAt(0).toUpperCase() + type.slice(1);
+        const type = rawType.charAt(0).toUpperCase() + rawType.slice(1);
+
+        typeElement.setAttribute("data-article-type", "true");
+
+        typeElement.innerText = type;
+
+        typeElement.addEventListener("click", e => {
+            showLoadingScreen();
+    
+            setTimeout(e => {
+                window.location.href = "/search?q=" + type;
+                hideLoadingScreen();
+            }, 600);
+        })
     }
 }
 

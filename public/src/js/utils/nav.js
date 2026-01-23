@@ -272,6 +272,13 @@ showLoadingScreen(true);
 document.addEventListener(`click`, e => {
     const origin = e.target.closest(`a`);
     
+    const clicked = e.target;
+    
+    if (clicked?.dataset?.articleType == "true") {
+        e.preventDefault();
+        return;
+    }
+    
     if (origin) {
         const hashCheck = origin.getAttribute('href') ?? "";
 

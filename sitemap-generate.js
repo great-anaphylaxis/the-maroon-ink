@@ -10,7 +10,7 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
-const BASE_URL = 'https://the-maroon-ink.web.app';
+const BASE_URL = 'https://themaroon.ink';
 const PUBLIC_DIR = './public';
 
 const STATIC_PAGES = [

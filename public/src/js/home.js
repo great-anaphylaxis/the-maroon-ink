@@ -20,6 +20,7 @@ const articleListElement = document.getElementById('articleList');
 const articleListTitle = document.getElementById('articleListTitle');
 
 let savedQueryData;
+let hasFeaturedArticles = true;
 
 function getArticle(name) {
     let query = `
@@ -49,7 +50,9 @@ function getArticle(name) {
             },
             
             "response": *[_type == "article"
-            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)]
+            && !(
+                _id in coalesce(*[_type == "websiteSettings"][0].featuredArticles[]._ref, [])
+            )]
             | order(publishedAt desc)[0...7] {
                 type,
                 title,
@@ -94,7 +97,9 @@ function getArticle(name) {
 
         "explore": 
         *[_type == "article" && type != "newsandannouncements"
-            && !(_id in *[_type == "websiteSettings"][0].featuredArticles[]._ref)] 
+            && !(
+                _id in coalesce(*[_type == "websiteSettings"][0].featuredArticles[]._ref, [])
+            )] 
             | order(publishedAt desc)[0...10] {
             type,
             title,
@@ -233,6 +238,11 @@ function applyWebsiteSettings(websiteSettings) {
     
     let featuredArticles = websiteSettings.featuredArticles ?? [];
 
+    if (featuredArticles.length === 0) {
+        hasFeaturedArticles = false;
+        featuredArticlesTitle.style.display = "none";
+    }
+
     for (let i = 0; i < featuredArticles.length; i++) {
         let article = featuredArticles[i];
         
@@ -245,7 +255,9 @@ function changeArticleFeed(name) {
     articleListElement.textContent = '';
 
     if (name == 'foryou') {
-        featuredArticlesTitle.style.display = "block";
+        if (hasFeaturedArticles) {
+            featuredArticlesTitle.style.display = "block";
+        }
         articleListTitle.innerText = 'Recent Articles';
     }
 

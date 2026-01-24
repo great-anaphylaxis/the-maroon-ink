@@ -16,62 +16,6 @@ html {
     box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
-@keyframes flipbook-transition-to-one-start {
-    0% {
-        top: 51%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    100% {
-        top: 51%;
-        left: 0%;
-        transform: translate(0%, -50%)
-    }
-}
-
-@keyframes flipbook-transition-to-one-end {
-    0% {
-        top: 51%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    100% {
-        top: 51%;
-        left: 100%;
-        transform: translate(-100%, -50%)
-    }
-}
-
-@keyframes flipbook-transition-to-two-start {
-    0% {
-        top: 51%;
-        left: 0%;
-        transform: translate(0%, -50%);
-    }
-
-    100% {
-        top: 51%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
-
-@keyframes flipbook-transition-to-two-end {
-    0% {
-        top: 51%;
-        left: 100%;
-        transform: translate(-100%, -50%);
-    }
-
-    100% {
-        top: 51%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
-
 .page {
     background-color: white;
     overflow: hidden;

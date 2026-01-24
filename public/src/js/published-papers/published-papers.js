@@ -17,6 +17,7 @@ const client = createClient({
 SanityImageInit(createImageUrlBuilder, client)
 
 let pageFlip;
+let canPageScroll = true;
 
 function getPublishedPaperLinkName() {
     let path =  window.location.pathname;
@@ -95,6 +96,8 @@ function renderPublishedPaper(publishedPaper) {
 
     document.getElementsByClassName('page-img')[0].onload = e => {
         let img1 = document.getElementsByClassName('page-img')[0];
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
         const width = img1.naturalWidth;
         const height = img1.naturalHeight;
@@ -142,8 +145,80 @@ function renderPublishedPaper(publishedPaper) {
         controlsHandler(pageFlip);
 
         const lightbox = new PhotoSwipeLightbox({
-            gallery: '.page a',
-            pswpModule: PhotoSwipe
+            gallery: '.stf__block',
+            children: '.page',
+            showHideAnimationType: 'zoom',
+            pswpModule: PhotoSwipe,
+            loop: false
+        });
+
+        lightbox.on('change', () => {
+            const { pswp } = lightbox;
+
+            const newIndex = pswp.currIndex;
+            console.log(pageFlip)
+            const oldIndex = pageFlip.getCurrentPageIndex();
+
+            if (window.innerWidth >= 1200) {
+                if (newIndex > oldIndex + 1 || (newIndex == 1 && oldIndex == 0)) {
+                    changeControlButtonState(prevBtn, true);
+                    changeControlButtonState(nextBtn, true);
+
+                    pageFlip.flip(newIndex);
+                    pageFlipSoundEffect();
+
+                    if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 2) {
+                        changeControlButtonState(nextBtn, false);
+                    }
+                }
+
+                if (newIndex < oldIndex) {
+                    if (pageFlip.getCurrentPageIndex() == 0) {
+                        changeControlButtonState(prevBtn, false);
+                    }
+
+                    changeControlButtonState(prevBtn, true);
+                    changeControlButtonState(nextBtn, true);
+
+                    pageFlip.flip(newIndex);
+                    pageFlipSoundEffect();
+                }
+            }
+
+            else {
+                if (newIndex > oldIndex) {
+                    changeControlButtonState(prevBtn, true);
+                    changeControlButtonState(nextBtn, true);
+
+                    pageFlip.flip(newIndex);
+                    pageFlipSoundEffect();
+
+                    if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 2) {
+                        changeControlButtonState(nextBtn, false);
+                    }
+                }
+
+                if (newIndex < oldIndex) {
+                    if (pageFlip.getCurrentPageIndex() == 0) {
+                        changeControlButtonState(prevBtn, false);
+                    }
+
+                    changeControlButtonState(prevBtn, true);
+                    changeControlButtonState(nextBtn, true);
+
+                    pageFlip.flip(newIndex);
+                    pageFlipSoundEffect();
+                }
+            }
+
+        })
+
+        lightbox.on('beforeOpen', () => {
+            canPageScroll = false;
+        });
+
+        lightbox.on('close', () => {
+            canPageScroll = true;
         });
 
         lightbox.init();
@@ -162,11 +237,6 @@ function controlsHandler(pageFlip) {
     const wrapper = flipbook.style;
 
     let canScroll = true;
-
-    if (window.innerWidth >= 1200) {
-        wrapper.animation = "";
-        wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-start";
-    }
     
     pageFlip.on('flip', (e) => {
         changeControlButtonState(prevBtn, true);
@@ -174,39 +244,11 @@ function controlsHandler(pageFlip) {
 
         if (pageFlip.getCurrentPageIndex() == 0) {
             changeControlButtonState(prevBtn, false);
-                
-            if (window.innerWidth >= 1200) {
-                wrapper.animation = "";
-                wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-start";
-            }
         }
 
 
         else if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 1) {
             changeControlButtonState(nextBtn, false);
-
-            if (window.innerWidth >= 1200) {
-                wrapper.animation = "";
-                wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-end";
-            }
-        }
-
-        else { 
-            if (window.innerWidth >= 1200) {
-                if (pageFlip.getCurrentPageIndex() >= pageFlip.getPageCount() - 3 &&
-                    wrapper.animation == "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-end"
-                ) {
-                    wrapper.animation = "";
-                    wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-two-end";
-                }
-
-                else if (pageFlip.getCurrentPageIndex() == 1 &&
-                    wrapper.animation == "0.8s ease 0s 1 normal forwards running flipbook-transition-to-one-start"
-                ) {
-                    wrapper.animation = "";
-                    wrapper.animation = "0.8s ease 0s 1 normal forwards running flipbook-transition-to-two-start";
-                }
-            }
         }
     });
 
@@ -253,6 +295,10 @@ function controlsHandler(pageFlip) {
         let delta = e.deltaY;
 
         if (!canScroll) {
+            return;
+        }
+
+        if (!canPageScroll) {
             return;
         }
 

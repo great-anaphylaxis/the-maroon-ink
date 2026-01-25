@@ -2,7 +2,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswi
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import PhotoSwipeVideoPlugin from 'https://cdn.jsdelivr.net/npm/photoswipe-video-plugin@1.0.2/+esm'
 
-function initPhotoSwipe(article) {
+function initPhotoSwipe() {
     const lightbox = new PhotoSwipeLightbox({
         gallery: '#media',
         children: 'a',

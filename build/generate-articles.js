@@ -394,6 +394,6 @@ function getPublishedDate(article) {
     }
 }
 
-runPipeline().then(() => {
-  console.log('All tasks completed successfully.');
+buildArticles().then(() => {
+    console.log('All tasks completed successfully.');
 });

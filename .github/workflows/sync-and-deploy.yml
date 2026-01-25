@@ -57,7 +57,7 @@ jobs:
 
       - name: Generate Sitemap
         # Runs from root to generate sitemaps into the /public folder
-        run: node sitemap-generate.js
+        run: node build/generate-sitemap.js
 
       - name: Commit Persistence and Cleanup
         run: |

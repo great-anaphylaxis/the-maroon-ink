@@ -1,4 +1,4 @@
-node sitemap-generate
+node build/generate-sitemap.js
 
 git add .
 git commit -m %1

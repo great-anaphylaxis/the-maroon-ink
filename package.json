@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "@portabletext/to-html": "^5.0.1",
+    "@sanity/asset-utils": "^2.3.0",
     "@sanity/client": "^7.13.2",
+    "@sanity/image-url": "^2.0.3",
     "dotenv": "^17.2.3",
     "ndjson": "^2.0.0",
     "p-limit": "^7.2.0",

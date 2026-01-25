@@ -22,47 +22,2011 @@
       }
     ],
     "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ],
     "rewrites": [
-        {
-            "source": "/search",
-            "destination": "/navigation/search.html"
-        },        
-        {
-            "source": "/about",
-            "destination": "/navigation/about.html"
-        },
-        {
-            "source": "/published-papers",
-            "destination": "/navigation/published-papers.html"
-        },
-        {
-            "source": "/staff",
-            "destination": "/navigation/staff.html"
-        },
-        {
-            "source": "/archives",
-            "destination": "/navigation/archives.html"
-        },
-        {
-            "source": "/privacy-policy",
-            "destination": "/navigation/privacy-policy.html"
-        },
-        {
-            "source": "/articles/**",
-            "destination": "/articles/articles.html"
-        },
-        {
-            "source": "/inkers/**",
-            "destination": "/inkers/inkers.html"
-        },
-        {
-            "source": "/published-papers/**",
-            "destination": "/published-papers/published-papers.html"
-        }
+      {
+        "source": "/articles/1-day-left",
+        "destination": "/articles/1-day-left.html"
+      },
+      {
+        "source": "/articles/2-days-left-til-christmas",
+        "destination": "/articles/2-days-left-til-christmas.html"
+      },
+      {
+        "source": "/articles/2025-nsed-at-4-01pm-of-september-11-2025-the-bell-of-um-ilang-high-s",
+        "destination": "/articles/2025-nsed-at-4-01pm-of-september-11-2025-the-bell-of-um-ilang-high-s.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-be-beautiful-noble-like-the-antique-ant-by-j",
+        "destination": "/articles/21st-century-literature-be-beautiful-noble-like-the-antique-ant-by-j.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-ermita-by-francisco-sionil-jose",
+        "destination": "/articles/21st-century-literature-ermita-by-francisco-sionil-jose.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-may-day-eve-by-nick-joaquin",
+        "destination": "/articles/21st-century-literature-may-day-eve-by-nick-joaquin.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-my-brother-s-peculiar-chicken-by-alejandro-roc",
+        "destination": "/articles/21st-century-literature-my-brother-s-peculiar-chicken-by-alejandro-roc.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-the-god-stealer-by-f-sionil-jose",
+        "destination": "/articles/21st-century-literature-the-god-stealer-by-f-sionil-jose.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-the-god-stealer-by-francisco-sionil-jose",
+        "destination": "/articles/21st-century-literature-the-god-stealer-by-francisco-sionil-jose.html"
+      },
+      {
+        "source": "/articles/21st-century-literature-the-tracks-of-babylon-by-edith-tiempo",
+        "destination": "/articles/21st-century-literature-the-tracks-of-babylon-by-edith-tiempo.html"
+      },
+      {
+        "source": "/articles/3-2-1cut",
+        "destination": "/articles/3-2-1cut.html"
+      },
+      {
+        "source": "/articles/3-days-left-til-christmas",
+        "destination": "/articles/3-days-left-til-christmas.html"
+      },
+      {
+        "source": "/articles/5-days-until-christmas",
+        "destination": "/articles/5-days-until-christmas.html"
+      },
+      {
+        "source": "/articles/73rd-recognition-day-following-the-reading-of-honors-interbranch-expr",
+        "destination": "/articles/73rd-recognition-day-following-the-reading-of-honors-interbranch-expr.html"
+      },
+      {
+        "source": "/articles/73rd-recognition-day-recognizing-students-who-have-achieved-and-strive",
+        "destination": "/articles/73rd-recognition-day-recognizing-students-who-have-achieved-and-strive.html"
+      },
+      {
+        "source": "/articles/73rd-recognition-day-the-28th-of-may-2024-commemorates-the-students-h",
+        "destination": "/articles/73rd-recognition-day-the-28th-of-may-2024-commemorates-the-students-h.html"
+      },
+      {
+        "source": "/articles/a-burst-of-spirited-brilliance-umians-unleashes-their-ultimate-cheer-i",
+        "destination": "/articles/a-burst-of-spirited-brilliance-umians-unleashes-their-ultimate-cheer-i.html"
+      },
+      {
+        "source": "/articles/a-miracle-s-birthday",
+        "destination": "/articles/a-miracle-s-birthday.html"
+      },
+      {
+        "source": "/articles/a-new-chapter-begins-for-the-visionary-behind-our-headlines",
+        "destination": "/articles/a-new-chapter-begins-for-the-visionary-behind-our-headlines.html"
+      },
+      {
+        "source": "/articles/a-season-of-unity-spirit-and-competition",
+        "destination": "/articles/a-season-of-unity-spirit-and-competition.html"
+      },
+      {
+        "source": "/articles/a-step-closer-towards-victory-um-ilang-high-school-debaters-qualifiers",
+        "destination": "/articles/a-step-closer-towards-victory-um-ilang-high-school-debaters-qualifiers.html"
+      },
+      {
+        "source": "/articles/a-voyage-into-a-world-of-discovery-umihs-partakes-in-the-math-and-scie",
+        "destination": "/articles/a-voyage-into-a-world-of-discovery-umihs-partakes-in-the-math-and-scie.html"
+      },
+      {
+        "source": "/articles/acquaintance-party-during-the-afternoon-of-august-1-2025-the-clubs-a",
+        "destination": "/articles/acquaintance-party-during-the-afternoon-of-august-1-2025-the-clubs-a.html"
+      },
+      {
+        "source": "/articles/advancing-sustainability-umihs-leaders-engage-in-2025-un-sdg-seminar",
+        "destination": "/articles/advancing-sustainability-umihs-leaders-engage-in-2025-un-sdg-seminar.html"
+      },
+      {
+        "source": "/articles/advisory-the-supreme-student-government-would-like-to-remind-all-stude",
+        "destination": "/articles/advisory-the-supreme-student-government-would-like-to-remind-all-stude.html"
+      },
+      {
+        "source": "/articles/advisory-this-august-19-2025-the-proper-wearing-of-uniforms-will-be",
+        "destination": "/articles/advisory-this-august-19-2025-the-proper-wearing-of-uniforms-will-be.html"
+      },
+      {
+        "source": "/articles/all-saints-day-the-memory-of-the-righteous-is-a-blessing",
+        "destination": "/articles/all-saints-day-the-memory-of-the-righteous-is-a-blessing.html"
+      },
+      {
+        "source": "/articles/all-souls-day-eternal-rest-grant-unto-them-o-lord-and-let-perpetual",
+        "destination": "/articles/all-souls-day-eternal-rest-grant-unto-them-o-lord-and-let-perpetual.html"
+      },
+      {
+        "source": "/articles/and-with-that-the-2024-season-comes-to-an-end",
+        "destination": "/articles/and-with-that-the-2024-season-comes-to-an-end.html"
+      },
+      {
+        "source": "/articles/andyan-ka-nanaman-pasulyap-sulyap-sakin",
+        "destination": "/articles/andyan-ka-nanaman-pasulyap-sulyap-sakin.html"
+      },
+      {
+        "source": "/articles/announcement-due-to-the-ongoing-electrical-overload-all-classes-on-au",
+        "destination": "/articles/announcement-due-to-the-ongoing-electrical-overload-all-classes-on-au.html"
+      },
+      {
+        "source": "/articles/announcement-second-round-of-basketball-tryouts",
+        "destination": "/articles/announcement-second-round-of-basketball-tryouts.html"
+      },
+      {
+        "source": "/articles/another-chapter-closes",
+        "destination": "/articles/another-chapter-closes.html"
+      },
+      {
+        "source": "/articles/applications-be-a-member-of-the-maroon-ink",
+        "destination": "/articles/applications-be-a-member-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/applications-be-part-of-the-maroon-ink",
+        "destination": "/articles/applications-be-part-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/applications-final-call",
+        "destination": "/articles/applications-final-call.html"
+      },
+      {
+        "source": "/articles/araw-ng-kagitingan-tuwing-ika-9-ng-abril-ipinagdiriwang-natin-ang-ara",
+        "destination": "/articles/araw-ng-kagitingan-tuwing-ika-9-ng-abril-ipinagdiriwang-natin-ang-ara.html"
+      },
+      {
+        "source": "/articles/arise-social-science-club",
+        "destination": "/articles/arise-social-science-club.html"
+      },
+      {
+        "source": "/articles/asshente-umians",
+        "destination": "/articles/asshente-umians.html"
+      },
+      {
+        "source": "/articles/avisala",
+        "destination": "/articles/avisala.html"
+      },
+      {
+        "source": "/articles/avisala-raise-your-flags-high-because-the-much-awaited-umyong-student",
+        "destination": "/articles/avisala-raise-your-flags-high-because-the-much-awaited-umyong-student.html"
+      },
+      {
+        "source": "/articles/back-to-school-the-opening-of-the-school-year-2025-2026-in-um-ilang-co",
+        "destination": "/articles/back-to-school-the-opening-of-the-school-year-2025-2026-in-um-ilang-co.html"
+      },
+      {
+        "source": "/articles/back-to-school-today-s-the-day",
+        "destination": "/articles/back-to-school-today-s-the-day.html"
+      },
+      {
+        "source": "/articles/balikan-pagdiriwang-ng-um-ilang-high-school-sa-buwan-ng-wika-noong-ago",
+        "destination": "/articles/balikan-pagdiriwang-ng-um-ilang-high-school-sa-buwan-ng-wika-noong-ago.html"
+      },
+      {
+        "source": "/articles/barbie-life-in-the-dreamhouse",
+        "destination": "/articles/barbie-life-in-the-dreamhouse.html"
+      },
+      {
+        "source": "/articles/behold-dressed-in-stunning-attire-fit-for-gods-and-goddesses-meet-the",
+        "destination": "/articles/behold-dressed-in-stunning-attire-fit-for-gods-and-goddesses-meet-the.html"
+      },
+      {
+        "source": "/articles/birthday-birthday-nasad",
+        "destination": "/articles/birthday-birthday-nasad.html"
+      },
+      {
+        "source": "/articles/bonifacio-day-andres-bonifacio-y-de-castro-was-a-filipino-revolutionar",
+        "destination": "/articles/bonifacio-day-andres-bonifacio-y-de-castro-was-a-filipino-revolutionar.html"
+      },
+      {
+        "source": "/articles/book-lovers-day-attention-chapter-chasers",
+        "destination": "/articles/book-lovers-day-attention-chapter-chasers.html"
+      },
+      {
+        "source": "/articles/book-week-2025-head-s-up-ga",
+        "destination": "/articles/book-week-2025-head-s-up-ga.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-2024-mabuhay",
+        "destination": "/articles/buwan-ng-wika-2024-mabuhay.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-2025",
+        "destination": "/articles/buwan-ng-wika-2025.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-2025-ang-hindi-magmahal-sa-sariling-wika-ay-higit-pa-sa",
+        "destination": "/articles/buwan-ng-wika-2025-ang-hindi-magmahal-sa-sariling-wika-ay-higit-pa-sa.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-2025-paglunsad-ng-mga-patimpalak",
+        "destination": "/articles/buwan-ng-wika-2025-paglunsad-ng-mga-patimpalak.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-2025-pangkatan-sa-tagisan-ng-talino",
+        "destination": "/articles/buwan-ng-wika-2025-pangkatan-sa-tagisan-ng-talino.html"
+      },
+      {
+        "source": "/articles/buwan-ng-wika-ginanap-ang-buwan-ng-wikang-pambansa-2024-sa-umihs-noong",
+        "destination": "/articles/buwan-ng-wika-ginanap-ang-buwan-ng-wikang-pambansa-2024-sa-umihs-noong.html"
+      },
+      {
+        "source": "/articles/call-for-application-be-an-inker",
+        "destination": "/articles/call-for-application-be-an-inker.html"
+      },
+      {
+        "source": "/articles/campus-tour-2025-um-ilang-students-enjoy-exclusive-campus-tour-at-um-m",
+        "destination": "/articles/campus-tour-2025-um-ilang-students-enjoy-exclusive-campus-tour-at-um-m.html"
+      },
+      {
+        "source": "/articles/campus-tour-alamin-ang-bawat-sulok-ng-umihs-campus",
+        "destination": "/articles/campus-tour-alamin-ang-bawat-sulok-ng-umihs-campus.html"
+      },
+      {
+        "source": "/articles/capture-the-fun-umians-took-advantage-of-a-free-photobooth-on-august-5",
+        "destination": "/articles/capture-the-fun-umians-took-advantage-of-a-free-photobooth-on-august-5.html"
+      },
+      {
+        "source": "/articles/capture-the-love-take-a-look-at-the-shots-from-the-photo-booth-during",
+        "destination": "/articles/capture-the-love-take-a-look-at-the-shots-from-the-photo-booth-during.html"
+      },
+      {
+        "source": "/articles/capturing-memories-on-the-first-day-of-the-school-year-june-23-2025",
+        "destination": "/articles/capturing-memories-on-the-first-day-of-the-school-year-june-23-2025.html"
+      },
+      {
+        "source": "/articles/catch-the-maroon-ink-s-coverage-of-halalan-2024-the-ssg-election",
+        "destination": "/articles/catch-the-maroon-ink-s-coverage-of-halalan-2024-the-ssg-election.html"
+      },
+      {
+        "source": "/articles/christmas-fest-changes-in-schedule",
+        "destination": "/articles/christmas-fest-changes-in-schedule.html"
+      },
+      {
+        "source": "/articles/christmas-fest-dazzling-holiday-season",
+        "destination": "/articles/christmas-fest-dazzling-holiday-season.html"
+      },
+      {
+        "source": "/articles/christmas-harmony-of-unity",
+        "destination": "/articles/christmas-harmony-of-unity.html"
+      },
+      {
+        "source": "/articles/color-coding-advisory-in-celebration-of-the-umyong-student-fest-2025",
+        "destination": "/articles/color-coding-advisory-in-celebration-of-the-umyong-student-fest-2025.html"
+      },
+      {
+        "source": "/articles/congratulations-our-dear-guidance-facilitator-maam-delisha-ina-mae-t",
+        "destination": "/articles/congratulations-our-dear-guidance-facilitator-maam-delisha-ina-mae-t.html"
+      },
+      {
+        "source": "/articles/congratulations-um-ilang-basketball-girls",
+        "destination": "/articles/congratulations-um-ilang-basketball-girls.html"
+      },
+      {
+        "source": "/articles/congratulations-um-ilang-pep-squad",
+        "destination": "/articles/congratulations-um-ilang-pep-squad.html"
+      },
+      {
+        "source": "/articles/countdown-andam-na-ba-ka-ga",
+        "destination": "/articles/countdown-andam-na-ba-ka-ga.html"
+      },
+      {
+        "source": "/articles/countdown-excited-yet-umians",
+        "destination": "/articles/countdown-excited-yet-umians.html"
+      },
+      {
+        "source": "/articles/countdown-heads-up-umians",
+        "destination": "/articles/countdown-heads-up-umians.html"
+      },
+      {
+        "source": "/articles/countdown-hey-there-umians",
+        "destination": "/articles/countdown-hey-there-umians.html"
+      },
+      {
+        "source": "/articles/countdown-it-s-1-day-left-til-we-sail-towards-excellence-and-growth",
+        "destination": "/articles/countdown-it-s-1-day-left-til-we-sail-towards-excellence-and-growth.html"
+      },
+      {
+        "source": "/articles/countdown-listen-umians",
+        "destination": "/articles/countdown-listen-umians.html"
+      },
+      {
+        "source": "/articles/countdown-only-four-more-days-til-school-starts",
+        "destination": "/articles/countdown-only-four-more-days-til-school-starts.html"
+      },
+      {
+        "source": "/articles/countdown-only-three-days-left-until-the-new-school-year-starts",
+        "destination": "/articles/countdown-only-three-days-left-until-the-new-school-year-starts.html"
+      },
+      {
+        "source": "/articles/countdown-only-two-days-left-before-the-start-of-classes",
+        "destination": "/articles/countdown-only-two-days-left-before-the-start-of-classes.html"
+      },
+      {
+        "source": "/articles/countdown-time-flies-and-the-big-day-is-almost-here",
+        "destination": "/articles/countdown-time-flies-and-the-big-day-is-almost-here.html"
+      },
+      {
+        "source": "/articles/countdown-today-s-the-day",
+        "destination": "/articles/countdown-today-s-the-day.html"
+      },
+      {
+        "source": "/articles/coz-ton8-will-be-the-n8-that-i-will-fall-for-yewww",
+        "destination": "/articles/coz-ton8-will-be-the-n8-that-i-will-fall-for-yewww.html"
+      },
+      {
+        "source": "/articles/daprisa-2025-congratulations-indagalak-pep-squad",
+        "destination": "/articles/daprisa-2025-congratulations-indagalak-pep-squad.html"
+      },
+      {
+        "source": "/articles/daprisa-games-2025-character-is-the-game",
+        "destination": "/articles/daprisa-games-2025-character-is-the-game.html"
+      },
+      {
+        "source": "/articles/darling-hold-my-hand",
+        "destination": "/articles/darling-hold-my-hand.html"
+      },
+      {
+        "source": "/articles/dcaa-2025-sweet-showcase",
+        "destination": "/articles/dcaa-2025-sweet-showcase.html"
+      },
+      {
+        "source": "/articles/dcaa-meet-2025-the-umihs-hoplites-is-set-to-compete-in-the-highly-anti",
+        "destination": "/articles/dcaa-meet-2025-the-umihs-hoplites-is-set-to-compete-in-the-highly-anti.html"
+      },
+      {
+        "source": "/articles/di-sya-birthday-kundi-happpyyyy-birthdayyy",
+        "destination": "/articles/di-sya-birthday-kundi-happpyyyy-birthdayyy.html"
+      },
+      {
+        "source": "/articles/diving-into-the-world-of-magic-a-girl-full-of-curiosity-entered-a-realm",
+        "destination": "/articles/diving-into-the-world-of-magic-a-girl-full-of-curiosity-entered-a-realm.html"
+      },
+      {
+        "source": "/articles/do-you-still-remember-the-tune",
+        "destination": "/articles/do-you-still-remember-the-tune.html"
+      },
+      {
+        "source": "/articles/donation-drive-extended",
+        "destination": "/articles/donation-drive-extended.html"
+      },
+      {
+        "source": "/articles/easter-sunday-easter-sunday-celebrates-the-resurrection-of-jesus-chris",
+        "destination": "/articles/easter-sunday-easter-sunday-celebrates-the-resurrection-of-jesus-chris.html"
+      },
+      {
+        "source": "/articles/eid-mubarak-everyone",
+        "destination": "/articles/eid-mubarak-everyone.html"
+      },
+      {
+        "source": "/articles/emo-day-december-19",
+        "destination": "/articles/emo-day-december-19.html"
+      },
+      {
+        "source": "/articles/enhancing-proficiency-selected-grade-12-students-from-um-ilang-high-sc",
+        "destination": "/articles/enhancing-proficiency-selected-grade-12-students-from-um-ilang-high-sc.html"
+      },
+      {
+        "source": "/articles/entertainment-ano-ang-dadalhin-mong-emosyon-mga-gamit-at-layunin-nga",
+        "destination": "/articles/entertainment-ano-ang-dadalhin-mong-emosyon-mga-gamit-at-layunin-nga.html"
+      },
+      {
+        "source": "/articles/entertainment-bakit-nga-ba",
+        "destination": "/articles/entertainment-bakit-nga-ba.html"
+      },
+      {
+        "source": "/articles/entertainment-hapit-na-klase-ga-unsay-imong-gibati-bahin-niini",
+        "destination": "/articles/entertainment-hapit-na-klase-ga-unsay-imong-gibati-bahin-niini.html"
+      },
+      {
+        "source": "/articles/entertainment-humana-na-gud",
+        "destination": "/articles/entertainment-humana-na-gud.html"
+      },
+      {
+        "source": "/articles/entertainment-saan-ka-excited-ngayong-pasukan-ga",
+        "destination": "/articles/entertainment-saan-ka-excited-ngayong-pasukan-ga.html"
+      },
+      {
+        "source": "/articles/entertainment-time-to-bid-farewell-to-the-old-year-and-embrace-the-daw",
+        "destination": "/articles/entertainment-time-to-bid-farewell-to-the-old-year-and-embrace-the-daw.html"
+      },
+      {
+        "source": "/articles/entertainment-what-are-you-up-to-this-valentine-s-day-ga",
+        "destination": "/articles/entertainment-what-are-you-up-to-this-valentine-s-day-ga.html"
+      },
+      {
+        "source": "/articles/entertainment-what-haffen-ga",
+        "destination": "/articles/entertainment-what-haffen-ga.html"
+      },
+      {
+        "source": "/articles/entertainment-wheneve-ay-wala-pa-pala",
+        "destination": "/articles/entertainment-wheneve-ay-wala-pa-pala.html"
+      },
+      {
+        "source": "/articles/entrep-day-2025-booming-businesses",
+        "destination": "/articles/entrep-day-2025-booming-businesses.html"
+      },
+      {
+        "source": "/articles/entrepreneurship-day-on-december-6-2023-the-grade-eleven-students-of",
+        "destination": "/articles/entrepreneurship-day-on-december-6-2023-the-grade-eleven-students-of.html"
+      },
+      {
+        "source": "/articles/events-united-nations-celebration-2025",
+        "destination": "/articles/events-united-nations-celebration-2025.html"
+      },
+      {
+        "source": "/articles/excited-na-ba-ka-sa-intrams-ga",
+        "destination": "/articles/excited-na-ba-ka-sa-intrams-ga.html"
+      },
+      {
+        "source": "/articles/exhibition-of-talents-um-ilang-demonstrate-excellence-through-musical",
+        "destination": "/articles/exhibition-of-talents-um-ilang-demonstrate-excellence-through-musical.html"
+      },
+      {
+        "source": "/articles/exhilarating-exciting-breathtaking",
+        "destination": "/articles/exhilarating-exciting-breathtaking.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-daniela-lihay-lihay-of-um-ilang-high-school-obt",
+        "destination": "/articles/expression-skills-2024-daniela-lihay-lihay-of-um-ilang-high-school-obt.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-gian-paulo-mabaso-clinches-the-gold-medal-in-th",
+        "destination": "/articles/expression-skills-2024-gian-paulo-mabaso-clinches-the-gold-medal-in-th.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-interbranch-expression-skills-2024-entertains-c",
+        "destination": "/articles/expression-skills-2024-interbranch-expression-skills-2024-entertains-c.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-meg-churchille-babao-and-victoria-theresa-cangr",
+        "destination": "/articles/expression-skills-2024-meg-churchille-babao-and-victoria-theresa-cangr.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-pauleen-corregidor-of-um-ilang-high-school-bags",
+        "destination": "/articles/expression-skills-2024-pauleen-corregidor-of-um-ilang-high-school-bags.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-showcasing-umians-excellence-through-this-year",
+        "destination": "/articles/expression-skills-2024-showcasing-umians-excellence-through-this-year.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-um-ilang-high-school-bags-silver-in-archimedes",
+        "destination": "/articles/expression-skills-2024-um-ilang-high-school-bags-silver-in-archimedes.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-um-ilang-high-school-debate-team-secured-a-comm",
+        "destination": "/articles/expression-skills-2024-um-ilang-high-school-debate-team-secured-a-comm.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-um-ilang-high-school-earns-bronze-medal-placin",
+        "destination": "/articles/expression-skills-2024-um-ilang-high-school-earns-bronze-medal-placin.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-um-ilang-high-school-s-the-maroon-ink-triumphs",
+        "destination": "/articles/expression-skills-2024-um-ilang-high-school-s-the-maroon-ink-triumphs.html"
+      },
+      {
+        "source": "/articles/expression-skills-2024-um-ilang-soars-high-in-the-interbranch-expressi",
+        "destination": "/articles/expression-skills-2024-um-ilang-soars-high-in-the-interbranch-expressi.html"
+      },
+      {
+        "source": "/articles/eyewitness-of-extraordinary-talents-excellence-colors-umihs-stage-on-i",
+        "destination": "/articles/eyewitness-of-extraordinary-talents-excellence-colors-umihs-stage-on-i.html"
+      },
+      {
+        "source": "/articles/feast-of-the-immaculate-conception-december-8-2025",
+        "destination": "/articles/feast-of-the-immaculate-conception-december-8-2025.html"
+      },
+      {
+        "source": "/articles/feature-a-guiding-light-nurturing-minds-and-hearts",
+        "destination": "/articles/feature-a-guiding-light-nurturing-minds-and-hearts.html"
+      },
+      {
+        "source": "/articles/fire-drill-2025-on-september-30-2025-at-3-30-pm-the-fire-alarm-rang",
+        "destination": "/articles/fire-drill-2025-on-september-30-2025-at-3-30-pm-the-fire-alarm-rang.html"
+      },
+      {
+        "source": "/articles/fire-prevention-month-um-ilang-passes-fire-drill-2024",
+        "destination": "/articles/fire-prevention-month-um-ilang-passes-fire-drill-2024.html"
+      },
+      {
+        "source": "/articles/for-today-we-write-in-pink",
+        "destination": "/articles/for-today-we-write-in-pink.html"
+      },
+      {
+        "source": "/articles/forged-in-triumph-um-ilang-high-school-blazes-the-trail-as-back-to-bac",
+        "destination": "/articles/forged-in-triumph-um-ilang-high-school-blazes-the-trail-as-back-to-bac.html"
+      },
+      {
+        "source": "/articles/ga-update-the-first-long-test-is-scheduled-on-the-28th-and-29th-of-jul",
+        "destination": "/articles/ga-update-the-first-long-test-is-scheduled-on-the-28th-and-29th-of-jul.html"
+      },
+      {
+        "source": "/articles/ga-update-um-celebrates-it-s-79th-founding-anniversary",
+        "destination": "/articles/ga-update-um-celebrates-it-s-79th-founding-anniversary.html"
+      },
+      {
+        "source": "/articles/gapangutana-unsa-imong-costume-ugma-ga",
+        "destination": "/articles/gapangutana-unsa-imong-costume-ugma-ga.html"
+      },
+      {
+        "source": "/articles/garage-sale-heads-up-ga",
+        "destination": "/articles/garage-sale-heads-up-ga.html"
+      },
+      {
+        "source": "/articles/gaupdate-2nd-long-test-is-scheduled-on-september-25-26-2025",
+        "destination": "/articles/gaupdate-2nd-long-test-is-scheduled-on-september-25-26-2025.html"
+      },
+      {
+        "source": "/articles/gaupdate-in-accordance-with-the-advisory-issued-by-the-city-government",
+        "destination": "/articles/gaupdate-in-accordance-with-the-advisory-issued-by-the-city-government.html"
+      },
+      {
+        "source": "/articles/gaupdate-on-october-10-2025-an-earthquake-with-a-magnitude-of-7-6-sp",
+        "destination": "/articles/gaupdate-on-october-10-2025-an-earthquake-with-a-magnitude-of-7-6-sp.html"
+      },
+      {
+        "source": "/articles/get-ready",
+        "destination": "/articles/get-ready.html"
+      },
+      {
+        "source": "/articles/ginoo-at-mutya-update-get-ready-to-meet-the-esteemed-judges-tomorrow",
+        "destination": "/articles/ginoo-at-mutya-update-get-ready-to-meet-the-esteemed-judges-tomorrow.html"
+      },
+      {
+        "source": "/articles/good-friday-each-good-friday-we-remember-and-honor-jesus-christ-s-cru",
+        "destination": "/articles/good-friday-each-good-friday-we-remember-and-honor-jesus-christ-s-cru.html"
+      },
+      {
+        "source": "/articles/good-luck-daprisa-players",
+        "destination": "/articles/good-luck-daprisa-players.html"
+      },
+      {
+        "source": "/articles/graduation-a-new-beginning-ahead",
+        "destination": "/articles/graduation-a-new-beginning-ahead.html"
+      },
+      {
+        "source": "/articles/greetings-mga-ga",
+        "destination": "/articles/greetings-mga-ga.html"
+      },
+      {
+        "source": "/articles/halalan-2024-here-are-some-factors-to-consider-when-deciding-who-to-vo",
+        "destination": "/articles/halalan-2024-here-are-some-factors-to-consider-when-deciding-who-to-vo.html"
+      },
+      {
+        "source": "/articles/halalan-2024-ssg-candidacy-filing-deadline-draws-near",
+        "destination": "/articles/halalan-2024-ssg-candidacy-filing-deadline-draws-near.html"
+      },
+      {
+        "source": "/articles/halalan-2024-ssg-election-wraps-up-successfully",
+        "destination": "/articles/halalan-2024-ssg-election-wraps-up-successfully.html"
+      },
+      {
+        "source": "/articles/halalan-2024-this-is-the-official-result-of-the-supreme-student-govern",
+        "destination": "/articles/halalan-2024-this-is-the-official-result-of-the-supreme-student-govern.html"
+      },
+      {
+        "source": "/articles/halalan-2024-this-is-the-official-supreme-student-government-ssg-lin",
+        "destination": "/articles/halalan-2024-this-is-the-official-supreme-student-government-ssg-lin.html"
+      },
+      {
+        "source": "/articles/halalan-2025-faces-of-victory",
+        "destination": "/articles/halalan-2025-faces-of-victory.html"
+      },
+      {
+        "source": "/articles/halalan-2025-i-here-is-the-result-for-the-2025-ssg-elections",
+        "destination": "/articles/halalan-2025-i-here-is-the-result-for-the-2025-ssg-elections.html"
+      },
+      {
+        "source": "/articles/halalan-2025-meet-the-candidates",
+        "destination": "/articles/halalan-2025-meet-the-candidates.html"
+      },
+      {
+        "source": "/articles/halalan-2025-on-july-16-17-2025-the-running-candidates-for-the-supre",
+        "destination": "/articles/halalan-2025-on-july-16-17-2025-the-running-candidates-for-the-supre.html"
+      },
+      {
+        "source": "/articles/halalan-2025-the-election-of-ssg-officers-officially-commences",
+        "destination": "/articles/halalan-2025-the-election-of-ssg-officers-officially-commences.html"
+      },
+      {
+        "source": "/articles/happening-now-campus-citizenship-at-um-matina-campus-davao-city",
+        "destination": "/articles/happening-now-campus-citizenship-at-um-matina-campus-davao-city.html"
+      },
+      {
+        "source": "/articles/happening-now-drug-education-and-prevention-smokingvaping-and-safe-s",
+        "destination": "/articles/happening-now-drug-education-and-prevention-smokingvaping-and-safe-s.html"
+      },
+      {
+        "source": "/articles/happening-now-intramurals-2025-of-um-ilang-highschool-opens-its-aftern",
+        "destination": "/articles/happening-now-intramurals-2025-of-um-ilang-highschool-opens-its-aftern.html"
+      },
+      {
+        "source": "/articles/happening-now-media-conference-and-sashing-ceremony-of-the-16-candidat",
+        "destination": "/articles/happening-now-media-conference-and-sashing-ceremony-of-the-16-candidat.html"
+      },
+      {
+        "source": "/articles/happening-now-on-this-day-july-31-2025-um-ilang-highschool-holds-the",
+        "destination": "/articles/happening-now-on-this-day-july-31-2025-um-ilang-highschool-holds-the.html"
+      },
+      {
+        "source": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025",
+        "destination": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025.html"
+      },
+      {
+        "source": "/articles/happening-now-the-daprisa-games-2025-has-commenced-their-opening-cerem",
+        "destination": "/articles/happening-now-the-daprisa-games-2025-has-commenced-their-opening-cerem.html"
+      },
+      {
+        "source": "/articles/happening-now-the-school-year-2024-2025-is-officially-underway-at-um-i",
+        "destination": "/articles/happening-now-the-school-year-2024-2025-is-officially-underway-at-um-i.html"
+      },
+      {
+        "source": "/articles/happening-now-the-second-day-of-the-two-day-national-achievement-test",
+        "destination": "/articles/happening-now-the-second-day-of-the-two-day-national-achievement-test.html"
+      },
+      {
+        "source": "/articles/happening-now-the-university-of-mindanao-ilang-high-school-is-currently",
+        "destination": "/articles/happening-now-the-university-of-mindanao-ilang-high-school-is-currently.html"
+      },
+      {
+        "source": "/articles/happening-now-this-sunday-september-21-2025-our-fellow-dabawenyos-g",
+        "destination": "/articles/happening-now-this-sunday-september-21-2025-our-fellow-dabawenyos-g.html"
+      },
+      {
+        "source": "/articles/happening-now-today-september-20-2024-um-ilang-high-school-conducts",
+        "destination": "/articles/happening-now-today-september-20-2024-um-ilang-high-school-conducts.html"
+      },
+      {
+        "source": "/articles/happening-now-um-ilang-high-school-joins-the-cheerdance-competition-of",
+        "destination": "/articles/happening-now-um-ilang-high-school-joins-the-cheerdance-competition-of.html"
+      },
+      {
+        "source": "/articles/happening-now-umihs-ssg-meeting-de-avance-on-fire",
+        "destination": "/articles/happening-now-umihs-ssg-meeting-de-avance-on-fire.html"
+      },
+      {
+        "source": "/articles/happening-now-umyong-festival-a-students-day-special",
+        "destination": "/articles/happening-now-umyong-festival-a-students-day-special.html"
+      },
+      {
+        "source": "/articles/happening-now-with-various-events-concluded-previously-in-the-school-s",
+        "destination": "/articles/happening-now-with-various-events-concluded-previously-in-the-school-s.html"
+      },
+      {
+        "source": "/articles/happiest-birthday-kc",
+        "destination": "/articles/happiest-birthday-kc.html"
+      },
+      {
+        "source": "/articles/happy-avery-day",
+        "destination": "/articles/happy-avery-day.html"
+      },
+      {
+        "source": "/articles/happy-birthday",
+        "destination": "/articles/happy-birthday.html"
+      },
+      {
+        "source": "/articles/happy-birthday-andrea",
+        "destination": "/articles/happy-birthday-andrea.html"
+      },
+      {
+        "source": "/articles/happy-birthday-daphne",
+        "destination": "/articles/happy-birthday-daphne.html"
+      },
+      {
+        "source": "/articles/happy-birthday-dr-guillermo-p-torres-jr",
+        "destination": "/articles/happy-birthday-dr-guillermo-p-torres-jr.html"
+      },
+      {
+        "source": "/articles/happy-birthday-happy-birthday-to-our-hardworking-school-principal",
+        "destination": "/articles/happy-birthday-happy-birthday-to-our-hardworking-school-principal.html"
+      },
+      {
+        "source": "/articles/happy-birthday-hillary",
+        "destination": "/articles/happy-birthday-hillary.html"
+      },
+      {
+        "source": "/articles/happy-birthday-jas",
+        "destination": "/articles/happy-birthday-jas.html"
+      },
+      {
+        "source": "/articles/happy-birthday-jm",
+        "destination": "/articles/happy-birthday-jm.html"
+      },
+      {
+        "source": "/articles/happy-birthday-liana",
+        "destination": "/articles/happy-birthday-liana.html"
+      },
+      {
+        "source": "/articles/happy-birthday-lyka",
+        "destination": "/articles/happy-birthday-lyka.html"
+      },
+      {
+        "source": "/articles/happy-birthday-pookie-bear",
+        "destination": "/articles/happy-birthday-pookie-bear.html"
+      },
+      {
+        "source": "/articles/happy-birthday-rizi",
+        "destination": "/articles/happy-birthday-rizi.html"
+      },
+      {
+        "source": "/articles/happy-birthday-to-jeanelyn-dabal-our-dedicated-filipino-news-writer",
+        "destination": "/articles/happy-birthday-to-jeanelyn-dabal-our-dedicated-filipino-news-writer.html"
+      },
+      {
+        "source": "/articles/happy-birthday-to-our-amazing-associate-editor-clarence-josh-rubilla",
+        "destination": "/articles/happy-birthday-to-our-amazing-associate-editor-clarence-josh-rubilla.html"
+      },
+      {
+        "source": "/articles/happy-birthday-to-our-november-9-inkers",
+        "destination": "/articles/happy-birthday-to-our-november-9-inkers.html"
+      },
+      {
+        "source": "/articles/happy-happy-birthday-sa-pinaka-coquette-sa-tmieleiiii",
+        "destination": "/articles/happy-happy-birthday-sa-pinaka-coquette-sa-tmieleiiii.html"
+      },
+      {
+        "source": "/articles/happy-happy-birthday-to-youuuu",
+        "destination": "/articles/happy-happy-birthday-to-youuuu.html"
+      },
+      {
+        "source": "/articles/happy-international-black-cat-day",
+        "destination": "/articles/happy-international-black-cat-day.html"
+      },
+      {
+        "source": "/articles/happy-international-students-day",
+        "destination": "/articles/happy-international-students-day.html"
+      },
+      {
+        "source": "/articles/happy-lazy-day",
+        "destination": "/articles/happy-lazy-day.html"
+      },
+      {
+        "source": "/articles/happy-new-year-mgaga",
+        "destination": "/articles/happy-new-year-mgaga.html"
+      },
+      {
+        "source": "/articles/happy-teacher-s-day-ma-am-mai",
+        "destination": "/articles/happy-teacher-s-day-ma-am-mai.html"
+      },
+      {
+        "source": "/articles/happy-valentine-s-day-ga",
+        "destination": "/articles/happy-valentine-s-day-ga.html"
+      },
+      {
+        "source": "/articles/happy-world-teachers-day",
+        "destination": "/articles/happy-world-teachers-day.html"
+      },
+      {
+        "source": "/articles/heads-up-a-voyage-towards-excellence",
+        "destination": "/articles/heads-up-a-voyage-towards-excellence.html"
+      },
+      {
+        "source": "/articles/heads-up-and-get-thrilled",
+        "destination": "/articles/heads-up-and-get-thrilled.html"
+      },
+      {
+        "source": "/articles/heads-up-ga-enrolled-naba-ka",
+        "destination": "/articles/heads-up-ga-enrolled-naba-ka.html"
+      },
+      {
+        "source": "/articles/heads-up-mga-ga",
+        "destination": "/articles/heads-up-mga-ga.html"
+      },
+      {
+        "source": "/articles/heads-up-prepare-your-wallets-umians",
+        "destination": "/articles/heads-up-prepare-your-wallets-umians.html"
+      },
+      {
+        "source": "/articles/heads-up-rubik-s-cube-tournament-and-damath-competition-start-tomorrow",
+        "destination": "/articles/heads-up-rubik-s-cube-tournament-and-damath-competition-start-tomorrow.html"
+      },
+      {
+        "source": "/articles/heads-up-the-maroon-ink-welcomes-more-journos",
+        "destination": "/articles/heads-up-the-maroon-ink-welcomes-more-journos.html"
+      },
+      {
+        "source": "/articles/heads-up-umians",
+        "destination": "/articles/heads-up-umians.html"
+      },
+      {
+        "source": "/articles/hello-former-self",
+        "destination": "/articles/hello-former-self.html"
+      },
+      {
+        "source": "/articles/hey-twirlers-and-instrument-players",
+        "destination": "/articles/hey-twirlers-and-instrument-players.html"
+      },
+      {
+        "source": "/articles/hey-u-m",
+        "destination": "/articles/hey-u-m.html"
+      },
+      {
+        "source": "/articles/higayon",
+        "destination": "/articles/higayon.html"
+      },
+      {
+        "source": "/articles/holiday-advisory-class-suspensions-in-observance-of-national-holidays",
+        "destination": "/articles/holiday-advisory-class-suspensions-in-observance-of-national-holidays.html"
+      },
+      {
+        "source": "/articles/important-dates-the-following-dates-listed-below-are-the-occurrences-f",
+        "destination": "/articles/important-dates-the-following-dates-listed-below-are-the-occurrences-f.html"
+      },
+      {
+        "source": "/articles/in-a-world-shaped-by-questions-and-ideas-the-maroon-ink-stands-as-a-sou",
+        "destination": "/articles/in-a-world-shaped-by-questions-and-ideas-the-maroon-ink-stands-as-a-sou.html"
+      },
+      {
+        "source": "/articles/in-photos-12-on-january-24-2025-the-school-gymnasium-was-filled-wi",
+        "destination": "/articles/in-photos-12-on-january-24-2025-the-school-gymnasium-was-filled-wi.html"
+      },
+      {
+        "source": "/articles/in-photos-22-on-january-24-2025-the-school-gymnasium-was-filled-wi",
+        "destination": "/articles/in-photos-22-on-january-24-2025-the-school-gymnasium-was-filled-wi.html"
+      },
+      {
+        "source": "/articles/in-photos-diagnostic-test-completed",
+        "destination": "/articles/in-photos-diagnostic-test-completed.html"
+      },
+      {
+        "source": "/articles/in-photos-f",
+        "destination": "/articles/in-photos-f.html"
+      },
+      {
+        "source": "/articles/in-photos-happy-birthday-ma-am-mai",
+        "destination": "/articles/in-photos-happy-birthday-ma-am-mai.html"
+      },
+      {
+        "source": "/articles/in-photos-on-april-28-2025-um-ilang-high-school-conducted-their-bacc",
+        "destination": "/articles/in-photos-on-april-28-2025-um-ilang-high-school-conducted-their-bacc.html"
+      },
+      {
+        "source": "/articles/in-photos-on-january-10-2025-um-ilang-high-school-held-the-annual-na",
+        "destination": "/articles/in-photos-on-january-10-2025-um-ilang-high-school-held-the-annual-na.html"
+      },
+      {
+        "source": "/articles/in-photos-on-july-4-2025-um-ilang-high-school-held-their-annual-club-day",
+        "destination": "/articles/in-photos-on-july-4-2025-um-ilang-high-school-held-their-annual-club-day.html"
+      },
+      {
+        "source": "/articles/in-photos-on-march-26-2025-um-ilang-high-school-participated-in-a-fi",
+        "destination": "/articles/in-photos-on-march-26-2025-um-ilang-high-school-participated-in-a-fi.html"
+      },
+      {
+        "source": "/articles/in-photos-on-march-26-2025-um-ilang-high-school-participated-in-a-se",
+        "destination": "/articles/in-photos-on-march-26-2025-um-ilang-high-school-participated-in-a-se.html"
+      },
+      {
+        "source": "/articles/in-photos-on-october-25-2024-um-ilang-high-school-held-a-foot-parade",
+        "destination": "/articles/in-photos-on-october-25-2024-um-ilang-high-school-held-a-foot-parade.html"
+      },
+      {
+        "source": "/articles/in-photos-on-september-30-2024-um-ilang-high-school-wraps-up-the-fir",
+        "destination": "/articles/in-photos-on-september-30-2024-um-ilang-high-school-wraps-up-the-fir.html"
+      },
+      {
+        "source": "/articles/in-photos-party-started-camaraderie-ignited",
+        "destination": "/articles/in-photos-party-started-camaraderie-ignited.html"
+      },
+      {
+        "source": "/articles/in-photos-this-morning-umihs-welcomed-the-first-day-of-august-with-it",
+        "destination": "/articles/in-photos-this-morning-umihs-welcomed-the-first-day-of-august-with-it.html"
+      },
+      {
+        "source": "/articles/in-photos-today-on-july-4-2025-um-ilang-highschool-conducted-the-fi",
+        "destination": "/articles/in-photos-today-on-july-4-2025-um-ilang-highschool-conducted-the-fi.html"
+      },
+      {
+        "source": "/articles/in-photos-um-ilang-high-school-proudly-recognizes-the-outstanding-achi",
+        "destination": "/articles/in-photos-um-ilang-high-school-proudly-recognizes-the-outstanding-achi.html"
+      },
+      {
+        "source": "/articles/in-photos-umians-participate-in-fire-drill-2023",
+        "destination": "/articles/in-photos-umians-participate-in-fire-drill-2023.html"
+      },
+      {
+        "source": "/articles/in-the-glow-of-simple-joys-moments-wrapped-in-christmas-magic",
+        "destination": "/articles/in-the-glow-of-simple-joys-moments-wrapped-in-christmas-magic.html"
+      },
+      {
+        "source": "/articles/inside-um-miting-de-avance-2025",
+        "destination": "/articles/inside-um-miting-de-avance-2025.html"
+      },
+      {
+        "source": "/articles/international-cat-day-psspsspss-ali-mingming",
+        "destination": "/articles/international-cat-day-psspsspss-ali-mingming.html"
+      },
+      {
+        "source": "/articles/international-day-of-democracy-this-september-15-2025-we-celebrate-t",
+        "destination": "/articles/international-day-of-democracy-this-september-15-2025-we-celebrate-t.html"
+      },
+      {
+        "source": "/articles/international-day-of-peace",
+        "destination": "/articles/international-day-of-peace.html"
+      },
+      {
+        "source": "/articles/international-day-of-university-sport",
+        "destination": "/articles/international-day-of-university-sport.html"
+      },
+      {
+        "source": "/articles/international-dog-day-arf-arf-meow-meow",
+        "destination": "/articles/international-dog-day-arf-arf-meow-meow.html"
+      },
+      {
+        "source": "/articles/international-dolphin-day-i-just-wanna-be-part-of-your-symphony",
+        "destination": "/articles/international-dolphin-day-i-just-wanna-be-part-of-your-symphony.html"
+      },
+      {
+        "source": "/articles/international-literacy-day-reading-isn-t-just-a-skill-it-s-a-journey",
+        "destination": "/articles/international-literacy-day-reading-isn-t-just-a-skill-it-s-a-journey.html"
+      },
+      {
+        "source": "/articles/international-translation-day-on-the-30th-day-of-september-we-celebra",
+        "destination": "/articles/international-translation-day-on-the-30th-day-of-september-we-celebra.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-after-days-of-demonstrating-hard-work-dedication-an",
+        "destination": "/articles/intramurals-2023-after-days-of-demonstrating-hard-work-dedication-an.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-camaraderie-and-victory-reigns-as-university-of-minda",
+        "destination": "/articles/intramurals-2023-camaraderie-and-victory-reigns-as-university-of-minda.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-on-november-9-2023-the-university-of-mindanao-ilang",
+        "destination": "/articles/intramurals-2023-on-november-9-2023-the-university-of-mindanao-ilang.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-the-winners-of-the-cheerdance-and-hiphop-dance-compet",
+        "destination": "/articles/intramurals-2023-the-winners-of-the-cheerdance-and-hiphop-dance-compet.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-umians-posed-in-the-photo-booth-offered-by-the-maroon",
+        "destination": "/articles/intramurals-2023-umians-posed-in-the-photo-booth-offered-by-the-maroon.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-umihs-officially-opens-intramurals-2023",
+        "destination": "/articles/intramurals-2023-umihs-officially-opens-intramurals-2023.html"
+      },
+      {
+        "source": "/articles/intramurals-2023-with-great-pride-and-honor-the-university-of-mindana",
+        "destination": "/articles/intramurals-2023-with-great-pride-and-honor-the-university-of-mindana.html"
+      },
+      {
+        "source": "/articles/intramurals-2024-banner-raising-marks-the-start-of-an-epic-clash",
+        "destination": "/articles/intramurals-2024-banner-raising-marks-the-start-of-an-epic-clash.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th",
+        "destination": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th-1",
+        "destination": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th-1.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th-2",
+        "destination": "/articles/intramurals-2025-79-years-of-excellence-nurturing-leaders-shaping-th-2.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-a-showcase-of-attire",
+        "destination": "/articles/intramurals-2025-a-showcase-of-attire.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-a-showcase-of-beauty-and-talent",
+        "destination": "/articles/intramurals-2025-a-showcase-of-beauty-and-talent.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-a-thrilling-showcase-of-the-field-demonstration",
+        "destination": "/articles/intramurals-2025-a-thrilling-showcase-of-the-field-demonstration.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-capture-the-moment",
+        "destination": "/articles/intramurals-2025-capture-the-moment.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-day-2-october-27",
+        "destination": "/articles/intramurals-2025-day-2-october-27.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-day-3-october-28",
+        "destination": "/articles/intramurals-2025-day-3-october-28.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-dazzling-beauties-and-gents",
+        "destination": "/articles/intramurals-2025-dazzling-beauties-and-gents.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-igniting-the-flame-of-camaraderie",
+        "destination": "/articles/intramurals-2025-igniting-the-flame-of-camaraderie.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-presentation-of-exhilarating-skill",
+        "destination": "/articles/intramurals-2025-presentation-of-exhilarating-skill.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-sports-update",
+        "destination": "/articles/intramurals-2025-sports-update.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-the-awarding-ceremony",
+        "destination": "/articles/intramurals-2025-the-awarding-ceremony.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-the-ballgames-have-officially-started",
+        "destination": "/articles/intramurals-2025-the-ballgames-have-officially-started.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-the-coronation",
+        "destination": "/articles/intramurals-2025-the-coronation.html"
+      },
+      {
+        "source": "/articles/intramurals-2025-umihs-intramurals-1st-ever-lgbtq-basketball-exhibit",
+        "destination": "/articles/intramurals-2025-umihs-intramurals-1st-ever-lgbtq-basketball-exhibit.html"
+      },
+      {
+        "source": "/articles/isang-episode-na-lang-isang-game-na-lang-isang-scroll-na-lang-isang-p",
+        "destination": "/articles/isang-episode-na-lang-isang-game-na-lang-isang-scroll-na-lang-isang-p.html"
+      },
+      {
+        "source": "/articles/it-launched-with-excitement",
+        "destination": "/articles/it-launched-with-excitement.html"
+      },
+      {
+        "source": "/articles/it-s-a-bird-no-it-s-a-plane-no-it-s-a-ticket-for-back-to-school",
+        "destination": "/articles/it-s-a-bird-no-it-s-a-plane-no-it-s-a-ticket-for-back-to-school.html"
+      },
+      {
+        "source": "/articles/it-s-salt-air-season-na-ga",
+        "destination": "/articles/it-s-salt-air-season-na-ga.html"
+      },
+      {
+        "source": "/articles/its-that-time-of-year-again",
+        "destination": "/articles/its-that-time-of-year-again.html"
+      },
+      {
+        "source": "/articles/join-us-in-celebrating-the-university-of-mindanaos-79th-founding-anniver",
+        "destination": "/articles/join-us-in-celebrating-the-university-of-mindanaos-79th-founding-anniver.html"
+      },
+      {
+        "source": "/articles/just-in-at-10-37-p-m-tonight-a-strong-earthquake-was-felt-in-davao-c",
+        "destination": "/articles/just-in-at-10-37-p-m-tonight-a-strong-earthquake-was-felt-in-davao-c.html"
+      },
+      {
+        "source": "/articles/just-in-at-11-02-am-today-a-magnitude-6-7-earthquake-occurred-in-dava",
+        "destination": "/articles/just-in-at-11-02-am-today-a-magnitude-6-7-earthquake-occurred-in-dava.html"
+      },
+      {
+        "source": "/articles/just-in-due-to-the-continuous-heavy-rainfalls-barangay-ilang-announce",
+        "destination": "/articles/just-in-due-to-the-continuous-heavy-rainfalls-barangay-ilang-announce.html"
+      },
+      {
+        "source": "/articles/just-in-due-to-the-heavy-rainfall-um-ilang-high-school-has-suspended",
+        "destination": "/articles/just-in-due-to-the-heavy-rainfall-um-ilang-high-school-has-suspended.html"
+      },
+      {
+        "source": "/articles/just-in-due-to-the-repeating-incidents-of-tremor-the-university-of-mi",
+        "destination": "/articles/just-in-due-to-the-repeating-incidents-of-tremor-the-university-of-mi.html"
+      },
+      {
+        "source": "/articles/just-in-following-the-city-government-of-davao-s-public-advisory-of-cl",
+        "destination": "/articles/just-in-following-the-city-government-of-davao-s-public-advisory-of-cl.html"
+      },
+      {
+        "source": "/articles/just-in-the-university-of-mindanao-ilang-high-school-announced-that-th",
+        "destination": "/articles/just-in-the-university-of-mindanao-ilang-high-school-announced-that-th.html"
+      },
+      {
+        "source": "/articles/kadayawan-2025-madayaw-davao",
+        "destination": "/articles/kadayawan-2025-madayaw-davao.html"
+      },
+      {
+        "source": "/articles/kingdom-check-which-kingdom-are-you-representing-today-ga",
+        "destination": "/articles/kingdom-check-which-kingdom-are-you-representing-today-ga.html"
+      },
+      {
+        "source": "/articles/komiks-garelate-kampus-crush",
+        "destination": "/articles/komiks-garelate-kampus-crush.html"
+      },
+      {
+        "source": "/articles/labor-day-on-this-day-may-1st-we-hope-that-the-labor-day-will-serve",
+        "destination": "/articles/labor-day-on-this-day-may-1st-we-hope-that-the-labor-day-will-serve.html"
+      },
+      {
+        "source": "/articles/last-call-be-part-of-the-maroon-ink",
+        "destination": "/articles/last-call-be-part-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/late-night-thoughts-creep",
+        "destination": "/articles/late-night-thoughts-creep.html"
+      },
+      {
+        "source": "/articles/late-night-thoughts-the-one-that-got-away",
+        "destination": "/articles/late-night-thoughts-the-one-that-got-away.html"
+      },
+      {
+        "source": "/articles/leadershape-on-september-30-2024-um-ilang-high-school-sent-selected",
+        "destination": "/articles/leadershape-on-september-30-2024-um-ilang-high-school-sent-selected.html"
+      },
+      {
+        "source": "/articles/literary-cry",
+        "destination": "/articles/literary-cry.html"
+      },
+      {
+        "source": "/articles/literary-decoding-the-expectations-who-am-i-without-the-a-s",
+        "destination": "/articles/literary-decoding-the-expectations-who-am-i-without-the-a-s.html"
+      },
+      {
+        "source": "/articles/long-weekend-umihs-announces-class-suspension-in-observance-of-nationa",
+        "destination": "/articles/long-weekend-umihs-announces-class-suspension-in-observance-of-nationa.html"
+      },
+      {
+        "source": "/articles/look-application-for-internal-scholarship-for-school-year-2024-2025-is",
+        "destination": "/articles/look-application-for-internal-scholarship-for-school-year-2024-2025-is.html"
+      },
+      {
+        "source": "/articles/look-enhancing-leadership-skills-among-umihs-club-officers",
+        "destination": "/articles/look-enhancing-leadership-skills-among-umihs-club-officers.html"
+      },
+      {
+        "source": "/articles/look-the-faculty-and-staff-of-um-ilang-high-school-for-the-school-year",
+        "destination": "/articles/look-the-faculty-and-staff-of-um-ilang-high-school-for-the-school-year.html"
+      },
+      {
+        "source": "/articles/look-unveiling-the-posters-of-the-films-for-the-short-film-festival-20",
+        "destination": "/articles/look-unveiling-the-posters-of-the-films-for-the-short-film-festival-20.html"
+      },
+      {
+        "source": "/articles/lyrics-a-chair-seems-simple-but-in-gloc-9s-upuan-it-becomes-a-mirror-of-power",
+        "destination": "/articles/lyrics-a-chair-seems-simple-but-in-gloc-9s-upuan-it-becomes-a-mirror-of-power.html"
+      },
+      {
+        "source": "/articles/mabuhay-ang-pilipinas-on-this-day-june-12-2025-we-celebrate-the-un",
+        "destination": "/articles/mabuhay-ang-pilipinas-on-this-day-june-12-2025-we-celebrate-the-un.html"
+      },
+      {
+        "source": "/articles/mabuhay-pilipinas-mabuhay-mga-kababayan",
+        "destination": "/articles/mabuhay-pilipinas-mabuhay-mga-kababayan.html"
+      },
+      {
+        "source": "/articles/magic-unfolds-umihs-junior-and-senior-promenade-2025-shines-at-apo-vie",
+        "destination": "/articles/magic-unfolds-umihs-junior-and-senior-promenade-2025-shines-at-apo-vie.html"
+      },
+      {
+        "source": "/articles/magic-unfolds-umihs-junior-and-senior-promenade-2025-shines-at-apo-vie-1",
+        "destination": "/articles/magic-unfolds-umihs-junior-and-senior-promenade-2025-shines-at-apo-vie-1.html"
+      },
+      {
+        "source": "/articles/maging-ligtas-maging-panatag-pilipinas",
+        "destination": "/articles/maging-ligtas-maging-panatag-pilipinas.html"
+      },
+      {
+        "source": "/articles/mark-your-calendar",
+        "destination": "/articles/mark-your-calendar.html"
+      },
+      {
+        "source": "/articles/maroon-memoir-in-the-middle-of-late-night-review-sessions-students-of",
+        "destination": "/articles/maroon-memoir-in-the-middle-of-late-night-review-sessions-students-of.html"
+      },
+      {
+        "source": "/articles/maroon-viewpoint-daprisa-games-2025",
+        "destination": "/articles/maroon-viewpoint-daprisa-games-2025.html"
+      },
+      {
+        "source": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf",
+        "destination": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf.html"
+      },
+      {
+        "source": "/articles/maroon-viewpoint-on-july-31-2025-um-ilang-high-school-commenced-its",
+        "destination": "/articles/maroon-viewpoint-on-july-31-2025-um-ilang-high-school-commenced-its.html"
+      },
+      {
+        "source": "/articles/maroon-viewpoint-um-ilang-athletes-shine-bright-at-intramurals-2024-t",
+        "destination": "/articles/maroon-viewpoint-um-ilang-athletes-shine-bright-at-intramurals-2024-t.html"
+      },
+      {
+        "source": "/articles/mathsciaka-2024-as-september-draws-to-a-close-um-ilang-high-school-pr",
+        "destination": "/articles/mathsciaka-2024-as-september-draws-to-a-close-um-ilang-high-school-pr.html"
+      },
+      {
+        "source": "/articles/mathsciaka-2024-um-ilang-high-school-wrapped-up-another-year-of-mathsc",
+        "destination": "/articles/mathsciaka-2024-um-ilang-high-school-wrapped-up-another-year-of-mathsc.html"
+      },
+      {
+        "source": "/articles/mathsciaka-2025-a-day-of-discovery-teamwork-and-brilliance",
+        "destination": "/articles/mathsciaka-2025-a-day-of-discovery-teamwork-and-brilliance.html"
+      },
+      {
+        "source": "/articles/mathsciaka-2025-link-start",
+        "destination": "/articles/mathsciaka-2025-link-start.html"
+      },
+      {
+        "source": "/articles/maundy-thursday-every-holy-thursday-we-commemorate-the-last-supper-of",
+        "destination": "/articles/maundy-thursday-every-holy-thursday-we-commemorate-the-last-supper-of.html"
+      },
+      {
+        "source": "/articles/meet-the-players-daprisa-games-2025",
+        "destination": "/articles/meet-the-players-daprisa-games-2025.html"
+      },
+      {
+        "source": "/articles/meet-the-players-daprisa-games-2025-1",
+        "destination": "/articles/meet-the-players-daprisa-games-2025-1.html"
+      },
+      {
+        "source": "/articles/meet-the-players-daprisa-games-2025-2",
+        "destination": "/articles/meet-the-players-daprisa-games-2025-2.html"
+      },
+      {
+        "source": "/articles/merry-christmas-ga",
+        "destination": "/articles/merry-christmas-ga.html"
+      },
+      {
+        "source": "/articles/merry-christmas-mga-ga",
+        "destination": "/articles/merry-christmas-mga-ga.html"
+      },
+      {
+        "source": "/articles/mindanao-week-of-peace-2023-on-november-30-2023-the-archdiocese-of-d",
+        "destination": "/articles/mindanao-week-of-peace-2023-on-november-30-2023-the-archdiocese-of-d.html"
+      },
+      {
+        "source": "/articles/muling-pakikidigma",
+        "destination": "/articles/muling-pakikidigma.html"
+      },
+      {
+        "source": "/articles/nahuman-na-jud-nahuman-na-jud",
+        "destination": "/articles/nahuman-na-jud-nahuman-na-jud.html"
+      },
+      {
+        "source": "/articles/national-book-week-2024-please-be-guided-by-the-schedules-for-the-nati",
+        "destination": "/articles/national-book-week-2024-please-be-guided-by-the-schedules-for-the-nati.html"
+      },
+      {
+        "source": "/articles/national-book-week-2024-um-ilang-high-school-is-set-to-celebrate-natio",
+        "destination": "/articles/national-book-week-2024-um-ilang-high-school-is-set-to-celebrate-natio.html"
+      },
+      {
+        "source": "/articles/national-book-week-2025-a-world-of-words",
+        "destination": "/articles/national-book-week-2025-a-world-of-words.html"
+      },
+      {
+        "source": "/articles/national-campus-press-freedom-day",
+        "destination": "/articles/national-campus-press-freedom-day.html"
+      },
+      {
+        "source": "/articles/national-day-of-protest",
+        "destination": "/articles/national-day-of-protest.html"
+      },
+      {
+        "source": "/articles/national-heroes-day-when-someone-says-the-word-hero-do-you-think-of-f",
+        "destination": "/articles/national-heroes-day-when-someone-says-the-word-hero-do-you-think-of-f.html"
+      },
+      {
+        "source": "/articles/national-pet-deaf-awareness-not-all-love-is-heardsome-of-it-is-simply",
+        "destination": "/articles/national-pet-deaf-awareness-not-all-love-is-heardsome-of-it-is-simply.html"
+      },
+      {
+        "source": "/articles/national-press-freedom-day",
+        "destination": "/articles/national-press-freedom-day.html"
+      },
+      {
+        "source": "/articles/national-suicide-prevention-month-no-matter-how-bad-things-get-someth",
+        "destination": "/articles/national-suicide-prevention-month-no-matter-how-bad-things-get-someth.html"
+      },
+      {
+        "source": "/articles/national-teacher-s-month-teachers-are-more-than-lecturersthey-are-shap",
+        "destination": "/articles/national-teacher-s-month-teachers-are-more-than-lecturersthey-are-shap.html"
+      },
+      {
+        "source": "/articles/never-again-never-forget",
+        "destination": "/articles/never-again-never-forget.html"
+      },
+      {
+        "source": "/articles/new-year-new-chapter",
+        "destination": "/articles/new-year-new-chapter.html"
+      },
+      {
+        "source": "/articles/new-year-new-me",
+        "destination": "/articles/new-year-new-me.html"
+      },
+      {
+        "source": "/articles/news-2024-inter-branch-expression-skills-presentation",
+        "destination": "/articles/news-2024-inter-branch-expression-skills-presentation.html"
+      },
+      {
+        "source": "/articles/news-a-buzzing-afternoon-was-felt-on-august-6-2024-as-um-ilang-high",
+        "destination": "/articles/news-a-buzzing-afternoon-was-felt-on-august-6-2024-as-um-ilang-high.html"
+      },
+      {
+        "source": "/articles/news-advancing-faculty-assessment-proficiency-umihs-faculty-enhance-s",
+        "destination": "/articles/news-advancing-faculty-assessment-proficiency-umihs-faculty-enhance-s.html"
+      },
+      {
+        "source": "/articles/news-classes-on-january-30-2025-will-be-shifted-to-asynchronous-mode",
+        "destination": "/articles/news-classes-on-january-30-2025-will-be-shifted-to-asynchronous-mode.html"
+      },
+      {
+        "source": "/articles/news-drug-awareness-symposium-at-um-ilang-high-school",
+        "destination": "/articles/news-drug-awareness-symposium-at-um-ilang-high-school.html"
+      },
+      {
+        "source": "/articles/news-ensuring-quality-education-umihs-teachers-join-the-three-day-in",
+        "destination": "/articles/news-ensuring-quality-education-umihs-teachers-join-the-three-day-in.html"
+      },
+      {
+        "source": "/articles/news-following-the-city-government-of-davao-s-public-advisory-of-class",
+        "destination": "/articles/news-following-the-city-government-of-davao-s-public-advisory-of-class.html"
+      },
+      {
+        "source": "/articles/news-grade-10-and-grade-12-parents-meet-at-the-um-ilang-gymnasium-on-a",
+        "destination": "/articles/news-grade-10-and-grade-12-parents-meet-at-the-um-ilang-gymnasium-on-a.html"
+      },
+      {
+        "source": "/articles/news-implementation-of-asynchronous-classes-due-to-national-achievemen",
+        "destination": "/articles/news-implementation-of-asynchronous-classes-due-to-national-achievemen.html"
+      },
+      {
+        "source": "/articles/news-in-accordance-with-the-r-a-9165-comprehensive-dangerous-drugs-ac",
+        "destination": "/articles/news-in-accordance-with-the-r-a-9165-comprehensive-dangerous-drugs-ac.html"
+      },
+      {
+        "source": "/articles/news-in-observance-of-the-chinese-new-year-wednesday-january-29-202",
+        "destination": "/articles/news-in-observance-of-the-chinese-new-year-wednesday-january-29-202.html"
+      },
+      {
+        "source": "/articles/news-in-the-spirit-of-creativity-and-literary-passion-um-ilang-high-s",
+        "destination": "/articles/news-in-the-spirit-of-creativity-and-literary-passion-um-ilang-high-s.html"
+      },
+      {
+        "source": "/articles/news-literary-musical-competitions-evoke-brilliance-in-umians",
+        "destination": "/articles/news-literary-musical-competitions-evoke-brilliance-in-umians.html"
+      },
+      {
+        "source": "/articles/news-on-august-5-6-2024-um-ilang-high-school-conducted-a-general-or",
+        "destination": "/articles/news-on-august-5-6-2024-um-ilang-high-school-conducted-a-general-or.html"
+      },
+      {
+        "source": "/articles/news-on-march-11-2025-a-symposium-entitled-risky-lifestyle-habits-wa",
+        "destination": "/articles/news-on-march-11-2025-a-symposium-entitled-risky-lifestyle-habits-wa.html"
+      },
+      {
+        "source": "/articles/news-on-november-17-2023-in-the-afternoon-an-earthquake-with-an-est",
+        "destination": "/articles/news-on-november-17-2023-in-the-afternoon-an-earthquake-with-an-est.html"
+      },
+      {
+        "source": "/articles/news-suspension-of-classes-on-april-9-and-april-10-2024",
+        "destination": "/articles/news-suspension-of-classes-on-april-9-and-april-10-2024.html"
+      },
+      {
+        "source": "/articles/news-the-1st-long-test-is-set-on-the-18th-and-19th-of-september-2024",
+        "destination": "/articles/news-the-1st-long-test-is-set-on-the-18th-and-19th-of-september-2024.html"
+      },
+      {
+        "source": "/articles/news-the-1st-monthly-examination-is-scheduled-on-august-28-and-august",
+        "destination": "/articles/news-the-1st-monthly-examination-is-scheduled-on-august-28-and-august.html"
+      },
+      {
+        "source": "/articles/news-the-6th-monthly-examination-is-scheduled-on-january-24-and-januar",
+        "destination": "/articles/news-the-6th-monthly-examination-is-scheduled-on-january-24-and-januar.html"
+      },
+      {
+        "source": "/articles/news-the-89th-national-book-week-culmination-at-um-ilang-high-school",
+        "destination": "/articles/news-the-89th-national-book-week-culmination-at-um-ilang-high-school.html"
+      },
+      {
+        "source": "/articles/news-the-9th-monthly-examination-or-the-semi-final-examination-for-sch",
+        "destination": "/articles/news-the-9th-monthly-examination-or-the-semi-final-examination-for-sch.html"
+      },
+      {
+        "source": "/articles/news-the-monthly-formation-meeting-of-the-catholic-youth-ministry-cym",
+        "destination": "/articles/news-the-monthly-formation-meeting-of-the-catholic-youth-ministry-cym.html"
+      },
+      {
+        "source": "/articles/news-the-school-year-2024-2025-at-um-ilang-high-school-has-officially",
+        "destination": "/articles/news-the-school-year-2024-2025-at-um-ilang-high-school-has-officially.html"
+      },
+      {
+        "source": "/articles/news-the-third-3rd-quarter-examination-will-take-place-on-february-2",
+        "destination": "/articles/news-the-third-3rd-quarter-examination-will-take-place-on-february-2.html"
+      },
+      {
+        "source": "/articles/news-the-university-of-mindanao-conducted-its-first-um-interbranch-un",
+        "destination": "/articles/news-the-university-of-mindanao-conducted-its-first-um-interbranch-un.html"
+      },
+      {
+        "source": "/articles/news-the-university-of-mindanao-ilang-high-school-conducted-a-communit",
+        "destination": "/articles/news-the-university-of-mindanao-ilang-high-school-conducted-a-communit.html"
+      },
+      {
+        "source": "/articles/news-the-university-of-mindanao-ilang-high-school-will-resume-regular",
+        "destination": "/articles/news-the-university-of-mindanao-ilang-high-school-will-resume-regular.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-school-celebrates-umyong-student-fest-on-march-21",
+        "destination": "/articles/news-um-ilang-high-school-celebrates-umyong-student-fest-on-march-21.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-school-has-issued-a-class-suspension-on-february-14",
+        "destination": "/articles/news-um-ilang-high-school-has-issued-a-class-suspension-on-february-14.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-school-implements-the-color-coding-for-the-student",
+        "destination": "/articles/news-um-ilang-high-school-implements-the-color-coding-for-the-student.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-school-launched-the-studens-day-activity-the-umyon",
+        "destination": "/articles/news-um-ilang-high-school-launched-the-studens-day-activity-the-umyon.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-schools-eighth-monthly-examination-will-take-place",
+        "destination": "/articles/news-um-ilang-high-schools-eighth-monthly-examination-will-take-place.html"
+      },
+      {
+        "source": "/articles/news-um-main-college-of-health-and-science-education-enriches-the-yout",
+        "destination": "/articles/news-um-main-college-of-health-and-science-education-enriches-the-yout.html"
+      },
+      {
+        "source": "/articles/news-umihs-acclaims-new-queen-for-mutya-ng-um-ilang-2023",
+        "destination": "/articles/news-umihs-acclaims-new-queen-for-mutya-ng-um-ilang-2023.html"
+      },
+      {
+        "source": "/articles/news-umihs-brings-back-speech-festival",
+        "destination": "/articles/news-umihs-brings-back-speech-festival.html"
+      },
+      {
+        "source": "/articles/news-umihs-final-examination-is-scheduled-on-may-2-and-may-6-2024",
+        "destination": "/articles/news-umihs-final-examination-is-scheduled-on-may-2-and-may-6-2024.html"
+      },
+      {
+        "source": "/articles/news-umihs-jhs-department-bags-silver-on-quipperlympics-quiz-bee-compe",
+        "destination": "/articles/news-umihs-jhs-department-bags-silver-on-quipperlympics-quiz-bee-compe.html"
+      },
+      {
+        "source": "/articles/news-umihs-s-sports-club-is-hosting-basketball-tryouts-for-aspiring-ma",
+        "destination": "/articles/news-umihs-s-sports-club-is-hosting-basketball-tryouts-for-aspiring-ma.html"
+      },
+      {
+        "source": "/articles/news-umihs-student-leaders-participated-in-the-leadership-seminar-held",
+        "destination": "/articles/news-umihs-student-leaders-participated-in-the-leadership-seminar-held.html"
+      },
+      {
+        "source": "/articles/news-umihs-students-shine-at-coop-youthlympics-2024",
+        "destination": "/articles/news-umihs-students-shine-at-coop-youthlympics-2024.html"
+      },
+      {
+        "source": "/articles/news-umihs-yearbook-staff-undergo-yearbook-making-seminar-at-image-wor",
+        "destination": "/articles/news-umihs-yearbook-staff-undergo-yearbook-making-seminar-at-image-wor.html"
+      },
+      {
+        "source": "/articles/news-university-of-mindanao-branches-tied-knots-for-a-more-sustainable",
+        "destination": "/articles/news-university-of-mindanao-branches-tied-knots-for-a-more-sustainable.html"
+      },
+      {
+        "source": "/articles/news-university-of-mindanao-conducts-its-first-ever-2024-interbranch-l",
+        "destination": "/articles/news-university-of-mindanao-conducts-its-first-ever-2024-interbranch-l.html"
+      },
+      {
+        "source": "/articles/ngayong-araw-na-ito-ginugunita-natin-ang-ika-53-anibersaryo-ng-pagdedek",
+        "destination": "/articles/ngayong-araw-na-ito-ginugunita-natin-ang-ika-53-anibersaryo-ng-pagdedek.html"
+      },
+      {
+        "source": "/articles/ninoy-aquino-day-today-august-21-2025-we-commemorate-the-42nd-death",
+        "destination": "/articles/ninoy-aquino-day-today-august-21-2025-we-commemorate-the-42nd-death.html"
+      },
+      {
+        "source": "/articles/no-class-due-to-the-parents-general-orientation-and-consultation-um",
+        "destination": "/articles/no-class-due-to-the-parents-general-orientation-and-consultation-um.html"
+      },
+      {
+        "source": "/articles/no-classes-um-ilang-high-school-declares-no-face-to-face-classes-on-au",
+        "destination": "/articles/no-classes-um-ilang-high-school-declares-no-face-to-face-classes-on-au.html"
+      },
+      {
+        "source": "/articles/no-f2f-classes-on-january-17-2025-all-classes-will-transition-to-an",
+        "destination": "/articles/no-f2f-classes-on-january-17-2025-all-classes-will-transition-to-an.html"
+      },
+      {
+        "source": "/articles/no-f2f-classes-um-ilang-high-school-has-declared-that-there-will-be-no",
+        "destination": "/articles/no-f2f-classes-um-ilang-high-school-has-declared-that-there-will-be-no.html"
+      },
+      {
+        "source": "/articles/notice-to-all-students",
+        "destination": "/articles/notice-to-all-students.html"
+      },
+      {
+        "source": "/articles/nsed-2024-commencement-of-nationwide-simultaneous-earthquake-drill-ns",
+        "destination": "/articles/nsed-2024-commencement-of-nationwide-simultaneous-earthquake-drill-ns.html"
+      },
+      {
+        "source": "/articles/nsed-2024-um-ilang-high-school-engaged-in-the-third-quarter-nationwide",
+        "destination": "/articles/nsed-2024-um-ilang-high-school-engaged-in-the-third-quarter-nationwide.html"
+      },
+      {
+        "source": "/articles/nsed-2025-um-ilang-high-school-recently-participated-in-the-national-s",
+        "destination": "/articles/nsed-2025-um-ilang-high-school-recently-participated-in-the-national-s.html"
+      },
+      {
+        "source": "/articles/nutrition-month-2025-on-july-31-2025-um-ilang-high-school-held-the-n",
+        "destination": "/articles/nutrition-month-2025-on-july-31-2025-um-ilang-high-school-held-the-n.html"
+      },
+      {
+        "source": "/articles/nutrition-month-a-nourishing-return",
+        "destination": "/articles/nutrition-month-a-nourishing-return.html"
+      },
+      {
+        "source": "/articles/october-is-adhd-awareness-month",
+        "destination": "/articles/october-is-adhd-awareness-month.html"
+      },
+      {
+        "source": "/articles/office-closed",
+        "destination": "/articles/office-closed.html"
+      },
+      {
+        "source": "/articles/official-statement",
+        "destination": "/articles/official-statement.html"
+      },
+      {
+        "source": "/articles/on-this-day-we-remember-one-of-the-greatest-tragedies-the-philippines-has-faced",
+        "destination": "/articles/on-this-day-we-remember-one-of-the-greatest-tragedies-the-philippines-has-faced.html"
+      },
+      {
+        "source": "/articles/opinion-a-frugal-feast-500-pesos-noche-buena",
+        "destination": "/articles/opinion-a-frugal-feast-500-pesos-noche-buena.html"
+      },
+      {
+        "source": "/articles/opinion-exploitation-of-desperation",
+        "destination": "/articles/opinion-exploitation-of-desperation.html"
+      },
+      {
+        "source": "/articles/opinion-manners-aren-t-a-trendthey-re-a-reflection-of-respect",
+        "destination": "/articles/opinion-manners-aren-t-a-trendthey-re-a-reflection-of-respect.html"
+      },
+      {
+        "source": "/articles/opinion-shouts-in-the-streets-how-protest-became-a-crime",
+        "destination": "/articles/opinion-shouts-in-the-streets-how-protest-became-a-crime.html"
+      },
+      {
+        "source": "/articles/opinion-the-philippines-is-not-poor-it-is-plundered",
+        "destination": "/articles/opinion-the-philippines-is-not-poor-it-is-plundered.html"
+      },
+      {
+        "source": "/articles/opinion-tricycle-fares-a-bane-for-students",
+        "destination": "/articles/opinion-tricycle-fares-a-bane-for-students.html"
+      },
+      {
+        "source": "/articles/opinion-we-are-journalists-but-we-are-human-too",
+        "destination": "/articles/opinion-we-are-journalists-but-we-are-human-too.html"
+      },
+      {
+        "source": "/articles/outside-news-safety-advisory-after-nearby-shooting",
+        "destination": "/articles/outside-news-safety-advisory-after-nearby-shooting.html"
+      },
+      {
+        "source": "/articles/outside-um-a-step-into-intellect",
+        "destination": "/articles/outside-um-a-step-into-intellect.html"
+      },
+      {
+        "source": "/articles/outside-um-we-lost-a-debater-today",
+        "destination": "/articles/outside-um-we-lost-a-debater-today.html"
+      },
+      {
+        "source": "/articles/patriot-day-never-forget",
+        "destination": "/articles/patriot-day-never-forget.html"
+      },
+      {
+        "source": "/articles/pinoy-broadway-rhythm-the-bedazzling-convocation-of-umihs-grade-10-stu",
+        "destination": "/articles/pinoy-broadway-rhythm-the-bedazzling-convocation-of-umihs-grade-10-stu.html"
+      },
+      {
+        "source": "/articles/pop-bliss-unleashed-the-university-of-mindanao-ilang-high-school-s-har",
+        "destination": "/articles/pop-bliss-unleashed-the-university-of-mindanao-ilang-high-school-s-har.html"
+      },
+      {
+        "source": "/articles/positive-thinking-day-let-light-in",
+        "destination": "/articles/positive-thinking-day-let-light-in.html"
+      },
+      {
+        "source": "/articles/pride-month-2025-proudly-wave-your-flags-high-everyone",
+        "destination": "/articles/pride-month-2025-proudly-wave-your-flags-high-everyone.html"
+      },
+      {
+        "source": "/articles/quality-affordable-open-education",
+        "destination": "/articles/quality-affordable-open-education.html"
+      },
+      {
+        "source": "/articles/queens-of-the-board-black-trojans-clinched-victory-in-chess-girls-categ",
+        "destination": "/articles/queens-of-the-board-black-trojans-clinched-victory-in-chess-girls-categ.html"
+      },
+      {
+        "source": "/articles/raise-your-banners",
+        "destination": "/articles/raise-your-banners.html"
+      },
+      {
+        "source": "/articles/raise-your-flag-in-celebration-of-the-united-nations-umihs-students-r",
+        "destination": "/articles/raise-your-flag-in-celebration-of-the-united-nations-umihs-students-r.html"
+      },
+      {
+        "source": "/articles/ready-for-season-2-volleyball-training-is-back",
+        "destination": "/articles/ready-for-season-2-volleyball-training-is-back.html"
+      },
+      {
+        "source": "/articles/ready-for-the-quest",
+        "destination": "/articles/ready-for-the-quest.html"
+      },
+      {
+        "source": "/articles/ready-na-ba-ka-ga",
+        "destination": "/articles/ready-na-ba-ka-ga.html"
+      },
+      {
+        "source": "/articles/ready-to-hit-the-court",
+        "destination": "/articles/ready-to-hit-the-court.html"
+      },
+      {
+        "source": "/articles/recap-did-you-miss-the-first-day-s-activities",
+        "destination": "/articles/recap-did-you-miss-the-first-day-s-activities.html"
+      },
+      {
+        "source": "/articles/recap-missed-the-last-club-day-here-s-a-quick-recap-for-you",
+        "destination": "/articles/recap-missed-the-last-club-day-here-s-a-quick-recap-for-you.html"
+      },
+      {
+        "source": "/articles/recap-unmasking-more-of-the-mutya-ng-um-2024-media-conference",
+        "destination": "/articles/recap-unmasking-more-of-the-mutya-ng-um-2024-media-conference.html"
+      },
+      {
+        "source": "/articles/remembering-the-iron-lady-of-asia",
+        "destination": "/articles/remembering-the-iron-lady-of-asia.html"
+      },
+      {
+        "source": "/articles/rise-from-the-ashes",
+        "destination": "/articles/rise-from-the-ashes.html"
+      },
+      {
+        "source": "/articles/sabado-de-gloria-black-saturday-marks-the-day-jesus-christ-lay-in-the",
+        "destination": "/articles/sabado-de-gloria-black-saturday-marks-the-day-jesus-christ-lay-in-the.html"
+      },
+      {
+        "source": "/articles/saluting-the-shapers-of-future-teachers-day-celebration-2023-at-umihs",
+        "destination": "/articles/saluting-the-shapers-of-future-teachers-day-celebration-2023-at-umihs.html"
+      },
+      {
+        "source": "/articles/schedule-greetings-umians",
+        "destination": "/articles/schedule-greetings-umians.html"
+      },
+      {
+        "source": "/articles/season-of-spark-stories-and-surprises",
+        "destination": "/articles/season-of-spark-stories-and-surprises.html"
+      },
+      {
+        "source": "/articles/share-this-lucky-posa-to-pass-your-exams",
+        "destination": "/articles/share-this-lucky-posa-to-pass-your-exams.html"
+      },
+      {
+        "source": "/articles/ship-sails-at-90s-grade-12-students-of-umihs-tied-knots-during-this-mo",
+        "destination": "/articles/ship-sails-at-90s-grade-12-students-of-umihs-tied-knots-during-this-mo.html"
+      },
+      {
+        "source": "/articles/short-film-festival-2024-showing-on-may-6-2024",
+        "destination": "/articles/short-film-festival-2024-showing-on-may-6-2024.html"
+      },
+      {
+        "source": "/articles/short-film-festival-dive-into-the-mystical-abyss-of-whispers-of-shado",
+        "destination": "/articles/short-film-festival-dive-into-the-mystical-abyss-of-whispers-of-shado.html"
+      },
+      {
+        "source": "/articles/short-film-festival-every-clue-holds-a-secret",
+        "destination": "/articles/short-film-festival-every-clue-holds-a-secret.html"
+      },
+      {
+        "source": "/articles/short-film-festival-in-the-silence-of-restraint-we-discover-the-depth",
+        "destination": "/articles/short-film-festival-in-the-silence-of-restraint-we-discover-the-depth.html"
+      },
+      {
+        "source": "/articles/short-film-festival-love-at-the-first-sight-is-real-for-those-who-only",
+        "destination": "/articles/short-film-festival-love-at-the-first-sight-is-real-for-those-who-only.html"
+      },
+      {
+        "source": "/articles/short-film-festival-the-universe-is-much-much-bigger-than-what-everyo",
+        "destination": "/articles/short-film-festival-the-universe-is-much-much-bigger-than-what-everyo.html"
+      },
+      {
+        "source": "/articles/short-film-festival-unravelling-the-legend-of-mt",
+        "destination": "/articles/short-film-festival-unravelling-the-legend-of-mt.html"
+      },
+      {
+        "source": "/articles/sorry-our-layout-artists-are-fully-booked",
+        "destination": "/articles/sorry-our-layout-artists-are-fully-booked.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games-2025",
+        "destination": "/articles/sports-news-daprisa-games-2025.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games-2025-1",
+        "destination": "/articles/sports-news-daprisa-games-2025-1.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games-2025-2",
+        "destination": "/articles/sports-news-daprisa-games-2025-2.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games-2025-3",
+        "destination": "/articles/sports-news-daprisa-games-2025-3.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games-2025-4",
+        "destination": "/articles/sports-news-daprisa-games-2025-4.html"
+      },
+      {
+        "source": "/articles/sports-news-pacquiao-vs-barrios-ends-in-a-majority-draw",
+        "destination": "/articles/sports-news-pacquiao-vs-barrios-ends-in-a-majority-draw.html"
+      },
+      {
+        "source": "/articles/street-style-spectacle-showcasing-street-performances-and-style-extrav",
+        "destination": "/articles/street-style-spectacle-showcasing-street-performances-and-style-extrav.html"
+      },
+      {
+        "source": "/articles/strenghtening-unity-the-ssg-miting-de-avance-was-held-at-um-ilang-gym",
+        "destination": "/articles/strenghtening-unity-the-ssg-miting-de-avance-was-held-at-um-ilang-gym.html"
+      },
+      {
+        "source": "/articles/striving-for-excellence-umihs-student-leaders-attended-leadership-deve",
+        "destination": "/articles/striving-for-excellence-umihs-student-leaders-attended-leadership-deve.html"
+      },
+      {
+        "source": "/articles/summer",
+        "destination": "/articles/summer.html"
+      },
+      {
+        "source": "/articles/teacher-s-day-2025-a-day-of-tribute-and-talent",
+        "destination": "/articles/teacher-s-day-2025-a-day-of-tribute-and-talent.html"
+      },
+      {
+        "source": "/articles/teacher-s-day-is-stupid",
+        "destination": "/articles/teacher-s-day-is-stupid.html"
+      },
+      {
+        "source": "/articles/teacher-s-day-recap-what-a-day",
+        "destination": "/articles/teacher-s-day-recap-what-a-day.html"
+      },
+      {
+        "source": "/articles/the-end-of-2025-brings-a-reflection-as-we-gather-in-unity-we-honor-the",
+        "destination": "/articles/the-end-of-2025-brings-a-reflection-as-we-gather-in-unity-we-honor-the.html"
+      },
+      {
+        "source": "/articles/the-holiday-begins-now-ga",
+        "destination": "/articles/the-holiday-begins-now-ga.html"
+      },
+      {
+        "source": "/articles/the-international-sign-language-day-reminds-us-that-communication-goes-b",
+        "destination": "/articles/the-international-sign-language-day-reminds-us-that-communication-goes-b.html"
+      },
+      {
+        "source": "/articles/the-maroon-ink-turns-pink",
+        "destination": "/articles/the-maroon-ink-turns-pink.html"
+      },
+      {
+        "source": "/articles/the-maroon-ink-wouldn-t-let-the-day-end-without-celebrating-two-of-our-e",
+        "destination": "/articles/the-maroon-ink-wouldn-t-let-the-day-end-without-celebrating-two-of-our-e.html"
+      },
+      {
+        "source": "/articles/the-search-is-over-umihs-crowns-new-king-and-queen-for-mathsciaka-2023",
+        "destination": "/articles/the-search-is-over-umihs-crowns-new-king-and-queen-for-mathsciaka-2023.html"
+      },
+      {
+        "source": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink",
+        "destination": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/total-lunar-eclipse-2025",
+        "destination": "/articles/total-lunar-eclipse-2025.html"
+      },
+      {
+        "source": "/articles/trivia-a-resilient-fortress",
+        "destination": "/articles/trivia-a-resilient-fortress.html"
+      },
+      {
+        "source": "/articles/tsunami-advisory-minor-sea-level-disturbance-expected-in-parts-of-the",
+        "destination": "/articles/tsunami-advisory-minor-sea-level-disturbance-expected-in-parts-of-the.html"
+      },
+      {
+        "source": "/articles/typhoon-uwan-update",
+        "destination": "/articles/typhoon-uwan-update.html"
+      },
+      {
+        "source": "/articles/ucsp-the-school-publication-the-maroon-ink-highlights-the-various-cr",
+        "destination": "/articles/ucsp-the-school-publication-the-maroon-ink-highlights-the-various-cr.html"
+      },
+      {
+        "source": "/articles/ugma-na-ga-um-ilang-high-school-will-hold-its-1st-quarter-examination",
+        "destination": "/articles/ugma-na-ga-um-ilang-high-school-will-hold-its-1st-quarter-examination.html"
+      },
+      {
+        "source": "/articles/um-ilang-crowns-first-ginoo-and-new-mutya-2024",
+        "destination": "/articles/um-ilang-crowns-first-ginoo-and-new-mutya-2024.html"
+      },
+      {
+        "source": "/articles/um-mazing-holiday-raffle",
+        "destination": "/articles/um-mazing-holiday-raffle.html"
+      },
+      {
+        "source": "/articles/umihs-intramurals-2025-basketball-game-schedule",
+        "destination": "/articles/umihs-intramurals-2025-basketball-game-schedule.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-4th-monthly-examination-is-scheduled-on-november-22-to",
+        "destination": "/articles/umihs-news-the-4th-monthly-examination-is-scheduled-on-november-22-to.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-first-quarterly-exams-are-scheduled-this-august-27-and",
+        "destination": "/articles/umihs-news-the-first-quarterly-exams-are-scheduled-this-august-27-and.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-third-quarterly-examinations-are-scheduled-on-january-2",
+        "destination": "/articles/umihs-news-the-third-quarterly-examinations-are-scheduled-on-january-2.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-united-nations-celebration-has-been-postponed-due-to-sc",
+        "destination": "/articles/umihs-news-the-united-nations-celebration-has-been-postponed-due-to-sc.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-university-of-mindanao-ilang-high-school-classes-resume",
+        "destination": "/articles/umihs-news-the-university-of-mindanao-ilang-high-school-classes-resume.html"
+      },
+      {
+        "source": "/articles/umihs-news-the-university-of-mindanao-ilang-high-schools-2nd-quarter-e",
+        "destination": "/articles/umihs-news-the-university-of-mindanao-ilang-high-schools-2nd-quarter-e.html"
+      },
+      {
+        "source": "/articles/umihs-news-umians-compete-in-the-poster-making-and-quiz-bee-competitio",
+        "destination": "/articles/umihs-news-umians-compete-in-the-poster-making-and-quiz-bee-competitio.html"
+      },
+      {
+        "source": "/articles/united-nations-2024-save-the-dates",
+        "destination": "/articles/united-nations-2024-save-the-dates.html"
+      },
+      {
+        "source": "/articles/united-nations-2024-with-the-theme-cultivating-a-culture-of-peace-um",
+        "destination": "/articles/united-nations-2024-with-the-theme-cultivating-a-culture-of-peace-um.html"
+      },
+      {
+        "source": "/articles/united-nations-2025-bonded-countries-in-unity",
+        "destination": "/articles/united-nations-2025-bonded-countries-in-unity.html"
+      },
+      {
+        "source": "/articles/university-news-an-advisory-in-observance-of-the-holy-week-season-has",
+        "destination": "/articles/university-news-an-advisory-in-observance-of-the-holy-week-season-has.html"
+      },
+      {
+        "source": "/articles/university-news-speechfest-seminar-workshop-2023-spurs-creativity-in-u",
+        "destination": "/articles/university-news-speechfest-seminar-workshop-2023-spurs-creativity-in-u.html"
+      },
+      {
+        "source": "/articles/university-news-um-as-a-beacon-of-excellence-exhibited-in-edurank",
+        "destination": "/articles/university-news-um-as-a-beacon-of-excellence-exhibited-in-edurank.html"
+      },
+      {
+        "source": "/articles/university-news-umian-journos-refine-journalistic-prowess-through-cj-t",
+        "destination": "/articles/university-news-umian-journos-refine-journalistic-prowess-through-cj-t.html"
+      },
+      {
+        "source": "/articles/volume-13-issue-1-is-out",
+        "destination": "/articles/volume-13-issue-1-is-out.html"
+      },
+      {
+        "source": "/articles/volume-13-issue-2-is-also-out",
+        "destination": "/articles/volume-13-issue-2-is-also-out.html"
+      },
+      {
+        "source": "/articles/watch-mutya-ng-um-2024-candidates-proceed-to-the-next-phase-towards-th",
+        "destination": "/articles/watch-mutya-ng-um-2024-candidates-proceed-to-the-next-phase-towards-th.html"
+      },
+      {
+        "source": "/articles/watch-on-august-5-2024-um-ilang-high-school-officially-opened-its-do",
+        "destination": "/articles/watch-on-august-5-2024-um-ilang-high-school-officially-opened-its-do.html"
+      },
+      {
+        "source": "/articles/watch-on-march-26-2025-at-2-30-pm-um-ilang-high-school-conducted-a",
+        "destination": "/articles/watch-on-march-26-2025-at-2-30-pm-um-ilang-high-school-conducted-a.html"
+      },
+      {
+        "source": "/articles/watch-something-s-brewing-at-um-ilang-high-school",
+        "destination": "/articles/watch-something-s-brewing-at-um-ilang-high-school.html"
+      },
+      {
+        "source": "/articles/watch-the-office-of-the-student-affairs-conducted-a-re-echo-of-the-cam",
+        "destination": "/articles/watch-the-office-of-the-student-affairs-conducted-a-re-echo-of-the-cam.html"
+      },
+      {
+        "source": "/articles/watch-umian-rules",
+        "destination": "/articles/watch-umian-rules.html"
+      },
+      {
+        "source": "/articles/watch-umians-shares-their-first-day-experience-expectations-and-motiv",
+        "destination": "/articles/watch-umians-shares-their-first-day-experience-expectations-and-motiv.html"
+      },
+      {
+        "source": "/articles/watch-umians-shares-their-thoughts-and-feelings-with-regards-to-the-1s",
+        "destination": "/articles/watch-umians-shares-their-thoughts-and-feelings-with-regards-to-the-1s.html"
+      },
+      {
+        "source": "/articles/we-are-the-ones-who-make-a-brighter-day-so-lets-start-giving",
+        "destination": "/articles/we-are-the-ones-who-make-a-brighter-day-so-lets-start-giving.html"
+      },
+      {
+        "source": "/articles/we-miss-you-na-ga",
+        "destination": "/articles/we-miss-you-na-ga.html"
+      },
+      {
+        "source": "/articles/white-crayon",
+        "destination": "/articles/white-crayon.html"
+      },
+      {
+        "source": "/articles/who-is-your-greatest-what-if",
+        "destination": "/articles/who-is-your-greatest-what-if.html"
+      },
+      {
+        "source": "/articles/who-s-your-choice",
+        "destination": "/articles/who-s-your-choice.html"
+      },
+      {
+        "source": "/articles/with-every-stroke-of-our-pen-information-we-bring",
+        "destination": "/articles/with-every-stroke-of-our-pen-information-we-bring.html"
+      },
+      {
+        "source": "/articles/with-every-stroke-of-our-pen-information-we-bring-1",
+        "destination": "/articles/with-every-stroke-of-our-pen-information-we-bring-1.html"
+      },
+      {
+        "source": "/articles/world-daughters-day-the-hands-that-care-the-heart-that-endures",
+        "destination": "/articles/world-daughters-day-the-hands-that-care-the-heart-that-endures.html"
+      },
+      {
+        "source": "/articles/wounds-of-the-past-will-eventually-heal-and-all-will-be-alright-in-time",
+        "destination": "/articles/wounds-of-the-past-will-eventually-heal-and-all-will-be-alright-in-time.html"
+      },
+      {
+        "source": "/articles/yay",
+        "destination": "/articles/yay.html"
+      },
+      {
+        "source": "/articles/yulo-nagwagi-ng-ginto-sa-paris-olympics-2024",
+        "destination": "/articles/yulo-nagwagi-ng-ginto-sa-paris-olympics-2024.html"
+      },
+      {
+        "source": "/search",
+        "destination": "/navigation/search.html"
+      },
+      {
+        "source": "/about",
+        "destination": "/navigation/about.html"
+      },
+      {
+        "source": "/published-papers",
+        "destination": "/navigation/published-papers.html"
+      },
+      {
+        "source": "/staff",
+        "destination": "/navigation/staff.html"
+      },
+      {
+        "source": "/archives",
+        "destination": "/navigation/archives.html"
+      },
+      {
+        "source": "/privacy-policy",
+        "destination": "/navigation/privacy-policy.html"
+      },
+      {
+        "source": "/inkers/**",
+        "destination": "/inkers/inkers.html"
+      },
+      {
+        "source": "/published-papers/**",
+        "destination": "/published-papers/published-papers.html"
+      }
     ]
   }
 }

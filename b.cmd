@@ -1,3 +1,5 @@
+
+node build/generate-articles.js
 node build/generate-sitemap.js
 
 git add .

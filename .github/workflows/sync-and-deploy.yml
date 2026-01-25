@@ -55,7 +55,7 @@ jobs:
           SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
           SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
 
-      - name: Generate Sitemap
+      - name: Generate Build Stuff
         # Runs from root to generate sitemaps into the /public folder
         run: |
           node build/generate-articles.js

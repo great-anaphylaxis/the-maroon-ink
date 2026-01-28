@@ -14,6 +14,8 @@ const client = createClient({
     apiVersion: '2025-12-25'
 });
 
+SanityImageInit(createImageUrlBuilder, client)
+
 const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
 
 const mainElement = document.getElementById('main');

@@ -1,5 +1,4 @@
 import { createClient } from "https://esm.sh/@sanity/client?bundle";
-import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 
@@ -13,8 +12,6 @@ const client = createClient({
     useCdn: true,
     apiVersion: '2025-12-25'
 });
-
-SanityImageInit(createImageUrlBuilder, client)
 
 const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
 
@@ -32,7 +29,7 @@ function getInkerAndArticles() {
     
     const inkerAndArticles = client.fetch(`{
     "inker": *[_type == "inker" && username.current == $username]{
-
+        profilePicture
     },
     
     "articles": *[_type == "article" && inkersOnDuty[]->username.current match $username]
@@ -57,13 +54,14 @@ function getInkerAndArticles() {
     }}`, {username: username});
 
     inkerAndArticles.then(e => {
+        let inker = e.inker[0]
         let articles = e.articles;
 
         if (e.inker.length == 0) {
             window.location.replace("/404.html");
         }
 
-        renderProfilePicture();
+        renderProfilePicture(inker);
 
         for (let i = 0; i < articles.length; i++) {
             let article = articles[i];
@@ -77,7 +75,11 @@ function getInkerAndArticles() {
     });
 }
 
-function renderProfilePicture() {
+function renderProfilePicture(inker) {
+    if (!inker.profilePicture) {
+        return;
+    }
+
     const lightbox = new PhotoSwipeLightbox({
         gallery: 'header a',
         pswpModule: PhotoSwipe,

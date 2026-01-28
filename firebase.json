@@ -28,6 +28,10 @@
     ],
     "rewrites": [
       {
+        "source": "/published-papers/2nd-sem-release-2026",
+        "destination": "/published-papers/2nd-sem-release-2026.html"
+      },
+      {
         "source": "/articles/1-day-left",
         "destination": "/articles/1-day-left.html"
       },
@@ -2450,10 +2454,6 @@
       {
         "source": "/privacy-policy",
         "destination": "/navigation/privacy-policy.html"
-      },
-      {
-        "source": "/published-papers/**",
-        "destination": "/published-papers/published-papers.html"
       }
     ]
   }

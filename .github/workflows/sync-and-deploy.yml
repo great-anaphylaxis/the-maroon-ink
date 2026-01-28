@@ -60,6 +60,7 @@ jobs:
         run: |
           node build/generate-articles.js
           node build/generate-sitemap.js
+          node build/generate-published-papers.js
 
       - name: Commit Persistence and Cleanup
         run: |

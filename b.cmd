@@ -1,6 +1,7 @@
 
 node build/generate-articles.js
 node build/generate-sitemap.js
+node build/generate-published-papers.js
 
 git add .
 git commit -m %1

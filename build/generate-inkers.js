@@ -112,7 +112,7 @@ function handleEdits(template, inker) {
 }
 
 function editSEO(template, inker) {
-    const url = treatHTMLStrings(inker.username);
+    const url = `https://themaroon.ink/inkers/${treatHTMLStrings(inker.username)}`;
     const title = treatHTMLStrings(inker.name);
     const description = treatHTMLStrings(`${inker.name} - ${inker.role ?? "Contributor"}. ${inker.bio ?? ""}`);
     const image = treatHTMLStrings(inker.profilePicture ? urlFor(inker.profilePicture)

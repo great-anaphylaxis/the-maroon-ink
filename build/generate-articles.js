@@ -134,7 +134,7 @@ function handleEdits(template, article) {
 }
 
 function editSEO(template, article) {
-    const url = treatHTMLStrings(article.linkName);
+    const url = `https://themaroon.ink/articles/${treatHTMLStrings(article.linkName)}`;
     const title = treatHTMLStrings(article.title);
     const description = treatHTMLStrings(getArticlePreview(article));
     const image = treatHTMLStrings(article.media[0]?.thumbnailUrl ?? article.media[0]?.url ?? '/src/images/banner.jpg');

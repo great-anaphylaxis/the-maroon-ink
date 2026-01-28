@@ -1592,6 +1592,10 @@
         "destination": "/articles/opinion-the-philippines-is-not-poor-it-is-plundered.html"
       },
       {
+        "source": "/articles/opinion-the-price-of-artificial-intelligence",
+        "destination": "/articles/opinion-the-price-of-artificial-intelligence.html"
+      },
+      {
         "source": "/articles/opinion-tricycle-fares-a-bane-for-students",
         "destination": "/articles/opinion-tricycle-fares-a-bane-for-students.html"
       },
@@ -1996,6 +2000,434 @@
         "destination": "/articles/yulo-nagwagi-ng-ginto-sa-paris-olympics-2024.html"
       },
       {
+        "source": "/inkers/gwynyth-kylhyn-malcampo",
+        "destination": "/inkers/gwynyth-kylhyn-malcampo.html"
+      },
+      {
+        "source": "/inkers/spencer-nepomuceno",
+        "destination": "/inkers/spencer-nepomuceno.html"
+      },
+      {
+        "source": "/inkers/eliezer-suarez",
+        "destination": "/inkers/eliezer-suarez.html"
+      },
+      {
+        "source": "/inkers/rania-sahisan",
+        "destination": "/inkers/rania-sahisan.html"
+      },
+      {
+        "source": "/inkers/jhareign-solidum",
+        "destination": "/inkers/jhareign-solidum.html"
+      },
+      {
+        "source": "/inkers/gian-paulo-mabaso",
+        "destination": "/inkers/gian-paulo-mabaso.html"
+      },
+      {
+        "source": "/inkers/avery-espos",
+        "destination": "/inkers/avery-espos.html"
+      },
+      {
+        "source": "/inkers/clyde-ashley-fidel",
+        "destination": "/inkers/clyde-ashley-fidel.html"
+      },
+      {
+        "source": "/inkers/maileen-grace-altres",
+        "destination": "/inkers/maileen-grace-altres.html"
+      },
+      {
+        "source": "/inkers/remnyl-silva",
+        "destination": "/inkers/remnyl-silva.html"
+      },
+      {
+        "source": "/inkers/eunice-capin",
+        "destination": "/inkers/eunice-capin.html"
+      },
+      {
+        "source": "/inkers/rogie-balaba",
+        "destination": "/inkers/rogie-balaba.html"
+      },
+      {
+        "source": "/inkers/mira-manco",
+        "destination": "/inkers/mira-manco.html"
+      },
+      {
+        "source": "/inkers/maureen-pearl-baguhin",
+        "destination": "/inkers/maureen-pearl-baguhin.html"
+      },
+      {
+        "source": "/inkers/liana-bernadet-medidas",
+        "destination": "/inkers/liana-bernadet-medidas.html"
+      },
+      {
+        "source": "/inkers/john-stephen-gabisan",
+        "destination": "/inkers/john-stephen-gabisan.html"
+      },
+      {
+        "source": "/inkers/patricia-isabel-cunanan",
+        "destination": "/inkers/patricia-isabel-cunanan.html"
+      },
+      {
+        "source": "/inkers/jasmine-asher-galanga",
+        "destination": "/inkers/jasmine-asher-galanga.html"
+      },
+      {
+        "source": "/inkers/carielle-cabodbod",
+        "destination": "/inkers/carielle-cabodbod.html"
+      },
+      {
+        "source": "/inkers/krizia-soliza",
+        "destination": "/inkers/krizia-soliza.html"
+      },
+      {
+        "source": "/inkers/ad-ruca",
+        "destination": "/inkers/ad-ruca.html"
+      },
+      {
+        "source": "/inkers/alex-jr-real",
+        "destination": "/inkers/alex-jr-real.html"
+      },
+      {
+        "source": "/inkers/alexa-jean-giangan",
+        "destination": "/inkers/alexa-jean-giangan.html"
+      },
+      {
+        "source": "/inkers/alliyah-calvo",
+        "destination": "/inkers/alliyah-calvo.html"
+      },
+      {
+        "source": "/inkers/andrea-canete",
+        "destination": "/inkers/andrea-canete.html"
+      },
+      {
+        "source": "/inkers/angela-grace-degamon",
+        "destination": "/inkers/angela-grace-degamon.html"
+      },
+      {
+        "source": "/inkers/areania-jean-luy",
+        "destination": "/inkers/areania-jean-luy.html"
+      },
+      {
+        "source": "/inkers/arrgee-ace-rillo",
+        "destination": "/inkers/arrgee-ace-rillo.html"
+      },
+      {
+        "source": "/inkers/ashley-ereno",
+        "destination": "/inkers/ashley-ereno.html"
+      },
+      {
+        "source": "/inkers/charmie-lane-candare",
+        "destination": "/inkers/charmie-lane-candare.html"
+      },
+      {
+        "source": "/inkers/cheska-candare",
+        "destination": "/inkers/cheska-candare.html"
+      },
+      {
+        "source": "/inkers/christian-bagaloyos",
+        "destination": "/inkers/christian-bagaloyos.html"
+      },
+      {
+        "source": "/inkers/christian-paul-bagaloyos",
+        "destination": "/inkers/christian-paul-bagaloyos.html"
+      },
+      {
+        "source": "/inkers/clarence-josh-rubilla",
+        "destination": "/inkers/clarence-josh-rubilla.html"
+      },
+      {
+        "source": "/inkers/creasy-baco",
+        "destination": "/inkers/creasy-baco.html"
+      },
+      {
+        "source": "/inkers/danica-angel-licong",
+        "destination": "/inkers/danica-angel-licong.html"
+      },
+      {
+        "source": "/inkers/daniela-lihay-lihay",
+        "destination": "/inkers/daniela-lihay-lihay.html"
+      },
+      {
+        "source": "/inkers/danielle-bulan",
+        "destination": "/inkers/danielle-bulan.html"
+      },
+      {
+        "source": "/inkers/daphne-sarandona",
+        "destination": "/inkers/daphne-sarandona.html"
+      },
+      {
+        "source": "/inkers/dorothy-de-dios",
+        "destination": "/inkers/dorothy-de-dios.html"
+      },
+      {
+        "source": "/inkers/eesha-laurente",
+        "destination": "/inkers/eesha-laurente.html"
+      },
+      {
+        "source": "/inkers/eleisha-magapan",
+        "destination": "/inkers/eleisha-magapan.html"
+      },
+      {
+        "source": "/inkers/ellah-may-masicampo",
+        "destination": "/inkers/ellah-may-masicampo.html"
+      },
+      {
+        "source": "/inkers/elyshah-faye-cinco",
+        "destination": "/inkers/elyshah-faye-cinco.html"
+      },
+      {
+        "source": "/inkers/ezekielle-aparel",
+        "destination": "/inkers/ezekielle-aparel.html"
+      },
+      {
+        "source": "/inkers/franchezka-areja",
+        "destination": "/inkers/franchezka-areja.html"
+      },
+      {
+        "source": "/inkers/gabrielle-abucay",
+        "destination": "/inkers/gabrielle-abucay.html"
+      },
+      {
+        "source": "/inkers/georgina-albarico",
+        "destination": "/inkers/georgina-albarico.html"
+      },
+      {
+        "source": "/inkers/gino-kirby-orcullo",
+        "destination": "/inkers/gino-kirby-orcullo.html"
+      },
+      {
+        "source": "/inkers/hannah-angela-lao",
+        "destination": "/inkers/hannah-angela-lao.html"
+      },
+      {
+        "source": "/inkers/harish-solomon",
+        "destination": "/inkers/harish-solomon.html"
+      },
+      {
+        "source": "/inkers/hillary-gumubao",
+        "destination": "/inkers/hillary-gumubao.html"
+      },
+      {
+        "source": "/inkers/isabelle-mondonedo",
+        "destination": "/inkers/isabelle-mondonedo.html"
+      },
+      {
+        "source": "/inkers/isaiah-joshua-erabon",
+        "destination": "/inkers/isaiah-joshua-erabon.html"
+      },
+      {
+        "source": "/inkers/jabez-chamee-de-guia",
+        "destination": "/inkers/jabez-chamee-de-guia.html"
+      },
+      {
+        "source": "/inkers/janna-mikaela-recede",
+        "destination": "/inkers/janna-mikaela-recede.html"
+      },
+      {
+        "source": "/inkers/jasmine-gonzales",
+        "destination": "/inkers/jasmine-gonzales.html"
+      },
+      {
+        "source": "/inkers/jeanelyn-dabal",
+        "destination": "/inkers/jeanelyn-dabal.html"
+      },
+      {
+        "source": "/inkers/jeremy-dizon",
+        "destination": "/inkers/jeremy-dizon.html"
+      },
+      {
+        "source": "/inkers/jessa-claire-dorin",
+        "destination": "/inkers/jessa-claire-dorin.html"
+      },
+      {
+        "source": "/inkers/jim-cordova",
+        "destination": "/inkers/jim-cordova.html"
+      },
+      {
+        "source": "/inkers/joanna-rose-menderico",
+        "destination": "/inkers/joanna-rose-menderico.html"
+      },
+      {
+        "source": "/inkers/john-lawrence-prudencio",
+        "destination": "/inkers/john-lawrence-prudencio.html"
+      },
+      {
+        "source": "/inkers/john-matthew-alatraca",
+        "destination": "/inkers/john-matthew-alatraca.html"
+      },
+      {
+        "source": "/inkers/johnlie-adj-daruca",
+        "destination": "/inkers/johnlie-adj-daruca.html"
+      },
+      {
+        "source": "/inkers/josepearl-diez",
+        "destination": "/inkers/josepearl-diez.html"
+      },
+      {
+        "source": "/inkers/joseph-paul-banilad",
+        "destination": "/inkers/joseph-paul-banilad.html"
+      },
+      {
+        "source": "/inkers/jubhea-boholano",
+        "destination": "/inkers/jubhea-boholano.html"
+      },
+      {
+        "source": "/inkers/julianna-marie-bolivar",
+        "destination": "/inkers/julianna-marie-bolivar.html"
+      },
+      {
+        "source": "/inkers/kathleen-mae-biolon",
+        "destination": "/inkers/kathleen-mae-biolon.html"
+      },
+      {
+        "source": "/inkers/katrina-cassandra-escovilla",
+        "destination": "/inkers/katrina-cassandra-escovilla.html"
+      },
+      {
+        "source": "/inkers/kayzenne-rasonable",
+        "destination": "/inkers/kayzenne-rasonable.html"
+      },
+      {
+        "source": "/inkers/khezhea-gumubao",
+        "destination": "/inkers/khezhea-gumubao.html"
+      },
+      {
+        "source": "/inkers/kimverly-agustin",
+        "destination": "/inkers/kimverly-agustin.html"
+      },
+      {
+        "source": "/inkers/kristine-claire-jaca",
+        "destination": "/inkers/kristine-claire-jaca.html"
+      },
+      {
+        "source": "/inkers/kyle-lisondra",
+        "destination": "/inkers/kyle-lisondra.html"
+      },
+      {
+        "source": "/inkers/leigh-julia-maligro",
+        "destination": "/inkers/leigh-julia-maligro.html"
+      },
+      {
+        "source": "/inkers/lexie-faith-orig",
+        "destination": "/inkers/lexie-faith-orig.html"
+      },
+      {
+        "source": "/inkers/lyka-agurada",
+        "destination": "/inkers/lyka-agurada.html"
+      },
+      {
+        "source": "/inkers/lyra-suello",
+        "destination": "/inkers/lyra-suello.html"
+      },
+      {
+        "source": "/inkers/maam-grace-grampon",
+        "destination": "/inkers/maam-grace-grampon.html"
+      },
+      {
+        "source": "/inkers/maam-nazima-basilio",
+        "destination": "/inkers/maam-nazima-basilio.html"
+      },
+      {
+        "source": "/inkers/mariamne-algar",
+        "destination": "/inkers/mariamne-algar.html"
+      },
+      {
+        "source": "/inkers/mikaela-gubatina",
+        "destination": "/inkers/mikaela-gubatina.html"
+      },
+      {
+        "source": "/inkers/mizzah-jomel-tinaytina",
+        "destination": "/inkers/mizzah-jomel-tinaytina.html"
+      },
+      {
+        "source": "/inkers/natalie-ogtip",
+        "destination": "/inkers/natalie-ogtip.html"
+      },
+      {
+        "source": "/inkers/nazmiena-basilio",
+        "destination": "/inkers/nazmiena-basilio.html"
+      },
+      {
+        "source": "/inkers/nica-keisha-barron",
+        "destination": "/inkers/nica-keisha-barron.html"
+      },
+      {
+        "source": "/inkers/nirel-katrisse-medidas",
+        "destination": "/inkers/nirel-katrisse-medidas.html"
+      },
+      {
+        "source": "/inkers/nisha-asmajin",
+        "destination": "/inkers/nisha-asmajin.html"
+      },
+      {
+        "source": "/inkers/norven-dulaugon",
+        "destination": "/inkers/norven-dulaugon.html"
+      },
+      {
+        "source": "/inkers/patrick-gabisan",
+        "destination": "/inkers/patrick-gabisan.html"
+      },
+      {
+        "source": "/inkers/princess-fiona-putian",
+        "destination": "/inkers/princess-fiona-putian.html"
+      },
+      {
+        "source": "/inkers/princess-putian",
+        "destination": "/inkers/princess-putian.html"
+      },
+      {
+        "source": "/inkers/princess-zinny-fronda",
+        "destination": "/inkers/princess-zinny-fronda.html"
+      },
+      {
+        "source": "/inkers/prophetess",
+        "destination": "/inkers/prophetess.html"
+      },
+      {
+        "source": "/inkers/rania-j-sahisan",
+        "destination": "/inkers/rania-j-sahisan.html"
+      },
+      {
+        "source": "/inkers/ray-nathaniel-anung",
+        "destination": "/inkers/ray-nathaniel-anung.html"
+      },
+      {
+        "source": "/inkers/rogie-rheana-balaba",
+        "destination": "/inkers/rogie-rheana-balaba.html"
+      },
+      {
+        "source": "/inkers/samantha-sakkam",
+        "destination": "/inkers/samantha-sakkam.html"
+      },
+      {
+        "source": "/inkers/selwyn-cabrera",
+        "destination": "/inkers/selwyn-cabrera.html"
+      },
+      {
+        "source": "/inkers/tiara-angel-lagrada",
+        "destination": "/inkers/tiara-angel-lagrada.html"
+      },
+      {
+        "source": "/inkers/trisha-joyce-neri",
+        "destination": "/inkers/trisha-joyce-neri.html"
+      },
+      {
+        "source": "/inkers/vhon-raven-dingal",
+        "destination": "/inkers/vhon-raven-dingal.html"
+      },
+      {
+        "source": "/inkers/victoria-theresa-cangrejo",
+        "destination": "/inkers/victoria-theresa-cangrejo.html"
+      },
+      {
+        "source": "/inkers/vincent-galendez",
+        "destination": "/inkers/vincent-galendez.html"
+      },
+      {
+        "source": "/inkers/xyza-andrea-amoto",
+        "destination": "/inkers/xyza-andrea-amoto.html"
+      },
+      {
         "source": "/search",
         "destination": "/navigation/search.html"
       },
@@ -2018,10 +2450,6 @@
       {
         "source": "/privacy-policy",
         "destination": "/navigation/privacy-policy.html"
-      },
-      {
-        "source": "/inkers/**",
-        "destination": "/inkers/inkers.html"
       },
       {
         "source": "/published-papers/**",

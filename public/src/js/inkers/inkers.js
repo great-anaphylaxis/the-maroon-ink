@@ -2,7 +2,6 @@ import { createClient } from "https://esm.sh/@sanity/client?bundle";
 import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
-import { getImageDimensions } from "https://esm.sh/@sanity/asset-utils";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle, renderType } from "../utils/list-of-articles.js";
@@ -19,11 +18,6 @@ SanityImageInit(createImageUrlBuilder, client)
 
 const contributedArticlesTitle = document.getElementById('contributedArticlesTitle');
 
-const imgElement = document.getElementById('img');
-const nameElement = document.getElementById('name');
-const roleElement = document.getElementById('role');
-const bioElement = document.getElementById('bio');
-
 const mainElement = document.getElementById('main');
 
 function getInkerUsername() {
@@ -38,11 +32,7 @@ function getInkerAndArticles() {
     
     const inkerAndArticles = client.fetch(`{
     "inker": *[_type == "inker" && username.current == $username]{
-        name,
-        username,
-        profilePicture,
-        role,
-        bio
+
     },
     
     "articles": *[_type == "article" && inkersOnDuty[]->username.current match $username]
@@ -67,15 +57,13 @@ function getInkerAndArticles() {
     }}`, {username: username});
 
     inkerAndArticles.then(e => {
-        let inker = e.inker[0];
         let articles = e.articles;
 
         if (e.inker.length == 0) {
             window.location.replace("/404.html");
         }
 
-        renderInker(inker)
-        setProperSEO(inker)
+        renderProfilePicture();
 
         for (let i = 0; i < articles.length; i++) {
             let article = articles[i];
@@ -89,35 +77,7 @@ function getInkerAndArticles() {
     });
 }
 
-function renderProfilePicture(inker) {
-    let profilePicture = inker.profilePicture;
-    let dim;
-
-    if (profilePicture) {
-        imgElement.src = urlFor(profilePicture)
-            .fit('max')
-            .auto('format')
-            .url();
-
-        dim = getImageDimensions(imgElement.src);
-    }
-
-    else {
-        imgElement.src = "/src/images/placeholder-profile.png";
-        dim = {
-            width: 600,
-            height: 600
-        }
-    }
-    
-    imgElement.alt = inker.name;
-
-    const photoSwipeImage = document.getElementById('image-photoswipe');
-
-    photoSwipeImage.href = imgElement.src;
-    photoSwipeImage.setAttribute('data-pswp-width', "" + dim.width);
-    photoSwipeImage.setAttribute('data-pswp-height', "" + dim.height);
-
+function renderProfilePicture() {
     const lightbox = new PhotoSwipeLightbox({
         gallery: 'header a',
         pswpModule: PhotoSwipe,
@@ -125,14 +85,6 @@ function renderProfilePicture(inker) {
     });
 
     lightbox.init();
-}
-
-function renderInker(inker) {
-    renderProfilePicture(inker);
-
-    nameElement.innerText = inker.name;
-    roleElement.innerText = inker.role;
-    bioElement.innerText = inker.bio;
 }
 
 function renderArticle(article) {
@@ -197,26 +149,6 @@ function renderArticle(article) {
     mainElement.appendChild(a);
 
     return;
-}
-
-function setProperSEO(inker) {
-    const metaDescription = document.querySelector("meta[name='description']");
-    const ogUrl = document.querySelector("meta[property='og:url']");
-    const ogTitle = document.querySelector("meta[property='og:title']");
-    const ogDescription = document.querySelector("meta[property='og:description']");
-    const ogImage = document.querySelector("meta[property='og:image']");
-
-    const url = window.location.href;
-    const title = `${inker.name} | The Maroon Ink Inkers`;
-    const description = `${inker.name} - ${inker.role}. ${inker.bio}`;
-    const image = imgElement.src ?? '/src/images/placeholder-profile.png';
-
-    ogUrl.setAttribute('content', url)
-    document.title = title;
-    ogTitle.setAttribute('content', title);
-    metaDescription.setAttribute('content', description);
-    ogDescription.setAttribute('content', description);
-    ogImage.setAttribute('content', image);
 }
 
 getInkerAndArticles();

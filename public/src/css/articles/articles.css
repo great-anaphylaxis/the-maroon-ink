@@ -265,6 +265,10 @@ hr {
     animation-fill-mode: forwards;
 }
 
+.inkers:hover > div > h3 {
+    color: maroon;
+}
+
 .inkers:not(:hover) {
     animation: 0.25s ease 0s shrink;
     animation-fill-mode: forwards;
@@ -276,6 +280,7 @@ hr {
     font-size: 18px;
     font-weight: 500;
     margin: 0;
+    transition: color 0.3s ease-in;
 }
 
 .inkers > div > p {

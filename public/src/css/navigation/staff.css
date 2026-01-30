@@ -53,6 +53,11 @@
     font-size: 18px;
     font-weight: 500;
     margin: 0;
+    transition: color 0.3s ease-in;
+}
+
+.inkers:hover > div > h3 {
+    color: maroon
 }
 
 .inkers > div > p {

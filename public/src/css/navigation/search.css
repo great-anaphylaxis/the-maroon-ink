@@ -50,6 +50,12 @@ main > h2  {
     line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+
+    transition: color 0.3s ease-in;
+}
+
+.inkers:hover > div > h1 {
+    color: maroon
 }
 
 .inkers > div > h2 {

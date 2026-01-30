@@ -497,3 +497,25 @@ hr {
 }
 
 
+::-webkit-scrollbar {
+    background-color: #cecece;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgb(150, 0, 0);
+    border-radius: 1px;
+    /* 3D Border Trick: Light top/left, Dark bottom/right */
+    border-left: 4px solid rgb(240, 120, 120);
+    border-top: 4px solid rgb(240, 120, 120);
+    border-right: 4px solid rgb(99, 0, 0);
+    border-bottom: 4px solid rgb(99, 0, 0);
+    
+    /* Adds a slight shadow for extra depth */
+    box-shadow: inset 1px 1px 0px rgba(128,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(185, 0, 0);
+    cursor: pointer;
+}

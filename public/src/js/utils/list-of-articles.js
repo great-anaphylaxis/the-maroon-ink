@@ -74,11 +74,13 @@ export function renderType(article, typeElement) {
         typeElement.addEventListener("click", e => {
             showLoadingScreen();
 
-            window.location.href = "/search?q=" + type;
-    
             setTimeout(e => {
-                hideLoadingScreen();
-            }, 600);
+                window.location.href = "/search?q=" + type;
+        
+                setTimeout(e => {
+                    hideLoadingScreen();
+                }, 1400);
+            }, 900)
         })
     }
 }

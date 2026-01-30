@@ -2454,6 +2454,10 @@
       {
         "source": "/privacy-policy",
         "destination": "/navigation/privacy-policy.html"
+      },
+      {
+        "source": "/sitemap",
+        "destination": "/navigation/sitemap.html"
       }
     ]
   }

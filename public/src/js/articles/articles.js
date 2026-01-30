@@ -1,6 +1,7 @@
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import PhotoSwipeVideoPlugin from 'https://cdn.jsdelivr.net/npm/photoswipe-video-plugin@1.0.2/+esm'
+import { log } from '../utils/log-events.js';
 
 function initPhotoSwipe() {
     const lightbox = new PhotoSwipeLightbox({
@@ -37,4 +38,6 @@ function onhashchange() {
 
 window.onhashchange = onhashchange;
 
-initPhotoSwipe()
+initPhotoSwipe();
+
+log(`"${document.title}" article page loaded`)

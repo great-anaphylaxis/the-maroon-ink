@@ -3,6 +3,7 @@ import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
+import { log } from "../utils/log-events.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -72,6 +73,7 @@ function getStaff() {
             renderStaff(staff);
         });
         
+        log("Staff page loaded");
         hideLoadingScreen();
     });
 }

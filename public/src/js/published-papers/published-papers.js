@@ -52,7 +52,9 @@ function getPublishedPaper() {
             window.location.replace("/404.html");
         }
 
-        renderPublishedPaper(publishedPaper)
+        renderPublishedPaper(publishedPaper);
+
+        log(`"${document.title}" published paper page loaded`)
     });
 }
 

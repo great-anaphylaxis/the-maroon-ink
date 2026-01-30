@@ -4,6 +4,7 @@ import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle } from "../utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
+import { log } from "../utils/log-events.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -37,7 +38,7 @@ function getPublishedPapers() {
 
             renderPublishedPaper(publishedPaper);
         }
-        
+        log("Published papers page loaded");
         hideLoadingScreen();
     });
 }

@@ -4,6 +4,7 @@ import { createImageUrlBuilder } from "https://esm.sh/@sanity/image-url?bundle";
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle, renderType } from "../utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
+import { log } from "../utils/log-events.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -104,7 +105,8 @@ function getSearchResults() {
             titleElement.innerText = `Your search - ${searchQuery} - did not match any results`;
             mainElement.removeChild(mainElement.lastElementChild);
         }
-        
+
+        log("Search page loaded");
         hideLoadingScreen();
     });
 }

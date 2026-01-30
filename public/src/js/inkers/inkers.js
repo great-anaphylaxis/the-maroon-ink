@@ -74,6 +74,8 @@ function getInkerAndArticles() {
 
         contributedArticlesTitle.innerText = `Contribued Articles (${articles.length})`;
 
+        log(`"${document.title}" inker page loaded`)
+
         hideLoadingScreen();
     });
 }

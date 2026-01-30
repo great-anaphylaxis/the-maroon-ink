@@ -286,7 +286,6 @@ function controlsHandler(pageFlip) {
     backBtn.onclick = () => {
         showLoadingScreen();
         
-
         setTimeout(e => {
             window.location.href = "/published-papers";
 

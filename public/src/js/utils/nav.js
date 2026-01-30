@@ -280,6 +280,10 @@ document.addEventListener(`click`, e => {
         e.preventDefault();
         return;
     }
+
+    if (clicked?.dataset?.isEmail == "true") {
+        return;
+    }
     
     if (origin) {
         const hashCheck = origin.getAttribute('href') ?? "";

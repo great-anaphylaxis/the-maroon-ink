@@ -58,7 +58,7 @@ jobs:
       - name: Generate Build Stuff
         # Runs from root to generate sitemaps into the /public folder
         run: |
-          call ./build/build.cmd
+          call ${{ github.workspace }}/build/build.cmd
         shell: cmd
 
       - name: Commit Persistence and Cleanup

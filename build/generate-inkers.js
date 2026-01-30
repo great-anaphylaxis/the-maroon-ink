@@ -133,7 +133,7 @@ function editHeader(template, inker) {
     let image = treatHTMLStrings(inker.profilePicture ? urlFor(inker.profilePicture)
                 .fit('max')
                 .auto('format')
-                .url() : '/src/images/placeholder-profile.png');
+                .url() : randomProfilePicture(inker.name));
 
     const profilePicture = `src="${image}" alt="${inker.name}"`;
     const photoSwipe = dim ? `title="${inker.name}. Click to expand profile picture" data-pswp-src="${image}" data-pswp-width="${dim.width}" data-pswp-height="${dim.height}"` : `title="${inker.name}"`;
@@ -148,6 +148,11 @@ function editHeader(template, inker) {
     .replace(/{{HeaderBio}}/g, bio);
     
     return template;
+}
+
+
+function randomProfilePicture(name) {
+    return `https://api.dicebear.com/9.x/initials/svg?seed=${name}`;
 }
 
 buildInkers().then(() => {

@@ -302,7 +302,7 @@ function editFooter(template, article) {
         }
 
         else {
-            profilePicture = "/src/images/placeholder-profile.png";
+            profilePicture = randomProfilePicture(inkers.name);
         } 
 
         const inker = `
@@ -392,6 +392,10 @@ function getPublishedDate(article) {
     } else {
         return `${monthDay}, ${yearPart}`;
     }
+}
+
+function randomProfilePicture(name) {
+    return `https://api.dicebear.com/9.x/initials/svg?seed=${name}`;
 }
 
 buildArticles().then(() => {

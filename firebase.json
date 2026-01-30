@@ -28,8 +28,20 @@
     ],
     "rewrites": [
       {
-        "source": "/published-papers/2nd-sem-release-2026",
-        "destination": "/published-papers/2nd-sem-release-2026.html"
+        "source": "/published-papers/the-maroon-ink-or-umihs-school-paper-or-volume-13-issue-1",
+        "destination": "/published-papers/the-maroon-ink-or-umihs-school-paper-or-volume-13-issue-1.html"
+      },
+      {
+        "source": "/published-papers/maroon-ink-s-y-2023-or-issue-1-volume-12",
+        "destination": "/published-papers/maroon-ink-s-y-2023-or-issue-1-volume-12.html"
+      },
+      {
+        "source": "/published-papers/volume-14-issue-2-or-january-2025-march-2025",
+        "destination": "/published-papers/volume-14-issue-2-or-january-2025-march-2025.html"
+      },
+      {
+        "source": "/published-papers/the-maroon-ink-or-volume-13-issue-2",
+        "destination": "/published-papers/the-maroon-ink-or-volume-13-issue-2.html"
       },
       {
         "source": "/inkers/gwynyth-kylhyn-malcampo",
@@ -798,6 +810,10 @@
       {
         "source": "/articles/di-sya-birthday-kundi-happpyyyy-birthdayyy",
         "destination": "/articles/di-sya-birthday-kundi-happpyyyy-birthdayyy.html"
+      },
+      {
+        "source": "/articles/dinosaur-or-dinosour",
+        "destination": "/articles/dinosaur-or-dinosour.html"
       },
       {
         "source": "/articles/diving-into-the-world-of-magic-a-girl-full-of-curiosity-entered-a-realm",

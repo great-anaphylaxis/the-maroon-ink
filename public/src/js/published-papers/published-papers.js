@@ -285,10 +285,10 @@ function controlsHandler(pageFlip) {
 
     backBtn.onclick = () => {
         showLoadingScreen();
+        
+        window.location.href = "/published-papers";
 
         setTimeout(e => {
-            window.location.href = "/published-papers";
-
             hideLoadingScreen();
         }, 600);
         

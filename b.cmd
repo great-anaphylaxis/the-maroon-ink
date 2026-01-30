@@ -1,5 +1,5 @@
 
-call build/build.cmd
+call ./build/build.cmd
 
 git add .
 git commit -m %1

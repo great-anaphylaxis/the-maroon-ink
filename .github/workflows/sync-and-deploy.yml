@@ -57,11 +57,7 @@ jobs:
 
       - name: Generate Build Stuff
         # Runs from root to generate sitemaps into the /public folder
-        run: |
-          node build/generate-articles.js
-          node build/generate-inkers.js
-          node build/generate-published-papers.js
-          node build/generate-sitemap.js
+        run: call build/build.cmd
 
       - name: Commit Persistence and Cleanup
         run: |

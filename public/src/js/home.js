@@ -19,6 +19,7 @@ const featuredArticlesElement = document.getElementById('featuredArticles');
 const featuredArticlesTitle = document.getElementById('featuredArticlesTitle');
 const articleListElement = document.getElementById('articleList');
 const articleListTitle = document.getElementById('articleListTitle');
+const headerDescription = document.getElementById('header-description');
 
 let savedQueryData;
 let hasFeaturedArticles = true;
@@ -278,7 +279,22 @@ function changeArticleFeed(name) {
         featuredArticlesTitle.style.display = 'none';
     }
 
+    changeHeaderDescription();
     getArticle(name);
 }
 
+function changeHeaderDescription() {
+    if (window.innerWidth <= 400) {
+        headerDescription.innerHTML = `The official student publication of the University of Mindanao Ilang High School`;
+    }
+
+    else {
+        headerDescription.innerHTML = `Welcome to <span class="title">The Maroon Ink</span>, the official student-led news organization of the University of Mindanao (UM) Ilang High School`
+    }
+}
+
 initializeSubnav(changeArticleFeed);
+
+window.addEventListener('resize', e => {
+    changeHeaderDescription();
+})

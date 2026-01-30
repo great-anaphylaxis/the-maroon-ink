@@ -73,9 +73,10 @@ export function renderType(article, typeElement) {
 
         typeElement.addEventListener("click", e => {
             showLoadingScreen();
+
+            window.location.href = "/search?q=" + type;
     
             setTimeout(e => {
-                window.location.href = "/search?q=" + type;
                 hideLoadingScreen();
             }, 600);
         })

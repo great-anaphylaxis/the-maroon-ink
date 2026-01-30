@@ -286,11 +286,14 @@ function controlsHandler(pageFlip) {
     backBtn.onclick = () => {
         showLoadingScreen();
         
-        window.location.href = "/published-papers";
 
         setTimeout(e => {
-            hideLoadingScreen();
-        }, 600);
+            window.location.href = "/published-papers";
+
+            setTimeout(e => {
+                hideLoadingScreen();
+            }, 1400);
+        }, 900);
         
     };
 

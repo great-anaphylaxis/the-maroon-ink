@@ -24,13 +24,38 @@
 
     <script type="application/ld+json">
         {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "The Maroon Ink",
-          "alternateName": ["Maroon Ink", "TheMaroonInk"],
-          "url": "https://themaroon.ink/"
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "The Maroon Ink",
+            "alternateName": ["Maroon Ink", "TheMaroonInk"],
+            "logo": "https://themaroon.ink/src/icons/logo.png",
+            "url": "https://themaroon.ink/",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://themaroon.ink/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            },
+            "hasPart": [
+                {
+                    "@type": "WebPage",
+                    "name": "About Us",
+                    "url": "https://themaroon.ink/about"
+                },
+                {
+                    "@type": "WebPage",
+                    "name": "Staff",
+                    "url": "https://themaroon.ink/staff"
+                },
+                {
+                    "@type": "WebPage",
+                    "name": "Archives",
+                    "url": "https://themaroon.ink/archives"
+                }
+            ]
         }
     </script>
+
+    
 
     <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
 

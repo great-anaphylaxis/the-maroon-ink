@@ -163,9 +163,10 @@ function onSearchboxEnter(e) {
 
     if (value.length > 0 && (e.key === "Enter" || e.keyCode === 13)) {
         showLoadingScreen();
+        
+        window.location.href = "/search?q=" + value;
 
         setTimeout(e => {
-            window.location.href = "/search?q=" + value;
             hideLoadingScreen();
         }, 600);
         
@@ -271,6 +272,7 @@ showLoadingScreen(true);
 
 document.addEventListener(`click`, e => {
     const origin = e.target.closest(`a`);
+    const target = origin?.target;
     
     const clicked = e.target;
     
@@ -292,8 +294,15 @@ document.addEventListener(`click`, e => {
             return;
         }
 
-        showLoadingScreen(false, true);
         e.preventDefault();
+
+        if (target == "_blank") {
+            window.open(origin.href, '_blank').focus();
+            return;
+        }
+
+        
+        showLoadingScreen(false, true);
 
         setTimeout(e => {
             window.location.href = origin.href;

@@ -6,6 +6,7 @@ import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.j
 import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle, renderType } from "../utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
+import { log } from "../utils/log-events.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',

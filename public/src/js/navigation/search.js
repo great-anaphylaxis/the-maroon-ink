@@ -28,7 +28,7 @@ function getSearchQuery() {
 }
 
 function setTitle() {
-    titleElement.innerText = "Results for " + searchQuery;
+    titleElement.innerText = `Results for "${searchQuery}"`;
 }
 
 function getSearchResults() {

@@ -5,6 +5,7 @@ import { hideLoadingScreen, showLoadingScreen } from "../utils/nav.js";
 import { renderPreview, renderPublishedDate, renderTitle, renderType } from "../utils/list-of-articles.js";
 import { SanityImageInit, urlFor } from "../utils/image-url-builder.js";
 import { log } from "../utils/log-events.js";
+import { randomProfilePicture } from "../utils/random-profile-picture.js";
 
 const client = createClient({
     projectId: 'w7ogeebt',
@@ -217,7 +218,7 @@ function renderInker(inker) {
     }
 
     else {
-        img.src = "/src/images/placeholder-profile.png";
+        img.src = randomProfilePicture(name);
     } 
 
     let divParent = document.createElement('div');

@@ -105,6 +105,7 @@ header h1 {
 header .title {
     font-family: 'Title', sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     transition: color 0.3s ease-in;
+    color: #616161;
 }
 
 header .title:hover {

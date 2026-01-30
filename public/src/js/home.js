@@ -289,7 +289,7 @@ function changeHeaderDescription() {
     }
 
     else {
-        headerDescription.innerHTML = `Welcome to <span class="title">The Maroon Ink</span>, the official student-led news organization of the University of Mindanao (UM) Ilang High School`
+        headerDescription.innerHTML = `Welcome to <a class="title" href="/about">The Maroon Ink</a>, the official student-led news organization of the University of Mindanao (UM) Ilang High School`
     }
 }
 

@@ -31,26 +31,12 @@
             "url": "https://themaroon.ink/",
             "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://themaroon.ink/search?q={search_term_string}",
+                "target": {
+                "@type": "EntryPoint",
+                    "urlTemplate": "https://themaroon.ink/?q={search_term_string}"
+                },
                 "query-input": "required name=search_term_string"
-            },
-            "hasPart": [
-                {
-                    "@type": "WebPage",
-                    "name": "About Us",
-                    "url": "https://themaroon.ink/about"
-                },
-                {
-                    "@type": "WebPage",
-                    "name": "Staff",
-                    "url": "https://themaroon.ink/staff"
-                },
-                {
-                    "@type": "WebPage",
-                    "name": "Archives",
-                    "url": "https://themaroon.ink/archives"
-                }
-            ]
+            }
         }
     </script>
 

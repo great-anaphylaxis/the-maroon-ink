@@ -15,11 +15,11 @@ const PUBLIC_DIR = './public';
 
 const STATIC_PAGES = [
     { url: '/', changefreq: 'daily', priority: 1.0, title: 'Home' },
-    { url: '/about', changefreq: 'monthly', priority: 0.8, title: 'About Us' },
-    { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3, title: 'Privacy Policy' },
-    { url: '/staff', changefreq: 'monthly', priority: 0.3, title: 'Staff' },
     { url: '/articles', changefreq: 'monthly', priority: 0.8, title: 'Articles' },
     { url: '/published-papers', changefreq: 'monthly', priority: 0.8, title: 'Published Papers' },
+    { url: '/staff', changefreq: 'monthly', priority: 0.3, title: 'Staff' },
+    { url: '/about', changefreq: 'monthly', priority: 0.8, title: 'About Us' },
+    { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3, title: 'Privacy Policy' },
     { url: '/sitemap', changefreq: 'daily', priority: 0.8, title: 'Sitemap' },
 ];
 
@@ -184,9 +184,9 @@ async function generateSitemaps() {
                 <img src="/src/icons/home.png" alt="Home">
                 <div>Home</div>
             </a>
-            <a href="/about">
-                <img src="/src/icons/about.png" alt="About">
-                <div>About</div>
+            <a href="/articles">
+                <img src="/src/icons/articles.jpg" alt="Articles">
+                <div>Articles</div>
             </a>
             <a href="/published-papers">
                 <img src="/src/icons/published-papers.png" alt="Published Papers">
@@ -196,9 +196,9 @@ async function generateSitemaps() {
                 <img src="/src/icons/staff.png" alt="Staff">
                 <div>Staff</div>
             </a>
-            <a href="/articles">
-                <img src="/src/icons/articles.jpg" alt="Articles">
-                <div>Articles</div>
+            <a href="/about">
+                <img src="/src/icons/about.png" alt="About">
+                <div>About</div>
             </a>
             <a href="/privacy-policy">
                 <img src="/src/icons/privacy-policy.png" alt="Privacy Policy">

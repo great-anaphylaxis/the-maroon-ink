@@ -292,7 +292,7 @@ function controlsHandler(pageFlip) {
             setTimeout(e => {
                 hideLoadingScreen();
             }, 1400);
-        }, 900);
+        }, 400);
         
     };
 

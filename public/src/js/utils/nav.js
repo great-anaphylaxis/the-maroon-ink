@@ -168,7 +168,7 @@ function onSearchboxEnter(e) {
 
         setTimeout(e => {
             hideLoadingScreen();
-        }, 600);
+        }, 400);
         
     }
 }
@@ -227,7 +227,7 @@ export function showLoadingScreen(instant = false, fadeout = false) {
     }
 
     else {
-        loadingscreen.style.animation = '0.6s ease 0s 1 normal forwards running show-loading-screen';
+        loadingscreen.style.animation = '0.3s ease 0s 1 normal forwards running show-loading-screen';
         
         if (!fadeout) {
             return;
@@ -235,11 +235,11 @@ export function showLoadingScreen(instant = false, fadeout = false) {
     }
 
     if (!fadeout) {
-        setTextAnimation(0.05, 1.6, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true);
+        setTextAnimation(0.04166, 1.3333, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', true);
     }
 
     else if (fadeout) {
-        reverseTextAnimation(0.02, 0.9, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false)
+        reverseTextAnimation(0.02, 0.4, 2, 'cubic-bezier( 0.50, 0.01, 0.00, 1.04 )', '#800000', false)
     }
     
     let t;
@@ -258,7 +258,7 @@ export function showLoadingScreen(instant = false, fadeout = false) {
 
             clearInterval(t);
         }
-    }, 1600);
+    }, 1350);
 }
 
 window.onscroll = onscroll;
@@ -314,6 +314,6 @@ document.addEventListener(`click`, e => {
             setTimeout(e => {
                 hideLoadingScreen();
             }, 1400);
-        }, 900);
+        }, 400);
     }
 });

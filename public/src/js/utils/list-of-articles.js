@@ -80,7 +80,7 @@ export function renderType(article, typeElement) {
                 setTimeout(e => {
                     hideLoadingScreen();
                 }, 1400);
-            }, 900)
+            }, 400)
         })
     }
 }

@@ -1172,6 +1172,10 @@
         "destination": "/articles/happy-birthday-jm.html"
       },
       {
+        "source": "/articles/happy-birthday-lexie",
+        "destination": "/articles/happy-birthday-lexie.html"
+      },
+      {
         "source": "/articles/happy-birthday-liana",
         "destination": "/articles/happy-birthday-liana.html"
       },
@@ -1644,6 +1648,10 @@
         "destination": "/articles/mark-your-calendar.html"
       },
       {
+        "source": "/articles/maroon-memoir-hope",
+        "destination": "/articles/maroon-memoir-hope.html"
+      },
+      {
         "source": "/articles/maroon-memoir-in-the-middle-of-late-night-review-sessions-students-of",
         "destination": "/articles/maroon-memoir-in-the-middle-of-late-night-review-sessions-students-of.html"
       },
@@ -1706,6 +1714,10 @@
       {
         "source": "/articles/mindanao-week-of-peace-2023-on-november-30-2023-the-archdiocese-of-d",
         "destination": "/articles/mindanao-week-of-peace-2023-on-november-30-2023-the-archdiocese-of-d.html"
+      },
+      {
+        "source": "/articles/month-of-love",
+        "destination": "/articles/month-of-love.html"
       },
       {
         "source": "/articles/muling-pakikidigma",
@@ -2452,8 +2464,8 @@
         "destination": "/navigation/staff.html"
       },
       {
-        "source": "/archives",
-        "destination": "/navigation/archives.html"
+        "source": "/articles",
+        "destination": "/navigation/articles.html"
       },
       {
         "source": "/privacy-policy",

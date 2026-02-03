@@ -91,7 +91,7 @@ function getArticles() {
 
         initializeSubnav(changeArticleFeed);
         
-        log("Archives page loaded");
+        log("Articles page loaded");
         hideLoadingScreen();
     });
 }

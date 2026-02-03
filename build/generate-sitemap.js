@@ -18,7 +18,7 @@ const STATIC_PAGES = [
     { url: '/about', changefreq: 'monthly', priority: 0.8, title: 'About Us' },
     { url: '/privacy-policy', changefreq: 'monthly', priority: 0.3, title: 'Privacy Policy' },
     { url: '/staff', changefreq: 'monthly', priority: 0.3, title: 'Staff' },
-    { url: '/archives', changefreq: 'monthly', priority: 0.8, title: 'Archives' },
+    { url: '/articles', changefreq: 'monthly', priority: 0.8, title: 'Articles' },
     { url: '/published-papers', changefreq: 'monthly', priority: 0.8, title: 'Published Papers' },
     { url: '/sitemap', changefreq: 'daily', priority: 0.8, title: 'Sitemap' },
 ];
@@ -196,9 +196,9 @@ async function generateSitemaps() {
                 <img src="/src/icons/staff.png" alt="Staff">
                 <div>Staff</div>
             </a>
-            <a href="/archives">
-                <img src="/src/icons/archives.jpg" alt="Archives">
-                <div>Archives</div>
+            <a href="/articles">
+                <img src="/src/icons/articles.jpg" alt="Articles">
+                <div>Articles</div>
             </a>
             <a href="/privacy-policy">
                 <img src="/src/icons/privacy-policy.png" alt="Privacy Policy">

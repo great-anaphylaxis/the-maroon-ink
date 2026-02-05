@@ -2,6 +2,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswi
 import PhotoSwipe from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js';
 import PhotoSwipeVideoPlugin from 'https://cdn.jsdelivr.net/npm/photoswipe-video-plugin@1.0.2/+esm'
 import { log } from '../utils/log-events.js';
+import { renderPublishedDate } from '../utils/list-of-articles.js';
 
 function initPhotoSwipe() {
     const lightbox = new PhotoSwipeLightbox({
@@ -40,4 +41,9 @@ window.onhashchange = onhashchange;
 
 initPhotoSwipe();
 
-log(`"${document.title}" article page loaded`)
+log(`"${document.title}" article page loaded`);
+
+const dateElement = document.getElementById('date');
+const date = dateElement.innerText;
+
+renderPublishedDate({ publishedAt: date }, dateElement)

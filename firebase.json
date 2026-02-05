@@ -1892,6 +1892,10 @@
         "destination": "/articles/news-the-university-of-mindanao-ilang-high-school-will-resume-regular.html"
       },
       {
+        "source": "/articles/news-tropical-depression-basyang-is-now-affecting-areas-near-davao-br",
+        "destination": "/articles/news-tropical-depression-basyang-is-now-affecting-areas-near-davao-br.html"
+      },
+      {
         "source": "/articles/news-um-ilang-high-school-celebrates-umyong-student-fest-on-march-21",
         "destination": "/articles/news-um-ilang-high-school-celebrates-umyong-student-fest-on-march-21.html"
       },
@@ -1954,6 +1958,10 @@
       {
         "source": "/articles/news-university-of-mindanao-conducts-its-first-ever-2024-interbranch-l",
         "destination": "/articles/news-university-of-mindanao-conducts-its-first-ever-2024-interbranch-l.html"
+      },
+      {
+        "source": "/articles/news-weather-advisory",
+        "destination": "/articles/news-weather-advisory.html"
       },
       {
         "source": "/articles/ngayong-araw-na-ito-ginugunita-natin-ang-ika-53-anibersaryo-ng-pagdedek",
@@ -2052,6 +2060,10 @@
         "destination": "/articles/opinion-we-are-journalists-but-we-are-human-too.html"
       },
       {
+        "source": "/articles/opssss-may-pahabol-pa",
+        "destination": "/articles/opssss-may-pahabol-pa.html"
+      },
+      {
         "source": "/articles/outside-news-safety-advisory-after-nearby-shooting",
         "destination": "/articles/outside-news-safety-advisory-after-nearby-shooting.html"
       },
@@ -2148,6 +2160,10 @@
         "destination": "/articles/schedule-greetings-umians.html"
       },
       {
+        "source": "/articles/school-activity-mini-museum",
+        "destination": "/articles/school-activity-mini-museum.html"
+      },
+      {
         "source": "/articles/season-of-spark-stories-and-surprises",
         "destination": "/articles/season-of-spark-stories-and-surprises.html"
       },
@@ -2186,6 +2202,10 @@
       {
         "source": "/articles/short-film-festival-unravelling-the-legend-of-mt",
         "destination": "/articles/short-film-festival-unravelling-the-legend-of-mt.html"
+      },
+      {
+        "source": "/articles/so-many-birthdays-naman",
+        "destination": "/articles/so-many-birthdays-naman.html"
       },
       {
         "source": "/articles/sorry-our-layout-artists-are-fully-booked",

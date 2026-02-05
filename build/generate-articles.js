@@ -357,41 +357,9 @@ function getArticlePreview(article) {
 
 function getPublishedDate(article) {
     const date = new Date(article.publishedAt);
-    const now = new Date();
-    
-    const diffInMs = now - date;
-    const diffInMins = Math.floor(diffInMs / (1000 * 60));
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const publishedDate = date.toString('en-US');
 
-    const isSameDay = date.toDateString() === now.toDateString();
-    
-    if (isSameDay) {
-        if (diffInMins < 1) {
-            return "Just now";
-        }
-        if (diffInHours < 1) {
-            return `${diffInMins} minute${diffInMins === 1 ? '' : 's'} ago`;
-        }
-
-        return `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
-    }
-
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-    const isSameYear = date.getFullYear() === now.getFullYear();
-
-    const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const yearPart = date.toLocaleDateString('en-US', { year: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '');
-
-    if (isYesterday) {
-        return `Yesterday`;
-    } else if (isSameYear) {
-        return `${monthDay}`;
-    } else {
-        return `${monthDay}, ${yearPart}`;
-    }
+    return publishedDate;
 }
 
 function randomProfilePicture(name) {

@@ -2494,6 +2494,10 @@
       {
         "source": "/sitemap",
         "destination": "/navigation/sitemap.html"
+      },
+      {
+        "source": "/searchnames",
+        "destination": "/hidden/search-names.html"
       }
     ]
   }

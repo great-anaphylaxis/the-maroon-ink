@@ -1,0 +1,91 @@
+main {
+    width: 680px;
+    margin-bottom: 4em;
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        padding: 0.5em;
+    }
+}
+
+header > h1  {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: maroon;
+    font-size: 32px;
+    margin-bottom: 0.5em;
+    user-select: none;
+}
+
+hr {
+    border-color: maroon;
+    width: 100%;
+}
+
+#articleList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    place-items: baseline;
+    margin-bottom: 2em;
+}
+
+.names {
+    display: block;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: maroon;
+    font-size: 18px;
+    margin: 0.15em 0;
+    text-decoration: none;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.names:hover {
+    animation: 0.25s ease 0s grow;
+    animation-fill-mode: forwards;
+    text-decoration: underline !important;
+}
+
+.names:not(:hover) {
+    animation: 0.25s ease 0s shrink;
+    animation-fill-mode: forwards;
+}
+
+.no-results {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1d1d1d;
+    font-size: 18px;
+    margin-top: 1em;
+    user-select: none;
+}
+
+#searchnames {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5em;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1em;
+}

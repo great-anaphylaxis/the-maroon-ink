@@ -3,6 +3,5 @@ __pycache__/
 *.ndjson
 /images
 /media
-*.txt
-!last_scrape.txt
 fb_posts.json
+extraction_debug.txt

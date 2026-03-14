@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="view-transition" content="same-origin">
-    <meta name="description" content="Johnlie Adj Daruca - Contributor. ">
+    <meta name="description" content="The Official Student Publication of UM Ilang High School">
 
-    <meta property="og:url" content="https://themaroon.ink/inkers/johnlie-adj-daruca" />
-    <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Johnlie Adj Daruca" />
-    <meta property="og:description" content="Johnlie Adj Daruca - Contributor. " />
-    <meta property="og:image" content="/src/images/placeholder-profile.png" />
+    <meta property="og:url" content="https://themaroon.ink/published-papers/the-maroon-ink-or-volume-15-issue-1" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Maroon Ink | Volume 15, Issue 1" />
+    <meta property="og:description" content="The Official Student Publication of UM Ilang High School" />
+    <meta property="og:image" content="https://cdn.sanity.io/images/w7ogeebt/production/613900cf0f2b7515851006f75bb4e039a879f7c8-1241x1755.jpg" />
     <meta property="og:site_name" content="The Maroon Ink" />
 
     <link rel="preconnect" href="https://w7ogeebt.apicdn.sanity.io" crossorigin/>
@@ -18,15 +18,15 @@
     <link rel="modulepreload" href="https://esm.sh/@sanity/client?bundle">
     <link rel="modulepreload" href="https://esm.sh/@sanity/image-url?bundle">
 
-    <title>Johnlie Adj Daruca</title>
+    <title>The Maroon Ink | Volume 15, Issue 1</title>
 
-    <link rel="canonical" href="https://themaroon.ink/inkers/johnlie-adj-daruca" />
-
-    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+    <link rel="canonical" href="https://themaroon.ink/published-papers/the-maroon-ink-or-volume-15-issue-1" />
 
     <link rel="stylesheet" href="/src/css/utils/nav.css">
-    <link rel="stylesheet" href="/src/css/inkers/inkers.css">
-    <link rel="stylesheet" href="/src/css/utils/list-of-articles.css">
+    <link rel="stylesheet" href="/src/css/published-papers/published-papers.css">
+
+
+    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
 </head>
 <body>
     <nav id="navtop">
@@ -58,8 +58,8 @@
                     <path d="M 334.4 35.05 L 322.45 35.05 L 322.45 34.55 L 323.2 34.3 A 2.67 2.67 0 0 0 324.096 33.824 Q 324.683 33.336 324.842 32.508 A 3.508 3.508 0 0 0 324.9 31.85 L 324.9 5.1 A 3.991 3.991 0 0 0 324.865 4.55 Q 324.826 4.272 324.744 4.047 A 1.56 1.56 0 0 0 324.5 3.6 Q 324.1 3.1 323.1 2.8 L 322.45 2.65 L 322.45 2.15 L 331.6 0 L 332.2 0.45 L 332.05 7.45 L 332.05 31.85 Q 332.05 33.722 333.496 34.28 A 2.919 2.919 0 0 0 333.7 34.35 L 334.4 34.55 L 334.4 35.05 Z M 349.8 35.05 L 341 35.05 L 332.1 22.55 L 341.35 14 Q 341.904 13.489 342.076 12.924 A 1.802 1.802 0 0 0 342.125 12.725 Q 342.25 12.05 341.25 11.75 L 340.4 11.5 L 340.4 11 L 347.85 11 L 347.85 11.5 L 346.35 11.9 A 8.958 8.958 0 0 0 345.585 12.18 Q 344.997 12.428 344.575 12.725 Q 343.9 13.2 342.95 14.05 L 337.35 19.3 L 346.3 31.75 A 14.367 14.367 0 0 0 346.862 32.476 Q 347.137 32.808 347.4 33.074 A 6.472 6.472 0 0 0 347.8 33.45 Q 348.456 34.013 349.464 34.399 A 8.235 8.235 0 0 0 349.6 34.45 L 349.8 34.55 L 349.8 35.05 Z" id="13" vector-effect="non-scaling-stroke"/>
                 </g>
             </svg>
-        </div>        
-        
+        </div>
+
         <nav id="navside" draggable="false">
             <a href="/">
                 <img src="/src/icons/home.png" alt="Home">
@@ -92,28 +92,25 @@
             </footer>
         </nav>
 
-       <main>
-            <header>
-                <a id="image-photoswipe" title="Johnlie Adj Daruca"><img id="img" src="https://api.dicebear.com/9.x/initials/svg?seed=Johnlie Adj Daruca" alt="Johnlie Adj Daruca"></a>
-                <h1 id="name">Johnlie Adj Daruca</h1>
-                <h2 id="role"></h2>
-                <p id="bio"></p>
-            </header>
+        <img id="backBtn" src="/src/icons/back.png">
 
-            <hr>
+        <article>
+            <div id="flipbook-wrapper" draggable="false">
+                <div id="flipbook-container"></div>
+            </div>
 
-            <section>
-                <h2 id="contributedArticlesTitle">Contributed Articles</h2>
-                <div id="main">
-                </div>
-            </section>
-        </main>
+            <div class="controls">
+                <img id="prevBtn" src="/src/icons/previous.png">
+                <img id="nextBtn" src="/src/icons/next.png">
+            </div>
+        </article>
     </section>
 
     <link rel="stylesheet" href="https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.css">
-    
+
     <script type="module" src="/src/js/utils/error-handler.js"></script>
     <script type="module" src="/src/js/utils/nav.js"></script>
-    <script type="module" src="/src/js/inkers/inkers.js"></script>
+    <script type="module" src="/src/js/lib/page-flip.js"></script>
+    <script type="module" src="/src/js/published-papers/published-papers.js"></script>
 </body>
 </html>

@@ -36,6 +36,10 @@
         "destination": "/published-papers/maroon-ink-s-y-2023-or-issue-1-volume-12.html"
       },
       {
+        "source": "/published-papers/the-maroon-ink-or-volume-15-issue-1",
+        "destination": "/published-papers/the-maroon-ink-or-volume-15-issue-1.html"
+      },
+      {
         "source": "/published-papers/volume-14-issue-2-or-january-2025-march-2025",
         "destination": "/published-papers/volume-14-issue-2-or-january-2025-march-2025.html"
       },
@@ -156,6 +160,10 @@
         "destination": "/inkers/ashley-ereno.html"
       },
       {
+        "source": "/inkers/chamee-de-guia",
+        "destination": "/inkers/chamee-de-guia.html"
+      },
+      {
         "source": "/inkers/charmie-lane-candare",
         "destination": "/inkers/charmie-lane-candare.html"
       },
@@ -250,6 +258,10 @@
       {
         "source": "/inkers/isabelle-mondonedo",
         "destination": "/inkers/isabelle-mondonedo.html"
+      },
+      {
+        "source": "/inkers/isaiah-erabon",
+        "destination": "/inkers/isaiah-erabon.html"
       },
       {
         "source": "/inkers/isaiah-joshua-erabon",

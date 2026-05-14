@@ -32,6 +32,10 @@
         "destination": "/published-papers/the-maroon-ink-or-umihs-school-paper-or-volume-13-issue-1.html"
       },
       {
+        "source": "/published-papers/the-maroon-ink-or-volume-15-issue-2",
+        "destination": "/published-papers/the-maroon-ink-or-volume-15-issue-2.html"
+      },
+      {
         "source": "/published-papers/maroon-ink-s-y-2023-or-issue-1-volume-12",
         "destination": "/published-papers/maroon-ink-s-y-2023-or-issue-1-volume-12.html"
       },
@@ -344,6 +348,10 @@
         "destination": "/inkers/khezhea-gumubao.html"
       },
       {
+        "source": "/inkers/khezhea-shaira-gumubao",
+        "destination": "/inkers/khezhea-shaira-gumubao.html"
+      },
+      {
         "source": "/inkers/kimverly-agustin",
         "destination": "/inkers/kimverly-agustin.html"
       },
@@ -362,6 +370,10 @@
       {
         "source": "/inkers/lexie-faith-orig",
         "destination": "/inkers/lexie-faith-orig.html"
+      },
+      {
+        "source": "/inkers/lexie-orig",
+        "destination": "/inkers/lexie-orig.html"
       },
       {
         "source": "/inkers/lyka-agurada",
@@ -446,6 +458,10 @@
       {
         "source": "/inkers/selwyn-cabrera",
         "destination": "/inkers/selwyn-cabrera.html"
+      },
+      {
+        "source": "/inkers/shaun-matthew-tequin",
+        "destination": "/inkers/shaun-matthew-tequin.html"
       },
       {
         "source": "/inkers/tiara-angel-lagrada",
@@ -560,6 +576,10 @@
         "destination": "/articles/a-voyage-into-a-world-of-discovery-umihs-partakes-in-the-math-and-scie.html"
       },
       {
+        "source": "/articles/accio-umians",
+        "destination": "/articles/accio-umians.html"
+      },
+      {
         "source": "/articles/acquaintance-party-during-the-afternoon-of-august-1-2025-the-clubs-a",
         "destination": "/articles/acquaintance-party-during-the-afternoon-of-august-1-2025-the-clubs-a.html"
       },
@@ -628,6 +648,10 @@
         "destination": "/articles/applications-final-call.html"
       },
       {
+        "source": "/articles/april-is-sexual-assault-awareness-month-saam-a-time-to-voice-out-sup",
+        "destination": "/articles/april-is-sexual-assault-awareness-month-saam-a-time-to-voice-out-sup.html"
+      },
+      {
         "source": "/articles/araw-ng-kagitingan-tuwing-ika-9-ng-abril-ipinagdiriwang-natin-ang-ara",
         "destination": "/articles/araw-ng-kagitingan-tuwing-ika-9-ng-abril-ipinagdiriwang-natin-ang-ara.html"
       },
@@ -642,6 +666,10 @@
       {
         "source": "/articles/as-ramadan-begins-we-extend-our-warmest-greetings-to-our-muslim-brother",
         "destination": "/articles/as-ramadan-begins-we-extend-our-warmest-greetings-to-our-muslim-brother.html"
+      },
+      {
+        "source": "/articles/as-the-holy-month-of-ramadan-comes-to-an-end-may-this-celebration-bring",
+        "destination": "/articles/as-the-holy-month-of-ramadan-comes-to-an-end-may-this-celebration-bring.html"
       },
       {
         "source": "/articles/asshente-umians",
@@ -678,6 +706,14 @@
       {
         "source": "/articles/behold-dressed-in-stunning-attire-fit-for-gods-and-goddesses-meet-the",
         "destination": "/articles/behold-dressed-in-stunning-attire-fit-for-gods-and-goddesses-meet-the.html"
+      },
+      {
+        "source": "/articles/better-late-than-never",
+        "destination": "/articles/better-late-than-never.html"
+      },
+      {
+        "source": "/articles/beyond-the-roles-written-for-them",
+        "destination": "/articles/beyond-the-roles-written-for-them.html"
       },
       {
         "source": "/articles/birthday-birthday-nasad",
@@ -940,6 +976,14 @@
         "destination": "/articles/events-fun-run-for-a-cause.html"
       },
       {
+        "source": "/articles/events-fun-run-for-a-cause-1",
+        "destination": "/articles/events-fun-run-for-a-cause-1.html"
+      },
+      {
+        "source": "/articles/events-throughout-april",
+        "destination": "/articles/events-throughout-april.html"
+      },
+      {
         "source": "/articles/events-united-nations-celebration-2025",
         "destination": "/articles/events-united-nations-celebration-2025.html"
       },
@@ -1028,6 +1072,10 @@
         "destination": "/articles/forged-in-triumph-um-ilang-high-school-blazes-the-trail-as-back-to-bac.html"
       },
       {
+        "source": "/articles/from-your-hearts-to-those-in-need",
+        "destination": "/articles/from-your-hearts-to-those-in-need.html"
+      },
+      {
         "source": "/articles/ga-update-the-first-long-test-is-scheduled-on-the-28th-and-29th-of-jul",
         "destination": "/articles/ga-update-the-first-long-test-is-scheduled-on-the-28th-and-29th-of-jul.html"
       },
@@ -1086,6 +1134,10 @@
       {
         "source": "/articles/graduation-a-new-beginning-ahead",
         "destination": "/articles/graduation-a-new-beginning-ahead.html"
+      },
+      {
+        "source": "/articles/graduation-brighter-beginnings-ahead",
+        "destination": "/articles/graduation-brighter-beginnings-ahead.html"
       },
       {
         "source": "/articles/greetings-mga-ga",
@@ -1154,6 +1206,10 @@
       {
         "source": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025",
         "destination": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025.html"
+      },
+      {
+        "source": "/articles/happening-now-pride-and-excitement-fill-the-air-as-university-of-mindan",
+        "destination": "/articles/happening-now-pride-and-excitement-fill-the-air-as-university-of-mindan.html"
       },
       {
         "source": "/articles/happening-now-the-daprisa-games-2025-has-commenced-their-opening-cerem",
@@ -1292,6 +1348,14 @@
         "destination": "/articles/happy-lazy-day.html"
       },
       {
+        "source": "/articles/happy-mother-s-day",
+        "destination": "/articles/happy-mother-s-day.html"
+      },
+      {
+        "source": "/articles/happy-national-pet-day",
+        "destination": "/articles/happy-national-pet-day.html"
+      },
+      {
         "source": "/articles/happy-new-year-mgaga",
         "destination": "/articles/happy-new-year-mgaga.html"
       },
@@ -1302,6 +1366,10 @@
       {
         "source": "/articles/happy-valentine-s-day-ga",
         "destination": "/articles/happy-valentine-s-day-ga.html"
+      },
+      {
+        "source": "/articles/happy-world-down-syndrome-day",
+        "destination": "/articles/happy-world-down-syndrome-day.html"
       },
       {
         "source": "/articles/happy-world-teachers-day",
@@ -1338,6 +1406,10 @@
       {
         "source": "/articles/heads-up-umians",
         "destination": "/articles/heads-up-umians.html"
+      },
+      {
+        "source": "/articles/hello-april",
+        "destination": "/articles/hello-april.html"
       },
       {
         "source": "/articles/hello-former-self",
@@ -1418,6 +1490,10 @@
       {
         "source": "/articles/in-photos-on-september-30-2024-um-ilang-high-school-wraps-up-the-fir",
         "destination": "/articles/in-photos-on-september-30-2024-um-ilang-high-school-wraps-up-the-fir.html"
+      },
+      {
+        "source": "/articles/in-photos-on-the-morning-of-april-13-2026-the-graduates-and-complete",
+        "destination": "/articles/in-photos-on-the-morning-of-april-13-2026-the-graduates-and-complete.html"
       },
       {
         "source": "/articles/in-photos-party-started-camaraderie-ignited",
@@ -1584,6 +1660,10 @@
         "destination": "/articles/isang-episode-na-lang-isang-game-na-lang-isang-scroll-na-lang-isang-p.html"
       },
       {
+        "source": "/articles/it-is-our-choices-harry-that-show-us-what-we-truly-are-far-more-than",
+        "destination": "/articles/it-is-our-choices-harry-that-show-us-what-we-truly-are-far-more-than.html"
+      },
+      {
         "source": "/articles/it-launched-with-excitement",
         "destination": "/articles/it-launched-with-excitement.html"
       },
@@ -1660,6 +1740,10 @@
         "destination": "/articles/late-night-thoughts-creep.html"
       },
       {
+        "source": "/articles/late-night-thoughts-did-you-like-her-in-the-morning",
+        "destination": "/articles/late-night-thoughts-did-you-like-her-in-the-morning.html"
+      },
+      {
         "source": "/articles/late-night-thoughts-the-one-that-got-away",
         "destination": "/articles/late-night-thoughts-the-one-that-got-away.html"
       },
@@ -1720,6 +1804,10 @@
         "destination": "/articles/maging-ligtas-maging-panatag-pilipinas.html"
       },
       {
+        "source": "/articles/malipayon-nga-ba-araw-ng-dabaw-sa-tanang-dabawenyo",
+        "destination": "/articles/malipayon-nga-ba-araw-ng-dabaw-sa-tanang-dabawenyo.html"
+      },
+      {
         "source": "/articles/mark-your-calendar",
         "destination": "/articles/mark-your-calendar.html"
       },
@@ -1754,6 +1842,10 @@
       {
         "source": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf",
         "destination": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf.html"
+      },
+      {
+        "source": "/articles/maroon-viewpoint-on-april-6-2026-the-um-ilang-high-school-celebrated",
+        "destination": "/articles/maroon-viewpoint-on-april-6-2026-the-um-ilang-high-school-celebrated.html"
       },
       {
         "source": "/articles/maroon-viewpoint-on-july-31-2025-um-ilang-high-school-commenced-its",
@@ -1998,6 +2090,10 @@
       {
         "source": "/articles/news-tropical-storm-basyang-is-now-affecting-areas-near-davao-bringin",
         "destination": "/articles/news-tropical-storm-basyang-is-now-affecting-areas-near-davao-bringin.html"
+      },
+      {
+        "source": "/articles/news-um-ilang-high-school-celebrates-umian-festival-on-april-6-2026",
+        "destination": "/articles/news-um-ilang-high-school-celebrates-umian-festival-on-april-6-2026.html"
       },
       {
         "source": "/articles/news-um-ilang-high-school-celebrates-umyong-student-fest-on-march-21",
@@ -2380,6 +2476,10 @@
         "destination": "/articles/the-end-of-2025-brings-a-reflection-as-we-gather-in-unity-we-honor-the.html"
       },
       {
+        "source": "/articles/the-end-of-a-chapter",
+        "destination": "/articles/the-end-of-a-chapter.html"
+      },
+      {
         "source": "/articles/the-holiday-begins-now-ga",
         "destination": "/articles/the-holiday-begins-now-ga.html"
       },
@@ -2402,6 +2502,10 @@
       {
         "source": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink",
         "destination": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/today-we-observe-and-celebrate-world-art-day",
+        "destination": "/articles/today-we-observe-and-celebrate-world-art-day.html"
       },
       {
         "source": "/articles/total-lunar-eclipse-2025",

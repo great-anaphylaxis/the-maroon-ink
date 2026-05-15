@@ -73,7 +73,7 @@ function getInkerAndArticles() {
             renderArticle(article)
         }
 
-        contributedArticlesTitle.innerText = `Contribued Articles (${articles.length})`;
+        contributedArticlesTitle.innerText = `Contributed Articles (${articles.length})`;
 
         log(`"${document.title}" inker page loaded`)
 

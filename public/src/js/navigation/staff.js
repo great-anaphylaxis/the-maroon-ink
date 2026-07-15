@@ -19,21 +19,24 @@ const mainElement = document.getElementById('main');
 
 function getStaff() {
     const staff = client.fetch(`{
-    "Editor in Chief": *[_type == "inker" && role match "editor in chief"]{
+    "Editor in Chief": *[_type == "inker" && !(role match "former") 
+    && role match "editor in chief"]{
         name,
         username,
         profilePicture,
         role
     },
 
-    "Associate Editor": *[_type == "inker" && role match "associate editor"]{
+    "Associate Editor": *[_type == "inker" && !(role match "former") 
+    && role match "associate editor"]{
         name,
         username,
         profilePicture,
         role
     },
 
-    "Editorial Board": *[_type == "inker" && !(role match "editor in chief") && !(role match "associate editor")
+    "Editorial Board": *[_type == "inker" && !(role match "former") 
+    && !(role match "editor in chief") && !(role match "associate editor")
     && (role match "lead" || role match "editor" || role match "manager")] | order(lower(role) asc) {
         name,
         username,

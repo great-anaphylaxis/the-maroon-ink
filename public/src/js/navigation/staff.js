@@ -36,7 +36,7 @@ function getStaff() {
     },
 
     "Editorial Board": *[_type == "inker" && !(role match "former") 
-    && !(role match "editor in chief") && !(role match "associate editor")
+    && !(role match "editor in chief") && !(role match "associate editor") && !(role match "video editor")
     && (role match "lead" || role match "editor" || role match "manager")] | order(lower(role) asc) {
         name,
         username,

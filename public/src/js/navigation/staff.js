@@ -48,7 +48,7 @@ function getStaff() {
         (
             !(role match "lead" || role match "editor" || role match "manager" 
             || role match "adviser") 
-            || role match "former"
+            || role match "former" || role match "video editor"
         )] | order(lower(role) asc) {
         name,
         username,

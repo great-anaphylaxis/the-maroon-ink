@@ -19,16 +19,8 @@ const mainElement = document.getElementById('main');
 
 function getStaff() {
     const staff = client.fetch(`{
-    "Editor in Chief": *[_type == "inker" && !(role match "former") 
-    && role match "editor in chief"]{
-        name,
-        username,
-        profilePicture,
-        role
-    },
-
-    "Associate Editor": *[_type == "inker" && !(role match "former") 
-    && role match "associate editor"]{
+    "Executives": *[_type == "inker" && !(role match "former") 
+    && (role match "editor in chief" || role match "associate editor" || role match "managing editor")]{
         name,
         username,
         profilePicture,
@@ -36,7 +28,7 @@ function getStaff() {
     },
 
     "Editorial Board": *[_type == "inker" && !(role match "former") 
-    && !(role match "editor in chief") && !(role match "associate editor") && !(role match "video editor" && !(role match "lead"))
+    && !(role match "editor in chief") && !(role match "associate editor") && !(role match "managing editor") && !(role match "video editor" && !(role match "lead"))
     && (role match "lead" || role match "editor" || role match "manager")] | order(lower(role) asc) {
         name,
         username,
@@ -48,7 +40,7 @@ function getStaff() {
         (
             !(role match "lead" || role match "editor" || role match "manager" 
             || role match "adviser") 
-            || role match "former" || role match "video editor"
+            || role match "former" || (role match "video editor" && role match "lead")
         )] | order(lower(role) asc) {
         name,
         username,
@@ -67,11 +59,10 @@ function getStaff() {
         // repositioning
 
         const res = {
-            "Editor in Chief": e["Editor in Chief"],
-            "Associate Editor": e["Associate Editor"],
+            "Adviser": e["Adviser"],
+            "Executives": e["Executives"],
             "Editorial Board": e["Editorial Board"],
-            "Members": e["Members"],
-            "Adviser": e["Adviser"]
+            "Members": e["Members"]
         }
 
         Object.keys(res).forEach(key => {

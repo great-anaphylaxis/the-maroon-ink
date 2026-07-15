@@ -76,6 +76,10 @@
         "destination": "/inkers/gian-paulo-mabaso.html"
       },
       {
+        "source": "/inkers/lea-anshane-pat",
+        "destination": "/inkers/lea-anshane-pat.html"
+      },
+      {
         "source": "/inkers/avery-espos",
         "destination": "/inkers/avery-espos.html"
       },
@@ -116,8 +120,16 @@
         "destination": "/inkers/liana-bernadet-medidas.html"
       },
       {
+        "source": "/inkers/nerrie-rose-baldoza",
+        "destination": "/inkers/nerrie-rose-baldoza.html"
+      },
+      {
         "source": "/inkers/john-stephen-gabisan",
         "destination": "/inkers/john-stephen-gabisan.html"
+      },
+      {
+        "source": "/inkers/jock-sanat",
+        "destination": "/inkers/jock-sanat.html"
       },
       {
         "source": "/inkers/patricia-isabel-cunanan",
@@ -354,10 +366,6 @@
       {
         "source": "/inkers/khezhea-gumubao",
         "destination": "/inkers/khezhea-gumubao.html"
-      },
-      {
-        "source": "/inkers/khezhea-shaira-gumubao",
-        "destination": "/inkers/khezhea-shaira-gumubao.html"
       },
       {
         "source": "/inkers/kimverly-agustin",
@@ -2420,10 +2428,6 @@
         "destination": "/articles/positive-thinking-day-let-light-in.html"
       },
       {
-        "source": "/articles/post",
-        "destination": "/articles/post.html"
-      },
-      {
         "source": "/articles/pride-month-2025-proudly-wave-your-flags-high-everyone",
         "destination": "/articles/pride-month-2025-proudly-wave-your-flags-high-everyone.html"
       },
@@ -2562,10 +2566,6 @@
       {
         "source": "/articles/sorry-our-layout-artists-are-fully-booked",
         "destination": "/articles/sorry-our-layout-artists-are-fully-booked.html"
-      },
-      {
-        "source": "/articles/spectrum-of-colors-the-unknowing-radiance-of-its-hue-of-colors",
-        "destination": "/articles/spectrum-of-colors-the-unknowing-radiance-of-its-hue-of-colors.html"
       },
       {
         "source": "/articles/sports-news-daprisa-games-2025",

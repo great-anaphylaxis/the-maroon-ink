@@ -160,6 +160,10 @@
         "destination": "/inkers/alliyah-calvo.html"
       },
       {
+        "source": "/inkers/analisa-ibarani",
+        "destination": "/inkers/analisa-ibarani.html"
+      },
+      {
         "source": "/inkers/andrea-canete",
         "destination": "/inkers/andrea-canete.html"
       },
@@ -178,6 +182,10 @@
       {
         "source": "/inkers/ashley-ereno",
         "destination": "/inkers/ashley-ereno.html"
+      },
+      {
+        "source": "/inkers/augosto-arana",
+        "destination": "/inkers/augosto-arana.html"
       },
       {
         "source": "/inkers/chamee-de-guia",
@@ -228,6 +236,10 @@
         "destination": "/inkers/dorothy-de-dios.html"
       },
       {
+        "source": "/inkers/dorothy-morife-de-dios",
+        "destination": "/inkers/dorothy-morife-de-dios.html"
+      },
+      {
         "source": "/inkers/eesha-laurente",
         "destination": "/inkers/eesha-laurente.html"
       },
@@ -252,6 +264,10 @@
         "destination": "/inkers/franchezka-areja.html"
       },
       {
+        "source": "/inkers/french-matthew-de-guzman",
+        "destination": "/inkers/french-matthew-de-guzman.html"
+      },
+      {
         "source": "/inkers/gabrielle-abucay",
         "destination": "/inkers/gabrielle-abucay.html"
       },
@@ -262,6 +278,10 @@
       {
         "source": "/inkers/gino-kirby-orcullo",
         "destination": "/inkers/gino-kirby-orcullo.html"
+      },
+      {
+        "source": "/inkers/gumubao-khezhea-shaira",
+        "destination": "/inkers/gumubao-khezhea-shaira.html"
       },
       {
         "source": "/inkers/hannah-angela-lao",
@@ -296,6 +316,10 @@
         "destination": "/inkers/janna-mikaela-recede.html"
       },
       {
+        "source": "/inkers/jarielle-rubia",
+        "destination": "/inkers/jarielle-rubia.html"
+      },
+      {
         "source": "/inkers/jasmine-gonzales",
         "destination": "/inkers/jasmine-gonzales.html"
       },
@@ -312,6 +336,10 @@
         "destination": "/inkers/jessa-claire-dorin.html"
       },
       {
+        "source": "/inkers/jhanna-romano",
+        "destination": "/inkers/jhanna-romano.html"
+      },
+      {
         "source": "/inkers/jim-cordova",
         "destination": "/inkers/jim-cordova.html"
       },
@@ -322,6 +350,10 @@
       {
         "source": "/inkers/john-lawrence-prudencio",
         "destination": "/inkers/john-lawrence-prudencio.html"
+      },
+      {
+        "source": "/inkers/john-marti-buntia",
+        "destination": "/inkers/john-marti-buntia.html"
       },
       {
         "source": "/inkers/john-matthew-alatraca",
@@ -366,6 +398,10 @@
       {
         "source": "/inkers/khezhea-gumubao",
         "destination": "/inkers/khezhea-gumubao.html"
+      },
+      {
+        "source": "/inkers/khezhea-shaira-gumubao",
+        "destination": "/inkers/khezhea-shaira-gumubao.html"
       },
       {
         "source": "/inkers/kimverly-agustin",
@@ -616,6 +652,10 @@
         "destination": "/articles/a-voyage-into-a-world-of-discovery-umihs-partakes-in-the-math-and-scie.html"
       },
       {
+        "source": "/articles/aanhin-ko-ang-mga-numero-kung-ikaw-lang-ang-gusto-ko-literary",
+        "destination": "/articles/aanhin-ko-ang-mga-numero-kung-ikaw-lang-ang-gusto-ko-literary.html"
+      },
+      {
         "source": "/articles/accio-umians",
         "destination": "/articles/accio-umians.html"
       },
@@ -676,6 +716,10 @@
         "destination": "/articles/announcement-second-round-of-basketball-tryouts.html"
       },
       {
+        "source": "/articles/announcement-um-ilang-high-school-will-hold-its-3rd-teacher-made-summa",
+        "destination": "/articles/announcement-um-ilang-high-school-will-hold-its-3rd-teacher-made-summa.html"
+      },
+      {
         "source": "/articles/another-chapter-closes",
         "destination": "/articles/another-chapter-closes.html"
       },
@@ -726,6 +770,10 @@
       {
         "source": "/articles/attention-passengers",
         "destination": "/articles/attention-passengers.html"
+      },
+      {
+        "source": "/articles/attention-to-all-aspiring-students",
+        "destination": "/articles/attention-to-all-aspiring-students.html"
       },
       {
         "source": "/articles/avisala",
@@ -844,8 +892,16 @@
         "destination": "/articles/catch-the-maroon-ink-s-coverage-of-halalan-2024-the-ssg-election.html"
       },
       {
+        "source": "/articles/celebrating-80-years-of-honoring-the-past-and-inspiring-the-future",
+        "destination": "/articles/celebrating-80-years-of-honoring-the-past-and-inspiring-the-future.html"
+      },
+      {
         "source": "/articles/chapter-one-first-day-of-school",
         "destination": "/articles/chapter-one-first-day-of-school.html"
+      },
+      {
+        "source": "/articles/check-this-out-ga",
+        "destination": "/articles/check-this-out-ga.html"
       },
       {
         "source": "/articles/christmas-fest-changes-in-schedule",
@@ -858,6 +914,10 @@
       {
         "source": "/articles/christmas-harmony-of-unity",
         "destination": "/articles/christmas-harmony-of-unity.html"
+      },
+      {
+        "source": "/articles/club-membership-has-officially-closed",
+        "destination": "/articles/club-membership-has-officially-closed.html"
       },
       {
         "source": "/articles/color-coding-advisory-in-celebration-of-the-umyong-student-fest-2025",
@@ -1052,6 +1112,10 @@
         "destination": "/articles/events-fun-run-for-a-cause-1.html"
       },
       {
+        "source": "/articles/events-mass",
+        "destination": "/articles/events-mass.html"
+      },
+      {
         "source": "/articles/events-quipper-and-class-orientation",
         "destination": "/articles/events-quipper-and-class-orientation.html"
       },
@@ -1060,8 +1124,16 @@
         "destination": "/articles/events-throughout-april.html"
       },
       {
+        "source": "/articles/events-throughout-september",
+        "destination": "/articles/events-throughout-september.html"
+      },
+      {
         "source": "/articles/events-united-nations-celebration-2025",
         "destination": "/articles/events-united-nations-celebration-2025.html"
+      },
+      {
+        "source": "/articles/exam-season-nanaman-mga-ga",
+        "destination": "/articles/exam-season-nanaman-mga-ga.html"
       },
       {
         "source": "/articles/excited-na-ba-ka-sa-intrams-ga",
@@ -1176,6 +1248,10 @@
         "destination": "/articles/gapangutana-unsa-imong-costume-ugma-ga.html"
       },
       {
+        "source": "/articles/garage-sale-ano-tara",
+        "destination": "/articles/garage-sale-ano-tara.html"
+      },
+      {
         "source": "/articles/garage-sale-heads-up-ga",
         "destination": "/articles/garage-sale-heads-up-ga.html"
       },
@@ -1198,6 +1274,10 @@
       {
         "source": "/articles/get-ready",
         "destination": "/articles/get-ready.html"
+      },
+      {
+        "source": "/articles/get-ready-to-own-the-dance-floor",
+        "destination": "/articles/get-ready-to-own-the-dance-floor.html"
       },
       {
         "source": "/articles/ginoo-at-mutya-update-get-ready-to-meet-the-esteemed-judges-tomorrow",
@@ -1276,6 +1356,18 @@
         "destination": "/articles/halalan-2025-the-election-of-ssg-officers-officially-commences.html"
       },
       {
+        "source": "/articles/halalan-2026-candidates",
+        "destination": "/articles/halalan-2026-candidates.html"
+      },
+      {
+        "source": "/articles/halalan-2026-election-results",
+        "destination": "/articles/halalan-2026-election-results.html"
+      },
+      {
+        "source": "/articles/halalan-2026-platforms",
+        "destination": "/articles/halalan-2026-platforms.html"
+      },
+      {
         "source": "/articles/happening-now-campus-citizenship-at-um-matina-campus-davao-city",
         "destination": "/articles/happening-now-campus-citizenship-at-um-matina-campus-davao-city.html"
       },
@@ -1288,6 +1380,10 @@
         "destination": "/articles/happening-now-intramurals-2025-of-um-ilang-highschool-opens-its-aftern.html"
       },
       {
+        "source": "/articles/happening-now-know-your-type-unlocking-the-science-of-blood-genetics",
+        "destination": "/articles/happening-now-know-your-type-unlocking-the-science-of-blood-genetics.html"
+      },
+      {
         "source": "/articles/happening-now-media-conference-and-sashing-ceremony-of-the-16-candidat",
         "destination": "/articles/happening-now-media-conference-and-sashing-ceremony-of-the-16-candidat.html"
       },
@@ -1298,6 +1394,10 @@
       {
         "source": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025",
         "destination": "/articles/happening-now-on-this-day-um-ilang-high-school-kicks-off-the-intramurals-2025.html"
+      },
+      {
+        "source": "/articles/happening-now-on-this-day-um-ilang-highschool-officially-kicks-off-t",
+        "destination": "/articles/happening-now-on-this-day-um-ilang-highschool-officially-kicks-off-t.html"
       },
       {
         "source": "/articles/happening-now-pride-and-excitement-fill-the-air-as-university-of-mindan",
@@ -1512,6 +1612,14 @@
         "destination": "/articles/hello-former-self.html"
       },
       {
+        "source": "/articles/here-comes-the-first-examination-for-the-2nd-term-scheduled-on-septembe",
+        "destination": "/articles/here-comes-the-first-examination-for-the-2nd-term-scheduled-on-septembe.html"
+      },
+      {
+        "source": "/articles/hey-siri-play-we-are-the-champions",
+        "destination": "/articles/hey-siri-play-we-are-the-champions.html"
+      },
+      {
         "source": "/articles/hey-twirlers-and-instrument-players",
         "destination": "/articles/hey-twirlers-and-instrument-players.html"
       },
@@ -1540,6 +1648,10 @@
         "destination": "/articles/in-a-world-shaped-by-questions-and-ideas-the-maroon-ink-stands-as-a-sou.html"
       },
       {
+        "source": "/articles/in-photos",
+        "destination": "/articles/in-photos.html"
+      },
+      {
         "source": "/articles/in-photos-12-on-january-24-2025-the-school-gymnasium-was-filled-wi",
         "destination": "/articles/in-photos-12-on-january-24-2025-the-school-gymnasium-was-filled-wi.html"
       },
@@ -1548,12 +1660,20 @@
         "destination": "/articles/in-photos-22-on-january-24-2025-the-school-gymnasium-was-filled-wi.html"
       },
       {
+        "source": "/articles/in-photos-chse-symposium",
+        "destination": "/articles/in-photos-chse-symposium.html"
+      },
+      {
         "source": "/articles/in-photos-diagnostic-test-completed",
         "destination": "/articles/in-photos-diagnostic-test-completed.html"
       },
       {
         "source": "/articles/in-photos-f",
         "destination": "/articles/in-photos-f.html"
+      },
+      {
+        "source": "/articles/in-photos-foam-party",
+        "destination": "/articles/in-photos-foam-party.html"
       },
       {
         "source": "/articles/in-photos-happy-birthday-ma-am-mai",
@@ -1614,6 +1734,10 @@
       {
         "source": "/articles/in-the-glow-of-simple-joys-moments-wrapped-in-christmas-magic",
         "destination": "/articles/in-the-glow-of-simple-joys-moments-wrapped-in-christmas-magic.html"
+      },
+      {
+        "source": "/articles/inktober-2026-week-1",
+        "destination": "/articles/inktober-2026-week-1.html"
       },
       {
         "source": "/articles/inside-um-miting-de-avance-2025",
@@ -1788,6 +1912,10 @@
         "destination": "/articles/its-that-time-of-year-again.html"
       },
       {
+        "source": "/articles/jhareign-solidum-represent",
+        "destination": "/articles/jhareign-solidum-represent.html"
+      },
+      {
         "source": "/articles/join-us-in-celebrating-the-university-of-mindanaos-79th-founding-anniver",
         "destination": "/articles/join-us-in-celebrating-the-university-of-mindanaos-79th-founding-anniver.html"
       },
@@ -1822,6 +1950,10 @@
       {
         "source": "/articles/kadayawan-2025-madayaw-davao",
         "destination": "/articles/kadayawan-2025-madayaw-davao.html"
+      },
+      {
+        "source": "/articles/kalapastangan-ang-hindi-ka-piliin",
+        "destination": "/articles/kalapastangan-ang-hindi-ka-piliin.html"
       },
       {
         "source": "/articles/kamo-nasad",
@@ -1870,6 +2002,10 @@
       {
         "source": "/articles/literary-i-was-named-by-the-others-as-pawn",
         "destination": "/articles/literary-i-was-named-by-the-others-as-pawn.html"
+      },
+      {
+        "source": "/articles/litmus-where-music-meets-movement",
+        "destination": "/articles/litmus-where-music-meets-movement.html"
       },
       {
         "source": "/articles/long-weekend-umihs-announces-class-suspension-in-observance-of-nationa",
@@ -1956,6 +2092,10 @@
         "destination": "/articles/maroon-viewpoint-daprisa-games-2025.html"
       },
       {
+        "source": "/articles/maroon-viewpoint-daprisa-games-2026",
+        "destination": "/articles/maroon-viewpoint-daprisa-games-2026.html"
+      },
+      {
         "source": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf",
         "destination": "/articles/maroon-viewpoint-drug-education-and-prevention-smokingvaping-and-saf.html"
       },
@@ -1994,6 +2134,10 @@
       {
         "source": "/articles/maundy-thursday-every-holy-thursday-we-commemorate-the-last-supper-of",
         "destination": "/articles/maundy-thursday-every-holy-thursday-we-commemorate-the-last-supper-of.html"
+      },
+      {
+        "source": "/articles/meet-the-players-basketball-boys",
+        "destination": "/articles/meet-the-players-basketball-boys.html"
       },
       {
         "source": "/articles/meet-the-players-daprisa-games-2025",
@@ -2036,6 +2180,10 @@
         "destination": "/articles/muling-pakikidigma.html"
       },
       {
+        "source": "/articles/nacl-o2-n2-co2-and-the",
+        "destination": "/articles/nacl-o2-n2-co2-and-the.html"
+      },
+      {
         "source": "/articles/nahuman-na-jud-nahuman-na-jud",
         "destination": "/articles/nahuman-na-jud-nahuman-na-jud.html"
       },
@@ -2058,6 +2206,10 @@
       {
         "source": "/articles/national-day-of-protest",
         "destination": "/articles/national-day-of-protest.html"
+      },
+      {
+        "source": "/articles/national-heroes-day",
+        "destination": "/articles/national-heroes-day.html"
       },
       {
         "source": "/articles/national-heroes-day-when-someone-says-the-word-hero-do-you-think-of-f",
@@ -2108,12 +2260,20 @@
         "destination": "/articles/news-advancing-faculty-assessment-proficiency-umihs-faculty-enhance-s.html"
       },
       {
+        "source": "/articles/news-are-you-ready-for-the-exams-mga-ga",
+        "destination": "/articles/news-are-you-ready-for-the-exams-mga-ga.html"
+      },
+      {
         "source": "/articles/news-classes-on-january-30-2025-will-be-shifted-to-asynchronous-mode",
         "destination": "/articles/news-classes-on-january-30-2025-will-be-shifted-to-asynchronous-mode.html"
       },
       {
         "source": "/articles/news-drug-awareness-symposium-at-um-ilang-high-school",
         "destination": "/articles/news-drug-awareness-symposium-at-um-ilang-high-school.html"
+      },
+      {
+        "source": "/articles/news-earthquake-drill",
+        "destination": "/articles/news-earthquake-drill.html"
       },
       {
         "source": "/articles/news-ensuring-quality-education-umihs-teachers-join-the-three-day-in",
@@ -2126,6 +2286,10 @@
       {
         "source": "/articles/news-grade-10-and-grade-12-parents-meet-at-the-um-ilang-gymnasium-on-a",
         "destination": "/articles/news-grade-10-and-grade-12-parents-meet-at-the-um-ilang-gymnasium-on-a.html"
+      },
+      {
+        "source": "/articles/news-halalan-2026",
+        "destination": "/articles/news-halalan-2026.html"
       },
       {
         "source": "/articles/news-heads-up-mga-ga-a-blood-moon-is-lurking-tonight",
@@ -2412,6 +2576,10 @@
         "destination": "/articles/patriot-day-never-forget.html"
       },
       {
+        "source": "/articles/pens-moved-pages-filled-and-ideas-came-together-as-the-litmus-even-bro",
+        "destination": "/articles/pens-moved-pages-filled-and-ideas-came-together-as-the-litmus-even-bro.html"
+      },
+      {
         "source": "/articles/photobooth-take-off",
         "destination": "/articles/photobooth-take-off.html"
       },
@@ -2432,8 +2600,16 @@
         "destination": "/articles/pride-month-2025-proudly-wave-your-flags-high-everyone.html"
       },
       {
+        "source": "/articles/pwede-mag-tanong",
+        "destination": "/articles/pwede-mag-tanong.html"
+      },
+      {
         "source": "/articles/quality-affordable-open-education",
         "destination": "/articles/quality-affordable-open-education.html"
+      },
+      {
+        "source": "/articles/que-sera-sera",
+        "destination": "/articles/que-sera-sera.html"
       },
       {
         "source": "/articles/queens-of-the-board-black-trojans-clinched-victory-in-chess-girls-categ",
@@ -2568,6 +2744,34 @@
         "destination": "/articles/sorry-our-layout-artists-are-fully-booked.html"
       },
       {
+        "source": "/articles/sport-fest-2026-is-almost-over-mga-ga",
+        "destination": "/articles/sport-fest-2026-is-almost-over-mga-ga.html"
+      },
+      {
+        "source": "/articles/sports-fest-ball-games-results",
+        "destination": "/articles/sports-fest-ball-games-results.html"
+      },
+      {
+        "source": "/articles/sports-fest-cadmus",
+        "destination": "/articles/sports-fest-cadmus.html"
+      },
+      {
+        "source": "/articles/sports-fest-day-1-photos",
+        "destination": "/articles/sports-fest-day-1-photos.html"
+      },
+      {
+        "source": "/articles/sports-fest-overall-ranking",
+        "destination": "/articles/sports-fest-overall-ranking.html"
+      },
+      {
+        "source": "/articles/sports-meet-the-players",
+        "destination": "/articles/sports-meet-the-players.html"
+      },
+      {
+        "source": "/articles/sports-news-daprisa-games",
+        "destination": "/articles/sports-news-daprisa-games.html"
+      },
+      {
         "source": "/articles/sports-news-daprisa-games-2025",
         "destination": "/articles/sports-news-daprisa-games-2025.html"
       },
@@ -2590,6 +2794,22 @@
       {
         "source": "/articles/sports-news-pacquiao-vs-barrios-ends-in-a-majority-draw",
         "destination": "/articles/sports-news-pacquiao-vs-barrios-ends-in-a-majority-draw.html"
+      },
+      {
+        "source": "/articles/sports-news-umihs-hoplites-wins-41-13-against-dopcd",
+        "destination": "/articles/sports-news-umihs-hoplites-wins-41-13-against-dopcd.html"
+      },
+      {
+        "source": "/articles/sports-news-umihs-volleball-girls-dominates-the-court-2-0",
+        "destination": "/articles/sports-news-umihs-volleball-girls-dominates-the-court-2-0.html"
+      },
+      {
+        "source": "/articles/sports-news-umihs-volleyball-boys-opens-season-with-power-play",
+        "destination": "/articles/sports-news-umihs-volleyball-boys-opens-season-with-power-play.html"
+      },
+      {
+        "source": "/articles/sports-volleyball-tryouts",
+        "destination": "/articles/sports-volleyball-tryouts.html"
       },
       {
         "source": "/articles/street-style-spectacle-showcasing-street-performances-and-style-extrav",
@@ -2620,6 +2840,14 @@
         "destination": "/articles/teacher-s-day-recap-what-a-day.html"
       },
       {
+        "source": "/articles/teachers-month-2026-it-s-that-time-of-the-year-where-we-dedicate-a-mo",
+        "destination": "/articles/teachers-month-2026-it-s-that-time-of-the-year-where-we-dedicate-a-mo.html"
+      },
+      {
+        "source": "/articles/the-arena-calls-once-again",
+        "destination": "/articles/the-arena-calls-once-again.html"
+      },
+      {
         "source": "/articles/the-end-of-2025-brings-a-reflection-as-we-gather-in-unity-we-honor-the",
         "destination": "/articles/the-end-of-2025-brings-a-reflection-as-we-gather-in-unity-we-honor-the.html"
       },
@@ -2648,8 +2876,16 @@
         "destination": "/articles/the-search-is-over-umihs-crowns-new-king-and-queen-for-mathsciaka-2023.html"
       },
       {
+        "source": "/articles/the-season-of-salty-air-slowly-fades-away-as-warm-breezes-give-way-to-c",
+        "destination": "/articles/the-season-of-salty-air-slowly-fades-away-as-warm-breezes-give-way-to-c.html"
+      },
+      {
         "source": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink",
         "destination": "/articles/through-the-stormy-oppression-and-ignorance-the-ship-of-the-maroon-ink.html"
+      },
+      {
+        "source": "/articles/today-october-10-2026-we-observe-world-mental-health-day",
+        "destination": "/articles/today-october-10-2026-we-observe-world-mental-health-day.html"
       },
       {
         "source": "/articles/today-we-observe-and-celebrate-world-art-day",
@@ -2764,6 +3000,10 @@
         "destination": "/articles/volume-13-issue-2-is-also-out.html"
       },
       {
+        "source": "/articles/wake-me-up-when-septem",
+        "destination": "/articles/wake-me-up-when-septem.html"
+      },
+      {
         "source": "/articles/watch-mutya-ng-um-2024-candidates-proceed-to-the-next-phase-towards-th",
         "destination": "/articles/watch-mutya-ng-um-2024-candidates-proceed-to-the-next-phase-towards-th.html"
       },
@@ -2800,6 +3040,10 @@
         "destination": "/articles/we-all-deserve-sunshine.html"
       },
       {
+        "source": "/articles/we-are-one-kadayaone",
+        "destination": "/articles/we-are-one-kadayaone.html"
+      },
+      {
         "source": "/articles/we-are-the-ones-who-make-a-brighter-day-so-lets-start-giving",
         "destination": "/articles/we-are-the-ones-who-make-a-brighter-day-so-lets-start-giving.html"
       },
@@ -2810,6 +3054,10 @@
       {
         "source": "/articles/what-if",
         "destination": "/articles/what-if.html"
+      },
+      {
+        "source": "/articles/when-we-work-together-we-can-accomplish-anything",
+        "destination": "/articles/when-we-work-together-we-can-accomplish-anything.html"
       },
       {
         "source": "/articles/white-crayon",
@@ -2836,12 +3084,24 @@
         "destination": "/articles/world-daughters-day-the-hands-that-care-the-heart-that-endures.html"
       },
       {
+        "source": "/articles/world-space-week",
+        "destination": "/articles/world-space-week.html"
+      },
+      {
         "source": "/articles/wounds-of-the-past-will-eventually-heal-and-all-will-be-alright-in-time",
         "destination": "/articles/wounds-of-the-past-will-eventually-heal-and-all-will-be-alright-in-time.html"
       },
       {
         "source": "/articles/yay",
         "destination": "/articles/yay.html"
+      },
+      {
+        "source": "/articles/you-don-t-have-to-be-alone-suicide-prevention-month",
+        "destination": "/articles/you-don-t-have-to-be-alone-suicide-prevention-month.html"
+      },
+      {
+        "source": "/articles/you-never-know-the-silent-battles-people-are-fighting-even-the-people-y",
+        "destination": "/articles/you-never-know-the-silent-battles-people-are-fighting-even-the-people-y.html"
       },
       {
         "source": "/articles/yulo-nagwagi-ng-ginto-sa-paris-olympics-2024",

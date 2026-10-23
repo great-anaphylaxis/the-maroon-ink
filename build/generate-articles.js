@@ -163,6 +163,8 @@ function editHeader(template, article) {
     for (let i = 0; i < article.inkersOnDuty.length; i++) {
         let inkers = article.inkersOnDuty[i];
 
+        print(inkers, inkers.name)
+
         let name = inkers.name;
 
         inkersOnDuty.push(name)

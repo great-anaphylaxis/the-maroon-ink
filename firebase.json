@@ -188,6 +188,10 @@
         "destination": "/inkers/augosto-arana.html"
       },
       {
+        "source": "/inkers/beyonce-lagrada",
+        "destination": "/inkers/beyonce-lagrada.html"
+      },
+      {
         "source": "/inkers/chamee-de-guia",
         "destination": "/inkers/chamee-de-guia.html"
       },
@@ -438,6 +442,14 @@
       {
         "source": "/inkers/maam-grace-grampon",
         "destination": "/inkers/maam-grace-grampon.html"
+      },
+      {
+        "source": "/inkers/maam-karen-onia-um-main",
+        "destination": "/inkers/maam-karen-onia-um-main.html"
+      },
+      {
+        "source": "/inkers/maam-mariel-ragusta",
+        "destination": "/inkers/maam-mariel-ragusta.html"
       },
       {
         "source": "/inkers/maam-nazima-basilio",
